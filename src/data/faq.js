@@ -23,8 +23,8 @@ export const faq = [
   {
     q: 'Hvor præcist er estimatet?',
     a: [
-      'Estimatet er et vejledende interval. Det bygger på kvadratmeterpriser for din boligtype i dit postnummer og på boligens areal fra BBR.',
-      'Det ved ikke noget om stand, renovering, udsigt, have eller støj fra vejen. Derfor kan den rigtige pris ligge uden for intervallet. En mægler, der har set boligen, kan give dig en langt mere præcis vurdering.',
+      'Estimatet er et vejledende interval. Den rigtige pris kan ligge uden for det.',
+      'En mægler, der har set boligen, kan give dig en langt mere præcis vurdering.',
     ],
   },
   {

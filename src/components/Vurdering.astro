@@ -12,11 +12,12 @@ const maeglere = maeglerData.maeglere
   .map((m) => Object.fromEntries(offentligeFelter.map((f) => [f, (m as Record<string, unknown>)[f]])));
 
 // CMS'et gemmer priserne som en liste. Formularen slår op på postnummer.
-const { priser, ...kvmMeta } = kvmpriser;
+// Kun tallene og testflaget sendes med. Kilde og noter bliver i CMS'et.
+const { priser, pladsholder } = kvmpriser;
 const data = {
   maeglere,
   kvmpriser: {
-    ...kvmMeta,
+    pladsholder,
     postnumre: Object.fromEntries(
       priser.map(({ postnr, ...typer }) => [postnr, Object.fromEntries(Object.entries(typer).filter(([, v]) => Number(v) > 0))]),
     ),
@@ -66,7 +67,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
         />
         <ul id="vf-forslag" role="listbox" aria-label="Adresseforslag" hidden></ul>
         </div>
-        <p class="hjaelp" id="vf-adresse-hjaelp">Skriv vejnavn og husnummer. Vi finder adressen i Danmarks officielle adresseregister.</p>
+        <p class="hjaelp" id="vf-adresse-hjaelp">Skriv vejnavn og husnummer, og vælg din adresse på listen.</p>
       </div>
       <div class="felt" id="vf-enhed-felt" hidden>
         <label for="vf-enhed">Etage og dør</label>
@@ -91,7 +92,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
     <!-- 1b. Bekræft boligtype og areal -->
     <div class="vf-skaerm" data-skaerm="bolig" hidden>
       <h2 class="vf-h" tabindex="-1">Passer det her?</h2>
-      <p class="vf-note" id="vf-bbr-note">Vi henter oplysninger om din bolig fra BBR.</p>
+      <p class="vf-note" id="vf-bbr-note">Vi henter oplysninger om din bolig.</p>
       <fieldset class="valg">
         <legend>Boligtype</legend>
         {BOLIGTYPER.map((b) => (
@@ -112,10 +113,9 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
         <p class="eyebrow" id="vf-estimat-adresse"></p>
         <h2 class="vf-h" tabindex="-1">Din bolig er cirka værd</h2>
         <p class="vf-interval tal" id="vf-interval"></p>
-        <p class="vf-testdata" id="vf-testdata" hidden>Testtal. Kvadratmeterpriserne er ikke rigtige endnu.</p>
+        <p class="vf-testdata" id="vf-testdata" hidden>Testtal. Ikke rigtige priser endnu.</p>
         <div class="vf-forbehold">
-          <p><strong>Et vejledende interval.</strong> <span id="vf-estimat-grundlag"></span></p>
-          <p>Det tager ikke højde for stand, indretning, udsigt eller beliggenhed på vejen. En lokal mægler kan give dig en præcis vurdering.</p>
+          <p><strong>Et vejledende interval.</strong> En lokal mægler kan give dig en præcis vurdering, når de har set din bolig.</p>
         </div>
       </div>
       <div id="vf-estimat-mangler" class="stak" hidden>

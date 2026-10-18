@@ -388,7 +388,7 @@ function start(rod) {
 
   async function forberedBolig() {
     const note = $('vf-bbr-note');
-    note.textContent = 'Vi henter oplysninger om din bolig fra BBR.';
+    note.textContent = 'Vi henter oplysninger om din bolig.';
     const bbr = await tilstand.bbrPromise;
     if (bbr) {
       if (bbr.boligtype && !form.boligtype.value) {
@@ -396,9 +396,9 @@ function start(rod) {
         if (r) r.checked = true;
       }
       if (bbr.areal && !$('vf-areal').value) $('vf-areal').value = String(bbr.areal);
-      note.textContent = 'Hentet fra BBR. Ret gerne, hvis det ikke passer.';
+      note.textContent = 'Ret gerne, hvis det ikke passer.';
     } else {
-      note.textContent = 'Vi kunne ikke hente oplysningerne fra BBR. Udfyld dem her.';
+      note.textContent = 'Udfyld boligtype og areal.';
     }
   }
 
@@ -426,8 +426,6 @@ function start(rod) {
       $('vf-estimat-adresse').textContent = a.tekst;
       $('vf-interval').textContent = `${kr(e.lav).replace(' kr.', '')} til ${kr(e.hoej)}`;
       $('vf-testdata').hidden = !e.testdata;
-      $('vf-estimat-grundlag').textContent =
-        `Udregnet ud fra kvadratmeterpriser for ${navnFor(BOLIGTYPER, boligtype).toLowerCase()} i ${a.postnr}${a.by ? ' ' + a.by : ''} og et areal på ${areal} m².`;
       if (!tilstand.viewContentSendt) {
         tilstand.viewContentSendt = true;
         tilstand.viewContentId = nytEventId('vc');
@@ -436,8 +434,8 @@ function start(rod) {
     } else {
       $('vf-estimat-mangler-tekst').textContent =
         boligtype === 'andelsbolig'
-          ? 'Prisen på en andelsbolig fastsættes efter andelsforeningens regler, så kvadratmeterpriser siger ikke så meget. En mægler eller din bestyrelse kan hjælpe dig.'
-          : 'Vi har ikke nok salgsdata for din boligtype i dit postnummer endnu. En lokal mægler kan give dig en gratis vurdering.';
+          ? 'Prisen på en andelsbolig fastsættes efter andelsforeningens regler. En mægler eller din bestyrelse kan hjælpe dig.'
+          : 'Vi kan ikke give et estimat på din bolig lige nu. En lokal mægler kan give dig en gratis vurdering.';
     }
   }
 
