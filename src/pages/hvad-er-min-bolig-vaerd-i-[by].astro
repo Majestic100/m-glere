@@ -4,7 +4,6 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import SaadanVirkerDet from '../components/SaadanVirkerDet.astro';
-import MoedMaeglerne from '../components/MoedMaeglerne.astro';
 import Penge from '../components/Penge.astro';
 import Faq from '../components/Faq.astro';
 import Ph from '../components/Ph.astro';
@@ -43,22 +42,18 @@ const kr = (n: number) => `${new Intl.NumberFormat('da-DK').format(n)} kr.`;
     </div>
   </section>
 
-  <section class="sektion" aria-label={`Mæglere i ${b.by}`}>
-    <div class="wrap"><MoedMaeglerne postnumre={b.postnumre} titel={`Mød mæglerne i ${b.by}`} /></div>
-  </section>
-
-  <section class="sektion sektion--tone" aria-labelledby="svd-titel">
+  <section class="sektion" aria-labelledby="svd-titel">
     <div class="wrap stak-l">
       <h2 id="svd-titel">Sådan virker det</h2>
       <SaadanVirkerDet />
     </div>
   </section>
 
-  <section class="sektion" aria-label="Sådan tjener vi penge">
+  <section class="sektion sektion--tone" aria-label="Sådan tjener vi penge">
     <div class="wrap"><Penge /></div>
   </section>
 
-  <section class="sektion sektion--tone" aria-labelledby="faq-titel">
+  <section class="sektion" aria-labelledby="faq-titel">
     <div class="wrap stak-l">
       <h2 id="faq-titel">Ofte stillede spørgsmål</h2>
       <Faq antal={4} />

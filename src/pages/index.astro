@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import SaadanVirkerDet from '../components/SaadanVirkerDet.astro';
-import MoedMaeglerne from '../components/MoedMaeglerne.astro';
 import Penge from '../components/Penge.astro';
 import Anmeldelser from '../components/Anmeldelser.astro';
 import Faq from '../components/Faq.astro';
@@ -23,19 +22,15 @@ import Faq from '../components/Faq.astro';
     </div>
   </section>
 
-  <section class="sektion" aria-label="Mød mæglerne">
-    <div class="wrap"><MoedMaeglerne /></div>
-  </section>
-
-  <section class="sektion sektion--tone" aria-label="Sådan tjener vi penge">
+  <section class="sektion" aria-label="Sådan tjener vi penge">
     <div class="wrap"><Penge /></div>
   </section>
 
-  <section class="sektion" aria-label="Anmeldelser">
+  <section class="sektion sektion--tone" aria-label="Anmeldelser">
     <div class="wrap"><Anmeldelser /></div>
   </section>
 
-  <section class="sektion sektion--tone" aria-labelledby="faq-titel">
+  <section class="sektion" aria-labelledby="faq-titel">
     <div class="wrap stak-l">
       <div class="stak">
         <p class="eyebrow">Spørgsmål</p>
