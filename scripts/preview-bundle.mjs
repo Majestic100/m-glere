@@ -7,7 +7,8 @@ import { join } from 'node:path';
 const DIST = 'dist';
 const UD = 'preview';
 rmSync(UD, { recursive: true, force: true });
-mkdirSync(join(UD, '_astro'), { recursive: true });
+// Artifact-tjenesten reserverer navne, der starter med _, så _astro hedder assets i preview.
+mkdirSync(join(UD, 'assets'), { recursive: true });
 
 const sider = readdirSync(DIST).filter((f) => f.endsWith('.html') && f !== '404.html');
 const brugte = new Set();
@@ -35,14 +36,17 @@ for (const fil of sider) {
       .replace(/<meta charset="utf-8"\s*\/?>/i, '')
       .replace(/<meta name="viewport"[^>]*>/i, '');
     const body = /<body[^>]*>([\s\S]*)<\/body>/.exec(html)[1];
-    html = `${head}\n${body}`;
+    html = `${head.replace(/<title>[^<]*<\/title>/, '<title>Vurdo hjemmeside</title>')}\n${body}`;
   }
-  writeFileSync(join(UD, fil), html);
+  writeFileSync(join(UD, fil), html.replace(/(["'(\s,])_astro\//g, '$1assets/'));
 }
+
+// JS-moduler importerer hinanden, så alle scripts og skrifter tages med.
+for (const f of readdirSync(join(DIST, '_astro'))) if (/\.(js|woff2)$/.test(f)) brugte.add(`_astro/${f}`);
 
 for (const f of brugte) {
   const kilde = join(DIST, f);
-  if (existsSync(kilde)) copyFileSync(kilde, join(UD, f));
+  if (existsSync(kilde)) copyFileSync(kilde, join(UD, f.replace(/^_astro\//, 'assets/')));
   else console.warn('Mangler', f);
 }
 copyFileSync(join(DIST, 'favicon.svg'), join(UD, 'favicon.svg'));
