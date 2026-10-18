@@ -1,0 +1,46 @@
+---
+// Forretningsmodellen, forklaret åbent.
+---
+<div class="penge">
+  <div class="stak">
+    <p class="eyebrow">Sådan tjener vi penge</p>
+    <h2>Mæglerne betaler. Du gør ikke.</h2>
+    <p class="lead">Vurdo er gratis for dig, fordi ejendomsmæglerne betaler os, når de får en henvendelse.</p>
+  </div>
+  <dl class="penge-liste">
+    <div><dt>Hvem betaler?</dt><dd>Den mægler, du vælger, betaler Vurdo et beløb for henvendelsen. Du betaler intet.</dd></div>
+    <div><dt>Hvem får dine oplysninger?</dt><dd>Kun den ene mægler, du selv har valgt. Aldrig flere.</dd></div>
+    <div><dt>Hvad betyder det for dig?</dt><dd>Vi viser kun mæglere, vi har en aftale med. Vi hjælper dig med at vælge den rigtige mægler, ikke den billigste. Spørg altid mægleren om salær, før du skriver under.</dd></div>
+  </dl>
+</div>
+<style>
+  .penge {
+    display: grid;
+    gap: 2rem;
+  }
+  .penge-liste {
+    margin: 0;
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--streg);
+  }
+  .penge-liste div {
+    display: grid;
+    gap: 0.25rem;
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--streg);
+  }
+  .penge-liste dt {
+    font-weight: 700;
+  }
+  .penge-liste dd {
+    margin: 0;
+    color: var(--skifer);
+  }
+  @media (min-width: 60rem) {
+    .penge {
+      grid-template-columns: 1fr 1.2fr;
+      align-items: start;
+    }
+  }
+</style>

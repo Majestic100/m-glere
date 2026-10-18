@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import Side from '../components/Side.astro';
+import SaadanVirkerDet from '../components/SaadanVirkerDet.astro';
+import Penge from '../components/Penge.astro';
+---
+<Base titel="Sådan virker Vurdo" beskrivelse="Sådan får du et gratis estimat på din bolig og vælger selv den lokale mægler, der må kontakte dig.">
+  <Side eyebrow="Sådan virker det" titel="Fra adresse til mægler, og du bestemmer hele vejen" lead="Det tager et par minutter. Du kan stoppe når som helst, og vi sender ikke noget videre, før du selv siger ja." />
+
+  <section class="sektion" style="padding-top:1rem">
+    <div class="wrap"><SaadanVirkerDet /></div>
+  </section>
+
+  <section class="sektion sektion--tone">
+    <div class="wrap prosa">
+      <h2>Trin for trin</h2>
+      <h3>1. Din adresse</h3>
+      <p>Du skriver din adresse. Vi finder den i Danmarks officielle adresseregister og henter boligtype og areal fra BBR, Bygnings- og Boligregistret. Du kan rette tallene, hvis de ikke passer.</p>
+      <h3>2. Et vejledende prisinterval</h3>
+      <p>Vi regner et interval ud fra kvadratmeterpriser for din boligtype i dit postnummer. Det er et groft bud. Det kender ikke din boligs stand, have eller udsigt.</p>
+      <h3>3. Hvad står du tilbage med?</h3>
+      <p>Hvis du vil, kan du skrive din restgæld og se et cirka tal for, hvad du står tilbage med efter salg og salær. Det trin kan du springe over.</p>
+      <h3>4. Dine planer</h3>
+      <p>Du fortæller, hvornår du overvejer at sælge, og hvad der er vigtigst for dig. Er du bare nysgerrig, springer vi mæglervalget over. Så kan du i stedet få en ny vurdering hver 3. måned.</p>
+      <h3>5. Du vælger én mægler</h3>
+      <p>Du ser 2 til 3 partnermæglere, der dækker dit postnummer. Med billede, en kort video og tal for deres salg i området. Du vælger den, du har bedst fornemmelse for.</p>
+      <h3>6. Vi ringer, og så ringer mægleren</h3>
+      <p>Når du har givet samtykke, ringer vi kort til dig for at bekræfte dine oplysninger. Derefter kontakter mægleren dig og aftaler en gratis salgsvurdering. Du beslutter selv, om du vil gå videre.</p>
+    </div>
+  </section>
+
+  <section class="sektion">
+    <div class="wrap"><Penge /></div>
+  </section>
+
+  <section class="sektion sektion--tone">
+    <div class="wrap stak" style="justify-items:start">
+      <h2>Klar til at se tallet?</h2>
+      <a class="knap" href="/#vurdering">Se hvad din bolig er værd</a>
+    </div>
+  </section>
+</Base>

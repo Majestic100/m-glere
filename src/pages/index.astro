@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import SaadanVirkerDet from '../components/SaadanVirkerDet.astro';
+import MoedMaeglerne from '../components/MoedMaeglerne.astro';
+import Penge from '../components/Penge.astro';
+import Anmeldelser from '../components/Anmeldelser.astro';
+import Faq from '../components/Faq.astro';
+---
+<Base
+  titel="Vurdo: Hvad er din bolig værd?"
+  beskrivelse="Få et gratis estimat på din bolig på 30 sekunder, og vælg selv den lokale ejendomsmægler, der kender dit område. Kun den mægler, du vælger, kontakter dig."
+>
+  <Hero />
+
+  <section class="sektion sektion--tone" aria-labelledby="svd-titel">
+    <div class="wrap stak-l">
+      <div class="stak">
+        <p class="eyebrow">Sådan virker det</p>
+        <h2 id="svd-titel">Tre trin, og du bestemmer hele vejen</h2>
+      </div>
+      <SaadanVirkerDet />
+    </div>
+  </section>
+
+  <section class="sektion" aria-label="Mød mæglerne">
+    <div class="wrap"><MoedMaeglerne /></div>
+  </section>
+
+  <section class="sektion sektion--tone" aria-label="Sådan tjener vi penge">
+    <div class="wrap"><Penge /></div>
+  </section>
+
+  <section class="sektion" aria-label="Anmeldelser">
+    <div class="wrap"><Anmeldelser /></div>
+  </section>
+
+  <section class="sektion sektion--tone" aria-labelledby="faq-titel">
+    <div class="wrap stak-l">
+      <div class="stak">
+        <p class="eyebrow">Spørgsmål</p>
+        <h2 id="faq-titel">Ofte stillede spørgsmål</h2>
+      </div>
+      <Faq />
+      <p><a class="knap knap--sekundaer" href="#vurdering">Se hvad din bolig er værd</a></p>
+    </div>
+  </section>
+</Base>

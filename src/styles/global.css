@@ -1,0 +1,493 @@
+/*
+  Vurdo designsystem.
+  Layout: én smal læsespalte på mobil (max 34rem), to spalter fra 60rem. Formularen er altid første ting på siden.
+  Farver: én hovedfarve (Lyng) og varme, let lilla-tonede neutraler. Se /brandguide.
+*/
+:root {
+  --lyng: #5b2c5e;
+  --lyng-moerk: #4a2250;
+  --lyng-tone: #f4ecf3;
+  --lyng-kant: #dcc7db;
+  --kalk: #faf8fa;
+  --flade: #ffffff;
+  --blaek: #211a22;
+  --skifer: #5f5662;
+  --streg: #e5dee6;
+  --felt-kant: #8a7f8c;
+  --paa-lyng: #ffffff;
+  --ok: #1e7a4c;
+  --fejl: #b3261e;
+  --ph-bg: #fff3c4;
+  --ph-fg: #6b5200;
+
+  --font: 'Schibsted Grotesk Variable', 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+  --t-xs: 0.8125rem;
+  --t-s: 0.9375rem;
+  --t-m: 1.0625rem;
+  --t-l: 1.3125rem;
+  --t-xl: clamp(1.625rem, 1.2rem + 1.6vw, 2.125rem);
+  --t-xxl: clamp(2rem, 1.4rem + 2.8vw, 3rem);
+
+  --r-s: 8px;
+  --r-m: 14px;
+  --gutter: 16px;
+  --spalte: 34rem;
+  --bred: 68rem;
+  --skygge: 0 1px 2px rgb(33 26 34 / 0.06), 0 8px 24px rgb(33 26 34 / 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --lyng: #d2a8d3;
+    --lyng-moerk: #e3c4e3;
+    --lyng-tone: #2c2030;
+    --lyng-kant: #5a3f5c;
+    --kalk: #18131a;
+    --flade: #231c25;
+    --blaek: #ede7ee;
+    --skifer: #b4aab6;
+    --streg: #3a313c;
+    --felt-kant: #8a7f8c;
+    --paa-lyng: #18131a;
+    --ok: #6fcf9c;
+    --fejl: #ff8a80;
+    --ph-bg: #3d3412;
+    --ph-fg: #f3dc8a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --lyng: #d2a8d3;
+  --lyng-moerk: #e3c4e3;
+  --lyng-tone: #2c2030;
+  --lyng-kant: #5a3f5c;
+  --kalk: #18131a;
+  --flade: #231c25;
+  --blaek: #ede7ee;
+  --skifer: #b4aab6;
+  --streg: #3a313c;
+  --felt-kant: #8a7f8c;
+  --paa-lyng: #18131a;
+  --ok: #6fcf9c;
+  --fejl: #ff8a80;
+  --ph-bg: #3d3412;
+  --ph-fg: #f3dc8a;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--kalk);
+  color: var(--blaek);
+  font-family: var(--font);
+  font-size: var(--t-m);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+[hidden] {
+  display: none !important;
+}
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  margin: 0;
+}
+h1 {
+  font-size: var(--t-xxl);
+  font-weight: 750;
+}
+h2 {
+  font-size: var(--t-xl);
+  font-weight: 700;
+}
+h3 {
+  font-size: var(--t-l);
+  font-weight: 650;
+}
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+a {
+  color: var(--lyng);
+  text-underline-offset: 0.18em;
+}
+a:hover {
+  color: var(--lyng-moerk);
+}
+:focus-visible {
+  outline: 3px solid var(--lyng);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+/* Tabeltal kun hvor tal står i kolonner. Schibsted Groteskens tabeltal gør punktummer brede. */
+.tal {
+  font-variant-numeric: lining-nums;
+}
+td.tal {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Layout */
+.wrap {
+  width: 100%;
+  max-width: var(--bred);
+  margin-inline: auto;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+.smal {
+  max-width: calc(var(--spalte) + 2 * var(--gutter));
+}
+.sektion {
+  padding-block: clamp(3rem, 2rem + 4vw, 5rem);
+}
+.sektion--tone {
+  background: var(--flade);
+  border-block: 1px solid var(--streg);
+}
+.stak {
+  display: grid;
+  gap: 1rem;
+}
+.stak-l {
+  display: grid;
+  gap: 2rem;
+}
+.eyebrow {
+  font-size: var(--t-xs);
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--skifer);
+}
+.lead {
+  font-size: var(--t-l);
+  line-height: 1.45;
+  color: var(--skifer);
+  max-width: 36rem;
+}
+.prosa {
+  max-width: 40rem;
+  display: grid;
+  gap: 1rem;
+}
+.prosa h2 {
+  margin-top: 1.5rem;
+}
+.prosa h3 {
+  margin-top: 0.75rem;
+}
+.prosa ul,
+.prosa ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+/* Knapper */
+.knap {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 56px;
+  padding: 0 1.5rem;
+  border-radius: var(--r-s);
+  border: 2px solid var(--lyng);
+  background: var(--lyng);
+  color: var(--paa-lyng);
+  font: inherit;
+  font-weight: 650;
+  font-size: var(--t-m);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.knap:hover {
+  background: var(--lyng-moerk);
+  border-color: var(--lyng-moerk);
+  color: var(--paa-lyng);
+}
+.knap[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.knap--fuld {
+  width: 100%;
+}
+.knap--sekundaer {
+  background: transparent;
+  color: var(--lyng);
+}
+.knap--sekundaer:hover {
+  background: var(--lyng-tone);
+  color: var(--lyng-moerk);
+}
+.knap--link {
+  background: none;
+  border: 0;
+  color: var(--skifer);
+  min-height: 48px;
+  padding: 0 0.5rem;
+  text-decoration: underline;
+  font-weight: 500;
+}
+.knap--link:hover {
+  background: none;
+  color: var(--blaek);
+}
+
+/* Pladsholdere: tydeligt markeret indhold, der skal skiftes ud før lancering */
+.ph {
+  background: var(--ph-bg);
+  color: var(--ph-fg);
+  border-radius: 4px;
+  padding: 0.05em 0.3em;
+  font-weight: 600;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.ph-boks {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: var(--ph-bg);
+  color: var(--ph-fg);
+  border: 2px dashed currentColor;
+  border-radius: var(--r-m);
+  padding: 1.25rem;
+  font-size: var(--t-s);
+  font-weight: 600;
+}
+
+/* Tillidspunkter */
+.tillid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.tillid li {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  font-weight: 550;
+}
+.tillid svg {
+  flex: none;
+  margin-top: 0.2em;
+  color: var(--ok);
+}
+
+/* Kort */
+.kort {
+  background: var(--flade);
+  border: 1px solid var(--streg);
+  border-radius: var(--r-m);
+}
+
+/* FAQ */
+.faq {
+  display: grid;
+  border-top: 1px solid var(--streg);
+}
+.faq details {
+  border-bottom: 1px solid var(--streg);
+}
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  min-height: 60px;
+  padding-block: 0.75rem;
+  font-weight: 650;
+  font-size: var(--t-m);
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary::after {
+  content: '+';
+  flex: none;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--lyng);
+  line-height: 1;
+}
+.faq details[open] summary::after {
+  content: '\2212';
+}
+.faq .svar {
+  padding-bottom: 1.25rem;
+  color: var(--skifer);
+  max-width: 40rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mæglerkort. Bruges både på siderne og i formularen (trin 6). */
+.mk {
+  display: grid;
+  gap: 1rem;
+  padding: 1.1rem;
+  background: var(--flade);
+  border: 1.5px solid var(--streg);
+  border-radius: var(--r-m);
+  min-width: 0;
+}
+.mk--valgt {
+  border-color: var(--lyng);
+  box-shadow: 0 0 0 3px var(--lyng-kant);
+}
+.mk-hoved {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+}
+.mk-foto {
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: var(--lyng-tone);
+  color: var(--lyng);
+  display: grid;
+  place-items: center;
+  font-weight: 750;
+  font-size: 1.5rem;
+}
+.mk-foto--ph {
+  background: var(--ph-bg);
+  color: var(--ph-fg);
+  font-size: 0.7rem;
+  text-align: center;
+  line-height: 1.2;
+  padding: 0.25rem;
+}
+.mk-navn {
+  font-size: var(--t-m);
+  font-weight: 700;
+  line-height: 1.25;
+}
+.mk-titel,
+.mk-butik {
+  font-size: var(--t-s);
+  color: var(--skifer);
+  line-height: 1.35;
+}
+.mk-tal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin: 0;
+}
+.mk-tal div {
+  background: var(--kalk);
+  border-radius: var(--r-s);
+  padding: 0.6rem 0.75rem;
+  min-width: 0;
+}
+.mk-tal dt {
+  font-size: var(--t-xs);
+  color: var(--skifer);
+}
+.mk-tal dd {
+  margin: 0;
+  font-weight: 700;
+  font-size: var(--t-l);
+}
+.mk-kilde {
+  display: block;
+  font-size: var(--t-xs);
+  color: var(--skifer);
+  font-weight: 400;
+}
+.mk-video {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  width: 100%;
+  border-radius: var(--r-s);
+  border: 0;
+  overflow: hidden;
+  background: var(--lyng-tone) center / cover no-repeat;
+  color: var(--lyng);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+.mk-video span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--flade);
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  box-shadow: var(--skygge);
+}
+.mk-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mk-video--ph {
+  cursor: default;
+  background: var(--ph-bg);
+  color: var(--ph-fg);
+  border: 2px dashed currentColor;
+  font-size: var(--t-s);
+}
+.mk-beskrivelse {
+  font-size: var(--t-s);
+  color: var(--skifer);
+}
+.mk-omraade {
+  font-size: var(--t-s);
+  font-weight: 600;
+}

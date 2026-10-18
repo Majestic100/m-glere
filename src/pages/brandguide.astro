@@ -1,0 +1,285 @@
+---
+// Brandguide. Ikke linket fra menuen og ikke indekseret.
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Side from '../components/Side.astro';
+import Logo from '../components/Logo.astro';
+import parcelhus from '../assets/boliger/parcelhus.jpg';
+import raekkehuse from '../assets/boliger/raekkehuse.jpg';
+import etageejendom from '../assets/boliger/etageejendom.jpg';
+
+const hoved = [
+  { navn: 'Lyng', token: '--lyng', hex: '#5B2C5E', rolle: 'Hovedfarve. Knapper, links, statuslinje, estimatet.', kontrast: '10,7:1 på hvid' },
+  { navn: 'Lyng mørk', token: '--lyng-moerk', hex: '#4A2250', rolle: 'Hover og aktive knapper.', kontrast: '12,8:1 på hvid' },
+  { navn: 'Lyng tone', token: '--lyng-tone', hex: '#F4ECF3', rolle: 'Valgte felter, resultatbokse, statuslinjens bund.', kontrast: 'Lyng på tone 9,2:1' },
+  { navn: 'Lyng kant', token: '--lyng-kant', hex: '#DCC7DB', rolle: 'Fokusring og kant om valgt mægler.', kontrast: 'Kun dekoration' },
+];
+const neutrale = [
+  { navn: 'Kalk', token: '--kalk', hex: '#FAF8FA', rolle: 'Sidens baggrund.', kontrast: '' },
+  { navn: 'Hvid', token: '--flade', hex: '#FFFFFF', rolle: 'Kort, formular og felter.', kontrast: '' },
+  { navn: 'Blæk', token: '--blaek', hex: '#211A22', rolle: 'Brødtekst og overskrifter.', kontrast: '16,1:1 på kalk' },
+  { navn: 'Skifer', token: '--skifer', hex: '#5F5662', rolle: 'Sekundær tekst og hjælpetekst.', kontrast: '6,6:1 på kalk' },
+  { navn: 'Feltkant', token: '--felt-kant', hex: '#8A7F8C', rolle: 'Kant om inputfelter.', kontrast: '3,8:1 på hvid' },
+  { navn: 'Streg', token: '--streg', hex: '#E5DEE6', rolle: 'Skillelinjer og kortkanter.', kontrast: 'Kun dekoration' },
+];
+const funktion = [
+  { navn: 'Grøn', token: '--ok', hex: '#1E7A4C', rolle: 'Flueben i tillidspunkter. Kun som tegn på "i orden".', kontrast: '5,3:1 på hvid' },
+  { navn: 'Rød', token: '--fejl', hex: '#B3261E', rolle: 'Fejlbeskeder i formularen. Aldrig til knapper.', kontrast: '6,5:1 på hvid' },
+  { navn: 'Pladsholder', token: '--ph-bg', hex: '#FFF3C4', rolle: 'Kun under udvikling. Markerer tekst og tal, der skal skiftes ud.', kontrast: '' },
+];
+const marked = [
+  { hvem: 'home', farve: '#E52332', note: 'Rød' },
+  { hvem: 'danbolig', farve: '#006664', note: 'Petrol og mørk grøn' },
+  { hvem: 'nybolig', farve: '#122D3A', note: 'Mørk navy med grøn' },
+  { hvem: 'EDC', farve: '#0E4374', note: 'Blå med gul' },
+  { hvem: 'Estate', farve: '#445E8D', note: 'Blå' },
+  { hvem: 'RealMæglerne', farve: '#003761', note: 'Navy med orange' },
+  { hvem: 'LokalBolig', farve: '#678D72', note: 'Salviegrøn' },
+  { hvem: 'Vurdo', farve: '#5B2C5E', note: 'Lyng' },
+];
+---
+<Base titel="Brandguide | Vurdo" beskrivelse="Vurdos farver, typografi, logo og billedstil." noindex>
+  <Side eyebrow="Brandguide, version 1" titel="Vurdo i farver, skrift og billeder" lead="Én hovedfarve, varme neutraler og almindelige danske boliger. Alt her er bygget ind i siden som variabler, så en ændring her slår igennem overalt." />
+
+  <section class="sektion" style="padding-top:1rem">
+    <div class="wrap stak-l">
+      <div class="prosa">
+        <h2>Hvorfor lyng?</h2>
+        <p>Vi har kigget på de farver, de største mæglerkæder bruger på deres hjemmesider. Næsten alle ligger i to grupper: rød (home) eller blå, navy og grøn (danbolig, nybolig, EDC, Estate, RealMæglerne og LokalBolig).</p>
+        <p>Vurdo samarbejder med mæglere fra flere kæder. Hvis siden ligner én kæde, tror boligejeren, at vi er den kæde, og mæglere fra de andre kæder ser forkerte ud på vores side. Derfor har vi valgt en farve, ingen af dem bruger.</p>
+        <p>Lyng er en dyb, dæmpet lilla, opkaldt efter lyngen på den jyske hede. Den er rolig og mørk nok til, at hvid tekst på den er let at læse. Den virker ikke som udsalg (rød) eller bank (navy). Og den passer til de røde og gule mursten, der er på de fleste danske boliger på billederne.</p>
+        <p><strong>Risikoen</strong> er, at lilla for nogle kan minde om skønhed eller wellness. Derfor er farven trukket mod brun og holdt mørk. Hvis den alligevel føles forkert i test, er alternativet en dyb blågrøn, men den ligger tæt på danbolig.</p>
+      </div>
+
+      <div class="marked" role="list" aria-label="Farver hos mæglerkæderne">
+        {marked.map((m) => (
+          <div class="marked-felt" role="listitem">
+            <span class="marked-farve" style={`background:${m.farve}`}></span>
+            <strong>{m.hvem}</strong>
+            <span class="marked-note">{m.note}</span>
+          </div>
+        ))}
+      </div>
+      <p class="hjaelp">Kilde: de mest brugte farver i kædernes egne stylesheets og meta-tags, hentet 18. oktober 2026. Ikke kædernes officielle brandguides.</p>
+    </div>
+  </section>
+
+  {[{ t: 'Hovedfarve', l: hoved }, { t: 'Neutrale farver', l: neutrale }, { t: 'Funktionsfarver', l: funktion }].map((g) => (
+    <section class="sektion sektion--tone farve-sektion">
+      <div class="wrap stak-l">
+        <h2>{g.t}</h2>
+        <div class="farver">
+          {g.l.map((f) => (
+            <article class="farve kort">
+              <div class="farve-proeve" style={`background:${f.hex}`}></div>
+              <div class="farve-tekst">
+                <h3>{f.navn}</h3>
+                <p class="farve-hex tal">{f.hex}</p>
+                <p class="farve-token"><code>var({f.token})</code></p>
+                <p>{f.rolle}</p>
+                {f.kontrast && <p class="hjaelp">Kontrast: {f.kontrast}</p>}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="sektion">
+    <div class="wrap stak-l">
+      <h2>Regler for farverne</h2>
+      <ul class="regler prosa">
+        <li>Lyng bruges til det, man kan trykke på, og til estimatet. Ikke til store flader.</li>
+        <li>Der er én primær knap pr. skærm. Den er altid fyldt med lyng.</li>
+        <li>Rød bruges kun til fejl. Aldrig til knapper, tilbud eller fremhævning.</li>
+        <li>Al tekst har mindst 4,5:1 i kontrast. Feltkanter mindst 3:1.</li>
+        <li>Siden har også et mørkt tema. Farverne skifter automatisk efter telefonens indstilling.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sektion sektion--tone">
+    <div class="wrap stak-l">
+      <h2>Skrift</h2>
+      <div class="skrift">
+        <p class="skrift-stor">Hvad er din bolig værd i dag?</p>
+        <p class="skrift-mellem">Få et gratis estimat på 30 sekunder.</p>
+        <p class="skrift-tal tal">3.450.000 til 4.200.000 kr.</p>
+        <p>Schibsted Grotesk, én variabel fil med vægt 400 til 900. Skriften er tegnet til nordiske nyhedsmedier. Den er solid og let at læse på små skærme, og tallene står lige under hinanden. Den hostes på vores egen server, så vi ikke sender besøgendes IP-adresse til Google.</p>
+        <ul class="regler">
+          <li>Overskrifter: vægt 700 til 750, let negativ spærring.</li>
+          <li>Brødtekst: vægt 400, 17 px på mobil, linjehøjde 1,55.</li>
+          <li>Tal i beløb og nøgletal: tabeltal, så cifrene står lige.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sektion">
+    <div class="wrap stak-l">
+      <h2>Logo</h2>
+      <div class="logoer">
+        <div class="logo-proeve logo-lys"><Logo /></div>
+        <div class="logo-proeve logo-lyng"><span class="logo-hvid"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" fill="#ffffff"></rect><path d="M7.5 16 15 9l7.5 7" fill="none" stroke="#5b2c5e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11 21.5h8" fill="none" stroke="#5b2c5e" stroke-width="2.6" stroke-linecap="round"></path></svg><span>vurdo</span></span></div>
+      </div>
+      <p class="prosa">Et tag og en streg: boligen og et niveau. Ordet skrives altid med lille v i logoet og med stort V i løbende tekst. <mark class="ph">[Forslag. Bør gennemgås af en grafiker før lancering.]</mark></p>
+    </div>
+  </section>
+
+  <section class="sektion sektion--tone">
+    <div class="wrap stak-l">
+      <h2>Billeder</h2>
+      <div class="billeder">
+        {[parcelhus, raekkehuse, etageejendom].map((b) => (
+          <Image src={b} alt="" widths={[400, 700]} sizes="(min-width: 48rem) 33vw, 100vw" quality={70} loading="lazy" />
+        ))}
+      </div>
+      <div class="prosa">
+        <ul class="regler">
+          <li>Almindelige danske boliger: parcelhuse i røde mursten, rækkehuse, etageejendomme. Dagslys, gerne overskyet.</li>
+          <li>Rigtige mennesker: mæglerne og holdet bag Vurdo, fotograferet hvor de arbejder. Aldrig håndtryk, nøgleoverrækkelser eller smilende par med papkasser.</li>
+          <li>Ingen filtre og ingen kraftig efterbehandling.</li>
+        </ul>
+        <p><strong>Om de nuværende billeder:</strong> De tre boligbilleder er genereret med AI (Higgsfield) som midlertidige billeder. De viser ingen rigtige adresser. De bør skiftes til egne fotos før lancering, og der er bevidst ingen AI-genererede mennesker på siden.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sektion">
+    <div class="wrap prosa">
+      <h2>Tone</h2>
+      <ul class="regler">
+        <li>Talt dansk. Korte sætninger. Du-form.</li>
+        <li>Ingen tankestreger. Brug punktum eller komma.</li>
+        <li>Ingen superlativer, ingen "uvildig" og ingen løfter om at spare salær.</li>
+        <li>Sig åbent, at mæglerne betaler.</li>
+        <li>Tal har altid en kilde ved siden af.</li>
+      </ul>
+    </div>
+  </section>
+</Base>
+<style>
+  .marked {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: 0.75rem;
+  }
+  .marked-felt {
+    display: grid;
+    gap: 0.25rem;
+    font-size: var(--t-s);
+  }
+  .marked-farve {
+    height: 3.5rem;
+    border-radius: var(--r-s);
+    border: 1px solid var(--streg);
+  }
+  .marked-note {
+    color: var(--skifer);
+  }
+  .farve-sektion + .farve-sektion {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .farver {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: 1rem;
+  }
+  .farve {
+    overflow: hidden;
+  }
+  .farve-proeve {
+    height: 6rem;
+    border-bottom: 1px solid var(--streg);
+  }
+  .farve-tekst {
+    padding: 1rem;
+    display: grid;
+    gap: 0.3rem;
+    font-size: var(--t-s);
+  }
+  .farve-tekst h3 {
+    font-size: var(--t-m);
+  }
+  .farve-hex {
+    font-weight: 700;
+    font-size: var(--t-m);
+  }
+  .farve-token code {
+    font-size: var(--t-xs);
+    color: var(--skifer);
+  }
+  .regler {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: 0.4rem;
+  }
+  .skrift {
+    display: grid;
+    gap: 1rem;
+    max-width: 44rem;
+  }
+  .skrift-stor {
+    font-size: var(--t-xxl);
+    font-weight: 750;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+  }
+  .skrift-mellem {
+    font-size: var(--t-l);
+    color: var(--skifer);
+  }
+  .skrift-tal {
+    font-size: var(--t-xl);
+    font-weight: 750;
+    color: var(--lyng);
+  }
+  .logoer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+  }
+  .logo-proeve {
+    display: grid;
+    place-items: center;
+    min-height: 8rem;
+    border-radius: var(--r-m);
+    border: 1px solid var(--streg);
+  }
+  .logo-lys {
+    background: #faf8fa;
+    --blaek: #211a22;
+    --lyng: #5b2c5e;
+    --paa-lyng: #ffffff;
+  }
+  .logo-lyng {
+    background: #5b2c5e;
+  }
+  .logo-hvid {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffffff;
+    font-weight: 750;
+    font-size: 1.45rem;
+    letter-spacing: -0.035em;
+  }
+  .billeder {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .billeder img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: var(--r-m);
+  }
+  @media (min-width: 48rem) {
+    .billeder {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

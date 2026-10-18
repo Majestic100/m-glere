@@ -1,0 +1,17 @@
+---
+// Fælles toppen af undersider.
+interface Props { eyebrow?: string; titel: string; lead?: string }
+const { eyebrow, titel, lead } = Astro.props;
+---
+<section class="side-top">
+  <div class="wrap stak">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1>{titel}</h1>
+    {lead && <p class="lead">{lead}</p>}
+  </div>
+</section>
+<style>
+  .side-top {
+    padding-block: clamp(2.5rem, 2rem + 3vw, 4rem) 1.5rem;
+  }
+</style>

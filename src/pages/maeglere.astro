@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Side from '../components/Side.astro';
+import MaeglerKort from '../components/MaeglerKort.astro';
+import data from '../data/maeglere.json';
+
+const byer = (await getCollection('byer')).map((b) => b.data).sort((a, b) => a.by.localeCompare(b.by, 'da'));
+const aktive = data.maeglere.filter((m) => m.aktiv !== false);
+const brugt = new Set<string>();
+const grupper = byer
+  .map((b) => {
+    const liste = aktive.filter((m) => m.postnumre.some((p) => b.postnumre.includes(p)));
+    liste.forEach((m) => brugt.add(m.id));
+    return { by: b.by, slug: b.slug, liste };
+  })
+  .filter((g) => g.liste.length);
+const oevrige = aktive.filter((m) => !brugt.has(m.id));
+---
+<Base titel="Partnermæglere | Vurdo" beskrivelse="Se de ejendomsmæglere, du kan vælge imellem gennem Vurdo, sorteret efter område.">
+  <Side eyebrow="Mæglerne" titel="Partnermæglere i dit område" lead="Det er de mæglere, du kan vælge imellem. De betaler Vurdo, når de får en henvendelse. Du vælger selv, og kun den, du vælger, kontakter dig." />
+  {grupper.map((g) => (
+    <section class="sektion maegler-sektion">
+      <div class="wrap stak-l">
+        <div class="maegler-hoved">
+          <h2>{g.by}</h2>
+          <a href={`/hvad-er-min-bolig-vaerd-i-${g.slug}`}>Boligpriser i {g.by}</a>
+        </div>
+        <div class="mm-gitter">{g.liste.map((m) => <MaeglerKort m={m} />)}</div>
+      </div>
+    </section>
+  ))}
+  {oevrige.length > 0 && (
+    <section class="sektion maegler-sektion">
+      <div class="wrap stak-l">
+        <h2>Andre områder</h2>
+        <div class="mm-gitter">{oevrige.map((m) => <MaeglerKort m={m} />)}</div>
+      </div>
+    </section>
+  )}
+  <section class="sektion sektion--tone">
+    <div class="wrap prosa">
+      <h2>Kan du ikke finde en mægler i dit område?</h2>
+      <p>Vi er ved at finde partnermæglere i flere områder. Du kan stadig få et estimat og en ny vurdering hver 3. måned.</p>
+      <p><a class="knap" href="/#vurdering">Se hvad din bolig er værd</a></p>
+    </div>
+  </section>
+</Base>
+<script>
+  import { initVideoer } from '../scripts/video.js';
+  initVideoer();
+</script>
+<style>
+  .maegler-sektion { padding-block: 2rem; }
+  .maegler-hoved { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem 1rem; }
+  .mm-gitter { display: grid; gap: 1rem; }
+  @media (min-width: 48rem) { .mm-gitter { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 68rem) { .mm-gitter { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>

@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import Side from '../components/Side.astro';
+import Faq from '../components/Faq.astro';
+---
+<Base titel="Ofte stillede spørgsmål | Vurdo" beskrivelse="Svar på de spørgsmål, vi oftest får om Vurdo: pris, mæglere, estimatet og dine oplysninger.">
+  <Side eyebrow="Spørgsmål" titel="Ofte stillede spørgsmål" lead="Finder du ikke dit svar her, er du velkommen til at skrive eller ringe til os." />
+  <section class="sektion" style="padding-top:1rem">
+    <div class="wrap stak-l">
+      <Faq />
+      <p><a class="knap knap--sekundaer" href="/hvem-staar-bag">Kontakt os</a></p>
+    </div>
+  </section>
+</Base>

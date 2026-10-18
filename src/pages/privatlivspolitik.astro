@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import Side from '../components/Side.astro';
+import Ph from '../components/Ph.astro';
+import site from '../data/site.json';
+---
+<Base titel="Privatlivspolitik | Vurdo" beskrivelse="Sådan behandler Vurdo og Hero Media ApS dine personoplysninger.">
+  <Side eyebrow="Privatlivspolitik" titel="Sådan passer vi på dine oplysninger" lead="Her kan du læse, hvilke oplysninger vi får, hvad vi bruger dem til, og hvem vi giver dem til." />
+  <section class="sektion" style="padding-top:1rem">
+    <div class="wrap prosa">
+      <p class="ph-boks" style="justify-items:start;text-align:left">UDKAST. Teksten skal gennemgås af en jurist før lancering. Felter i gult skal udfyldes.</p>
+
+      <h2>Hvem er dataansvarlig?</h2>
+      <p>{site.selskab}, CVR <Ph v={site.cvr} />, <Ph v={site.adresse} />, <Ph v={site.postnrBy} />. E-mail: <Ph v={site.email} />. Telefon: <Ph v={site.telefon} />. Vurdo er en tjeneste, som {site.selskab} driver.</p>
+
+      <h2>Hvilke oplysninger får vi?</h2>
+      <ul>
+        <li>Din adresse, boligtype og areal. Boligtype og areal henter vi fra BBR.</li>
+        <li>De tal, du selv skriver i beregneren, fx restgæld. Dem gemmer vi kun, hvis du sender formularen.</li>
+        <li>Hvornår du overvejer at sælge, og hvad der er vigtigst for dig.</li>
+        <li>Dit navn, telefonnummer, e-mail og hvornår vi bedst kan ringe.</li>
+        <li>Dit samtykke: den præcise tekst, du sagde ja til, tidspunktet, og hvem du gav samtykke til.</li>
+        <li>Tekniske oplysninger: IP-adresse, browser og hvilken annonce eller side du kom fra.</li>
+      </ul>
+
+      <h2>Hvad bruger vi dem til, og med hvilken ret?</h2>
+      <ul>
+        <li><strong>At give dig et estimat.</strong> Det sker, fordi du beder om det (databeskyttelsesforordningens artikel 6, stk. 1, litra b).</li>
+        <li><strong>At ringe til dig og sende dine oplysninger til den mægler, du har valgt.</strong> Det sker kun med dit samtykke (artikel 6, stk. 1, litra a, og markedsføringslovens § 10).</li>
+        <li><strong>At sende dig en vurdering hver 3. måned.</strong> Kun hvis du har sat flueben ved det (samtykke).</li>
+        <li><strong>At dokumentere dit samtykke.</strong> Vi gemmer ordlyd, tidspunkt og modtager, så vi kan vise, hvad du sagde ja til (artikel 6, stk. 1, litra c og f).</li>
+        <li><strong>At måle vores annoncer.</strong> Kun hvis du har sagt ja til marketing-cookies (samtykke).</li>
+      </ul>
+
+      <h2>Hvem giver vi dine oplysninger til?</h2>
+      <ul>
+        <li><strong>Den mægler, du har valgt.</strong> Mægleren bliver selvstændig dataansvarlig for de oplysninger, de får. Kun den ene mægler. Aldrig flere.</li>
+        <li><strong>Vores leverandører</strong>, der behandler oplysninger på vores vegne: GoHighLevel (kundesystem), Netlify (hosting) og <Ph v="[PLADSHOLDER: øvrige leverandører, fx e-mail og SMS]" />. Vi har databehandleraftaler med dem.</li>
+        <li><strong>Meta</strong> (Facebook og Instagram), men kun hvis du har sagt ja til marketing-cookies. Så sender vi en krypteret (hashet) udgave af dine kontaktoplysninger, så vi kan måle, om vores annoncer virker.</li>
+      </ul>
+      <p>Nogle leverandører ligger i USA. Overførslen sker efter EU-kommissionens standardkontrakter eller EU-US Data Privacy Framework. <Ph v="[PLADSHOLDER: bekræft overførselsgrundlag pr. leverandør]" /></p>
+
+      <h2>Hvor længe gemmer vi dem?</h2>
+      <ul>
+        <li>Henvendelser: <Ph v="[PLADSHOLDER: fx 12 måneder efter sidste kontakt]" />.</li>
+        <li>Dokumentation for samtykke: <Ph v="[PLADSHOLDER: fx 5 år efter samtykket er trukket tilbage]" />.</li>
+        <li>Tilmelding til vurdering hver 3. måned: indtil du afmelder dig.</li>
+      </ul>
+
+      <h2>Dine rettigheder</h2>
+      <p>Du kan altid trække dit samtykke tilbage. Det ændrer ikke ved det, vi lovligt har gjort, før du trak det tilbage. Du har også ret til at få indsigt i dine oplysninger, få dem rettet eller slettet, begrænse behandlingen, gøre indsigelse og få dine oplysninger udleveret. Skriv til <Ph v={site.email} />.</p>
+      <p>Hvis du vil klage, kan du kontakte Datatilsynet på datatilsynet.dk.</p>
+
+      <h2 id="cookies">Cookies</h2>
+      <p>Vi bruger kun nødvendige cookies, medmindre du siger ja til mere. Du kan altid ændre dit valg under "Cookieindstillinger" nederst på siden.</p>
+      <ul>
+        <li><strong>Nødvendige.</strong> Husker dit cookievalg. Gemmes i din browser i op til 12 måneder.</li>
+        <li><strong>Statistik.</strong> <Ph v="[PLADSHOLDER: værktøj, fx Plausible eller GA4, og hvor længe]" /></li>
+        <li><strong>Marketing.</strong> Meta Pixel (_fbp og _fbc) måler, om vores annoncer på Facebook og Instagram virker. Op til 90 dage. Vi gemmer også, hvilken annonce du kom fra, mens du er på siden.</li>
+      </ul>
+      <p>Adressesøgningen bruger Klimadatastyrelsens Adressevælger. Når du skriver i adressefeltet, sendes teksten dertil for at finde adressen.</p>
+
+      <p class="hjaelp">Senest opdateret: <Ph v="[PLADSHOLDER: dato]" /></p>
+    </div>
+  </section>
+</Base>

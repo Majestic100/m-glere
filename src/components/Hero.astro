@@ -1,0 +1,73 @@
+---
+import { Image } from 'astro:assets';
+import Vurdering from './Vurdering.astro';
+import Tillid from './Tillid.astro';
+import parcelhus from '../assets/boliger/parcelhus.jpg';
+import raekkehuse from '../assets/boliger/raekkehuse.jpg';
+import etageejendom from '../assets/boliger/etageejendom.jpg';
+import aarhusGade from '../assets/boliger/aarhus-gade.jpg';
+
+interface Props { by?: string; billede?: string }
+const { by, billede = 'parcelhus' } = Astro.props;
+const billeder = { parcelhus, raekkehuse, etageejendom, 'aarhus-gade': aarhusGade } as const;
+const alt = {
+  parcelhus: 'Rødt murstenshus med have og cykel i indkørslen',
+  raekkehuse: 'Række af gule rækkehuse med små forhaver',
+  etageejendom: 'Muret etageejendom med altaner og cykler foran',
+  'aarhus-gade': 'Villavej i Aarhus med gule og røde byhuse',
+} as const;
+const valgt = billeder[billede as keyof typeof billeder] ?? parcelhus;
+---
+<section class="hero">
+  <div class="wrap hero-gitter">
+    <div class="hero-tekst stak">
+      <h1>{by ? `Hvad er din bolig værd i ${by}?` : 'Hvad er din bolig værd i dag?'}</h1>
+      <p class="lead">Få et gratis estimat på 30 sekunder, og vælg selv den lokale mægler, der kender dit område.</p>
+    </div>
+    <div class="hero-form">
+      <Vurdering />
+    </div>
+    <div class="hero-tillid">
+      <Tillid />
+    </div>
+    <figure class="hero-foto">
+      <Image src={valgt} alt={alt[billede as keyof typeof alt] ?? alt.parcelhus} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 30rem, 100vw" quality={70} loading="lazy" decoding="async" />
+      <figcaption>Midlertidigt billede. <mark class="ph">[PLADSHOLDER: skiftes til eget foto]</mark></figcaption>
+    </figure>
+  </div>
+</section>
+<style>
+  .hero {
+    padding-block: 1.5rem 3rem;
+  }
+  .hero-gitter {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-areas: 'tekst' 'form' 'tillid' 'foto';
+  }
+  .hero-tekst { grid-area: tekst; gap: 0.75rem; }
+  .hero-form { grid-area: form; min-width: 0; }
+  .hero-tillid { grid-area: tillid; }
+  .hero-foto { grid-area: foto; margin: 0.75rem 0 0; display: grid; gap: 0.5rem; }
+  .hero-foto img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: var(--r-m);
+  }
+  .hero-foto figcaption {
+    font-size: var(--t-xs);
+    color: var(--skifer);
+  }
+  @media (min-width: 60rem) {
+    .hero { padding-block: 3.5rem 4.5rem; }
+    .hero-gitter {
+      grid-template-columns: 1fr 30rem;
+      grid-template-areas: 'tekst form' 'tillid form' 'foto form';
+      grid-template-rows: auto auto 1fr;
+      column-gap: 4rem;
+      row-gap: 1.5rem;
+      align-items: start;
+    }
+  }
+</style>

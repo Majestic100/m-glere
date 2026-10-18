@@ -1,0 +1,16 @@
+---
+interface Props { class?: string }
+const { class: klasse = '' } = Astro.props;
+---
+<span class={`logo ${klasse}`}>
+  <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
+    <rect width="30" height="30" rx="8" fill="var(--lyng)"></rect>
+    <path d="M7.5 16 15 9l7.5 7" fill="none" stroke="var(--paa-lyng)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M11 21.5h8" fill="none" stroke="var(--paa-lyng)" stroke-width="2.6" stroke-linecap="round"></path>
+  </svg>
+  <span class="logo-ord">vurdo</span>
+</span>
+<style>
+  .logo { display: inline-flex; align-items: center; gap: 0.5rem; }
+  .logo-ord { font-weight: 750; font-size: 1.45rem; letter-spacing: -0.035em; color: var(--blaek); line-height: 1; }
+</style>

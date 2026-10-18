@@ -1,0 +1,25 @@
+---
+import { faq } from '../data/faq.js';
+interface Props { antal?: number }
+const { antal } = Astro.props;
+const liste = antal ? faq.slice(0, antal) : faq;
+const erPh = (t: string) => t.trim().startsWith('[');
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.filter((f) => !f.a.some(erPh)).map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a.join(' ') },
+  })),
+};
+---
+<div class="faq">
+  {liste.map((f) => (
+    <details>
+      <summary>{f.q}</summary>
+      <div class="svar">{f.a.map((p) => (erPh(p) ? <p><mark class="ph">{p}</mark></p> : <p>{p}</p>))}</div>
+    </details>
+  ))}
+</div>
+{!antal && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

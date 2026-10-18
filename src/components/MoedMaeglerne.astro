@@ -1,0 +1,40 @@
+---
+import MaeglerKort from './MaeglerKort.astro';
+import data from '../data/maeglere.json';
+interface Props { postnumre?: string[]; titel?: string }
+const { postnumre, titel = 'Mød mæglerne' } = Astro.props;
+let liste = data.maeglere.filter((m) => m.aktiv !== false);
+if (postnumre) liste = liste.filter((m) => m.postnumre.some((p) => postnumre.includes(p)));
+const vist = liste.slice(0, 3);
+---
+<div class="stak-l">
+  <div class="stak">
+    <p class="eyebrow">Partnermæglere</p>
+    <h2>{titel}</h2>
+    <p class="lead">Se hvem de er, før du vælger. Hver mægler har en kort video og tal for deres salg i området, med kilde.</p>
+  </div>
+  {vist.length ? (
+    <div class="mm-gitter">
+      {vist.map((m) => <MaeglerKort m={m} />)}
+    </div>
+  ) : (
+    <p>Vi har endnu ingen partnermæglere her. Du kan stadig få et estimat og løbende vurderinger.</p>
+  )}
+  <p><a href="/maeglere">Se alle partnermæglere</a></p>
+</div>
+<script>
+  import { initVideoer } from '../scripts/video.js';
+  initVideoer();
+</script>
+<style>
+  .mm-gitter {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 48rem) {
+    .mm-gitter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 68rem) {
+    .mm-gitter { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+</style>

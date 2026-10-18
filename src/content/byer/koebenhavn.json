@@ -1,0 +1,13 @@
+{
+  "by": "København",
+  "slug": "koebenhavn",
+  "billede": "etageejendom",
+  "postnumre": ["1050","1100","1150","1200","1250","1300","1350","1400","1450","1500","1550","1600","1620","1650","1700","1750","1800","1850","1900","1950","2000","2100","2150","2200","2300","2400","2450","2500"],
+  "intro": "",
+  "prisudvikling": {
+    "pladsholder": true,
+    "tekst": "[PLADSHOLDER: Kort tekst om prisudviklingen i København de seneste 12 måneder, med kilde.]",
+    "kilde": "[PLADSHOLDER: Kilde]",
+    "punkter": []
+  }
+}

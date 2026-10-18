@@ -1,0 +1,13 @@
+{
+  "by": "Aarhus",
+  "slug": "aarhus",
+  "billede": "aarhus-gade",
+  "postnumre": ["8000","8200","8210","8220","8230","8240","8250","8260","8270","8310","8320"],
+  "intro": "",
+  "prisudvikling": {
+    "pladsholder": true,
+    "tekst": "[PLADSHOLDER: Kort tekst om prisudviklingen i Aarhus de seneste 12 måneder, med kilde.]",
+    "kilde": "[PLADSHOLDER: Kilde]",
+    "punkter": []
+  }
+}

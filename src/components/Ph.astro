@@ -1,0 +1,8 @@
+---
+// Viser en værdi. Værdier i [klammer] er pladsholdere og markeres tydeligt, så de ikke går i luften ved en fejl.
+interface Props { v?: string | number | null; tom?: string }
+const { v, tom = '[PLADSHOLDER]' } = Astro.props;
+const tekst = v === null || v === undefined || v === '' ? tom : String(v);
+const erPh = tekst.trim().startsWith('[');
+---
+{erPh ? <mark class="ph">{tekst}</mark> : tekst}

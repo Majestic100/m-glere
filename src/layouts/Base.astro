@@ -1,0 +1,241 @@
+---
+import '@fontsource-variable/schibsted-grotesk/wght.css';
+import '../styles/global.css';
+import Logo from '../components/Logo.astro';
+import Ph from '../components/Ph.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import site from '../data/site.json';
+
+interface Props {
+  titel: string;
+  beskrivelse: string;
+  noindex?: boolean;
+  billede?: string;
+}
+const { titel, beskrivelse, noindex = false, billede } = Astro.props;
+const kanonisk = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/'), Astro.site);
+const nav = [
+  { href: '/saadan-virker-det', tekst: 'Sådan virker det' },
+  { href: '/maeglere', tekst: 'Mæglerne' },
+  { href: '/hvem-staar-bag', tekst: 'Hvem står bag' },
+  { href: '/ofte-stillede-spoergsmaal', tekst: 'Spørgsmål' },
+];
+const sti = Astro.url.pathname.replace(/\.html$/, '');
+---
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{titel}</title>
+    <meta name="claude:viewport-fit-sides" content="cover" />
+    <meta name="description" content={beskrivelse} />
+    <link rel="canonical" href={kanonisk} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="da_DK" />
+    <meta property="og:title" content={titel} />
+    <meta property="og:description" content={beskrivelse} />
+    {billede && <meta property="og:image" content={new URL(billede, Astro.site)} />}
+    <meta name="theme-color" content="#5b2c5e" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="spring" href="#indhold">Gå til indhold</a>
+    <header class="top">
+      <div class="wrap top-indre">
+        <a href="/" class="top-logo" aria-label="Vurdo, til forsiden"><Logo /></a>
+        <nav class="menu-bred" aria-label="Hovedmenu">
+          <ul>
+            {nav.map((n) => (
+              <li><a href={n.href} aria-current={sti === n.href ? 'page' : undefined}>{n.tekst}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <details class="menu">
+          <summary class="menu-knap"><span>Menu</span></summary>
+          <nav aria-label="Hovedmenu på mobil">
+            <ul>
+              {nav.map((n) => (
+                <li><a href={n.href} aria-current={sti === n.href ? 'page' : undefined}>{n.tekst}</a></li>
+              ))}
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="indhold">
+      <slot />
+    </main>
+
+    <footer class="bund">
+      <div class="wrap bund-indre">
+        <div class="stak">
+          <Logo />
+          <p class="bund-om">
+            Vurdo drives af {site.selskab}, CVR <Ph v={site.cvr} />, <Ph v={site.adresse} />, <Ph v={site.postnrBy} />.
+          </p>
+          <p class="bund-om">Gratis for boligejere. Ejendomsmæglerne betaler Vurdo, når de får en henvendelse.</p>
+        </div>
+        <nav aria-label="Sidefod">
+          <ul class="bund-links">
+            {nav.map((n) => <li><a href={n.href}>{n.tekst}</a></li>)}
+            <li><a href="/for-maeglere">For mæglere</a></li>
+            <li><a href="/privatlivspolitik">Privatlivspolitik</a></li>
+            <li><a href="/vilkaar">Vilkår</a></li>
+            <li><button type="button" class="bund-cookie" data-cookie-aabn>Cookieindstillinger</button></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <CookieBanner />
+  </body>
+</html>
+
+<style>
+  .spring {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    background: var(--flade);
+    padding: 0.75rem 1rem;
+    border-radius: var(--r-s);
+    z-index: 50;
+  }
+  .spring:focus {
+    top: 1rem;
+  }
+  .top {
+    background: var(--kalk);
+    border-bottom: 1px solid var(--streg);
+  }
+  .top-indre {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 64px;
+    gap: 1rem;
+  }
+  .top-logo {
+    text-decoration: none;
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+  }
+  .menu {
+    position: relative;
+  }
+  .menu-knap {
+    list-style: none;
+    cursor: pointer;
+    min-height: 48px;
+    min-width: 48px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.9rem;
+    border: 1px solid var(--streg);
+    border-radius: var(--r-s);
+    font-weight: 600;
+    background: var(--flade);
+  }
+  .menu-knap::-webkit-details-marker {
+    display: none;
+  }
+  .menu nav {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    z-index: 30;
+    min-width: 15rem;
+    background: var(--flade);
+    border: 1px solid var(--streg);
+    border-radius: var(--r-m);
+    box-shadow: var(--skygge);
+    padding: 0.5rem;
+  }
+  .menu ul,
+  .menu-bred ul,
+  .bund-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .menu a,
+  .menu-bred a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 0.75rem;
+    border-radius: var(--r-s);
+    color: var(--blaek);
+    text-decoration: none;
+    font-weight: 550;
+  }
+  .menu a:hover,
+  .menu a[aria-current='page'],
+  .menu-bred a:hover,
+  .menu-bred a[aria-current='page'] {
+    background: var(--lyng-tone);
+    color: var(--lyng);
+  }
+  .menu-bred {
+    display: none;
+  }
+  .menu-bred ul {
+    display: flex;
+    gap: 0.25rem;
+  }
+  @media (min-width: 60rem) {
+    .menu {
+      display: none;
+    }
+    .menu-bred {
+      display: block;
+    }
+  }
+  .bund {
+    background: var(--flade);
+    border-top: 1px solid var(--streg);
+    padding-block: 3rem calc(3rem + var(--cookie-h, 0px));
+    font-size: var(--t-s);
+  }
+  .bund-indre {
+    display: grid;
+    gap: 2rem;
+  }
+  .bund-om {
+    color: var(--skifer);
+    max-width: 34rem;
+  }
+  .bund-links {
+    display: grid;
+    gap: 0;
+  }
+  .bund-links a,
+  .bund-cookie {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--blaek);
+  }
+  .bund-cookie {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    cursor: pointer;
+  }
+  @media (min-width: 48rem) {
+    .bund-indre {
+      grid-template-columns: 1.4fr 1fr;
+    }
+    .bund-links {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 1.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import Side from '../components/Side.astro';
+import Ph from '../components/Ph.astro';
+import site from '../data/site.json';
+---
+<Base titel="For ejendomsmæglere | Vurdo" beskrivelse="Bliv partnermægler hos Vurdo og få henvendelser fra boligejere, der selv har valgt dig.">
+  <Side eyebrow="For mæglere" titel="Få henvendelser fra boligejere, der selv har valgt dig" lead="Boligejeren ser dit billede, din video og dine tal, og vælger dig. Henvendelsen går kun til dig." />
+  <section class="sektion" style="padding-top:1rem">
+    <div class="wrap prosa">
+      <ul>
+        <li>Du betaler pr. henvendelse. <Ph v="[PLADSHOLDER: pris og vilkår, eller 'kontakt os for pris']" /></li>
+        <li>Vi ringer boligejeren op først og bekræfter oplysningerne, før henvendelsen går videre til dig.</li>
+        <li>Du får adresse, boligtype, areal, tidshorisont, prioriteter og bedste tidspunkt at ringe.</li>
+        <li>Du kan selv opdatere dit billede, din video og dine postnumre sammen med os.</li>
+      </ul>
+      <p>Vurdo drives af Hero Media ApS. Læs mere og kontakt os på heromedia.dk.</p>
+      <p><a class="knap" href={site.heroMediaUrl} target="_blank" rel="noopener">Gå til Hero Media</a></p>
+    </div>
+  </section>
+</Base>

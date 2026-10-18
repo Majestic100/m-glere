@@ -1,0 +1,132 @@
+---
+// Ikke-blokerende banner i bunden. "Kun nødvendige" og "Tillad alle" er lige synlige.
+---
+<section class="cookie" id="cookie" aria-label="Cookies" hidden>
+  <div class="cookie-indre">
+    <p class="cookie-tekst">
+      Vi bruger kun nødvendige cookies, medmindre du også siger ja til statistik og måling af vores annoncer.
+      <a href="/privatlivspolitik#cookies">Læs mere</a>
+    </p>
+    <div class="cookie-valg" id="cookie-valg" hidden>
+      <label class="cookie-check"><input type="checkbox" checked disabled /> Nødvendige (altid til)</label>
+      <label class="cookie-check"><input type="checkbox" id="cookie-statistik" /> Statistik</label>
+      <label class="cookie-check"><input type="checkbox" id="cookie-marketing" /> Marketing</label>
+    </div>
+    <div class="cookie-knapper">
+      <button type="button" class="knap knap--sekundaer" data-cookie="noedvendige">Kun nødvendige</button>
+      <button type="button" class="knap knap--sekundaer" data-cookie="alle">Tillad alle</button>
+      <button type="button" class="knap--link knap" data-cookie="vaelg" id="cookie-vaelg">Vælg selv</button>
+      <button type="button" class="knap knap--sekundaer" data-cookie="gem" id="cookie-gem" hidden>Gem mit valg</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { hentSamtykke, gemSamtykke } from '../scripts/samtykke.js';
+  import '../scripts/tracking.js';
+
+  const banner = document.getElementById('cookie')!;
+  const valg = document.getElementById('cookie-valg')!;
+  const stat = document.getElementById('cookie-statistik') as HTMLInputElement;
+  const mark = document.getElementById('cookie-marketing') as HTMLInputElement;
+
+  function vis() {
+    const nu = hentSamtykke();
+    stat.checked = Boolean(nu?.statistik);
+    mark.checked = Boolean(nu?.marketing);
+    banner.hidden = false;
+    document.documentElement.style.setProperty('--cookie-h', `${banner.offsetHeight}px`);
+  }
+  function skjul() {
+    banner.hidden = true;
+    document.documentElement.style.setProperty('--cookie-h', '0px');
+  }
+
+  banner.addEventListener('click', (e) => {
+    const knap = (e.target as HTMLElement).closest('[data-cookie]') as HTMLElement | null;
+    if (!knap) return;
+    const hvad = knap.dataset.cookie;
+    if (hvad === 'noedvendige') { gemSamtykke({ statistik: false, marketing: false }); skjul(); }
+    if (hvad === 'alle') { gemSamtykke({ statistik: true, marketing: true }); skjul(); }
+    if (hvad === 'gem') { gemSamtykke({ statistik: stat.checked, marketing: mark.checked }); skjul(); }
+    if (hvad === 'vaelg') {
+      valg.hidden = false;
+      document.getElementById('cookie-vaelg')!.hidden = true;
+      document.getElementById('cookie-gem')!.hidden = false;
+      document.documentElement.style.setProperty('--cookie-h', `${banner.offsetHeight}px`);
+    }
+  });
+  document.querySelectorAll('[data-cookie-aabn]').forEach((b) => b.addEventListener('click', vis));
+  if (!hentSamtykke()) vis();
+</script>
+
+<style>
+  .cookie {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    background: var(--flade);
+    border-top: 1px solid var(--streg);
+    box-shadow: 0 -8px 24px rgb(33 26 34 / 0.08);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .cookie-indre {
+    max-width: var(--bred);
+    margin-inline: auto;
+    padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+    padding-block: 0.9rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .cookie-tekst {
+    font-size: var(--t-s);
+    color: var(--skifer);
+  }
+  .cookie-valg {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+  }
+  .cookie-check {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    min-height: 44px;
+    font-size: var(--t-s);
+  }
+  .cookie-check input {
+    width: 22px;
+    height: 22px;
+    accent-color: var(--lyng);
+  }
+  .cookie-knapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .cookie-knapper .knap {
+    min-height: 48px;
+    padding: 0 0.75rem;
+    font-size: var(--t-s);
+  }
+  .cookie-knapper .knap--link {
+    grid-column: 1 / -1;
+    min-height: 40px;
+  }
+  @media (min-width: 48rem) {
+    .cookie-indre {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+    }
+    .cookie-valg {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+    .cookie-knapper {
+      display: flex;
+    }
+  }
+</style>
