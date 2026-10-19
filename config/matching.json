@@ -1,0 +1,20 @@
+{
+  "_note": "Vægte og regler for matching-motoren. Ret her uden kodeændring. Hæv version, når du ændrer noget, så hvert lead kan forklares bagefter.",
+  "version": "2026-10-19.1",
+  "vaegte": {
+    "lokale_salg": 0.35,
+    "liggetid": 0.2,
+    "prisniveau": 0.2,
+    "feedback": 0.15,
+    "responstid": 0.1
+  },
+  "rotation": 0.03,
+  "neutral": 0.5,
+  "normering": {
+    "lokale_salg_max": 40,
+    "liggetid_bedst_dage": 30,
+    "liggetid_vaerst_dage": 180,
+    "responstid_bedst_timer": 1,
+    "responstid_vaerst_timer": 48
+  }
+}

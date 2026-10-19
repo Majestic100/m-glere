@@ -1,0 +1,16 @@
+{
+  "_note": "Indstillinger for estimat-motoren. Faktorer sat til null tæller som 1,0 (ingen effekt), indtil de er fastsat. Se TODO_DATA.md.",
+  "version": "2026-10-19.1",
+  "afrund": 25000,
+  "praecision": {
+    "hoej_min_handler": 50,
+    "middel_min_handler": 15,
+    "spaend": { "hoej": 0.07, "middel": 0.12, "lav": 0.18 }
+  },
+  "faktorer": {
+    "indvendig": { "renovering": null, "almindelig": null, "nyrenoveret": null },
+    "udvendig": { "renovering": null, "almindelig": null, "nyrenoveret": null },
+    "tilvalg": { "altan_terrasse": null, "have": null, "carport_garage": null, "nyt_koekken_bad": null }
+  },
+  "salaer": { "min": "TODO_DATA", "max": "TODO_DATA", "_note": "Mæglersalær inkl. moms og typiske salgsomkostninger, som interval i kr." }
+}

@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import Side from '../components/Side.astro';
+import Ph from '../components/Ph.astro';
+---
+<Base titel="Cookiepolitik | Nem Vurdering" beskrivelse="Hvilke cookies Nem Vurdering bruger, hvad de gør, og hvordan du ændrer dit valg.">
+  <Side titel="Cookiepolitik" lead="Vi bruger kun nødvendige cookies, medmindre du siger ja til mere." />
+  <section class="sektion" style="padding-top:1rem">
+    <div class="wrap prosa">
+      <p class="ph-boks" style="justify-items:start;text-align:left">UDKAST. Skal gennemgås af en jurist før lancering.</p>
+      <p>Du kan altid ændre dit valg under "Cookieindstillinger" nederst på siden.</p>
+      <table class="tabel">
+        <thead><tr><th scope="col">Gruppe</th><th scope="col">Hvad og hvorfor</th><th scope="col">Varighed</th></tr></thead>
+        <tbody>
+          <tr><td>Nødvendige</td><td>Husker dit cookievalg (<code>vurdo-cookie-samtykke</code>). Gemmer dine svar i formularen, mens du udfylder den (<code>nv-flow</code>, slettes når du lukker fanen).</td><td>12 måneder / sessionen</td></tr>
+          <tr><td>Statistik</td><td><Ph v="TODO_DATA: værktøj, fx Plausible eller GA4. Intet er installeret endnu." /></td><td><Ph v="TODO_DATA" /></td></tr>
+          <tr><td>Marketing</td><td>Meta Pixel (<code>_fbp</code> og <code>_fbc</code>) måler, om vores annoncer på Facebook og Instagram virker. Vi gemmer også, hvilken annonce du kom fra (<code>vurdo-attribution</code>), mens du er på siden.</td><td>Op til 90 dage / sessionen</td></tr>
+        </tbody>
+      </table>
+      <p>Adressesøgningen bruger Klimadatastyrelsens Adressevælger. Når du skriver i adressefeltet, sendes teksten dertil for at finde adressen. Det sætter ingen cookies.</p>
+      <p class="hjaelp">Senest opdateret: <Ph v="TODO_DATA" /></p>
+    </div>
+  </section>
+</Base>
+<style>
+  .tabel { border-collapse: collapse; width: 100%; font-size: var(--t-s); }
+  .tabel th, .tabel td { text-align: left; vertical-align: top; padding: 0.6rem 0.5rem 0.6rem 0; border-bottom: 1px solid var(--streg); }
+  .prosa { overflow-x: auto; }
+</style>

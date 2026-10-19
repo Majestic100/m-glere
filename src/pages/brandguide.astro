@@ -135,7 +135,7 @@ const marked = [
     <div class="wrap stak-l">
       <h2>Billeder</h2>
       <div class="billeder">
-        {[[parcelhus, 'Parcelhus i røde mursten'], [raekkehuse, 'Gule rækkehuse med forhaver'], [etageejendom, 'Muret etageejendom med altaner']].map(([b, alt]) => (
+        {[{ b: parcelhus, alt: 'Parcelhus i røde mursten' }, { b: raekkehuse, alt: 'Gule rækkehuse med forhaver' }, { b: etageejendom, alt: 'Muret etageejendom med altaner' }].map(({ b, alt }) => (
           <Image src={b} alt={alt} widths={[400, 700]} sizes="(min-width: 48rem) 33vw, 100vw" quality={70} loading="lazy" />
         ))}
       </div>

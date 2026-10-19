@@ -1,30 +1,24 @@
 ---
-// Formularen i trin. Én ting pr. skærm. Mæglere og kvadratmeterpriser bygges ind i siden som JSON.
-import maeglerData from '../data/maeglere.json';
-import kvmpriser from '../data/kvmpriser.json';
-import site from '../data/site.json';
-import { BOLIGTYPER, TIDSHORISONTER, PRIORITETER, TIDSPUNKTER } from '../lib/vurdo.js';
+// Vurderings-flowet. Én ting pr. skærm, progress bar, tilbage-knap på alle trin.
+// Svarene gemmes løbende i sessionStorage, så intet går tabt ved et genindlæs.
+import m2Prod from '../../data/m2-priser.json';
+import m2Demo from '../../data/demo/m2-priser.json';
+import estimatConfig from '../../config/estimat.json';
+import matchConfig from '../../config/matching.json';
+import maeglerData from '../../data/maeglere.json';
+import site from '../../data/site.json';
+import { BOLIGTYPER, STAND, TILVALG, HORISONTER } from '../lib/faelles.js';
 
+const DEMO = import.meta.env.PUBLIC_DEMO === '1';
 
-const offentligeFelter = ['id', 'navn', 'titel', 'butik', 'omraade', 'postnumre', 'billede', 'video', 'videoPoster', 'beskrivelse', 'solgte', 'solgtePeriode', 'solgteKilde', 'bedoemmelse', 'bedoemmelseAntal', 'bedoemmelseKilde', 'pladsholder'];
-const maeglere = maeglerData.maeglere
-  .filter((m) => m.aktiv !== false)
-  .map((m) => Object.fromEntries(offentligeFelter.map((f) => [f, (m as Record<string, unknown>)[f]])));
-
-// CMS'et gemmer priserne som en liste. Formularen slår op på postnummer.
-// Kun tallene og testflaget sendes med. Kilde og noter bliver i CMS'et.
-const { priser, pladsholder } = kvmpriser;
+// I produktion sker matchingen på serveren (/api/match). Mæglerdata bygges kun ind i demoen,
+// hvor der ingen server er, så kapacitet, feedback og responstid ikke ligger i sidens kildekode.
 const data = {
-  maeglere,
-  kvmpriser: {
-    pladsholder,
-    postnumre: Object.fromEntries(
-      priser.map(({ postnr, ...typer }) => [postnr, Object.fromEntries(Object.entries(typer).filter(([, v]) => Number(v) > 0))]),
-    ),
-  },
-  estimat: site.estimat,
-  beregner: site.beregner,
-  aabningstider: site.aabningstider,
+  demo: DEMO,
+  m2: DEMO ? m2Demo : m2Prod,
+  estimatConfig,
+  maeglere: DEMO ? maeglerData.maeglere : null,
+  matchConfig: DEMO ? matchConfig : null,
   samtykkeVersion: site.samtykkeVersion,
   adressevaelgerToken: import.meta.env.PUBLIC_ADRESSEVAELGER_TOKEN || 'adressevaelger123',
 };
@@ -32,7 +26,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
 ---
 <div class="vf-hus">
 <svg class="vf-gavl" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false"><polygon points="0,10 50,0.4 100,10"></polygon></svg>
-<section class="vf" id="vurdering" aria-labelledby="vf-titel">
+<section class="vf" id="vurdering" aria-label="Se din boligværdi">
   <script type="application/json" id="vf-data" set:html={json} />
 
   <div class="vf-top" id="vf-top" hidden>
@@ -40,36 +34,35 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
       <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4 6.5 10l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       Tilbage
     </button>
-    <span class="vf-trin tal" id="vf-trin" aria-live="polite"></span>
+    <span class="vf-trin" id="vf-trin" aria-live="polite"></span>
   </div>
   <div class="vf-status" id="vf-status" role="progressbar" aria-label="Hvor langt du er" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden>
     <span id="vf-status-fyld"></span>
   </div>
 
   <form id="vf-form" novalidate autocomplete="on">
-    <!-- 1a. Adresse -->
+    <!-- Trin 1: Adresse -->
     <div class="vf-skaerm" data-skaerm="adresse">
-      <h2 class="vf-h" id="vf-titel" tabindex="-1">Start med din adresse</h2>
       <div class="felt vf-ac">
         <label for="vf-adresse">Din adresse</label>
         <div class="ac-boks">
-        <input
-          id="vf-adresse"
-          name="adresse"
-          type="text"
-          inputmode="search"
-          autocomplete="off"
-          spellcheck="false"
-          placeholder="Fx Søndergade 12, 8000 Aarhus C"
-          role="combobox"
-          aria-autocomplete="list"
-          aria-expanded="false"
-          aria-controls="vf-forslag"
-          aria-describedby="vf-adresse-hjaelp vf-adresse-fejl"
-        />
-        <ul id="vf-forslag" role="listbox" aria-label="Adresseforslag" hidden></ul>
+          <input
+            id="vf-adresse"
+            name="adresse"
+            type="text"
+            inputmode="search"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="Skriv din adresse, fx Søndergade 12, 8000 Aarhus C"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-expanded="false"
+            aria-controls="vf-forslag"
+            aria-describedby="vf-adresse-hjaelp vf-adresse-fejl"
+          />
+          <ul id="vf-forslag" role="listbox" aria-label="Adresseforslag" hidden></ul>
         </div>
-        <p class="hjaelp" id="vf-adresse-hjaelp">Skriv vejnavn og husnummer, og vælg din adresse på listen.</p>
+        <p class="hjaelp" id="vf-adresse-hjaelp">Tager cirka 30 sekunder</p>
       </div>
       <div class="felt" id="vf-enhed-felt" hidden>
         <label for="vf-enhed">Etage og dør</label>
@@ -87,159 +80,134 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
         </div>
       </div>
       <p class="fejltekst" id="vf-adresse-fejl" role="alert" hidden></p>
-      <button type="button" class="knap knap--fuld" data-naeste>Se hvad din bolig er værd</button>
+      <button type="button" class="knap knap--fuld" data-naeste>Se min boligværdi</button>
       <button type="button" class="knap knap--link" id="vf-manuel-knap">Kan du ikke finde adressen?</button>
     </div>
 
-    <!-- 1b. Bekræft boligtype og areal -->
+    <!-- Trin 2: BBR-oplysninger -->
     <div class="vf-skaerm" data-skaerm="bolig" hidden>
-      <h2 class="vf-h" tabindex="-1">Passer det her?</h2>
-      <p class="vf-note" id="vf-bbr-note">Vi henter oplysninger om din bolig.</p>
+      <h2 class="vf-h" tabindex="-1">Er oplysningerne rigtige?</h2>
+      <p class="vf-note" id="vf-bbr-note">Offentlige registre er ikke altid opdaterede. Ret gerne det, der ikke passer.</p>
       <fieldset class="valg" aria-describedby="vf-bolig-fejl">
         <legend>Boligtype</legend>
         {BOLIGTYPER.map((b) => (
           <label class="valg-flise"><input type="radio" name="boligtype" value={b.id} /> <span>{b.navn}</span></label>
         ))}
       </fieldset>
-      <div class="felt felt--kort">
-        <label for="vf-areal">Boligareal</label>
-        <div class="enhed-input"><input id="vf-areal" name="areal" type="text" inputmode="numeric" maxlength="4" aria-describedby="vf-bolig-fejl" /><span>m²</span></div>
-      </div>
-      <p class="fejltekst" id="vf-bolig-fejl" role="alert" hidden></p>
-      <button type="button" class="knap knap--fuld" data-naeste>Se estimat</button>
-    </div>
-
-    <!-- 2. Estimat -->
-    <div class="vf-skaerm" data-skaerm="estimat" hidden>
-      <div id="vf-estimat-ok" class="stak">
-        <p class="vf-adresse-linje" id="vf-estimat-adresse"></p>
-        <h2 class="vf-h" tabindex="-1">Din bolig er cirka værd</h2>
-        <p class="vf-interval tal" id="vf-interval"></p>
-        <p class="vf-testdata" id="vf-testdata" hidden>Testtal. Ikke rigtige priser endnu.</p>
-        <div class="vf-forbehold">
-          <p><strong>Et vejledende interval.</strong> En lokal mægler kan give dig en præcis vurdering, når de har set din bolig.</p>
+      <div class="felter-raekke">
+        <div class="felt">
+          <label for="vf-areal">Boligareal</label>
+          <div class="enhed-input"><input id="vf-areal" name="areal" type="text" inputmode="numeric" maxlength="4" aria-describedby="vf-bolig-fejl" /><span>m²</span></div>
+        </div>
+        <div class="felt">
+          <label for="vf-vaerelser">Værelser</label>
+          <input id="vf-vaerelser" name="vaerelser" type="text" inputmode="numeric" maxlength="2" aria-describedby="vf-bolig-fejl" />
+        </div>
+        <div class="felt">
+          <label for="vf-byggeaar">Byggeår</label>
+          <input id="vf-byggeaar" name="byggeaar" type="text" inputmode="numeric" maxlength="4" aria-describedby="vf-bolig-fejl" />
         </div>
       </div>
-      <div id="vf-estimat-mangler" class="stak" hidden>
-        <h2 class="vf-h" tabindex="-1">Vi kan ikke give et estimat her</h2>
-        <p id="vf-estimat-mangler-tekst"></p>
-      </div>
-      <button type="button" class="knap knap--fuld" data-naeste id="vf-til-provenu">Hvad står jeg tilbage med?</button>
-      <button type="button" class="knap knap--link" data-spring="tid" id="vf-spring-provenu">Spring over</button>
+      <p class="fejltekst" id="vf-bolig-fejl" role="alert" hidden></p>
+      <button type="button" class="knap knap--fuld" data-naeste>Det passer</button>
     </div>
 
-    <!-- 3. Provenu -->
-    <div class="vf-skaerm" data-skaerm="provenu" hidden>
-      <h2 class="vf-h" tabindex="-1">Hvad står du tilbage med?</h2>
-      <p class="vf-note">Valgfrit. Tallene bliver ikke sendt til nogen, før du selv sender formularen.</p>
-      <div class="felt">
-        <label for="vf-pris">Forventet salgspris</label>
-        <div class="enhed-input"><input id="vf-pris" name="salgspris" type="text" inputmode="numeric" /><span>kr.</span></div>
-      </div>
-      <div class="felt">
-        <label for="vf-gaeld">Restgæld på dine lån</label>
-        <div class="enhed-input"><input id="vf-gaeld" name="restgaeld" type="text" inputmode="numeric" placeholder="0" /><span>kr.</span></div>
-        <p class="hjaelp">Du kan se den i din netbank eller hos dit realkreditinstitut.</p>
-      </div>
-      <div class="felt">
-        <label for="vf-omk">Salær og andre salgsomkostninger</label>
-        <div class="enhed-input"><input id="vf-omk" name="omkostninger" type="text" inputmode="numeric" /><span>kr.</span></div>
-        <p class="hjaelp">Et groft bud. Spørg mægleren om den præcise pris.<span id="vf-omk-ph" hidden> <mark class="ph">[PLADSHOLDER: standardtal skal fastsættes]</mark></span></p>
-      </div>
-      <div class="vf-resultat" aria-live="polite">
-        <span>Du står tilbage med cirka</span>
-        <strong class="tal" id="vf-provenu">0 kr.</strong>
-      </div>
-      <p class="hjaelp">Regnestykket tager ikke højde for kurstab ved indfrielse af lån, skat eller andre udgifter ved flytning.</p>
+    <!-- Trin 3: Stand og tilvalg -->
+    <div class="vf-skaerm" data-skaerm="stand" hidden>
+      <h2 class="vf-h" tabindex="-1">Hvordan står det til med boligen?</h2>
+      <fieldset class="valg">
+        <legend>Indvendig stand</legend>
+        <div class="segment">
+          {STAND.map((s) => (
+            <label class="valg-flise"><input type="radio" name="indvendig" value={s.id} /> <span>{s.navn}</span></label>
+          ))}
+        </div>
+      </fieldset>
+      <fieldset class="valg">
+        <legend>Udvendig stand</legend>
+        <div class="segment">
+          {STAND.map((s) => (
+            <label class="valg-flise"><input type="radio" name="udvendig" value={s.id} /> <span>{s.navn}</span></label>
+          ))}
+        </div>
+      </fieldset>
+      <fieldset class="valg">
+        <legend>Har boligen noget af det her?</legend>
+        {TILVALG.map((t) => (
+          <label class="valg-flise"><input type="checkbox" name="tilvalg" value={t.id} /> <span>{t.navn}</span></label>
+        ))}
+      </fieldset>
       <button type="button" class="knap knap--fuld" data-naeste>Videre</button>
     </div>
 
-    <!-- 4. Tidshorisont -->
-    <div class="vf-skaerm" data-skaerm="tid" hidden>
+    <!-- Trin 4: Salgshorisont -->
+    <div class="vf-skaerm" data-skaerm="horisont" hidden>
       <fieldset class="valg">
         <legend class="vf-h" tabindex="-1">Hvornår overvejer du at sælge?</legend>
-        {TIDSHORISONTER.map((t) => (
-          <label class="valg-flise"><input type="radio" name="tidshorisont" value={t.id} data-auto /> <span>{t.navn}</span></label>
+        {HORISONTER.map((h) => (
+          <label class="valg-flise"><input type="radio" name="horisont" value={h.id} data-auto /> <span>{h.navn}</span></label>
         ))}
       </fieldset>
-      <button type="button" class="knap knap--fuld" data-naeste>Videre</button>
+      <p class="fejltekst" id="vf-horisont-fejl" role="alert" hidden></p>
+      <button type="button" class="knap knap--fuld" data-naeste>Se resultatet</button>
     </div>
 
-    <!-- 4b. Kun for nysgerrige og områder uden partnermægler -->
-    <div class="vf-skaerm" data-skaerm="tilbud" hidden>
-      <h2 class="vf-h" tabindex="-1" id="vf-tilbud-titel">Vil du følge med i, hvad din bolig er værd?</h2>
-      <p id="vf-tilbud-tekst">Vi kan sende dig en opdateret vurdering hver 3. måned. Det er gratis, og ingen mægler ringer til dig.</p>
-      <button type="button" class="knap knap--fuld" data-naeste>Ja tak</button>
-      <button type="button" class="knap knap--link" data-afslut>Nej tak, jeg ville bare se tallet</button>
-    </div>
-
-    <!-- 5. Prioriteter -->
-    <div class="vf-skaerm" data-skaerm="prio" hidden>
-      <fieldset class="valg">
-        <legend class="vf-h" tabindex="-1">Hvad er vigtigst for dig?</legend>
-        <p class="vf-note">Vælg gerne flere.</p>
-        {PRIORITETER.map((p) => (
-          <label class="valg-flise valg-flise--check"><input type="checkbox" name="prioriteter" value={p.id} /> <span>{p.navn}</span></label>
-        ))}
-      </fieldset>
-      <button type="button" class="knap knap--fuld" data-naeste>Videre</button>
-    </div>
-
-    <!-- 6. Vælg mægler -->
-    <div class="vf-skaerm" data-skaerm="maegler" hidden>
-      <h2 class="vf-h" tabindex="-1">Vælg din mægler</h2>
-      <p class="vf-note" id="vf-maegler-note"></p>
-      <div class="vf-maeglere" id="vf-maeglere" role="radiogroup" aria-label="Partnermæglere"></div>
-      <p class="fejltekst" id="vf-maegler-fejl" role="alert" hidden>Vælg den mægler, du gerne vil kontaktes af.</p>
-    </div>
-
-    <!-- 7. Kontakt -->
-    <div class="vf-skaerm" data-skaerm="kontakt" hidden>
-      <h2 class="vf-h" tabindex="-1" id="vf-kontakt-titel">Hvordan får vi fat i dig?</h2>
-      <div class="felt">
-        <label for="vf-navn">Navn</label>
-        <input id="vf-navn" name="navn" type="text" autocomplete="name" aria-describedby="vf-kontakt-fejl" />
+    <!-- Trin 5 og 6: Geo-tjek og resultat -->
+    <div class="vf-skaerm" data-skaerm="resultat" hidden>
+      <div class="stak" id="vf-res-estimat">
+        <p class="vf-adresse-linje" id="vf-res-adresse"></p>
+        <h2 class="vf-h vf-h--stor" tabindex="-1" id="vf-res-titel"></h2>
+        <p class="vf-middel" id="vf-res-middel"></p>
+        <p class="vf-testdata" id="vf-testdata" hidden>Testtal. Ikke rigtige priser.</p>
+        <div class="vf-praecision" id="vf-praecision"></div>
       </div>
-      <div class="felt" id="vf-tlf-felt">
-        <label for="vf-tlf">Telefon <span class="valgfri" id="vf-tlf-valgfri" hidden>(valgfri)</span></label>
-        <input id="vf-tlf" name="telefon" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="vf-kontakt-fejl" />
+      <div id="vf-res-detaljer" class="stak-l"></div>
+      <p class="vf-aerlig">Et onlineestimat kender registrene, men ikke dit nye køkken. En lokal mægler kan give dig en præcis salgspris, gratis og uforpligtende. Du behøver ikke engang rydde op.</p>
+      <div id="vf-res-maegler"></div>
+    </div>
+
+    <!-- Trin 7: Kontakt og samtykke -->
+    <div class="vf-skaerm" data-skaerm="kontakt" hidden>
+      <h2 class="vf-h" tabindex="-1" id="vf-kontakt-titel">Få en præcis vurdering</h2>
+      <div class="vf-valgt" id="vf-valgt"></div>
+      <div class="felter-raekke felter-raekke--2">
+        <div class="felt">
+          <label for="vf-fornavn">Fornavn</label>
+          <input id="vf-fornavn" name="fornavn" type="text" autocomplete="given-name" aria-describedby="vf-kontakt-fejl" />
+        </div>
+        <div class="felt">
+          <label for="vf-efternavn">Efternavn</label>
+          <input id="vf-efternavn" name="efternavn" type="text" autocomplete="family-name" aria-describedby="vf-kontakt-fejl" />
+        </div>
+      </div>
+      <div class="felt">
+        <label for="vf-tlf">Telefon</label>
+        <input id="vf-tlf" name="telefon" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="8 cifre" aria-describedby="vf-kontakt-fejl" />
       </div>
       <div class="felt">
         <label for="vf-email">E-mail</label>
         <input id="vf-email" name="email" type="email" inputmode="email" autocomplete="email" aria-describedby="vf-kontakt-fejl" />
       </div>
-      <fieldset class="valg valg--kompakt" id="vf-tidspunkt-felt">
-        <legend>Hvornår passer det bedst, at vi ringer?</legend>
-        {TIDSPUNKTER.map((t, i) => (
-          <label class="valg-flise"><input type="radio" name="tidspunkt" value={t.id} checked={i === 0} /> <span>{t.navn}</span></label>
-        ))}
-      </fieldset>
+      <div class="samtykke-raekke">
+        <label class="samtykke">
+          <input type="checkbox" id="vf-samtykke" name="samtykke" aria-describedby="vf-kontakt-fejl" />
+          <span id="vf-samtykke-tekst"></span>
+        </label>
+        <a class="samtykke-link" href="/privatlivspolitik" target="_blank" rel="noopener">Persondatapolitik</a>
+      </div>
+      <label class="samtykke samtykke--frivillig">
+        <input type="checkbox" id="vf-foelg" name="foelg" />
+        <span id="vf-foelg-tekst"></span>
+      </label>
       <div class="vf-honning" aria-hidden="true">
         <label for="vf-firma">Firma</label>
         <input id="vf-firma" name="firma" type="text" tabindex="-1" autocomplete="off" />
       </div>
       <p class="fejltekst" id="vf-kontakt-fejl" role="alert" hidden></p>
-      <button type="button" class="knap knap--fuld" data-naeste>Videre</button>
-    </div>
-
-    <!-- 8. Samtykke -->
-    <div class="vf-skaerm" data-skaerm="samtykke" hidden>
-      <h2 class="vf-h" tabindex="-1" id="vf-samtykke-titel">Sidste trin</h2>
-      <div class="vf-valgt" id="vf-valgt"></div>
-      <label class="samtykke" id="vf-samtykke-1-felt">
-        <input type="checkbox" id="vf-samtykke-1" name="samtykke_kontakt" aria-describedby="vf-samtykke-fejl" />
-        <span id="vf-samtykke-1-tekst"></span>
-      </label>
-      <label class="samtykke" id="vf-samtykke-2-felt">
-        <input type="checkbox" id="vf-samtykke-2" name="samtykke_kvartal" />
-        <span id="vf-samtykke-2-tekst"></span>
-      </label>
-      <p class="hjaelp">Læs hvordan vi behandler dine oplysninger i vores <a href="/privatlivspolitik" target="_blank" rel="noopener">privatlivspolitik</a>.</p>
-      <p class="fejltekst" id="vf-samtykke-fejl" role="alert" hidden></p>
       <button type="submit" class="knap knap--fuld" id="vf-send">Send</button>
     </div>
 
-    <!-- Tak -->
+    <!-- Trin 8: Tak -->
     <div class="vf-skaerm" data-skaerm="tak" hidden>
       <div class="vf-tak stak" id="vf-tak"></div>
     </div>
@@ -248,19 +216,18 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
 </div>
 
 <script>
-  import '../scripts/vurdering.js';
+  import '../scripts/flow.js';
 </script>
 
 <style is:global>
-  /* Formularen er tegnet som et hus: en gavl oven på kortet, ligesom taget i logoet.
-     Skyggen ligger på hele huset, så gavl og kort står som én form. */
+  /* Formularen er tegnet som et hus: en gavl oven på kortet, ligesom taget i logoet. */
   .vf-hus {
     filter: drop-shadow(0 1px 1px rgb(26 34 31 / 0.07)) drop-shadow(0 12px 28px rgb(26 34 31 / 0.09));
   }
   .vf-gavl {
     display: block;
     width: 100%;
-    height: clamp(26px, 9vw, 44px);
+    height: clamp(22px, 7vw, 40px);
     margin-bottom: -1px;
   }
   .vf-gavl polygon {
@@ -269,7 +236,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
   .vf {
     background: var(--flade);
     border-radius: 0 0 var(--r-m) var(--r-m);
-    padding: 0.75rem 1.25rem 1.5rem;
+    padding: 0.5rem 1.25rem 1.25rem;
     display: grid;
     gap: 1rem;
     scroll-margin-top: 1rem;
@@ -277,25 +244,29 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
   @media (min-width: 30rem) {
     .vf { padding: 0.75rem 1.75rem 1.75rem; }
   }
-  .vf-adresse-linje {
-    font-size: var(--t-s);
-    font-weight: 600;
-    color: var(--skifer);
-  }
   .vf-skaerm {
     display: grid;
     gap: 1.1rem;
   }
   .vf-h {
     font-size: var(--t-l);
-    font-weight: 700;
+    font-weight: 750;
     outline: none;
+  }
+  .vf-h--stor {
+    font-size: var(--t-xl);
+    line-height: 1.15;
+  }
+  .vf-adresse-linje {
+    font-size: var(--t-s);
+    font-weight: 600;
+    color: var(--skifer);
   }
   .vf-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: -0.5rem 0 -0.5rem -0.5rem;
+    margin: -0.25rem 0 -0.5rem -0.5rem;
   }
   .vf-tilbage {
     display: inline-flex;
@@ -306,7 +277,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
     border: 0;
     background: none;
     font: inherit;
-    font-weight: 600;
+    font-weight: 650;
     color: var(--gron);
     cursor: pointer;
   }
@@ -332,6 +303,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
     display: grid;
     gap: 0.4rem;
     position: relative;
+    min-width: 0;
   }
   .felt label,
   .valg legend {
@@ -361,6 +333,14 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
   .felt--kort {
     max-width: 12rem;
   }
+  .felter-raekke {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+  .felter-raekke--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .ac-boks {
     position: relative;
   }
@@ -368,11 +348,11 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
     position: relative;
   }
   .enhed-input input {
-    padding-right: 3.5rem;
+    padding-right: 3rem;
   }
   .enhed-input span {
     position: absolute;
-    right: 1rem;
+    right: 0.9rem;
     top: 50%;
     transform: translateY(-50%);
     color: var(--skifer);
@@ -381,10 +361,6 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
   .hjaelp,
   .vf-note {
     font-size: var(--t-s);
-    color: var(--skifer);
-  }
-  .valgfri {
-    font-weight: 400;
     color: var(--skifer);
   }
   .fejltekst {
@@ -426,6 +402,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
     padding: 0;
     display: grid;
     gap: 0.6rem;
+    min-width: 0;
   }
   .valg legend {
     padding: 0;
@@ -433,6 +410,20 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
   }
   .valg legend.vf-h {
     margin-bottom: 0.9rem;
+  }
+  .segment {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+  .segment .valg-flise {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 0.4rem;
+    padding: 0.6rem 0.4rem;
+    font-size: var(--t-s);
+    line-height: 1.25;
   }
   .valg-flise {
     display: flex;
@@ -450,6 +441,10 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
     border-color: var(--gron);
     background: var(--gron-tone);
   }
+  .valg-flise:has(input:focus-visible) {
+    outline: 3px solid var(--gron);
+    outline-offset: 2px;
+  }
   .valg-flise input,
   .samtykke input {
     flex: none;
@@ -458,14 +453,8 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
     margin: 0;
     accent-color: var(--gron);
   }
-  .valg--kompakt .valg-flise {
-    min-height: 48px;
-  }
-  .vf-interval {
-    font-size: clamp(1.75rem, 1.3rem + 2.2vw, 2.4rem);
-    font-weight: 750;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+  .vf-middel {
+    font-weight: 650;
     color: var(--gron);
   }
   .vf-testdata {
@@ -477,32 +466,49 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
     font-weight: 650;
     font-size: var(--t-s);
   }
-  .vf-forbehold {
+  .vf-praecision {
     display: grid;
+    gap: 0.4rem;
+    font-size: var(--t-s);
+    color: var(--skifer);
+  }
+  .praecision-chip {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
     gap: 0.5rem;
+    font-weight: 700;
+    color: var(--blaek);
+  }
+  .praecision-chip i {
+    display: inline-flex;
+    gap: 3px;
+  }
+  .praecision-chip i b {
+    width: 14px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--streg);
+  }
+  .praecision-chip i b.til {
+    background: var(--gron);
+  }
+  .vf-aerlig {
     padding: 1rem;
     background: var(--kalk);
     border-radius: var(--r-s);
     font-size: var(--t-s);
-    color: var(--skifer);
   }
-  .vf-forbehold strong {
-    color: var(--blaek);
-  }
-  .vf-resultat {
+  .samtykke-raekke {
     display: grid;
-    gap: 0.25rem;
-    padding: 1rem;
-    background: var(--gron-tone);
-    border-radius: var(--r-s);
+    gap: 0.4rem;
   }
-  .vf-resultat strong {
-    font-size: var(--t-xl);
-    color: var(--gron);
-  }
-  .vf-maeglere {
-    display: grid;
-    gap: 1rem;
+  .samtykke-link {
+    justify-self: start;
+    font-size: var(--t-s);
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
   }
   .samtykke {
     display: flex;
@@ -522,6 +528,9 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
   .samtykke:has(input:checked) {
     border-color: var(--gron);
   }
+  .samtykke--frivillig {
+    border-style: dashed;
+  }
   .vf-valgt {
     display: flex;
     gap: 0.85rem;
@@ -537,31 +546,6 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
   .vf-tak h2 {
     font-size: var(--t-xl);
   }
-  .vf-tak ol {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: grid;
-    gap: 0.9rem;
-    counter-reset: trin;
-  }
-  .vf-tak li {
-    display: grid;
-    grid-template-columns: 2rem 1fr;
-    gap: 0.75rem;
-    counter-increment: trin;
-  }
-  .vf-tak li::before {
-    content: counter(trin);
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    background: var(--gron-tone);
-    color: var(--gron);
-    font-weight: 700;
-  }
   .vf-preview {
     background: var(--ph-bg);
     color: var(--ph-fg);
@@ -569,5 +553,81 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
     border-radius: var(--r-s);
     font-size: var(--t-s);
     font-weight: 600;
+  }
+  /* Kortet med den anbefalede mægler */
+  .anbefalet {
+    display: grid;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 1.5px solid var(--gron);
+    border-radius: var(--r-m);
+    background: var(--flade);
+  }
+  .anbefalet-hoved {
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+  }
+  .anbefalet ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .anbefalet li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    font-size: var(--t-s);
+  }
+  .anbefalet li svg {
+    flex: none;
+    margin-top: 0.15em;
+  }
+  .mk-foto {
+    flex: none;
+    width: 72px;
+    height: 72px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: var(--gron-tone);
+  }
+  .mk-foto--ph {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    background: var(--ph-bg);
+    color: var(--ph-fg);
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 0.25rem;
+  }
+  .mk-navn {
+    font-weight: 750;
+    line-height: 1.25;
+  }
+  .mk-firma {
+    font-size: var(--t-s);
+    color: var(--skifer);
+  }
+  .boks {
+    display: grid;
+    gap: 0.9rem;
+    padding: 1.25rem;
+    border-radius: var(--r-m);
+    background: var(--gron-tone);
+  }
+  @media (max-width: 26rem) {
+    .felter-raekke {
+      grid-template-columns: 1fr 1fr;
+    }
+    .felter-raekke .felt:first-child {
+      grid-column: 1 / -1;
+    }
+    .felter-raekke--2 .felt:first-child {
+      grid-column: auto;
+    }
   }
 </style>

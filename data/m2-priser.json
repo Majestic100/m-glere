@@ -1,0 +1,14 @@
+{
+  "_note": "Kvadratmeterpriser og nøgletal pr. postnummer og kommune pr. boligtype. Kilde: Finans Danmark, Boligmarkedsstatistikken. Udfyldes af Hero Media. TODO_DATA betyder, at tallet mangler, og så vises intet estimat for den kombination.",
+  "kilde": "Finans Danmark, Boligmarkedsstatistikken",
+  "dato": "TODO_DATA",
+  "testdata": false,
+  "postnumre": [
+    { "postnr": "8000", "boligtype": "hus", "m2pris": "TODO_DATA", "antal_handler_12m": "TODO_DATA", "liggetid_dage": "TODO_DATA", "udvikling_1aar_pct": "TODO_DATA" },
+    { "postnr": "8000", "boligtype": "lejlighed", "m2pris": "TODO_DATA", "antal_handler_12m": "TODO_DATA", "liggetid_dage": "TODO_DATA", "udvikling_1aar_pct": "TODO_DATA" }
+  ],
+  "kommuner": [
+    { "kommunekode": "0751", "boligtype": "hus", "m2pris": "TODO_DATA", "antal_handler_12m": "TODO_DATA", "liggetid_dage": "TODO_DATA", "udvikling_1aar_pct": "TODO_DATA" },
+    { "kommunekode": "0751", "boligtype": "lejlighed", "m2pris": "TODO_DATA", "antal_handler_12m": "TODO_DATA", "liggetid_dage": "TODO_DATA", "udvikling_1aar_pct": "TODO_DATA" }
+  ]
+}

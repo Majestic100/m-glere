@@ -1,9 +1,11 @@
-// Slår boligtype og areal op i BBR via Datafordelerens GraphQL-tjeneste.
+// Slår boligtype, areal, antal værelser og byggeår op i BBR via Datafordelerens GraphQL-tjeneste.
 // Kræver DATAFORDELER_API_KEY. Uden nøgle svarer funktionen tomt, og formularen beder brugeren udfylde selv.
 //
-// Feltnavnene følger BBR's grunddatamodel (enh020, enh026, enh027, byg021, byg039).
+// Feltnavnene følger BBR's grunddatamodel (enh020, enh026, enh027, enh031, byg021, byg026, byg039).
+// GraphQL tillader ikke æ, ø og å i feltnavne, så navnene med dem er translittereret (enh031AntalVaerelser,
+// byg026Opfoerelsesaar). TODO_DATA: bekræft de præcise navne mod skemaet, når API-nøglen er oprettet.
 // Tjek dem mod skemaet, når nøglen er oprettet: https://graphql.datafordeler.dk/BBR/v3/schema?apiKey=...
-import { boligtypeFraBbr } from '../../src/lib/vurdo.js';
+import { boligtypeFraBbr } from '../../src/lib/faelles.js';
 
 const ENDPOINT = 'https://graphql.datafordeler.dk/BBR/v3';
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -37,14 +39,21 @@ async function gql(query) {
 const ENHED = (id, nu) => `
   query {
     BBR_Enhed(first: 5, virkningstid: "${nu}", registreringstid: "${nu}", where: { adresseIdentificerer: { eq: "${id}" } }) {
-      nodes { id_lokalId enh020EnhedensAnvendelse enh026EnhedensSamledeAreal enh027ArealTilBeboelse }
+      nodes { id_lokalId bygning enh020EnhedensAnvendelse enh026EnhedensSamledeAreal enh027ArealTilBeboelse enh031AntalVaerelser }
     }
   }`;
 
 const BYGNING = (id, nu) => `
   query {
     BBR_Bygning(first: 5, virkningstid: "${nu}", registreringstid: "${nu}", where: { husnummer: { eq: "${id}" } }) {
-      nodes { id_lokalId byg021BygningensAnvendelse byg039BygningensSamledeBoligAreal }
+      nodes { id_lokalId byg021BygningensAnvendelse byg026Opfoerelsesaar byg039BygningensSamledeBoligAreal }
+    }
+  }`;
+
+const BYGNING_ID = (id, nu) => `
+  query {
+    BBR_Bygning(first: 1, virkningstid: "${nu}", registreringstid: "${nu}", where: { id_lokalId: { eq: "${id}" } }) {
+      nodes { id_lokalId byg026Opfoerelsesaar }
     }
   }`;
 
@@ -53,7 +62,7 @@ export default async (req) => {
   const adresseId = url.searchParams.get('adresseId');
   const husnummerId = url.searchParams.get('husnummerId');
   if ((adresseId && !UUID.test(adresseId)) || (husnummerId && !UUID.test(husnummerId))) return svar({ fejl: 'Ugyldigt id' }, 400);
-  if (!process.env.DATAFORDELER_API_KEY) return svar({ boligtype: null, areal: null, kilde: null, note: 'BBR ikke konfigureret' });
+  if (!process.env.DATAFORDELER_API_KEY) return svar({ boligtype: null, areal: null, vaerelser: null, byggeaar: null, kilde: null, note: 'BBR ikke konfigureret' });
 
   const nu = new Date().toISOString();
   try {
@@ -61,10 +70,17 @@ export default async (req) => {
       const d = await gql(ENHED(adresseId, nu));
       const e = d?.BBR_Enhed?.nodes?.[0];
       if (e) {
+        let byggeaar = null;
+        if (UUID.test(String(e.bygning || ''))) {
+          const b = await gql(BYGNING_ID(e.bygning, nu)).catch(() => null);
+          byggeaar = Number(b?.BBR_Bygning?.nodes?.[0]?.byg026Opfoerelsesaar) || null;
+        }
         return svar({
           boligtype: boligtypeFraBbr(e.enh020EnhedensAnvendelse),
           anvendelseskode: e.enh020EnhedensAnvendelse ?? null,
           areal: Number(e.enh027ArealTilBeboelse || e.enh026EnhedensSamledeAreal) || null,
+          vaerelser: Number(e.enh031AntalVaerelser) || null,
+          byggeaar,
           kilde: 'BBR_Enhed',
         });
       }
@@ -77,13 +93,15 @@ export default async (req) => {
           boligtype: boligtypeFraBbr(b.byg021BygningensAnvendelse),
           anvendelseskode: b.byg021BygningensAnvendelse ?? null,
           areal: Number(b.byg039BygningensSamledeBoligAreal) || null,
+          vaerelser: null,
+          byggeaar: Number(b.byg026Opfoerelsesaar) || null,
           kilde: 'BBR_Bygning',
         });
       }
     }
-    return svar({ boligtype: null, areal: null, kilde: null });
+    return svar({ boligtype: null, areal: null, vaerelser: null, byggeaar: null, kilde: null });
   } catch (err) {
     console.error('BBR-opslag fejlede', err);
-    return svar({ boligtype: null, areal: null, kilde: null, note: 'BBR svarede ikke' });
+    return svar({ boligtype: null, areal: null, vaerelser: null, byggeaar: null, kilde: null, note: 'BBR svarede ikke' });
   }
 };

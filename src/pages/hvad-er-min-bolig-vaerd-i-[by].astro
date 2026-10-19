@@ -19,7 +19,7 @@ const kr = (n: number) => `${new Intl.NumberFormat('da-DK').format(n)} kr.`;
   titel={`Hvad er min bolig værd i ${b.by}? | Nem Vurdering`}
   beskrivelse={`Få et gratis estimat på din bolig i ${b.by} på 30 sekunder, og vælg selv den lokale mægler, der kender dit område.`}
 >
-  <Hero by={b.by} billede={b.billede} />
+  <Hero titel={`Hvad er din bolig værd i ${b.by}?`} billede={b.billede} />
 
   <section class="sektion sektion--tone" aria-labelledby="pris-titel">
     <div class="wrap prosa">

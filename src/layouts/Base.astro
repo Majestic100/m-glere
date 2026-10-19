@@ -1,5 +1,5 @@
 ---
-import '@fontsource-variable/schibsted-grotesk/wght.css';
+import '@fontsource-variable/plus-jakarta-sans/wght.css';
 import '../styles/global.css';
 import CookieBanner from '../components/CookieBanner.astro';
 
@@ -26,7 +26,7 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     <meta name="claude:viewport-fit-sides" content="cover" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com; font-src 'self'; connect-src 'self' https://adressevaelger.dk https://www.facebook.com https://connect.facebook.net; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+      content="default-src 'self'; script-src 'self' https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com; font-src 'self' data:; connect-src 'self' https://adressevaelger.dk https://www.facebook.com https://connect.facebook.net; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
     />
     <meta name="description" content={beskrivelse} />
     <link rel="canonical" href={kanonisk} />

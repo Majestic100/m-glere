@@ -5,7 +5,7 @@
   <div class="cookie-indre">
     <p class="cookie-tekst">
       Vi bruger kun nødvendige cookies, medmindre du også siger ja til statistik og måling af vores annoncer.
-      <a href="/privatlivspolitik#cookies">Læs om cookies</a>
+      <a href="/cookiepolitik">Læs om cookies</a> eller <button type="button" class="cookie-vaelg" data-cookie="vaelg" id="cookie-vaelg">vælg selv</button>.
     </p>
     <div class="cookie-valg" id="cookie-valg" hidden>
       <label class="cookie-check"><input type="checkbox" checked disabled /> Nødvendige (altid til)</label>
@@ -15,7 +15,6 @@
     <div class="cookie-knapper">
       <button type="button" class="knap knap--sekundaer" data-cookie="noedvendige">Kun nødvendige</button>
       <button type="button" class="knap knap--sekundaer" data-cookie="alle">Tillad alle</button>
-      <button type="button" class="knap--link knap" data-cookie="vaelg" id="cookie-vaelg">Vælg selv</button>
       <button type="button" class="knap knap--sekundaer" data-cookie="gem" id="cookie-gem" hidden>Gem mit valg</button>
     </div>
   </div>
@@ -51,7 +50,6 @@
     if (hvad === 'gem') { gemSamtykke({ statistik: stat.checked, marketing: mark.checked }); skjul(); }
     if (hvad === 'vaelg') {
       valg.hidden = false;
-      document.getElementById('cookie-vaelg')!.hidden = true;
       document.getElementById('cookie-gem')!.hidden = false;
       document.documentElement.style.setProperty('--cookie-h', `${banner.offsetHeight}px`);
     }
@@ -77,12 +75,13 @@
     margin-inline: auto;
     padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
     padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
-    padding-block: 0.9rem;
+    padding-block: 0.7rem;
     display: grid;
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
   .cookie-tekst {
-    font-size: var(--t-s);
+    font-size: var(--t-xs);
+    line-height: 1.45;
     color: var(--skifer);
   }
   .cookie-valg {
@@ -108,13 +107,19 @@
     gap: 0.5rem;
   }
   .cookie-knapper .knap {
-    min-height: 48px;
+    min-height: 44px;
     padding: 0 0.75rem;
     font-size: var(--t-s);
   }
-  .cookie-knapper .knap--link {
-    grid-column: 1 / -1;
-    min-height: 40px;
+  .cookie-vaelg {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: var(--gron);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    cursor: pointer;
   }
   @media (min-width: 48rem) {
     .cookie-indre {

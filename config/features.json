@@ -1,0 +1,10 @@
+{
+  "_note": "Feature flags. Slå kun til, når der er rigtige data bag. Se TODO_DATA.md.",
+  "aktivitet": false,
+  "taeller": false,
+  "trustpilot": false,
+  "trustpilot_business_unit_id": "TODO_DATA",
+  "trustpilot_url": "TODO_DATA",
+  "aktivitet_max_alder_timer": 24,
+  "taeller_minimum": 100
+}

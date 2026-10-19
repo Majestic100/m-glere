@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Side from '../components/Side.astro';
 import Ph from '../components/Ph.astro';
-import site from '../data/site.json';
+import site from '../../data/site.json';
 ---
 <Base titel="Privatlivspolitik | Nem Vurdering" beskrivelse="Sådan behandler Nem Vurdering dine personoplysninger.">
   <Side titel="Sådan passer vi på dine oplysninger" lead="Her kan du læse, hvilke oplysninger vi får, hvad vi bruger dem til, og hvem vi giver dem til." />
@@ -52,13 +52,7 @@ import site from '../data/site.json';
       <p>Hvis du vil klage, kan du kontakte Datatilsynet på datatilsynet.dk.</p>
 
       <h2 id="cookies">Cookies</h2>
-      <p>Vi bruger kun nødvendige cookies, medmindre du siger ja til mere. Du kan altid ændre dit valg under "Cookieindstillinger" nederst på siden.</p>
-      <ul>
-        <li><strong>Nødvendige.</strong> Husker dit cookievalg. Gemmes i din browser i op til 12 måneder.</li>
-        <li><strong>Statistik.</strong> <Ph v="[PLADSHOLDER: værktøj, fx Plausible eller GA4, og hvor længe]" /></li>
-        <li><strong>Marketing.</strong> Meta Pixel (_fbp og _fbc) måler, om vores annoncer på Facebook og Instagram virker. Op til 90 dage. Vi gemmer også, hvilken annonce du kom fra, mens du er på siden.</li>
-      </ul>
-      <p>Adressesøgningen bruger Klimadatastyrelsens Adressevælger. Når du skriver i adressefeltet, sendes teksten dertil for at finde adressen.</p>
+      <p>Læs om vores cookies i <a href="/cookiepolitik">cookiepolitikken</a>.</p>
 
       <p class="hjaelp">Senest opdateret: <Ph v="[PLADSHOLDER: dato]" /></p>
     </div>

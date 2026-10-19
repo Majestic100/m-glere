@@ -9,11 +9,15 @@
   --gron-tone: #e8efea;
   --gron-kant: #c3d3ca;
   --guld: #e3a54a;
+  --rav: #e3a54a;
+  --rav-moerk: #d4943a;
+  --rav-kant: #c4862f;
+  --paa-rav: #1a1f1c;
   /* Logoets ikonfarve. Samme i lyst og mørkt tema, så det gyldne flueben altid står tydeligt. */
   --ikon-bund: #1f3d33;
   --kalk: #f6f4ef;
   --flade: #ffffff;
-  --blaek: #1a221f;
+  --blaek: #1a1f1c;
   --skifer: #56605b;
   --streg: #dfe3de;
   --felt-kant: #7e8a84;
@@ -23,14 +27,14 @@
   --ph-bg: #fff3c4;
   --ph-fg: #6b5200;
 
-  --font: 'Schibsted Grotesk Variable', 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 
   --t-xs: 0.8125rem;
   --t-s: 0.9375rem;
   --t-m: 1.0625rem;
   --t-l: 1.3125rem;
   --t-xl: clamp(1.625rem, 1.2rem + 1.6vw, 2.125rem);
-  --t-xxl: clamp(2.375rem, 1.5rem + 3.6vw, 3.75rem);
+  --t-xxl: clamp(2rem, 1.3rem + 3.4vw, 3.5rem);
 
   --r-s: 8px;
   --r-m: 14px;
@@ -213,6 +217,7 @@ td.tal {
 }
 
 /* Knapper */
+/* Primær knap er rav med mørk tekst (7,8:1). Sekundære knapper er skovgrønne. */
 .knap {
   appearance: none;
   display: inline-flex;
@@ -222,9 +227,9 @@ td.tal {
   min-height: 56px;
   padding: 0 1.5rem;
   border-radius: var(--r-s);
-  border: 2px solid var(--gron);
-  background: var(--gron);
-  color: var(--paa-gron);
+  border: 2px solid var(--rav-kant);
+  background: var(--rav);
+  color: var(--paa-rav);
   font: inherit;
   font-weight: 650;
   font-size: var(--t-m);
@@ -233,9 +238,9 @@ td.tal {
   transition: background-color 0.15s ease;
 }
 .knap:hover {
-  background: var(--gron-moerk);
-  border-color: var(--gron-moerk);
-  color: var(--paa-gron);
+  background: var(--rav-moerk);
+  border-color: var(--rav-kant);
+  color: var(--paa-rav);
 }
 .knap[disabled] {
   opacity: 0.45;
@@ -246,10 +251,12 @@ td.tal {
 }
 .knap--sekundaer {
   background: transparent;
+  border-color: var(--gron);
   color: var(--gron);
 }
 .knap--sekundaer:hover {
   background: var(--gron-tone);
+  border-color: var(--gron);
   color: var(--gron-moerk);
 }
 .knap--link {
@@ -296,6 +303,11 @@ td.tal {
   padding: 0;
   display: grid;
   gap: 0.5rem;
+}
+.tillid--raekke {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
 }
 .tillid li {
   display: flex;
@@ -496,4 +508,19 @@ td.tal {
 .mk-omraade {
   font-size: var(--t-s);
   font-weight: 600;
+}
+
+/* Mens boligejeren er i gang med flowet, fylder flowet siden. Resten skjules, så der er ro. */
+body.flow-aktiv .hero-tekst,
+body.flow-aktiv .hero-tillid,
+body.flow-aktiv .hero-foto,
+body.flow-aktiv main > :not(.hero),
+body.flow-aktiv .fast-cta {
+  display: none;
+}
+body.flow-aktiv .hero-gitter {
+  grid-template-columns: minmax(0, 40rem);
+  grid-template-areas: 'form';
+  grid-template-rows: auto;
+  justify-content: center;
 }

@@ -7,8 +7,12 @@ import raekkehuse from '../assets/boliger/raekkehuse.jpg';
 import etageejendom from '../assets/boliger/etageejendom.jpg';
 import aarhusGade from '../assets/boliger/aarhus-gade.jpg';
 
-interface Props { by?: string; billede?: string }
-const { by, billede = 'parcelhus' } = Astro.props;
+interface Props { titel?: string; undertitel?: string; billede?: string | false }
+const {
+  titel = 'Hvad er din bolig værd? Se et estimat på 30 sekunder',
+  undertitel = 'Gratis og uforpligtende. Vi finder den lokale mægler, der passer bedst til din bolig, og kun den mægler kontakter dig.',
+  billede = 'parcelhus',
+} = Astro.props;
 const billeder = { parcelhus, raekkehuse, etageejendom, 'aarhus-gade': aarhusGade } as const;
 const alt = {
   parcelhus: 'Rødt murstenshus med have og cykel i indkørslen',
@@ -16,13 +20,13 @@ const alt = {
   etageejendom: 'Muret etageejendom med altaner og cykler foran',
   'aarhus-gade': 'Villavej i Aarhus med gule og røde byhuse',
 } as const;
-const valgt = billeder[billede as keyof typeof billeder] ?? parcelhus;
+const valgt = billede ? (billeder[billede as keyof typeof billeder] ?? parcelhus) : null;
 ---
 <section class="hero">
   <div class="wrap hero-gitter">
     <div class="hero-tekst stak">
-      <h1>{by ? `Hvad er din bolig værd i ${by}?` : 'Hvad er din bolig værd i dag?'}</h1>
-      <p class="lead">Få et gratis estimat på 30 sekunder, og vælg selv den lokale mægler, der kender dit område.</p>
+      <h1>{titel}</h1>
+      <p class="lead">{undertitel}</p>
     </div>
     <div class="hero-form">
       <Vurdering />
@@ -30,10 +34,12 @@ const valgt = billeder[billede as keyof typeof billeder] ?? parcelhus;
     <div class="hero-tillid">
       <Tillid />
     </div>
-    <figure class="hero-foto">
-      <Image src={valgt} alt={alt[billede as keyof typeof alt] ?? alt.parcelhus} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 30rem, 100vw" quality={70} loading="lazy" decoding="async" />
-      <figcaption>Midlertidigt billede. <mark class="ph">[PLADSHOLDER: skiftes til eget foto]</mark></figcaption>
-    </figure>
+    {valgt && (
+      <figure class="hero-foto">
+        <Image src={valgt} alt={alt[billede as keyof typeof alt] ?? alt.parcelhus} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 30rem, 100vw" quality={70} loading="lazy" decoding="async" />
+        <figcaption>Midlertidigt billede. <mark class="ph">TODO_DATA: skiftes til eget foto</mark></figcaption>
+      </figure>
+    )}
   </div>
 </section>
 <style>

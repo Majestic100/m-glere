@@ -16,6 +16,16 @@
   to = "/.netlify/functions/bbr"
   status = 200
 
+[[redirects]]
+  from = "/api/match"
+  to = "/.netlify/functions/match"
+  status = 200
+
+[[redirects]]
+  from = "/api/aktivitet"
+  to = "/.netlify/functions/aktivitet"
+  status = 200
+
 # Pæne URL'er uden .html
 [[redirects]]
   from = "/*.html"
