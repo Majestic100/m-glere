@@ -1,11 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
+import Forskel from '../components/Forskel.astro';
+import SaadanMatcher from '../components/SaadanMatcher.astro';
 import SaadanVirkerDet from '../components/SaadanVirkerDet.astro';
+import KunEn from '../components/KunEn.astro';
 import Marked from '../components/Marked.astro';
 import Penge from '../components/Penge.astro';
 import Anmeldelser from '../components/Anmeldelser.astro';
 import Faq from '../components/Faq.astro';
+import SlutCta from '../components/SlutCta.astro';
 ---
 <Base
   titel="Hvad er din bolig værd? Gratis estimat | Nem Vurdering"
@@ -18,14 +22,20 @@ import Faq from '../components/Faq.astro';
     url: new URL('/', Astro.site).toString(),
     logo: new URL('/brand/ikon-512.png', Astro.site).toString(),
   })} />
-  <Hero />
+  <Hero billede={false} eksempel />
 
-  <section class="sektion sektion--tone" aria-labelledby="svd-titel">
+  <Forskel />
+
+  <SaadanMatcher />
+
+  <section class="sektion" aria-labelledby="svd-titel">
     <div class="wrap stak-l">
-      <h2 id="svd-titel">Sådan virker det</h2>
+      <h2 id="svd-titel">Sådan foregår det</h2>
       <SaadanVirkerDet />
     </div>
   </section>
+
+  <KunEn />
 
   <Marked />
 
@@ -38,7 +48,10 @@ import Faq from '../components/Faq.astro';
   <section class="sektion sektion--tone" aria-labelledby="faq-titel">
     <div class="wrap stak-l">
       <h2 id="faq-titel">Ofte stillede spørgsmål</h2>
-      <Faq />
+      <Faq antal={6} />
+      <p><a href="/ofte-stillede-spoergsmaal">Se alle spørgsmål</a></p>
     </div>
   </section>
+
+  <SlutCta />
 </Base>

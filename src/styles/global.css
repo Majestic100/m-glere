@@ -13,6 +13,8 @@
   --rav-moerk: #d4943a;
   --rav-kant: #c4862f;
   --paa-rav: #1a1f1c;
+  --rav-tone: #fbefd9;
+  --paa-rav-tone: #5c3f10;
   /* Logoets ikonfarve. Samme i lyst og mørkt tema, så det gyldne flueben altid står tydeligt. */
   --ikon-bund: #1f3d33;
   --kalk: #f6f4ef;
@@ -47,6 +49,8 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     --gron: #8fc5ac;
+    --rav-tone: #2a2416;
+    --paa-rav-tone: #f3dc8a;
     --gron-moerk: #b0d8c5;
     --gron-tone: #1c2a24;
     --gron-kant: #355246;
@@ -67,6 +71,8 @@
 }
 :root[data-theme='dark'] {
   --gron: #8fc5ac;
+  --rav-tone: #2a2416;
+  --paa-rav-tone: #f3dc8a;
   --gron-moerk: #b0d8c5;
   --gron-tone: #1c2a24;
   --gron-kant: #355246;
@@ -514,6 +520,7 @@ td.tal {
 body.flow-aktiv .hero-tekst,
 body.flow-aktiv .hero-tillid,
 body.flow-aktiv .hero-foto,
+body.flow-aktiv .hero-eksempel,
 body.flow-aktiv main > :not(.hero),
 body.flow-aktiv .fast-cta {
   display: none;

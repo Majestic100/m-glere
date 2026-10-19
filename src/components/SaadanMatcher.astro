@@ -1,0 +1,183 @@
+---
+// Hvad vi ser på, når vi matcher. Beskriver kriterierne, ikke vægtene. Kriterier uden data tæller neutralt,
+// så teksten lover kun, at vi ser på dem, ikke at vi har tal for alle mæglere.
+const kriterier = [
+  { t: 'Salg i dit område', b: 'Hvor mange boliger som din mægleren har solgt i nærheden det seneste år.' },
+  { t: 'Tid til salg', b: 'Hvor hurtigt mæglerens boliger typisk bliver solgt.' },
+  { t: 'Din prisklasse', b: 'Om mægleren har erfaring med boliger i samme prisleje som din.' },
+  { t: 'Svartid', b: 'Hvor hurtigt mægleren plejer at vende tilbage.' },
+  { t: 'Andre boligejeres oplevelse', b: 'Hvad boligejere, vi har sat i kontakt med mægleren, siger bagefter.' },
+];
+const raekker = [false, true, false, false];
+---
+<section class="sektion matcher" aria-labelledby="matcher-titel">
+  <div class="wrap matcher-gitter">
+    <div class="stak-l">
+      <div class="stak">
+        <h2 id="matcher-titel">Vi sammenligner, så du ikke skal</h2>
+        <p class="lead">Vi samarbejder med lokale mæglere. Når du har skrevet din adresse, ser vi på, hvem af dem der passer bedst til netop din bolig.</p>
+      </div>
+      <ul class="matcher-liste">
+        {kriterier.map((k) => (
+          <li>
+            <svg width="24" height="24" viewBox="0 0 22 22" aria-hidden="true"><rect width="22" height="22" rx="6" fill="currentColor"></rect><path d="m6.5 11.4 3 3 6-6.6" fill="none" stroke="#1F3D33" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <div><strong>{k.t}</strong><span>{k.b}</span></div>
+          </li>
+        ))}
+      </ul>
+      <p class="matcher-note">Du får én anbefaling, ikke en liste, du selv skal ringe rundt til. Vi anbefaler kun mæglere, vi samarbejder med. <a href="/#saadan-tjener-vi-penge">Sådan tjener vi penge</a>.</p>
+    </div>
+
+    <div class="matcher-illu" aria-hidden="true">
+      <p class="illu-titel">Mæglere i dit område</p>
+      <ul>
+        {raekker.map((valgt) => (
+          <li class:list={['illu-raekke', { 'illu-raekke--valgt': valgt }]}>
+            <span class="illu-avatar"></span>
+            <span class="illu-linjer"><span></span><span></span></span>
+            {valgt && <span class="illu-chip">Dit match</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+<style>
+  .matcher {
+    background: #1f3d33;
+    color: #f6f4ef;
+  }
+  .matcher h2 {
+    color: #ffffff;
+  }
+  .matcher .lead {
+    color: #c9d6cf;
+  }
+  .matcher a {
+    color: #f3c47e;
+  }
+  .matcher-gitter {
+    display: grid;
+    gap: 3rem;
+  }
+  .matcher-liste {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.1rem;
+  }
+  .matcher-liste li {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 0.85rem;
+    align-items: start;
+    color: #e3a54a;
+  }
+  .matcher-liste svg {
+    margin-top: 2px;
+  }
+  .matcher-liste div {
+    display: grid;
+    gap: 0.15rem;
+    color: #f6f4ef;
+  }
+  .matcher-liste span {
+    color: #c9d6cf;
+    font-size: var(--t-s);
+  }
+  .matcher-note {
+    margin: 0;
+    max-width: 36rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgb(255 255 255 / 0.15);
+    color: #c9d6cf;
+    font-size: var(--t-s);
+  }
+
+  /* Illustration: flere mæglere, én markeret */
+  .matcher-illu {
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    max-width: 24rem;
+    padding: 1.25rem;
+    border-radius: 20px;
+    background: rgb(255 255 255 / 0.06);
+    border: 1px solid rgb(255 255 255 / 0.12);
+  }
+  .illu-titel {
+    margin: 0 0 0.9rem;
+    font-size: var(--t-xs);
+    font-weight: 600;
+    color: #c9d6cf;
+  }
+  .matcher-illu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+  .illu-raekke {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem;
+    border-radius: 14px;
+    background: rgb(255 255 255 / 0.05);
+    opacity: 0.55;
+  }
+  .illu-raekke--valgt {
+    opacity: 1;
+    background: #f6f4ef;
+    box-shadow: 0 0 0 3px #e3a54a, 0 10px 30px rgb(0 0 0 / 0.25);
+    transform: scale(1.04);
+  }
+  .illu-avatar {
+    flex: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.25);
+  }
+  .illu-raekke--valgt .illu-avatar {
+    background: #c3d3ca;
+  }
+  .illu-linjer {
+    flex: 1;
+    display: grid;
+    gap: 0.4rem;
+  }
+  .illu-linjer span {
+    height: 8px;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.25);
+  }
+  .illu-linjer span:last-child {
+    width: 60%;
+  }
+  .illu-raekke--valgt .illu-linjer span {
+    background: #c3d3ca;
+  }
+  .illu-raekke--valgt .illu-linjer span:first-child {
+    background: #1f3d33;
+    width: 80%;
+  }
+  .illu-chip {
+    flex: none;
+    font-size: var(--t-xs);
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    background: #e3a54a;
+    color: #1a1f1c;
+  }
+  @media (min-width: 60rem) {
+    .matcher-gitter {
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+  }
+</style>

@@ -1,0 +1,97 @@
+---
+// Hvorfor valget af mægler betyder noget. Neutral tone over for mæglerne, ingen tal, vi ikke kan dokumentere.
+const punkter = [
+  {
+    t: 'Salær',
+    b: 'Salær og pakker er forskellige fra mægler til mægler. Det er værd at vide, hvad der er med i prisen.',
+    ikon: '<rect x="5" y="9" width="22" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="16" cy="16.5" r="3.2" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M9 13v7M23 13v7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
+  },
+  {
+    t: 'Salgsstrategi',
+    b: 'Fotos, annoncer og fremvisninger bliver grebet forskelligt an. Det er dem, købere ser først.',
+    ikon: '<path d="M6 21V11l14-5v20L6 21Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M20 12a4 4 0 0 1 0 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M9 22l1.5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
+  },
+  {
+    t: 'Vurdering',
+    b: 'To mæglere kan sætte den samme bolig forskelligt. Den rigtige udbudspris fra start gør en forskel.',
+    ikon: '<path d="M16 5v22M9 27h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M6 9h20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M6 9l-3 8a4 4 0 0 0 6 0l-3-8ZM26 9l-3 8a4 4 0 0 0 6 0l-3-8Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>',
+  },
+  {
+    t: 'Liggetid',
+    b: 'En mægler, der kender dit område og din type bolig, kan have købere i tankerne fra første dag.',
+    ikon: '<rect x="5" y="7" width="22" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M5 13h22M11 4v5M21 4v5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="m12 20 3 3 5-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
+  },
+];
+---
+<section class="sektion forskel" aria-labelledby="forskel-titel">
+  <div class="wrap stak-l">
+    <div class="stak forskel-intro">
+      <h2 id="forskel-titel">Der er forskel på mæglere</h2>
+      <p class="lead">Det er nemt at vælge den første mægler, man taler med. Men mæglere arbejder forskelligt, og det kan mærkes på både salgsprisen og på, hvor længe boligen er til salg.</p>
+    </div>
+    <ul class="forskel-gitter">
+      {punkter.map((p) => (
+        <li class="forskel-kort">
+          <span class="forskel-ikon" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 32 32" set:html={p.ikon}></svg></span>
+          <h3>{p.t}</h3>
+          <p>{p.b}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+<style>
+  .forskel {
+    background: var(--flade);
+    border-block: 1px solid var(--streg);
+  }
+  .forskel-intro {
+    max-width: 40rem;
+  }
+  .forskel-gitter {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  /* Ikon til venstre, tekst til højre. Holder kortene lave på mobil. */
+  .forskel-kort {
+    display: grid;
+    grid-template-columns: 3.25rem 1fr;
+    column-gap: 1rem;
+    row-gap: 0.3rem;
+    align-content: start;
+    padding: 1.25rem;
+    border-radius: 18px;
+    background: var(--kalk);
+    border: 1px solid var(--streg);
+  }
+  .forskel-ikon {
+    grid-row: span 2;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: var(--ikon-bund);
+    color: var(--guld);
+  }
+  .forskel-kort h3 {
+    font-size: var(--t-l);
+    align-self: center;
+  }
+  .forskel-kort p {
+    margin: 0;
+    color: var(--skifer);
+  }
+  @media (min-width: 48rem) {
+    .forskel-gitter {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    .forskel-kort {
+      padding: 1.75rem;
+    }
+  }
+</style>

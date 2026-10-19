@@ -1,0 +1,28 @@
+---
+// Afslutning på forsiden. Knappen fører op til adressefeltet, så der kun er ét flow på siden.
+---
+<section class="sektion slut-cta" aria-labelledby="slut-cta-titel">
+  <div class="wrap slut-cta-indhold">
+    <h2 id="slut-cta-titel">Hvad er din bolig værd?</h2>
+    <p class="lead">Se et gratis estimat på 30 sekunder, og find ud af, hvilken lokal mægler der passer til din bolig.</p>
+    <a class="knap" href="/#vurdering" data-til-formular>Se min boligværdi</a>
+  </div>
+</section>
+<style>
+  .slut-cta {
+    background: var(--gron-tone);
+    text-align: center;
+  }
+  .slut-cta-indhold {
+    display: grid;
+    gap: 1rem;
+    justify-items: center;
+  }
+  .slut-cta .lead {
+    max-width: 32rem;
+  }
+  .slut-cta .knap {
+    margin-top: 0.5rem;
+    min-width: 16rem;
+  }
+</style>

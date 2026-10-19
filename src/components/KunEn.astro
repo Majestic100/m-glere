@@ -1,0 +1,62 @@
+---
+// Det, der adskiller os: kun én navngiven mægler får dine oplysninger.
+const punkter = [
+  { t: 'Du ser navnet først', b: 'Du ved, hvem mægleren er, før du siger ja.' },
+  { t: 'Kun én får dine oplysninger', b: 'Vi sender dem ikke videre til andre mæglere.' },
+  { t: 'Du kan sige nej tak', b: 'Passer mægleren dig ikke, finder vi en anden.' },
+];
+---
+<section class="sektion kun-en" aria-labelledby="kun-en-titel">
+  <div class="wrap kun-en-gitter">
+    <div class="stak">
+      <h2 id="kun-en-titel">Kun én mægler kontakter dig</h2>
+      <p class="lead">Du giver kun lov til, at den mægler, vi har fundet, må kontakte dig. Først ringer vi kort for at bekræfte, og derefter tager mægleren kontakt.</p>
+    </div>
+    <ul class="kun-en-liste">
+      {punkter.map((p) => (
+        <li>
+          <strong>{p.t}</strong>
+          <span>{p.b}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+<style>
+  .kun-en {
+    background: var(--rav-tone);
+  }
+  .kun-en .lead {
+    color: var(--paa-rav-tone);
+  }
+  .kun-en-gitter {
+    display: grid;
+    gap: 2rem;
+  }
+  .kun-en-liste {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .kun-en-liste li {
+    display: grid;
+    gap: 0.2rem;
+    padding: 1.1rem 1.25rem;
+    border-radius: 16px;
+    background: var(--flade);
+    border-left: 4px solid var(--rav);
+  }
+  .kun-en-liste span {
+    color: var(--skifer);
+    font-size: var(--t-s);
+  }
+  @media (min-width: 60rem) {
+    .kun-en-gitter {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+  }
+</style>

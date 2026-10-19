@@ -3,16 +3,18 @@ import { Image } from 'astro:assets';
 import Vurdering from './Vurdering.astro';
 import Tillid from './Tillid.astro';
 import Aktivitet from './Aktivitet.astro';
+import ResultatEksempel from './ResultatEksempel.astro';
 import parcelhus from '../assets/boliger/parcelhus.jpg';
 import raekkehuse from '../assets/boliger/raekkehuse.jpg';
 import etageejendom from '../assets/boliger/etageejendom.jpg';
 import aarhusGade from '../assets/boliger/aarhus-gade.jpg';
 
-interface Props { titel?: string; undertitel?: string; billede?: string | false }
+interface Props { titel?: string; undertitel?: string; billede?: string | false; eksempel?: boolean }
 const {
   titel = 'Hvad er din bolig værd? Se et estimat på 30 sekunder',
   undertitel = 'Gratis og uforpligtende. Vi finder den lokale mægler, der passer bedst til din bolig, og kun den mægler kontakter dig.',
   billede = 'parcelhus',
+  eksempel = false,
 } = Astro.props;
 const billeder = { parcelhus, raekkehuse, etageejendom, 'aarhus-gade': aarhusGade } as const;
 const alt = {
@@ -24,9 +26,9 @@ const alt = {
 const valgt = billede ? (billeder[billede as keyof typeof billeder] ?? parcelhus) : null;
 ---
 <section class="hero">
-  <div class="wrap hero-gitter">
+  <div class:list={['wrap hero-gitter', { 'hero-gitter--eksempel': eksempel }]}>
     <div class="hero-tekst stak">
-      <h1>{titel}</h1>
+      <h1>{titel.includes('? ') ? <><span class="h1-del">{titel.split('? ')[0]}?</span> {titel.split('? ').slice(1).join('? ')}</> : titel}</h1>
       <p class="lead">{undertitel}</p>
     </div>
     <div class="hero-form">
@@ -36,6 +38,9 @@ const valgt = billede ? (billeder[billede as keyof typeof billeder] ?? parcelhus
       <Tillid />
       <Aktivitet />
     </div>
+    {eksempel && (
+      <div class="hero-eksempel"><ResultatEksempel /></div>
+    )}
     {valgt && (
       <figure class="hero-foto">
         <Image src={valgt} alt={alt[billede as keyof typeof alt] ?? alt.parcelhus} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 30rem, 100vw" quality={70} loading="lazy" decoding="async" />
@@ -57,6 +62,8 @@ const valgt = billede ? (billeder[billede as keyof typeof billeder] ?? parcelhus
   .hero-form { grid-area: form; min-width: 0; }
   .hero-tillid { grid-area: tillid; }
   .hero-foto { grid-area: foto; margin: 0.75rem 0 0; display: grid; gap: 0.5rem; }
+  .hero-eksempel { grid-area: eksempel; display: grid; justify-items: center; margin-top: 1.5rem; }
+  .hero-gitter--eksempel { grid-template-areas: 'tekst' 'form' 'tillid' 'eksempel'; }
   .hero-foto img {
     width: 100%;
     aspect-ratio: 3 / 2;
@@ -77,5 +84,15 @@ const valgt = billede ? (billeder[billede as keyof typeof billeder] ?? parcelhus
       row-gap: 1.5rem;
       align-items: start;
     }
+    /* Overskriften over hele bredden, derunder adressefeltet og et eksempel på, hvad man får */
+    .hero-gitter--eksempel {
+      grid-template-columns: minmax(0, 30rem) 1fr;
+      grid-template-areas: 'tekst tekst' 'form eksempel' 'tillid eksempel';
+      grid-template-rows: auto auto 1fr;
+      row-gap: 2rem;
+    }
+    .hero-gitter--eksempel .hero-tekst { max-width: 50rem; }
+    .h1-del { display: block; }
+    .hero-eksempel { margin-top: 0; align-self: start; justify-items: center; }
   }
 </style>

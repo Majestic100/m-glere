@@ -20,11 +20,14 @@
       formSynlig = e.isIntersecting || e.boundingClientRect.top > 0;
       opdater();
     }).observe(form);
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setTimeout(() => (document.getElementById('vf-adresse') as HTMLInputElement | null)?.focus({ preventScroll: true }), 400);
-    });
+    // Alle knapper til formularen på samme side ruller op og sætter fokus i adressefeltet.
+    for (const a of [link, ...document.querySelectorAll('[data-til-formular]')]) {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => (document.getElementById('vf-adresse') as HTMLInputElement | null)?.focus({ preventScroll: true }), 400);
+      });
+    }
   }
   window.addEventListener('scroll', opdater, { passive: true });
   window.addEventListener('vurdo:samtykke', () => setTimeout(opdater, 0));

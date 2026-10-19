@@ -1,27 +1,32 @@
 ---
-// Tre trin med ikon. Ikonerne er tegnet i samme streg som logoet.
+// Fire trin med ikon og nummer. Ikonerne er tegnet i samme streg som logoet.
 const trin = [
   {
     t: 'Skriv din adresse',
-    b: 'Vi henter boligens data og handler i nærheden.',
+    b: 'Vi finder selv boligens oplysninger, så du ikke skal taste det hele.',
     ikon: '<path d="M6 26V14L16 6l10 8v12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 26v-7h6v7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>',
   },
   {
     t: 'Se dit estimat',
-    b: 'Et prisinterval på få sekunder.',
+    b: 'Et prisinterval med det samme. Du skal ikke give e-mail eller telefon først.',
     ikon: '<path d="M5 25h22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M8 21v-5M14 21V10M20 21v-8M26 21V7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>',
   },
   {
-    t: 'Vi finder din mægler',
-    b: 'Vi matcher dig med den lokale mægler, der passer bedst til din bolig. Kun den mægler kontakter dig.',
+    t: 'Mød din mægler',
+    b: 'Vi viser dig den lokale mægler, der passer bedst til din bolig, og hvorfor.',
     ikon: '<circle cx="16" cy="11" r="5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M7 27c1-5 5-8 9-8s8 3 9 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>',
+  },
+  {
+    t: 'Få en præcis vurdering',
+    b: 'Siger du ja, ringer vi kort for at bekræfte. Derefter aftaler mægleren en gratis salgsvurdering med dig.',
+    ikon: '<rect x="5" y="7" width="22" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M5 13h22M11 4v5M21 4v5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="m12 20 3 3 5-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>',
   },
 ];
 ---
 <ol class="svd">
   {trin.map((x, i) => (
     <li>
-      <span class="svd-ikon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 32 32" set:html={x.ikon}></svg></span>
+      <span class="svd-ikon" aria-hidden="true"><span class="svd-nr">{i + 1}</span><svg width="32" height="32" viewBox="0 0 32 32" set:html={x.ikon}></svg></span>
       <div class="stak svd-tekst">
         <h3><span class="sr-only">Trin {i + 1}: </span>{x.t}</h3>
         <p>{x.b}</p>
@@ -42,6 +47,7 @@ const trin = [
     grid-template-columns: 3.25rem 1fr;
     gap: 1rem;
     align-items: start;
+    align-content: start;
     position: relative;
   }
   /* Trinene hænger sammen: en linje fra ikon til ikon på mobil */
@@ -62,6 +68,22 @@ const trin = [
     place-items: center;
     background: var(--ikon-bund);
     color: var(--guld);
+    position: relative;
+  }
+  .svd-nr {
+    position: absolute;
+    top: -0.45rem;
+    right: -0.45rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background: var(--rav);
+    color: var(--paa-rav);
+    font-size: var(--t-xs);
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--kalk);
   }
   .svd-tekst {
     gap: 0.35rem;
@@ -72,14 +94,20 @@ const trin = [
   }
   @media (min-width: 60rem) {
     .svd {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
     }
     .svd li {
       grid-template-columns: 1fr;
     }
+    /* På desktop går linjen vandret fra ikon til ikon */
     .svd li:not(:last-child)::after {
-      display: none;
+      left: 4.25rem;
+      right: -1rem;
+      top: calc(1.625rem - 1px);
+      bottom: auto;
+      width: auto;
+      height: 2px;
     }
   }
 </style>
