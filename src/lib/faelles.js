@@ -146,3 +146,23 @@ export const FOELG_TEKST =
 /** Samtykke til besked, når der kommer en partnermægler i området. */
 export const VENTELISTE_TEKST =
   'Ja tak, Nem Vurdering (Hero Media ApS) må give mig besked på e-mail, når der er en partnermægler i mit område.';
+
+// Felter, der altid er tekst, selv om de ligner tal.
+const TEKSTFELTER = new Set(['postnr', 'postnumre', 'kommunekode', 'kode', 'id', 'slug', 'dato', 'version', 'telefon', 'cvr', 'samtykkeVersion']);
+
+/**
+ * CMS'et gemmer tal som tekst. Gør "40000" og "4,5" til tal, men lader postnumre, koder og datoer være tekst.
+ * @template T
+ * @param {T} v
+ * @param {string} [noegle]
+ * @returns {T}
+ */
+export function medTal(v, noegle = '') {
+  // @ts-ignore Typen bevares bevidst, selv om tekst bliver til tal.
+  if (Array.isArray(v)) return v.map((x) => (x && typeof x === 'object' ? medTal(x) : TEKSTFELTER.has(noegle) ? x : medTal(x, noegle)));
+  // @ts-ignore
+  if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, medTal(x, k)]));
+  // @ts-ignore
+  if (typeof v === 'string' && !TEKSTFELTER.has(noegle) && /^-?\d+([.,]\d+)?$/.test(v.trim())) return Number(v.trim().replace(',', '.'));
+  return v;
+}

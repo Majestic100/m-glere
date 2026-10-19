@@ -1,0 +1,143 @@
+---
+// Skabelon til kommunesider: /salgsvurdering/[kommune]. Genereres statisk fra data/kommuner.json.
+// Bygges kun, når kommunen har rigtige tal. Demoen (KOMMUNE_KLADDER=1) bygger alle med noindex.
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Faq from '../../components/Faq.astro';
+import Brodkrummer from '../../components/Brodkrummer.astro';
+import Ph from '../../components/Ph.astro';
+import raa from '../../../data/kommuner.json';
+import { KLADDER, kommunerTilBygning, harRigtigeTal, procent } from '../../lib/kommuner.js';
+import { harTal, medTal } from '../../lib/faelles.js';
+
+export function getStaticPaths() {
+  const kladder = KLADDER;
+  const data = medTal(raa);
+  const bygges = kommunerTilBygning(data.kommuner, kladder);
+  const slugs = new Set(bygges.map((k) => k.slug));
+  return bygges.map((k) => ({
+    params: { kommune: k.slug },
+    props: { k, naboer: data.kommuner.filter((n) => k.naboer.includes(n.slug) && slugs.has(n.slug)) },
+  }));
+}
+
+const { k, naboer } = Astro.props;
+const data = medTal(raa);
+const rigtig = harRigtigeTal(k);
+const fmt = (n: unknown) => (harTal(n) ? `${new Intl.NumberFormat('da-DK').format(n as number)} kr.` : null);
+const kilde = `${data.kilde}, ${k.dato}`;
+
+const titel = `Salgsvurdering i ${k.navn}: boligpriser og lokal mægler | Nem Vurdering`;
+const beskrivelse = rigtig
+  ? `${harTal(k.m2pris_hus) ? `Huse i ${k.navn} koster i gennemsnit ${fmt(k.m2pris_hus)} pr. m².` : `Lejligheder i ${k.navn} koster i gennemsnit ${fmt(k.m2pris_lejlighed)} pr. m².`} Se et gratis estimat på din bolig, og få en gratis salgsvurdering fra en lokal mægler.`
+  : `Salgsvurdering i ${k.navn}. Se et gratis estimat på din bolig, og få en gratis salgsvurdering fra en lokal mægler.`;
+
+// Lokal FAQ bygget af kommunens egne tal. Mangler et tal, kommer spørgsmålet ikke med.
+const lokalFaq = [
+  harTal(k.m2pris_hus) && {
+    id: 'm2pris-hus',
+    q: `Hvad koster et hus i ${k.navn} pr. m²?`,
+    a: [`Den gennemsnitlige kvadratmeterpris for huse i ${k.navn} er ${fmt(k.m2pris_hus)} ifølge ${kilde}.`],
+  },
+  harTal(k.liggetid_dage) && {
+    id: 'liggetid',
+    q: `Hvor lang tid tager det at sælge en bolig i ${k.navn}?`,
+    a: [`En bolig i ${k.navn} er i gennemsnit til salg i ${k.liggetid_dage} dage, før den bliver solgt (${kilde}). Det afhænger meget af pris, stand og beliggenhed.`],
+  },
+  harTal(k.udvikling_1aar_pct) && {
+    id: 'prisudvikling',
+    q: `Hvordan har boligpriserne udviklet sig i ${k.navn}?`,
+    a: [`Priserne har ændret sig ${procent(k.udvikling_1aar_pct)} det seneste år${harTal(k.udvikling_5aar_pct) ? `, ${procent(k.udvikling_5aar_pct)} over 5 år` : ''}${harTal(k.udvikling_10aar_pct) ? ` og ${procent(k.udvikling_10aar_pct)} over 10 år` : ''} (${kilde}).`],
+  },
+  {
+    id: 'pris-salgsvurdering',
+    q: `Hvad koster en salgsvurdering i ${k.navn}?`,
+    a: ['Den er gratis og uden binding. Mægleren kommer ud og ser boligen og giver dig et bud på en salgspris.'],
+  },
+].filter(Boolean) as { id: string; q: string; a: string[] }[];
+
+const noegletal = [
+  ['Pris pr. m² for huse', fmt(k.m2pris_hus)],
+  ['Pris pr. m² for lejligheder', fmt(k.m2pris_lejlighed)],
+  ['Gennemsnitlig liggetid', harTal(k.liggetid_dage) ? `${k.liggetid_dage} dage` : null],
+  ['Prisudvikling 1 år', procent(k.udvikling_1aar_pct)],
+  ['Prisudvikling 5 år', procent(k.udvikling_5aar_pct)],
+  ['Prisudvikling 10 år', procent(k.udvikling_10aar_pct)],
+];
+---
+<Base titel={titel} beskrivelse={beskrivelse} noindex={!rigtig}>
+  <Brodkrummer sti={[{ navn: 'Forside', href: '/' }, { navn: 'Salgsvurdering', href: '/salgsvurdering' }, { navn: k.navn, href: `/salgsvurdering/${k.slug}` }]} />
+  <Hero
+    titel={`Salgsvurdering i ${k.navn}`}
+    undertitel={`Se hvad din bolig i ${k.navn} er værd på 30 sekunder. Vi finder den lokale mægler, der passer bedst til din bolig, og kun den mægler kontakter dig.`}
+    billede={false}
+  />
+
+  <section class="sektion sektion--tone" aria-labelledby="priser-titel">
+    <div class="wrap stak-l">
+      <h2 id="priser-titel">Boligpriser i {k.navn}</h2>
+      {k.lokal_tekst && <p class="prosa">{k.lokal_tekst}</p>}
+      <dl class="k-tal">
+        {noegletal.map(([navn, v]) => (
+          <div><dt>{navn}</dt><dd>{v ?? <mark class="ph">TODO_DATA</mark>}</dd></div>
+        ))}
+      </dl>
+      <p class="hjaelp">Kilde: {data.kilde}, <Ph v={k.dato} />.</p>
+    </div>
+  </section>
+
+  <section class="sektion" aria-labelledby="lokal-faq">
+    <div class="wrap stak-l">
+      <h2 id="lokal-faq">Spørgsmål om at sælge i {k.navn}</h2>
+      <Faq ekstra={lokalFaq} antal={lokalFaq.length + 3} />
+    </div>
+  </section>
+
+  {naboer.length > 0 && (
+    <section class="sektion sektion--tone" aria-labelledby="naboer">
+      <div class="wrap stak">
+        <h2 id="naboer">Salgsvurdering i nabokommunerne</h2>
+        <ul class="naboer">
+          {naboer.map((n) => <li><a href={`/salgsvurdering/${n.slug}`}>Salgsvurdering i {n.navn}</a></li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+</Base>
+<style>
+  .k-tal {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 1rem;
+  }
+  .k-tal div {
+    border-top: 2px solid var(--gron);
+    padding-top: 0.6rem;
+    min-width: 0;
+  }
+  .k-tal dt {
+    font-size: var(--t-s);
+    color: var(--skifer);
+  }
+  .k-tal dd {
+    margin: 0;
+    font-size: var(--t-l);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  .k-tal dd mark {
+    font-size: var(--t-s);
+  }
+  .naboer {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: 0.4rem;
+  }
+  @media (min-width: 60rem) {
+    .k-tal {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,10 +1,12 @@
 // Matcher boligejeren med ÉN partnermægler. Kapacitet læses fra Netlify Blobs, og resultatet signeres,
 // så /api/lead kun accepterer den mægler, der faktisk blev matchet.
 import { matchMaegler } from '../../src/lib/matching.js';
-import { BOLIGTYPER, HORISONTER } from '../../src/lib/faelles.js';
+import { BOLIGTYPER, HORISONTER, medTal } from '../../src/lib/faelles.js';
 import { json, signerMatch, hentKapacitet } from './_faelles.mjs';
-import data from '../../data/maeglere.json' with { type: 'json' };
+import raa from '../../data/maeglere.json' with { type: 'json' };
 import config from '../../config/matching.json' with { type: 'json' };
+
+const data = medTal(raa);
 
 export default async (req) => {
   if (req.method !== 'POST') return json(405, { fejl: 'Kun POST' });

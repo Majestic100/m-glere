@@ -1,8 +1,10 @@
 ---
 // Boligmarkedet lige nu. Tallene kommer fra data/marked.json, aldrig fra koden.
 // I produktion vises sektionen først, når alle fire tal og datoen er udfyldt. Demoen viser pladsholdere.
-import marked from '../../data/marked.json';
-import { harTal } from '../lib/faelles.js';
+import markedRaa from '../../data/marked.json';
+import { harTal, medTal } from '../lib/faelles.js';
+
+const marked = medTal(markedRaa);
 import Ph from './Ph.astro';
 
 const DEMO = import.meta.env.PUBLIC_DEMO === '1';

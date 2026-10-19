@@ -1,0 +1,46 @@
+---
+import { KLADDER } from '../../lib/kommuner.js';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Side from '../../components/Side.astro';
+import Brodkrummer from '../../components/Brodkrummer.astro';
+
+const guides = (await getCollection('guides')).sort((a, b) => a.data.titel.localeCompare(b.data.titel, 'da'));
+const faerdige = guides.filter((g) => !g.data.kladde);
+const visKladder = KLADDER;
+const liste = visKladder ? guides : faerdige;
+---
+<Base titel="Guides til boligsalg | Nem Vurdering" beskrivelse="Guides om boligens værdi, salgsvurdering, valg af mægler, udgifter ved salg og hvordan du gør boligen klar." noindex={faerdige.length === 0}>
+  <Brodkrummer sti={[{ navn: 'Forside', href: '/' }, { navn: 'Guides', href: '/guides' }]} />
+  <Side titel="Guides til boligsalg" lead="Rolige svar på de spørgsmål, de fleste har, før de sælger." />
+  <section class="sektion" style="padding-top:1rem">
+    <div class="wrap">
+      {liste.length ? (
+        <ul class="guides">
+          {liste.map((g) => (
+            <li>
+              <a href={`/guides/${g.id}`}>{g.data.titel}</a>
+              <p class="hjaelp">{g.data.beskrivelse}{g.data.kladde && ' (kladde)'}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Vi skriver de første guides lige nu.</p>
+      )}
+    </div>
+  </section>
+</Base>
+<style>
+  .guides {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+    max-width: 40rem;
+  }
+  .guides a {
+    font-weight: 700;
+    font-size: var(--t-l);
+  }
+</style>

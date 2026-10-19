@@ -1,0 +1,402 @@
+{
+  "_note": "Kommunesider. En side bygges KUN, når m2pris for hus eller lejlighed, udvikling for 1, 5 og 10 år, liggetid og dato er udfyldt med rigtige tal fra Finans Danmark, Boligmarkedsstatistikken. Listen er de 20 største kommuner plus Aarhus-området. Kommunekoder og naboer skal verificeres (se TODO_DATA.md).",
+  "kilde": "Finans Danmark, Boligmarkedsstatistikken",
+  "kommuner": [
+    {
+      "kode": "0101",
+      "navn": "København",
+      "slug": "koebenhavn",
+      "naboer": [
+        "frederiksberg",
+        "gentofte",
+        "gladsaxe"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0751",
+      "navn": "Aarhus",
+      "slug": "aarhus",
+      "naboer": [
+        "skanderborg",
+        "favrskov",
+        "syddjurs",
+        "odder"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0851",
+      "navn": "Aalborg",
+      "slug": "aalborg",
+      "naboer": [],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0461",
+      "navn": "Odense",
+      "slug": "odense",
+      "naboer": [],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0630",
+      "navn": "Vejle",
+      "slug": "vejle",
+      "naboer": [
+        "kolding",
+        "horsens"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0561",
+      "navn": "Esbjerg",
+      "slug": "esbjerg",
+      "naboer": [],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0147",
+      "navn": "Frederiksberg",
+      "slug": "frederiksberg",
+      "naboer": [
+        "koebenhavn"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0730",
+      "navn": "Randers",
+      "slug": "randers",
+      "naboer": [
+        "viborg",
+        "favrskov",
+        "syddjurs"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0791",
+      "navn": "Viborg",
+      "slug": "viborg",
+      "naboer": [
+        "randers",
+        "silkeborg"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0740",
+      "navn": "Silkeborg",
+      "slug": "silkeborg",
+      "naboer": [
+        "viborg",
+        "skanderborg",
+        "favrskov",
+        "herning"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0621",
+      "navn": "Kolding",
+      "slug": "kolding",
+      "naboer": [
+        "vejle"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0615",
+      "navn": "Horsens",
+      "slug": "horsens",
+      "naboer": [
+        "vejle",
+        "skanderborg",
+        "odder"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0657",
+      "navn": "Herning",
+      "slug": "herning",
+      "naboer": [
+        "silkeborg"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0265",
+      "navn": "Roskilde",
+      "slug": "roskilde",
+      "naboer": [],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0370",
+      "navn": "Næstved",
+      "slug": "naestved",
+      "naboer": [
+        "slagelse"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0330",
+      "navn": "Slagelse",
+      "slug": "slagelse",
+      "naboer": [
+        "naestved"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0157",
+      "navn": "Gentofte",
+      "slug": "gentofte",
+      "naboer": [
+        "koebenhavn",
+        "gladsaxe"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0540",
+      "navn": "Sønderborg",
+      "slug": "soenderborg",
+      "naboer": [],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0316",
+      "navn": "Holbæk",
+      "slug": "holbaek",
+      "naboer": [],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0159",
+      "navn": "Gladsaxe",
+      "slug": "gladsaxe",
+      "naboer": [
+        "koebenhavn",
+        "gentofte"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0746",
+      "navn": "Skanderborg",
+      "slug": "skanderborg",
+      "naboer": [
+        "aarhus",
+        "horsens",
+        "silkeborg",
+        "odder"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0710",
+      "navn": "Favrskov",
+      "slug": "favrskov",
+      "naboer": [
+        "aarhus",
+        "randers",
+        "silkeborg"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0706",
+      "navn": "Syddjurs",
+      "slug": "syddjurs",
+      "naboer": [
+        "aarhus",
+        "randers"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    },
+    {
+      "kode": "0727",
+      "navn": "Odder",
+      "slug": "odder",
+      "naboer": [
+        "aarhus",
+        "skanderborg",
+        "horsens"
+      ],
+      "m2pris_hus": "TODO_DATA",
+      "m2pris_lejlighed": "TODO_DATA",
+      "udvikling_1aar_pct": "TODO_DATA",
+      "udvikling_5aar_pct": "TODO_DATA",
+      "udvikling_10aar_pct": "TODO_DATA",
+      "liggetid_dage": "TODO_DATA",
+      "dato": "TODO_DATA",
+      "lokal_tekst": ""
+    }
+  ]
+}

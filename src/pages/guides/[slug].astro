@@ -1,0 +1,25 @@
+---
+import { KLADDER } from '../../lib/kommuner.js';
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Side from '../../components/Side.astro';
+import Brodkrummer from '../../components/Brodkrummer.astro';
+import AdresseCta from '../../components/AdresseCta.astro';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides');
+  // Kladder bygges kun i demoen, og altid med noindex.
+  const medKladder = KLADDER;
+  return guides.filter((g) => medKladder || !g.data.kladde).map((g) => ({ params: { slug: g.id }, props: { g } }));
+}
+const { g } = Astro.props;
+const { Content } = await render(g);
+---
+<Base titel={`${g.data.titel} | Nem Vurdering`} beskrivelse={g.data.beskrivelse} noindex={g.data.kladde}>
+  <Brodkrummer sti={[{ navn: 'Forside', href: '/' }, { navn: 'Guides', href: '/guides' }, { navn: g.data.titel, href: `/guides/${g.id}` }]} />
+  <Side titel={g.data.titel} lead={g.data.beskrivelse} />
+  <article class="sektion" style="padding-top:1rem">
+    <div class="wrap prosa"><Content /></div>
+  </article>
+  <AdresseCta />
+</Base>

@@ -1,8 +1,10 @@
 import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
 
 // Statisk build. Formular-API'et ligger som Netlify Functions i netlify/functions.
 export default defineConfig({
   site: 'https://nemvurdering.dk',
+  integrations: [mdx()],
   trailingSlash: 'never',
   build: {
     format: 'file',

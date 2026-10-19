@@ -581,7 +581,7 @@ function start(rod) {
         <div class="felt"><label for="vf-fg-email">E-mail</label><input id="vf-fg-email" type="email" inputmode="email" autocomplete="email" aria-describedby="vf-fg-fejl" /></div>
         <div class="samtykke-raekke">
           <label class="samtykke samtykke--frivillig"><input type="checkbox" id="vf-fg-samtykke" /><span>${esc(FOELG_TEKST)}</span></label>
-          <a class="samtykke-link" href="/persondatapolitik" target="_blank" rel="noopener">Persondatapolitik</a>
+          <a class="samtykke-link" href="${esc($('vf-link-pdp').getAttribute('href'))}" target="_blank" rel="noopener">Persondatapolitik</a>
         </div>
         <p class="fejltekst" id="vf-fg-fejl" role="alert" hidden></p>
         <button type="button" class="knap ${nysgerrig ? '' : 'knap--sekundaer'} knap--fuld" id="vf-fg-send">Send mig estimatet</button>
@@ -621,7 +621,7 @@ function start(rod) {
           <article class="anbefalet">
             <div class="anbefalet-hoved">${foto(m, 72)}<div><p class="mk-navn">${ph(m.navn, '[Mæglerens navn]')}</p><p class="mk-firma">${ph(m.firma, '[Firma]')}${m.by ? `, ${esc(m.by)}` : ''}</p></div></div>
             <ul>${(s.match.begrundelser || []).map((b) => `<li>${flueben()}<span>${esc(b)}</span></li>`).join('')}</ul>
-            <p class="vf-note">Vi har fundet den mægler, der passer bedst til din bolig ud fra lokale salg, liggetid og erfaring med boliger som din. Mægleren samarbejder med Nem Vurdering og betaler os for henvisningen. Det koster ikke dig noget. <a href="/ofte-stillede-spoergsmaal#hvordan-finder-i-min-maegler">Sådan finder vi din mægler</a></p>
+            <p class="vf-note">Vi har fundet den mægler, der passer bedst til din bolig ud fra lokale salg, liggetid og erfaring med boliger som din. Mægleren samarbejder med Nem Vurdering og betaler os for henvisningen. Det koster ikke dig noget. <a href="${esc($('vf-link-faq').getAttribute('href'))}">Sådan finder vi din mægler</a></p>
             <button type="button" class="knap knap--fuld" id="vf-til-kontakt">Få en præcis vurdering fra ${esc(fn)}</button>
           </article>
         </div>`;
@@ -634,7 +634,7 @@ function start(rod) {
           <div class="felt"><label for="vf-vl-email">E-mail</label><input id="vf-vl-email" type="email" inputmode="email" autocomplete="email" aria-describedby="vf-vl-fejl" /></div>
           <div class="samtykke-raekke">
             <label class="samtykke"><input type="checkbox" id="vf-vl-samtykke" aria-describedby="vf-vl-fejl" /><span>${esc(VENTELISTE_TEKST)}</span></label>
-            <a class="samtykke-link" href="/persondatapolitik" target="_blank" rel="noopener">Persondatapolitik</a>
+            <a class="samtykke-link" href="${esc($('vf-link-pdp').getAttribute('href'))}" target="_blank" rel="noopener">Persondatapolitik</a>
           </div>
           <p class="fejltekst" id="vf-vl-fejl" role="alert" hidden></p>
           <button type="button" class="knap knap--fuld" id="vf-vl-send">Giv mig besked</button>

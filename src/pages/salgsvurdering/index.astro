@@ -1,0 +1,39 @@
+---
+// Oversigt over kommunesider. Viser kun kommuner, der har en side.
+import Base from '../../layouts/Base.astro';
+import Side from '../../components/Side.astro';
+import Brodkrummer from '../../components/Brodkrummer.astro';
+import data from '../../../data/kommuner.json';
+import { KLADDER, kommunerTilBygning } from '../../lib/kommuner.js';
+import { medTal } from '../../lib/faelles.js';
+
+const liste = kommunerTilBygning(medTal(data).kommuner, KLADDER).sort((a, b) => a.navn.localeCompare(b.navn, 'da'));
+---
+<Base titel="Salgsvurdering i din kommune | Nem Vurdering" beskrivelse="Boligpriser, liggetid og prisudvikling i din kommune. Se et gratis estimat på din bolig, og få en gratis salgsvurdering fra en lokal mægler." noindex={liste.length === 0}>
+  <Brodkrummer sti={[{ navn: 'Forside', href: '/' }, { navn: 'Salgsvurdering', href: '/salgsvurdering' }]} />
+  <Side titel="Salgsvurdering i din kommune" lead="Boligpriser, liggetid og prisudvikling, kommune for kommune." />
+  <section class="sektion" style="padding-top:1rem">
+    <div class="wrap">
+      {liste.length ? (
+        <ul class="kommuner">{liste.map((k) => <li><a href={`/salgsvurdering/${k.slug}`}>{k.navn}</a></li>)}</ul>
+      ) : (
+        <p>Vi tilføjer kommuner, efterhånden som vi har tal for dem. <a href="/#vurdering">Se et estimat på din bolig</a>.</p>
+      )}
+    </div>
+  </section>
+</Base>
+<style>
+  .kommuner {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    gap: 0.5rem 1.5rem;
+  }
+  .kommuner a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+  }
+</style>

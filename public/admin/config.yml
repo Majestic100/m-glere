@@ -1,6 +1,7 @@
-# Decap CMS. Redigér mæglere, postnumre, priser, bysider og firmaoplysninger uden kode.
-# Hver gemning bliver et commit i GitHub, og Netlify bygger siden igen (ca. 1 minut).
+# Decap CMS. Redigér mæglere, priser, kommuner, markedstal, vægte og firmaoplysninger uden kode.
+# Hver gemning bliver et commit i GitHub, og siden bygges igen (ca. 1 minut).
 # Login: GitHub-konto med skriveadgang til repoet. Se README, afsnittet "CMS".
+# Felter, der mangler tal, skrives som TODO_DATA. Se TODO_DATA.md.
 backend:
   name: github
   repo: majestic100/m-glere
@@ -15,123 +16,152 @@ public_folder: /uploads
 
 collections:
   - name: maeglere
-    label: Mæglere
+    label: Partnermæglere
     files:
       - name: maeglere
         label: Partnermæglere
-        file: src/data/maeglere.json
+        file: data/maeglere.json
         fields:
           - name: maeglere
             label: Mæglere
             widget: list
-            summary: '{{fields.navn}}, {{fields.butik}}'
+            summary: '{{fields.navn}}, {{fields.firma}}'
             fields:
-              - { name: id, label: 'Id (små bogstaver, uden mellemrum, ændres aldrig)', widget: string, pattern: ['^[a-z0-9-]+$', 'Kun a-z, 0-9 og bindestreg'] }
-              - { name: aktiv, label: Aktiv, widget: boolean, default: true, hint: 'Slå fra for at skjule mægleren uden at slette den' }
-              - { name: pladsholder, label: 'Eksempeldata', widget: boolean, default: false }
+              - { name: id, label: 'Id (små bogstaver, ændres aldrig)', widget: string, pattern: ['^[a-z0-9-]+$', 'Kun a-z, 0-9 og bindestreg'] }
+              - { name: aktiv, label: 'Aktiv (slå fra for at sætte på pause)', widget: boolean, default: true }
               - { name: navn, label: Navn, widget: string }
-              - { name: titel, label: Titel, widget: string, hint: 'Fx Statsautoriseret ejendomsmægler' }
-              - { name: butik, label: 'Butik og by', widget: string, hint: 'Fx home Aarhus C. Står i samtykketeksten.' }
-              - { name: omraade, label: 'Område (kort tekst)', widget: string, hint: 'Fx Aarhus C og omegn' }
+              - { name: firma, label: Firma, widget: string, hint: 'Står i samtykketeksten' }
+              - { name: by, label: By, widget: string }
+              - { name: foto, label: 'Portræt (kvadratisk)', widget: image, required: false }
               - { name: postnumre, label: Postnumre, widget: list, field: { name: postnr, label: Postnummer, widget: string, pattern: ['^\d{4}$', 'Fire cifre'] } }
-              - { name: billede, label: 'Portræt (kvadratisk, mindst 400 px)', widget: image, required: false }
-              - { name: video, label: 'Video (mp4, under 10 MB)', widget: file, required: false }
-              - { name: videoPoster, label: 'Videoens forsidebillede', widget: image, required: false }
-              - { name: beskrivelse, label: 'Kort beskrivelse (højst 2 linjer)', widget: text }
-              - { name: solgte, label: 'Antal solgte boliger i området', widget: number, value_type: int, required: false }
-              - { name: solgtePeriode, label: 'Periode for antal solgte', widget: string, default: 'seneste 12 mdr.' }
-              - { name: solgteKilde, label: 'Kilde for antal solgte', widget: string }
-              - { name: bedoemmelse, label: 'Bedømmelse (fx 4.8)', widget: number, value_type: float, min: 0, max: 5, required: false }
-              - { name: bedoemmelseAntal, label: 'Antal anmeldelser', widget: number, value_type: int, required: false }
-              - { name: bedoemmelseKilde, label: 'Kilde for bedømmelse', widget: string }
+              - { name: boligtyper, label: Boligtyper, widget: select, multiple: true, options: [hus, raekkehus, lejlighed, fritidshus, andel] }
+              - name: salg_12m
+                label: 'Lokale salg de seneste 12 måneder pr. boligtype'
+                widget: object
+                fields:
+                  - { name: hus, label: Huse, widget: string, required: false }
+                  - { name: raekkehus, label: Rækkehuse, widget: string, required: false }
+                  - { name: lejlighed, label: Lejligheder, widget: string, required: false }
+                  - { name: fritidshus, label: Fritidshuse, widget: string, required: false }
+                  - { name: andel, label: Andelsboliger, widget: string, required: false }
+              - { name: salg_kilde, label: 'Kilde for salg', widget: string }
+              - { name: liggetid_dage, label: 'Gennemsnitlig liggetid (dage)', widget: string }
+              - name: prisinterval
+                label: 'Typisk prisinterval (kr.)'
+                widget: object
+                fields:
+                  - { name: min, label: Fra, widget: string }
+                  - { name: max, label: Til, widget: string }
+              - { name: kapacitet_dag, label: 'Maks. leads pr. dag', widget: string }
+              - { name: kapacitet_maaned, label: 'Maks. leads pr. måned', widget: string }
+              - { name: feedback_score, label: 'Feedback-score 0 til 1 (tom = neutral)', widget: number, value_type: float, min: 0, max: 1, required: false }
+              - { name: responstid_timer, label: 'Gennemsnitlig responstid (timer, tom = neutral)', widget: number, value_type: float, required: false }
+              - { name: trustpilot_score, label: 'Trustpilot-score', widget: string, required: false }
 
   - name: priser
     label: Kvadratmeterpriser
     files:
-      - name: kvmpriser
-        label: Kvadratmeterpriser pr. postnummer
-        file: src/data/kvmpriser.json
+      - name: m2
+        label: Kvadratmeterpriser pr. postnummer og kommune
+        file: data/m2-priser.json
         fields:
-          - { name: pladsholder, label: 'Testtal (vises som "Testtal" på siden)', widget: boolean }
           - { name: kilde, label: Kilde, widget: string }
-          - { name: opdateret, label: Opdateret, widget: string }
-          - { name: note, label: Note, widget: text, required: false }
-          - name: priser
-            label: 'Priser pr. postnummer (kr. pr. m²). Tomt felt = intet estimat for den boligtype.'
+          - { name: dato, label: 'Dato for tallene', widget: string }
+          - { name: testdata, label: 'Testdata (vises som Testtal)', widget: boolean, default: false }
+          - name: postnumre
+            label: Postnumre
             widget: list
-            summary: '{{fields.postnr}}'
-            fields:
-              - { name: postnr, label: Postnummer, widget: string, pattern: ['^\d{4}$', 'Fire cifre'] }
-              - { name: villa, label: Villa, widget: number, value_type: int, required: false }
-              - { name: raekkehus, label: Rækkehus, widget: number, value_type: int, required: false }
-              - { name: ejerlejlighed, label: Ejerlejlighed, widget: number, value_type: int, required: false }
-              - { name: sommerhus, label: Sommerhus, widget: number, value_type: int, required: false }
-              - { name: landejendom, label: Landejendom, widget: number, value_type: int, required: false }
+            summary: '{{fields.postnr}} {{fields.boligtype}}'
+            fields: &m2felter
+              - { name: postnr, label: Postnummer, widget: string, required: false }
+              - { name: kommunekode, label: Kommunekode, widget: string, required: false }
+              - { name: boligtype, label: Boligtype, widget: select, options: [hus, raekkehus, lejlighed, fritidshus] }
+              - { name: m2pris, label: 'Kr. pr. m²', widget: string }
+              - { name: antal_handler_12m, label: 'Handler de seneste 12 måneder', widget: string }
+              - { name: liggetid_dage, label: 'Liggetid (dage)', widget: string }
+              - { name: udvikling_1aar_pct, label: 'Prisudvikling 1 år (%)', widget: string }
+          - name: kommuner
+            label: Kommuner
+            widget: list
+            summary: '{{fields.kommunekode}} {{fields.boligtype}}'
+            fields: *m2felter
 
-  - name: byer
-    label: Bysider
-    folder: src/content/byer
-    extension: json
-    format: json
-    create: true
-    slug: '{{fields.slug}}'
-    identifier_field: by
-    fields:
-      - { name: by, label: By, widget: string }
-      - { name: slug, label: 'Adresse (fx aarhus giver /hvad-er-min-bolig-vaerd-i-aarhus)', widget: string, pattern: ['^[a-z0-9-]+$', 'Kun a-z, 0-9 og bindestreg'] }
-      - { name: billede, label: Billede, widget: select, options: [parcelhus, raekkehuse, etageejendom, aarhus-gade] }
-      - { name: postnumre, label: Postnumre, widget: list, field: { name: postnr, label: Postnummer, widget: string } }
-      - { name: intro, label: 'Intro (valgfri)', widget: text, required: false }
-      - name: prisudvikling
-        label: Prisudvikling
-        widget: object
+  - name: kommuner
+    label: Kommunesider
+    files:
+      - name: kommuner
+        label: Kommuner
+        file: data/kommuner.json
         fields:
-          - { name: pladsholder, label: Pladsholder, widget: boolean, default: true }
-          - { name: tekst, label: Tekst, widget: text }
           - { name: kilde, label: Kilde, widget: string }
-          - name: punkter
-            label: 'Tal (vises som tabel)'
+          - name: kommuner
+            label: Kommuner
             widget: list
-            required: false
+            summary: '{{fields.navn}}'
             fields:
-              - { name: periode, label: 'Periode (fx 3. kvt. 2026)', widget: string }
-              - { name: kvmpris, label: 'Kr. pr. m²', widget: number, value_type: int }
+              - { name: kode, label: Kommunekode, widget: string }
+              - { name: navn, label: Navn, widget: string }
+              - { name: slug, label: 'Adresse (fx aarhus giver /salgsvurdering/aarhus)', widget: string }
+              - { name: naboer, label: 'Nabokommuner (slugs)', widget: list }
+              - { name: m2pris_hus, label: 'Kr. pr. m² for huse', widget: string }
+              - { name: m2pris_lejlighed, label: 'Kr. pr. m² for lejligheder', widget: string }
+              - { name: udvikling_1aar_pct, label: 'Prisudvikling 1 år (%)', widget: string }
+              - { name: udvikling_5aar_pct, label: 'Prisudvikling 5 år (%)', widget: string }
+              - { name: udvikling_10aar_pct, label: 'Prisudvikling 10 år (%)', widget: string }
+              - { name: liggetid_dage, label: 'Liggetid (dage)', widget: string }
+              - { name: dato, label: 'Dato for tallene', widget: string }
+              - { name: lokal_tekst, label: 'Lokal tekst (valgfri, skrevet til netop denne kommune)', widget: text, required: false }
 
   - name: indstillinger
     label: Indstillinger
     files:
       - name: site
-        label: Firma, åbningstider og beregner
-        file: src/data/site.json
+        label: Firma og kontakt
+        file: data/site.json
         fields:
           - { name: navn, label: Navn, widget: string }
+          - { name: binavnTekst, label: 'Binavn-tekst', widget: string }
           - { name: selskab, label: Selskab, widget: string }
           - { name: cvr, label: CVR, widget: string }
           - { name: adresse, label: Adresse, widget: string }
           - { name: postnrBy, label: 'Postnr. og by', widget: string }
           - { name: telefon, label: Telefon, widget: string }
           - { name: email, label: E-mail, widget: string }
-          - { name: trustpilotUrl, label: 'Link til Trustpilot (tom = pladsholder)', widget: string, required: false }
+          - { name: b2bUrl, label: 'Link til Hero Medias side for mæglere', widget: string }
           - { name: samtykkeVersion, label: 'Samtykkeversion (ret ved ændring af samtykketekst)', widget: string }
-          - name: aabningstider
-            label: 'Åbningstider (styrer løftet om opkald inden for 15 min.)'
+      - name: marked
+        label: Boligmarkedet lige nu
+        file: data/marked.json
+        fields:
+          - { name: kilde, label: Kilde, widget: string }
+          - { name: dato, label: Dato, widget: string }
+          - { name: m2pris, label: 'Kr. pr. m² for huse', widget: string }
+          - { name: liggetid_dage, label: 'Liggetid (dage)', widget: string }
+          - { name: handler_12m, label: 'Handler de seneste 12 måneder', widget: string }
+          - { name: nedslag_pct, label: 'Gennemsnitligt nedslag (%)', widget: string }
+      - name: features
+        label: Feature flags
+        file: config/features.json
+        fields:
+          - { name: aktivitet, label: 'Aktivitets-notifikation (kun rigtige leads)', widget: boolean }
+          - { name: taeller, label: 'Tæller for antal estimater (kun rigtige tal)', widget: boolean }
+          - { name: trustpilot, label: 'Trustpilot TrustBox', widget: boolean }
+          - { name: trustpilot_business_unit_id, label: 'Trustpilot business unit id', widget: string }
+          - { name: trustpilot_url, label: 'Link til Trustpilot', widget: string }
+          - { name: aktivitet_max_alder_timer, label: 'Vis kun aktivitet yngre end (timer)', widget: number }
+          - { name: taeller_minimum, label: 'Vis først tælleren fra', widget: number }
+      - name: matching
+        label: Vægte til matching
+        file: config/matching.json
+        fields:
+          - { name: version, label: 'Version (hæv ved hver ændring)', widget: string }
+          - name: vaegte
+            label: Vægte
             widget: object
             fields:
-              - { name: pladsholder, label: Pladsholder, widget: boolean }
-              - { name: note, label: Note, widget: text, required: false }
-              - { name: dage, label: 'Dage (1 = mandag, 7 = søndag)', widget: list, field: { name: dag, label: Dag, widget: number, value_type: int } }
-              - { name: fra, label: 'Fra (tt:mm)', widget: string }
-              - { name: til, label: 'Til (tt:mm)', widget: string }
-          - name: beregner
-            label: Provenu-beregner
-            widget: object
-            fields:
-              - { name: pladsholder, label: Pladsholder, widget: boolean }
-              - { name: note, label: Note, widget: text, required: false }
-              - { name: standardOmkostninger, label: 'Standard salær og omkostninger (kr.)', widget: number, value_type: int }
-          - name: estimat
-            label: Estimat
-            widget: object
-            fields:
-              - { name: spaend, label: 'Spænd (0.1 = plus/minus 10 %)', widget: number, value_type: float }
-              - { name: afrund, label: 'Afrund til nærmeste (kr.)', widget: number, value_type: int }
+              - { name: lokale_salg, label: 'Lokale salg', widget: number, value_type: float }
+              - { name: liggetid, label: Liggetid, widget: number, value_type: float }
+              - { name: prisniveau, label: Prisniveau, widget: number, value_type: float }
+              - { name: feedback, label: Feedback, widget: number, value_type: float }
+              - { name: responstid, label: Responstid, widget: number, value_type: float }
+          - { name: rotation, label: 'Rotation (lille tal, fx 0.03)', widget: number, value_type: float }

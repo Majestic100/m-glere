@@ -1,53 +1,99 @@
 # Nem Vurdering
 
-Mobile-first hjemmeside for Nem Vurdering, en gratis tjeneste der hjælper boligejere med at se, hvad deres bolig er værd, og vælge den rette lokale mægler. Drives af Hero Media ApS. Hero Media nævnes kun der, hvor loven kræver det: privatlivspolitik, vilkår og samtykketekst.
+Mobile-first side, hvor boligejere får et gratis estimat af deres bolig og bliver matchet med én lokal partnermægler. Nem Vurdering er et binavn under Hero Media ApS. Hero Media nævnes kun der, hvor loven kræver det: footer, persondatapolitik, vilkår og samtykketekst.
+
+Alt, der mangler rigtige tal eller afklaring, står i [`TODO_DATA.md`](TODO_DATA.md).
 
 ## Teknik kort
 
-| Del | Valg | Hvorfor |
-| --- | --- | --- |
-| Sider | [Astro 5](https://astro.build), statisk output | Næsten ingen JavaScript. Forsiden er ca. 13 kB HTML og 11 kB JS komprimeret. |
-| Formular | Ren JavaScript (`src/scripts/vurdering.js`) | Intet framework at downloade på mobil. |
-| Adresser | Klimadatastyrelsens **Adressevælger** | DAWA er lukket. Alle DAWA-endpoints svarer `410 Gone`. |
-| Boligtype og areal | BBR via Datafordelerens GraphQL (`netlify/functions/bbr.mjs`) | Kræver gratis API-nøgle. Uden nøgle udfylder boligejeren selv. |
-| Henvendelser | Netlify Function (`netlify/functions/lead.mjs`) til GoHighLevel-webhook | Webhook-URL'en er skjult for browseren. |
-| Samtykkelog | Netlify Blobs, store `samtykker` | Ordlyd, tidspunkt og modtager gemmes, før data sendes videre. |
-| Redigering | Decap CMS på `/admin` | Mæglere, postnumre, priser, bysider og firmaoplysninger uden kode. |
-| Hosting | Netlify | Funktioner, Blobs og CMS-login samme sted. |
+| Del | Valg |
+| --- | --- |
+| Sider | [Astro 5](https://astro.build), statisk output. Ingen inline-scripts, så CSP kan stå på `'self'` |
+| Flow | Ren JavaScript (`src/scripts/flow.js`). Tilstanden gemmes i `sessionStorage`, så et reload ikke nulstiller |
+| Adresser | Klimadatastyrelsens Adressevælger. DAWA er lukket (`410 Gone`) |
+| BBR | Datafordelerens GraphQL via `/api/bbr`. Uden API-nøgle udfylder boligejeren selv |
+| Estimat | `src/lib/estimat.js` med tal fra `data/m2-priser.json` og regler fra `config/estimat.json` |
+| Matching | `src/lib/matching.js` via `/api/match`. Resultatet signeres, så `/api/lead` kun accepterer den matchede mægler |
+| Henvendelser | `/api/lead` sender til GoHighLevel-webhooken efter samtykket er logget i Netlify Blobs |
+| Redigering | Decap CMS på `/admin` |
+| Hosting | Netlify (funktioner, Blobs, CMS-login). GitHub Pages bruges kun til demoen |
 
 ## Kom i gang
 
 ```bash
 npm install
 npm run dev      # http://localhost:4321
-npm test         # beregninger og lead-funktionen
+npm test         # estimat, matching, kommuner, match- og lead-funktionen
+npm run lint     # astro check
 npm run build
 ```
 
 Funktionerne under `/api` kører kun på Netlify eller med `netlify dev`.
 
-## Opsætning på Netlify
+## Mapper
 
-1. Opret et site fra dette repo. Build-indstillingerne ligger i `netlify.toml`.
-2. Sæt miljøvariabler fra `.env.example`:
-   - `GHL_WEBHOOK_URL`: I GoHighLevel, lav en workflow med triggeren **Inbound Webhook** og kopiér URL'en.
-   - `DATAFORDELER_API_KEY`: Opret bruger og IT-system på datafordeler.dk og lav en API-nøgle.
-   - `PUBLIC_META_PIXEL_ID`, `META_PIXEL_ID`, `META_CAPI_TOKEN`: fra Meta Events Manager. `META_TEST_EVENT_CODE` under test.
-3. Netlify Blobs virker automatisk på Netlify. Fejler samtykkeloggen, afvises henvendelsen, så der aldrig sendes data uden dokumentation.
+| Mappe | Indhold |
+| --- | --- |
+| `data/` | Indhold, der redigeres i CMS'et: mæglere, kvadratmeterpriser, kommuner, markedstal, firmaoplysninger |
+| `data/demo/` | Runde testtal, der kun bruges i demoen |
+| `config/` | Regler: estimatets præcision og faktorer, matchingvægte, feature flags |
+| `src/lib/` | Fælles logik til browser, server og tests |
+| `src/content/guides/` | Guides som MDX. `kladde: true` holder dem ude af produktion |
+| `netlify/functions/` | `lead`, `match`, `bbr`, `aktivitet` |
 
-## Felter til GoHighLevel
+## Miljøvariabler
 
-Hver henvendelse sendes som JSON. Flade felter til nem mapping: `first_name`, `last_name`, `email`, `phone` (+45), `address1`, `postal_code`, `city`, `tags`.
+Se `.env.example`. Sæt dem i Netlify under Site configuration, Environment variables.
 
-Desuden: `lead_id`, `event_id`, `flow` (`maegler` eller `vurdering`), `adresse`, `bolig` (type, areal, BBR-data, om brugeren rettede), `estimat`, `provenu`, `tidshorisont`, `prioriteter`, `maegler` (id, navn, butik), `bedste_tidspunkt`, `samtykker` (ordlyd, givet, modtagere, kanaler, servertidspunkt), `utm` (source, medium, campaign, content, term, fbclid, gclid, landingsside), `side_url`, `ip`, `user_agent`.
+| Variabel | Uden den |
+| --- | --- |
+| `GHL_WEBHOOK_URL` | Ingen henvendelser modtages |
+| `MATCH_SECRET` | Alle mæglerleads afvises |
+| `DATAFORDELER_API_KEY` | Boligejeren udfylder selv boligdata |
+| `PUBLIC_META_PIXEL_ID`, `META_PIXEL_ID`, `META_CAPI_TOKEN` | Ingen Meta-sporing |
+| `PUBLIC_ADRESSEVAELGER_TOKEN` | Det offentlige token bruges |
 
-Tags: `vurdo`, `vurdo-maegler` eller `vurdo-vurdering`, `tid-0-3` osv., `vurdo-kvartalsvurdering` og `maegler-<id>`.
+Build-flag:
 
-## Meta Pixel og Conversions API
+| Flag | Virkning |
+| --- | --- |
+| `PUBLIC_DEMO=1` | Testtal fra `data/demo/`, matching i browseren, intet sendes |
+| `KOMMUNE_KLADDER=1` | Alle kommunesider og guides bygges, også uden tal, med `noindex` |
 
-- Pixel indlæses kun, hvis brugeren har sagt ja til marketing-cookies.
-- `ViewContent` sendes, når estimatet vises. `Lead` sendes, når formularen er sendt.
-- `Lead` har `eventID` lig med `lead_id`. Serveren sender samme `event_id` til Conversions API, så Meta kan deduplikere. CAPI sendes kun med marketing-samtykke.
+## Flowet
+
+Adresse, boligdata fra BBR, stand og tilvalg, tidshorisont, resultat med anbefalet mægler, kontakt og samtykke, tak.
+
+- Uden partnermægler i postnummeret vises en venteliste. Den sendes som `venteliste` og aldrig til en mægler.
+- "Jeg er bare nysgerrig" viser først Følg din boligværdi (`nurture`). Kontakt til mægleren er stadig muligt.
+- Restgæld og provenu bliver i browseren og sendes ikke.
+
+## Matching
+
+`config/matching.json` styrer vægtene. Filteret kræver aktiv mægler, postnummer, boligtype og ledig kapacitet. Derefter scores kandidaterne. En lille rotation fordeler leads mellem næsten lige gode mæglere. Felter uden tal tæller neutralt og giver ingen begrundelse på siden. Begrundelser skrives kun ud fra rigtige tal.
+
+Hvert lead får `match` med score, faktorer, begrundelser, vægtversion og antal kandidater.
+
+## Til GoHighLevel
+
+Lead-typer: `maeglerlead`, `nurture`, `venteliste`.
+
+De flade felter fra før er bevaret: `first_name`, `last_name`, `full_name`, `email`, `phone` (+45), `address1`, `postal_code`, `city`, `country` og `tags`. Nye felter: `lead_type`, `bolig` (inkl. værelser, byggeår, stand og tilvalg), `estimat`, `tidshorisont`, `maegler`, `match`, `samtykker` (ordlyd, version, tidspunkt), `event_ids`, `utm`, `fbc` og `fbp`.
+
+Tags: `nem_vurdering`, `maeglerlead`, `maegler-<id>`, `horisont-<id>`, `venteliste_omraade`, `estimat_tilsendt`, `nurture_boligvaerdi` og `nysgerrig`.
+
+## Sporing
+
+Meta Pixel indlæses kun med marketing-samtykke. Events går også til `dataLayer`:
+
+| Event | Meta | Hvornår |
+| --- | --- | --- |
+| `address_entered` | `AddressEntered` (custom) | Adressen er valgt |
+| `estimate_viewed` | `ViewContent` | Estimatet vises |
+| `broker_matched` | `BrokerMatched` (custom) | Mægleren er fundet |
+| `lead_submitted` | `Lead` | Mæglerlead sendt. Samme `event_id` går til Conversions API |
+
+Alle `event_id`'er sendes med til GoHighLevel, så senere server-events kan deduplikeres.
 
 ## CMS
 
@@ -55,41 +101,22 @@ Tags: `vurdo`, `vurdo-maegler` eller `vurdo-vurdering`, `tid-0-3` osv., `vurdo-k
 
 1. I Netlify: Site configuration, Access & security, OAuth. Installér GitHub som provider.
 2. Personer, der skal redigere, skal have skriveadgang til repoet.
-3. Ret `backend.branch` i `public/admin/config.yml`, hvis produktionsgrenen ikke hedder `main`.
+3. `backend.branch` i `public/admin/config.yml` er `main`.
 
-Hver gemning bliver et commit, og Netlify bygger siden igen på cirka et minut.
+Tal skrives som tekst i CMS'et og laves om til tal ved build. Skriv `TODO_DATA` for felter, I ikke har endnu.
 
-| Hvad | Fil |
-| --- | --- |
-| Mæglere og deres postnumre | `src/data/maeglere.json` |
-| Kvadratmeterpriser pr. postnummer | `src/data/kvmpriser.json` |
-| Bysider | `src/content/byer/*.json` |
-| CVR, adresse, åbningstider | `src/data/site.json` |
-| Spørgsmål og svar | `src/data/faq.js` |
+## Kommunesider og guides
 
-## Bysider
+`/salgsvurdering/<kommune>` bygges fra `data/kommuner.json`, men kun for kommuner med alle tal udfyldt. Uden tal findes siden ikke i produktion. Det er bevidst, så Google ikke ser tynde sider.
 
-En ny JSON-fil i `src/content/byer` giver en ny side på `/hvad-er-min-bolig-vaerd-i-<slug>`. Siden viser formularen, prisudviklingen og de mæglere, der dækker byens postnumre. Opret dem i CMS'et under **Bysider**.
+Guides i `src/content/guides/` er kladder med disposition. Sæt `kladde: false`, når en guide er skrevet færdig.
 
-## Før lancering
+## Demo
 
-Alt i gult på siden er pladsholdere. Kør `grep -rn "PLADSHOLDER\|\[Mægler" src` for at finde dem.
+GitHub Actions bygger `main` med `PUBLIC_DEMO=1` og `KOMMUNE_KLADDER=1` og lægger den på GitHub Pages: https://majestic100.github.io/m-glere/. Demoen er ikke indekseret og sender intet.
 
-- [ ] Rigtige kvadratmeterpriser i `kvmpriser.json` og `pladsholder: false`. De nuværende er runde testtal.
-- [ ] Rigtige mæglere med portræt, video, tal og kilder.
-- [ ] CVR, adresse, telefon og e-mail i `site.json`.
-- [ ] Rigtige åbningstider. De styrer, om tak-siden lover et opkald inden for 15 minutter.
-- [ ] Standardtal for salær i provenu-beregneren.
-- [ ] Egne fotos i stedet for de AI-genererede boligbilleder i `src/assets/boliger`.
-- [ ] Privatlivspolitik og vilkår gennemgået af jurist.
-- [ ] Svar på "Hvordan bliver mæglerne udvalgt?".
-- [ ] BBR-feltnavne tjekket mod skemaet, når API-nøglen er oprettet (se kommentar i `bbr.mjs`).
-- [ ] Trustpilot-link i `site.json`, når der er rigtige anmeldelser.
-
-## Preview
-
-`npm run build && npm run preview-bundle` laver en flad, statisk kopi i `preview/` med relative links. Formularen kører i preview-tilstand og sender intet.
+`npm run build && npm run preview-bundle` laver en flad kopi i `preview/` med relative links.
 
 ## Brandguide
 
-Se `/brandguide` på sitet. Farverne er defineret som variabler øverst i `src/styles/global.css`.
+Se `/brandguide`. Farverne er variabler øverst i `src/styles/global.css`.

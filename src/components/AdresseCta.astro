@@ -1,0 +1,23 @@
+---
+// Adressefeltet som afslutning på en artikel. Hele flowet kører herfra.
+import Vurdering from './Vurdering.astro';
+interface Props { titel?: string }
+const { titel = 'Hvad er din bolig værd? Se et estimat på 30 sekunder' } = Astro.props;
+---
+<section class="hero adresse-cta" aria-labelledby="cta-titel">
+  <div class="wrap hero-gitter">
+    <h2 id="cta-titel" class="hero-tekst">{titel}</h2>
+    <div class="hero-form"><Vurdering /></div>
+  </div>
+</section>
+<style>
+  .adresse-cta {
+    padding-block: 3rem;
+    background: var(--gron-tone);
+  }
+  .adresse-cta .hero-gitter {
+    display: grid;
+    gap: 1rem;
+    max-width: 40rem;
+  }
+</style>

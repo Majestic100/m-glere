@@ -95,3 +95,25 @@ test('samtykketekst navngiver den matchede mægler og indeholder ingen tankestre
   assert.match(t, /Nem Vurdering \(Hero Media ApS\) må ringe eller sende sms/);
   assert.doesNotMatch(t, /[–—]/);
 });
+
+import { medTal } from '../src/lib/faelles.js';
+import { harRigtigeTal, kommunerTilBygning } from '../src/lib/kommuner.js';
+
+test('medTal gør CMS-tekst til tal, men lader postnumre og koder være tekst', () => {
+  const d = medTal({ postnumre: [{ postnr: '8000', m2pris: '40000', udvikling_1aar_pct: '4,5' }], kode: '0751', maeglere: [{ id: '1', postnumre: ['8000'], kapacitet_dag: '5' }] });
+  assert.equal(d.postnumre[0].postnr, '8000');
+  assert.equal(d.postnumre[0].m2pris, 40000);
+  assert.equal(d.postnumre[0].udvikling_1aar_pct, 4.5);
+  assert.equal(d.kode, '0751');
+  assert.deepEqual(d.maeglere[0].postnumre, ['8000']);
+  assert.equal(d.maeglere[0].kapacitet_dag, 5);
+});
+
+test('kommunesider bygges kun med rigtige tal', () => {
+  const fuld = { m2pris_hus: 30000, udvikling_1aar_pct: 2, udvikling_5aar_pct: 10, udvikling_10aar_pct: 40, liggetid_dage: 90, dato: '2026K3' };
+  const tynd = { ...fuld, liggetid_dage: 'TODO_DATA' };
+  assert.equal(harRigtigeTal(fuld), true);
+  assert.equal(harRigtigeTal(tynd), false);
+  assert.equal(kommunerTilBygning([fuld, tynd]).length, 1);
+  assert.equal(kommunerTilBygning([fuld, tynd], true).length, 2);
+});

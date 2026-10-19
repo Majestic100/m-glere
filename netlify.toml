@@ -32,6 +32,11 @@
   to = "/persondatapolitik"
   status = 301
 
+[[redirects]]
+  from = "/hvad-er-min-bolig-vaerd-i-*"
+  to = "/salgsvurdering"
+  status = 301
+
 # Pæne URL'er uden .html
 [[redirects]]
   from = "/*.html"

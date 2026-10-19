@@ -8,7 +8,7 @@ import matchConfig from '../../config/matching.json';
 import maeglerData from '../../data/maeglere.json';
 import site from '../../data/site.json';
 import handlerData from '../../data/sammenlignelige-handler.json';
-import { BOLIGTYPER, STAND, TILVALG, HORISONTER } from '../lib/faelles.js';
+import { BOLIGTYPER, STAND, TILVALG, HORISONTER, medTal } from '../lib/faelles.js';
 
 const DEMO = import.meta.env.PUBLIC_DEMO === '1';
 
@@ -16,12 +16,12 @@ const DEMO = import.meta.env.PUBLIC_DEMO === '1';
 // hvor der ingen server er, så kapacitet, feedback og responstid ikke ligger i sidens kildekode.
 const data = {
   demo: DEMO,
-  m2: DEMO ? m2Demo : m2Prod,
+  m2: medTal(DEMO ? m2Demo : m2Prod),
   estimatConfig,
-  maeglere: DEMO ? maeglerData.maeglere : null,
+  maeglere: DEMO ? medTal(maeglerData).maeglere : null,
   matchConfig: DEMO ? matchConfig : null,
   samtykkeVersion: site.samtykkeVersion,
-  handler: handlerData.handler,
+  handler: medTal(handlerData).handler,
   handlerKilde: handlerData.kilde,
   adressevaelgerToken: import.meta.env.PUBLIC_ADRESSEVAELGER_TOKEN || 'adressevaelger123',
 };
@@ -31,6 +31,9 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
 <svg class="vf-gavl" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false"><polygon points="0,10 50,0.4 100,10"></polygon></svg>
 <section class="vf" id="vurdering" aria-label="Se din boligværdi">
   <script type="application/json" id="vf-data" set:html={json} />
+  <!-- Links, som flowet bruger i sine tekster. Ligger i HTML, så de kan omskrives i demo og preview. -->
+  <a hidden id="vf-link-faq" href="/ofte-stillede-spoergsmaal#hvordan-finder-i-min-maegler">Sådan finder vi din mægler</a>
+  <a hidden id="vf-link-pdp" href="/persondatapolitik">Persondatapolitik</a>
 
   <div class="vf-top" id="vf-top" hidden>
     <button type="button" class="vf-tilbage" id="vf-tilbage">

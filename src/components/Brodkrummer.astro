@@ -1,0 +1,40 @@
+---
+// Brødkrummer med BreadcrumbList-schema.
+interface Props { sti: { navn: string; href: string }[] }
+const { sti } = Astro.props;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: sti.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.navn, item: new URL(s.href, Astro.site).toString() })),
+};
+---
+<nav class="krummer wrap" aria-label="Brødkrummer">
+  <ol>
+    {sti.map((s, i) => (
+      <li>{i < sti.length - 1 ? <a href={s.href}>{s.navn}</a> : <span aria-current="page">{s.navn}</span>}</li>
+    ))}
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<style>
+  .krummer {
+    padding-top: 1rem;
+    font-size: var(--t-s);
+  }
+  .krummer ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+  }
+  .krummer li + li::before {
+    content: '/';
+    margin-right: 0.5rem;
+    color: var(--skifer);
+  }
+  .krummer a {
+    color: var(--skifer);
+  }
+</style>
