@@ -1,0 +1,49 @@
+---
+// Fastgjort CTA i bunden på mobil. Vises, når adressefeltet er rullet ud af syne, eller efter lidt scroll
+// på sider uden adressefelt. Skjules, mens cookie-banneret er åbent, og når flowet er i gang.
+---
+<div class="fast-cta" id="fast-cta" hidden>
+  <a class="knap knap--fuld" href="/#vurdering" id="fast-cta-link">Se min boligværdi</a>
+</div>
+<script>
+  const boks = document.getElementById('fast-cta')!;
+  const link = document.getElementById('fast-cta-link') as HTMLAnchorElement;
+  const form = document.querySelector('.vf-hus');
+  let formSynlig = Boolean(form);
+  const opdater = () => {
+    const cookieAaben = !document.getElementById('cookie')?.hidden;
+    const langtNede = form ? !formSynlig : window.scrollY > 500;
+    boks.hidden = !langtNede || cookieAaben || document.body.classList.contains('flow-aktiv');
+  };
+  if (form) {
+    new IntersectionObserver(([e]) => {
+      formSynlig = e.isIntersecting || e.boundingClientRect.top > 0;
+      opdater();
+    }).observe(form);
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => (document.getElementById('vf-adresse') as HTMLInputElement | null)?.focus({ preventScroll: true }), 400);
+    });
+  }
+  window.addEventListener('scroll', opdater, { passive: true });
+  window.addEventListener('vurdo:samtykke', () => setTimeout(opdater, 0));
+  opdater();
+</script>
+<style>
+  .fast-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 35;
+    padding: 0.6rem max(var(--gutter), env(safe-area-inset-right, 0px)) calc(0.6rem + env(safe-area-inset-bottom, 0px)) max(var(--gutter), env(safe-area-inset-left, 0px));
+    background: var(--flade);
+    border-top: 1px solid var(--streg);
+  }
+  @media (min-width: 60rem) {
+    .fast-cta {
+      display: none;
+    }
+  }
+</style>

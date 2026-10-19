@@ -2,6 +2,10 @@
 import '@fontsource-variable/plus-jakarta-sans/wght.css';
 import '../styles/global.css';
 import CookieBanner from '../components/CookieBanner.astro';
+import FastCta from '../components/FastCta.astro';
+import Ph from '../components/Ph.astro';
+import site from '../../data/site.json';
+import features from '../../config/features.json';
 
 interface Props {
   titel: string;
@@ -16,6 +20,10 @@ const nav = [
   { href: '/ofte-stillede-spoergsmaal', tekst: 'Spørgsmål' },
 ];
 const sti = Astro.url.pathname.replace(/\.html$/, '');
+const b2b = site.b2bUrl && !site.b2bUrl.startsWith('TODO_DATA') ? site.b2bUrl : '/for-maeglere';
+// Trustpilot må kun indlæses, når flaget er slået til.
+const tp = features.trustpilot ? ' https://widget.trustpilot.com' : '';
+const csp = `default-src 'self'; script-src 'self' https://connect.facebook.net${tp}; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com${tp}; font-src 'self' data:; connect-src 'self' https://adressevaelger.dk https://www.facebook.com https://connect.facebook.net${tp}; media-src 'self'; frame-src ${tp ? tp.trim() : "'none'"}; object-src 'none'; base-uri 'self'; form-action 'self'`;
 ---
 <!doctype html>
 <html lang="da">
@@ -24,10 +32,7 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{titel}</title>
     <meta name="claude:viewport-fit-sides" content="cover" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com; font-src 'self' data:; connect-src 'self' https://adressevaelger.dk https://www.facebook.com https://connect.facebook.net; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
-    />
+    <meta http-equiv="Content-Security-Policy" content={csp} />
     <meta name="description" content={beskrivelse} />
     <link rel="canonical" href={kanonisk} />
     {noindex && <meta name="robots" content="noindex" />}
@@ -45,7 +50,7 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     <meta name="theme-color" content="#1f3d33" />
     <link rel="icon" href="/brand/ikon-32px.svg" type="image/svg+xml" />
     <link rel="icon" href="/brand/favicon-32.png" sizes="32x32" type="image/png" />
-    <link rel="apple-touch-icon" href="/brand/ikon-512.png" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon-180.png" sizes="180x180" />
     <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body>
@@ -86,13 +91,16 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
       <div class="wrap bund-indre">
         <div class="stak">
           <a href="/" class="bund-logo"><img src="/brand/logo-hvid.svg" alt="Nem Vurdering" width="348" height="64" loading="lazy" /></a>
-          <p class="bund-om">Gratis for boligejere. Ejendomsmæglerne betaler Nem Vurdering, når de får en henvendelse.</p>
+          <p class="bund-om">{site.binavnTekst}, CVR <Ph v={site.cvr} />.<br /><Ph v={site.adresse} />, <Ph v={site.postnrBy} /></p>
+          <p class="bund-om">Kontakt: <Ph v={site.email} /><br />Telefon: <Ph v={site.telefon} /></p>
         </div>
         <nav aria-label="Sidefod">
           <ul class="bund-links">
             {nav.map((n) => <li><a href={n.href}>{n.tekst}</a></li>)}
-            <li><a href="/for-maeglere">For mæglere</a></li>
-            <li><a href="/privatlivspolitik">Privatlivspolitik</a></li>
+            <li><a href="/#saadan-tjener-vi-penge">Sådan tjener vi penge</a></li>
+            <li><a href={b2b}>Er du ejendomsmægler?</a></li>
+            <li><a href="/persondatapolitik">Persondatapolitik</a></li>
+            <li><a href="/cookiepolitik">Cookiepolitik</a></li>
             <li><a href="/vilkaar">Vilkår</a></li>
             <li><button type="button" class="bund-cookie" data-cookie-aabn>Cookieindstillinger</button></li>
           </ul>
@@ -100,6 +108,7 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
       </div>
     </footer>
 
+    <FastCta />
     <CookieBanner />
   </body>
 </html>
@@ -226,7 +235,8 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     --bund-svag: #c8d3cd;
     background: var(--bund-bg);
     color: var(--bund-fg);
-    padding-block: 3rem calc(3rem + var(--cookie-h, 0px));
+    /* Plads til den faste CTA og cookie-banneret på mobil */
+    padding-block: 3rem calc(5.5rem + var(--cookie-h, 0px));
     font-size: var(--t-s);
   }
   .bund-indre {

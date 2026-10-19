@@ -1,16 +1,29 @@
 ---
+// Tre trin med ikon. Ikonerne er tegnet i samme streg som logoet.
 const trin = [
-  { t: 'Skriv din adresse', b: 'Du ser et vejledende prisinterval med det samme.' },
-  { t: 'Vælg din mægler', b: 'Du ser de partnermæglere, der kender dit område. Med billede, video og tal for deres salg. Du vælger én.' },
-  { t: 'Få en gratis vurdering', b: 'Vi ringer kort til dig, og derefter ringer mægleren og aftaler en salgsvurdering. Kun den mægler, du har valgt.' },
+  {
+    t: 'Skriv din adresse',
+    b: 'Vi henter boligens data og handler i nærheden.',
+    ikon: '<path d="M6 26V14L16 6l10 8v12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 26v-7h6v7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>',
+  },
+  {
+    t: 'Se dit estimat',
+    b: 'Et prisinterval på få sekunder.',
+    ikon: '<path d="M5 25h22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M8 21v-5M14 21V10M20 21v-8M26 21V7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>',
+  },
+  {
+    t: 'Vi finder din mægler',
+    b: 'Vi matcher dig med den lokale mægler, der passer bedst til din bolig. Kun den mægler kontakter dig.',
+    ikon: '<circle cx="16" cy="11" r="5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M7 27c1-5 5-8 9-8s8 3 9 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>',
+  },
 ];
 ---
 <ol class="svd">
   {trin.map((x, i) => (
     <li>
-      <span class="svd-nr" aria-hidden="true">{i + 1}</span>
+      <span class="svd-ikon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 32 32" set:html={x.ikon}></svg></span>
       <div class="stak svd-tekst">
-        <h3>{x.t}</h3>
+        <h3><span class="sr-only">Trin {i + 1}: </span>{x.t}</h3>
         <p>{x.b}</p>
       </div>
     </li>
@@ -26,31 +39,29 @@ const trin = [
   }
   .svd li {
     display: grid;
-    grid-template-columns: 2.75rem 1fr;
+    grid-template-columns: 3.25rem 1fr;
     gap: 1rem;
     align-items: start;
     position: relative;
   }
-  /* Trinene hænger sammen: en linje fra tal til tal på mobil */
+  /* Trinene hænger sammen: en linje fra ikon til ikon på mobil */
   .svd li:not(:last-child)::after {
     content: '';
     position: absolute;
-    left: calc(1.375rem - 1px);
-    top: 3.25rem;
+    left: calc(1.625rem - 1px);
+    top: 3.75rem;
     bottom: -1.25rem;
     width: 2px;
     background: var(--gron-kant);
   }
-  .svd-nr {
-    width: 2.75rem;
-    height: 2.75rem;
-    border-radius: 50%;
+  .svd-ikon {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 14px;
     display: grid;
     place-items: center;
-    background: var(--gron);
-    color: var(--paa-gron);
-    font-weight: 750;
-    font-size: var(--t-l);
+    background: var(--ikon-bund);
+    color: var(--guld);
   }
   .svd-tekst {
     gap: 0.35rem;

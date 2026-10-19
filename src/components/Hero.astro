@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Vurdering from './Vurdering.astro';
 import Tillid from './Tillid.astro';
+import Aktivitet from './Aktivitet.astro';
 import parcelhus from '../assets/boliger/parcelhus.jpg';
 import raekkehuse from '../assets/boliger/raekkehuse.jpg';
 import etageejendom from '../assets/boliger/etageejendom.jpg';
@@ -33,6 +34,7 @@ const valgt = billede ? (billeder[billede as keyof typeof billeder] ?? parcelhus
     </div>
     <div class="hero-tillid">
       <Tillid />
+      <Aktivitet />
     </div>
     {valgt && (
       <figure class="hero-foto">

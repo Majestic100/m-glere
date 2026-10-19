@@ -1,0 +1,9 @@
+{
+  "_note": "Boligmarkedet lige nu. Fire nøgletal fra Finans Danmark, Boligmarkedsstatistikken. Sektionen vises først, når alle fire tal og datoen er udfyldt.",
+  "kilde": "Finans Danmark, Boligmarkedsstatistikken",
+  "dato": "TODO_DATA",
+  "m2pris": "TODO_DATA",
+  "liggetid_dage": "TODO_DATA",
+  "handler_12m": "TODO_DATA",
+  "nedslag_pct": "TODO_DATA"
+}

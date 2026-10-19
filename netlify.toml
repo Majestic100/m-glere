@@ -26,6 +26,12 @@
   to = "/.netlify/functions/aktivitet"
   status = 200
 
+# Gamle adresser
+[[redirects]]
+  from = "/privatlivspolitik"
+  to = "/persondatapolitik"
+  status = 301
+
 # Pæne URL'er uden .html
 [[redirects]]
   from = "/*.html"

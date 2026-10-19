@@ -12,4 +12,10 @@ export default defineConfig({
     responsiveStyles: false,
   },
   prefetch: false,
+  // Ingen inline-scripts eller data:-filer, så Content-Security-Policy kan nøjes med 'self'.
+  vite: {
+    build: {
+      assetsInlineLimit: 0,
+    },
+  },
 });

@@ -1,0 +1,31 @@
+---
+// Aktivitets-notifikation og tæller. Begge er bag feature flags, som er slået fra som standard,
+// og viser kun rigtige tal fra vores egen database (by og tidspunkt, ingen personoplysninger) via /api/aktivitet.
+import features from '../../config/features.json';
+const til = features.aktivitet === true || features.taeller === true;
+---
+{til && (
+  <p class="aktivitet" id="aktivitet" aria-live="polite" hidden></p>
+  <script>
+    (async () => {
+      const el = document.getElementById('aktivitet');
+      try {
+        const r = await fetch('/api/aktivitet');
+        if (!r.ok) return;
+        const j = await r.json();
+        const dele = [];
+        if (j.seneste) dele.push(`En boligejer i ${j.seneste.by} har fået et estimat for ${j.seneste.minutter < 60 ? `${j.seneste.minutter} minutter` : `${Math.round(j.seneste.minutter / 60)} timer`} siden.`);
+        if (j.antal) dele.push(`${new Intl.NumberFormat('da-DK').format(j.antal)} boligejere har fået et estimat hos os.`);
+        if (!dele.length || !el) return;
+        el.textContent = dele.join(' ');
+        el.hidden = false;
+      } catch {}
+    })();
+  </script>
+)}
+<style>
+  .aktivitet {
+    font-size: var(--t-s);
+    color: var(--skifer);
+  }
+</style>

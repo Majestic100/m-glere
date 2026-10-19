@@ -1,18 +1,49 @@
 ---
-import site from '../../data/site.json';
+// Trustpilot TrustBox. Bag et feature flag, som først slås til, når der er rigtige anmeldelser.
+// Widgetten indlæses kun efter samtykke til statistik eller marketing, da Trustpilot sætter cookies.
+import features from '../../config/features.json';
+const DEMO = import.meta.env.PUBLIC_DEMO === '1';
+const til = features.trustpilot === true;
 ---
-<div class="stak anm">
-  <h2>Hvad siger andre boligejere?</h2>
-  {(site as any).trustpilotUrl ? (
-    <p><a href={(site as any).trustpilotUrl} target="_blank" rel="noopener">Se vores anmeldelser på Trustpilot</a></p>
-  ) : (
-    <div class="ph-boks">
-      [PLADSHOLDER: Trustpilot-widget. Indsættes, når Nem Vurdering har rigtige anmeldelser. Vi skriver ingen anmeldelser selv.]
+{til && (
+  <section class="sektion" aria-labelledby="anm-titel">
+    <div class="wrap stak">
+      <h2 id="anm-titel">Hvad siger andre boligejere?</h2>
+      <div
+        class="trustpilot-widget"
+        id="trustbox"
+        data-locale="da-DK"
+        data-template-id="5419b6a8b0d04a076446a9ad"
+        data-businessunit-id={features.trustpilot_business_unit_id}
+        data-style-height="24px"
+        data-style-width="100%"
+        data-theme="light"
+      >
+        <a href={features.trustpilot_url} target="_blank" rel="noopener">Se vores anmeldelser på Trustpilot</a>
+      </div>
     </div>
-  )}
-</div>
-<style>
-  .anm .ph-boks {
-    min-height: 9rem;
-  }
-</style>
+  </section>
+)}
+{!til && DEMO && (
+  <section class="sektion" aria-label="Anmeldelser">
+    <div class="wrap">
+      <div class="ph-boks">Trustpilot TrustBox. Slås til i config/features.json, når der er rigtige anmeldelser. Skjult i produktion.</div>
+    </div>
+  </section>
+)}
+{til && (
+  <script>
+    import { hentSamtykke } from '../scripts/samtykke.js';
+    function indlaes() {
+      const c = hentSamtykke();
+      if (!c || (!c.statistik && !c.marketing) || document.getElementById('tp-script')) return;
+      const s = document.createElement('script');
+      s.id = 'tp-script';
+      s.async = true;
+      s.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+      document.head.appendChild(s);
+    }
+    indlaes();
+    window.addEventListener('vurdo:samtykke', indlaes);
+  </script>
+)}

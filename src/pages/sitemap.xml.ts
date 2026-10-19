@@ -2,7 +2,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
-const faste = ['/', '/saadan-virker-det', '/ofte-stillede-spoergsmaal', '/for-maeglere', '/privatlivspolitik', '/cookiepolitik', '/vilkaar'];
+const faste = ['/', '/saadan-virker-det', '/ofte-stillede-spoergsmaal', '/for-maeglere', '/persondatapolitik', '/cookiepolitik', '/vilkaar'];
 
 export const GET: APIRoute = async ({ site }) => {
   const byer = (await getCollection('byer')).map((b) => `/hvad-er-min-bolig-vaerd-i-${b.data.slug}`);

@@ -581,7 +581,7 @@ function start(rod) {
         <div class="felt"><label for="vf-fg-email">E-mail</label><input id="vf-fg-email" type="email" inputmode="email" autocomplete="email" aria-describedby="vf-fg-fejl" /></div>
         <div class="samtykke-raekke">
           <label class="samtykke samtykke--frivillig"><input type="checkbox" id="vf-fg-samtykke" /><span>${esc(FOELG_TEKST)}</span></label>
-          <a class="samtykke-link" href="/privatlivspolitik" target="_blank" rel="noopener">Persondatapolitik</a>
+          <a class="samtykke-link" href="/persondatapolitik" target="_blank" rel="noopener">Persondatapolitik</a>
         </div>
         <p class="fejltekst" id="vf-fg-fejl" role="alert" hidden></p>
         <button type="button" class="knap ${nysgerrig ? '' : 'knap--sekundaer'} knap--fuld" id="vf-fg-send">Send mig estimatet</button>
@@ -634,7 +634,7 @@ function start(rod) {
           <div class="felt"><label for="vf-vl-email">E-mail</label><input id="vf-vl-email" type="email" inputmode="email" autocomplete="email" aria-describedby="vf-vl-fejl" /></div>
           <div class="samtykke-raekke">
             <label class="samtykke"><input type="checkbox" id="vf-vl-samtykke" aria-describedby="vf-vl-fejl" /><span>${esc(VENTELISTE_TEKST)}</span></label>
-            <a class="samtykke-link" href="/privatlivspolitik" target="_blank" rel="noopener">Persondatapolitik</a>
+            <a class="samtykke-link" href="/persondatapolitik" target="_blank" rel="noopener">Persondatapolitik</a>
           </div>
           <p class="fejltekst" id="vf-vl-fejl" role="alert" hidden></p>
           <button type="button" class="knap knap--fuld" id="vf-vl-send">Giv mig besked</button>
@@ -737,7 +737,7 @@ function start(rod) {
       tilvalg: s.tilvalg,
       horisont: s.horisont,
       estimat: e ? { lav: e.lav, middel: e.middel, hoej: e.hoej, praecision: e.praecision, grundlag: e.grundlag, testdata: e.testdata, version: e.version } : null,
-      provenu: s.provenu || null,
+      // Restgæld og provenu bliver i browseren. Mægleren skal ikke bruge dem, og de er følsomme.
       match_token: s.match?.token || null,
       event_ids: s.event_ids,
       attribution: hentAttribution(),

@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import Side from '../components/Side.astro';
+import Ph from '../components/Ph.astro';
+import site from '../../data/site.json';
+---
+<Base titel="Persondatapolitik | Nem Vurdering" beskrivelse="Sådan behandler Nem Vurdering dine personoplysninger: hvad vi får, hvad vi bruger dem til, og hvem der får dem.">
+  <Side titel="Persondatapolitik" lead="Her kan du læse, hvilke oplysninger vi får, hvad vi bruger dem til, og hvem der får dem." />
+  <section class="sektion" style="padding-top:1rem">
+    <div class="wrap prosa">
+      <p class="ph-boks" style="justify-items:start;text-align:left">UDKAST. Skal gennemgås af en advokat før lancering. Felter med TODO_DATA skal udfyldes.</p>
+
+      <h2>Hvem er dataansvarlig?</h2>
+      <p>{site.binavnTekst}. Dataansvarlig er {site.selskab}, CVR <Ph v={site.cvr} />, <Ph v={site.adresse} />, <Ph v={site.postnrBy} />. E-mail: <Ph v={site.email} />. Telefon: <Ph v={site.telefon} />.</p>
+
+      <h2>Hvilke oplysninger får vi?</h2>
+      <ul>
+        <li>Din adresse. Boligtype, areal, antal værelser og byggeår henter vi fra BBR, og du kan rette dem.</li>
+        <li>Det, du fortæller om boligens stand, tilvalg og hvornår du overvejer at sælge.</li>
+        <li>Når du beder om at blive kontaktet: fornavn, efternavn, telefon og e-mail.</li>
+        <li>Dit samtykke: den præcise tekst, du sagde ja til, tidspunktet, og hvem du gav samtykke til.</li>
+        <li>Tekniske oplysninger: IP-adresse, browser, hvilken side og annonce du kom fra.</li>
+      </ul>
+      <p>Den restgæld, du skriver i beregneren, bliver i din browser. Vi gemmer den ikke og sender den ikke videre.</p>
+
+      <h2>Hvad bruger vi dem til, og med hvilken ret?</h2>
+      <ul>
+        <li><strong>At vise dit estimat og finde din mægler.</strong> Fordi du beder om det (databeskyttelsesforordningens artikel 6, stk. 1, litra b).</li>
+        <li><strong>At ringe eller skrive for at bekræfte og sende dine oplysninger til den mægler, vi har matchet dig med.</strong> Kun med dit samtykke (artikel 6, stk. 1, litra a, og markedsføringslovens § 10).</li>
+        <li><strong>At sende dig estimatet og, hvis du vil, et opdateret estimat hver 3. måned.</strong> Estimatet sender vi, fordi du beder om det. De løbende mails kun med dit separate samtykke.</li>
+        <li><strong>At dokumentere dit samtykke og forklare, hvorfor du fik netop den mægler.</strong> Vi gemmer samtykket og matchets begrundelse (artikel 6, stk. 1, litra c og f).</li>
+        <li><strong>At måle vores annoncer.</strong> Kun hvis du har sagt ja til marketing-cookies.</li>
+      </ul>
+
+      <h2>Hvem giver vi dine oplysninger til?</h2>
+      <ul>
+        <li><strong>Den ene mægler, vi har matchet dig med</strong>, og kun når du har givet samtykke og bekræftet. Mægleren bliver selvstændig dataansvarlig for de oplysninger, mægleren får. Aldrig flere mæglere.</li>
+        <li><strong>Vores leverandører</strong>, der behandler oplysninger på vores vegne: GoHighLevel (kundesystem), Netlify (hosting og samtykkelog) og <Ph v="TODO_DATA: øvrige leverandører, fx e-mail og sms" />. Vi har databehandleraftaler med dem.</li>
+        <li><strong>Klimadatastyrelsen</strong>, når du søger efter din adresse, og <strong>Datafordeleren</strong>, når vi henter BBR-oplysninger. Der sendes kun adressen.</li>
+        <li><strong>Meta</strong> (Facebook og Instagram), kun hvis du har sagt ja til marketing-cookies. Vi sender en krypteret (hashet) udgave af dine kontaktoplysninger, så vi kan måle, om annoncerne virker.</li>
+      </ul>
+      <p>Nogle leverandører ligger i USA. Overførslen sker efter EU-kommissionens standardkontrakter eller EU-US Data Privacy Framework. <Ph v="TODO_DATA: bekræft overførselsgrundlag pr. leverandør" /></p>
+
+      <h2>Hvor længe gemmer vi dem?</h2>
+      <ul>
+        <li>Henvendelser: <Ph v="TODO_DATA: fx 12 måneder efter sidste kontakt" />.</li>
+        <li>Dokumentation for samtykke: <Ph v="TODO_DATA: fx 5 år efter samtykket er trukket tilbage" />.</li>
+        <li>Følg din boligværdi og venteliste: indtil du afmelder dig.</li>
+      </ul>
+
+      <h2>Dine rettigheder</h2>
+      <p>Du kan altid trække dit samtykke tilbage. Det ændrer ikke ved det, vi lovligt har gjort, før du trak det tilbage. Du har også ret til indsigt, berigtigelse, sletning, begrænsning, indsigelse og dataportabilitet. Skriv til <Ph v={site.email} />. Har mægleren fået dine oplysninger, giver vi også mægleren besked.</p>
+      <p>Vil du klage, kan du kontakte Datatilsynet på datatilsynet.dk.</p>
+
+      <h2 id="cookies">Cookies</h2>
+      <p>Læs om vores cookies i <a href="/cookiepolitik">cookiepolitikken</a>.</p>
+
+      <p class="hjaelp">Senest opdateret: <Ph v="TODO_DATA" /></p>
+    </div>
+  </section>
+</Base>

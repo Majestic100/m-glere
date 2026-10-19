@@ -4,19 +4,19 @@ import Side from '../components/Side.astro';
 import Ph from '../components/Ph.astro';
 import site from '../../data/site.json';
 ---
-<Base titel="Vilkår | Nem Vurdering" beskrivelse="Vilkår for brug af Nem Vurdering.">
+<Base titel="Vilkår | Nem Vurdering" beskrivelse="Vilkår for brug af Nem Vurdering: estimatet, matching med en mægler, og hvordan vi tjener penge.">
   <Side titel="Vilkår for brug af Nem Vurdering" />
   <section class="sektion" style="padding-top:1rem">
     <div class="wrap prosa">
-      <p class="ph-boks" style="justify-items:start;text-align:left">UDKAST. Teksten skal gennemgås af en jurist før lancering.</p>
+      <p class="ph-boks" style="justify-items:start;text-align:left">UDKAST. Skal gennemgås af en advokat før lancering.</p>
       <h2>Tjenesten</h2>
-      <p>Nem Vurdering drives af {site.selskab}, CVR <Ph v={site.cvr} />. Nem Vurdering giver et vejledende estimat på din boligs værdi og hjælper dig med at komme i kontakt med en ejendomsmægler, du selv vælger. Det er gratis for dig.</p>
+      <p>{site.binavnTekst}, CVR <Ph v={site.cvr} />. Nem Vurdering giver et vejledende estimat på din boligs værdi og matcher dig med én lokal partnermægler, som kan give dig en gratis salgsvurdering. Det er gratis for dig.</p>
       <h2>Estimatet er vejledende</h2>
-      <p>Estimatet er et vejledende interval. Det er ikke en vurdering af din bolig og kan ikke bruges som grundlag for lån, skat eller handel. Kun en ejendomsmægler, der har set boligen, kan give en salgsvurdering.</p>
-      <h2>Mæglerne</h2>
-      <p>Partnermæglerne er selvstændige virksomheder. De betaler Nem Vurdering for henvendelser. Nem Vurdering er ikke part i en eventuel aftale mellem dig og mægleren, og vi har ikke ansvar for mæglerens rådgivning. Spørg altid mægleren om salær og vilkår, før du skriver under.</p>
+      <p>Estimatet er et prisinterval. Det er ikke en vurdering af din bolig og kan ikke bruges som grundlag for lån, skat eller handel. Kun en ejendomsmægler, der har set boligen, kan give en salgsvurdering.</p>
+      <h2>Matching og mæglerne</h2>
+      <p>Vi anbefaler kun partnermæglere, der samarbejder med os og betaler os for henvisninger. Hvordan vi finder din mægler, står under Ofte stillede spørgsmål. Partnermæglerne er selvstændige virksomheder. Nem Vurdering er ikke part i en aftale mellem dig og mægleren og har ikke ansvar for mæglerens rådgivning. Spørg altid mægleren om salær og vilkår, før du skriver under.</p>
       <h2>Tal på siden</h2>
-      <p>Tal om mæglernes salg og bedømmelser kommer fra de kilder, der står ved tallet. Vi opdaterer dem <Ph v="[PLADSHOLDER: hvor ofte]" />.</p>
+      <p>Nøgletal og kvadratmeterpriser kommer fra de kilder, der står ved tallene. Vi opdaterer dem <Ph v="TODO_DATA: hvor ofte" />.</p>
       <h2>Ansvar</h2>
       <p>Vi gør os umage for, at oplysningerne på siden er rigtige, men vi kan ikke garantere det. Vi er ikke ansvarlige for tab, der skyldes, at du har handlet ud fra estimatet alene.</p>
       <h2>Lovvalg</h2>

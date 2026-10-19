@@ -12,13 +12,13 @@ const hoved = [
   { navn: 'Skovgrøn mørk', token: '--gron-moerk', hex: '#172E26', rolle: 'Hover og aktive knapper.', kontrast: '14,4:1 på hvid' },
   { navn: 'Grøn tone', token: '--gron-tone', hex: '#E8EFEA', rolle: 'Valgte felter, resultatbokse, statuslinjens bund.', kontrast: 'Skovgrøn på tone 10,1:1' },
   { navn: 'Grøn kant', token: '--gron-kant', hex: '#C3D3CA', rolle: 'Fokusring og kant om valgt mægler.', kontrast: 'Kun dekoration' },
-  { navn: 'Guld', token: '--guld', hex: '#E3A54A', rolle: 'Fluebenet i logoet. Kun som pynt eller på mørkegrøn baggrund. Aldrig til tekst på lys baggrund.', kontrast: '2,2:1 på hvid, 5,5:1 på skovgrøn' },
+  { navn: 'Rav', token: '--rav', hex: '#E3A54A', rolle: 'CTA-knapper med mørk tekst. Fluebenet i logoet. Aldrig som tekstfarve på lys baggrund.', kontrast: 'Skifer på rav 7,8:1. Rav på kalk 2,0:1' },
 ];
 const neutrale = [
   { navn: 'Kalk', token: '--kalk', hex: '#F6F4EF', rolle: 'Sidens baggrund. Samme lyse farve som i logoet.', kontrast: '' },
   { navn: 'Hvid', token: '--flade', hex: '#FFFFFF', rolle: 'Kort, formular og felter.', kontrast: '' },
-  { navn: 'Blæk', token: '--blaek', hex: '#1A221F', rolle: 'Brødtekst og overskrifter.', kontrast: '14,8:1 på kalk' },
-  { navn: 'Skifer', token: '--skifer', hex: '#56605B', rolle: 'Sekundær tekst og hjælpetekst.', kontrast: '5,9:1 på kalk' },
+  { navn: 'Skifer', token: '--blaek', hex: '#1A1F1C', rolle: 'Brødtekst og overskrifter.', kontrast: '15,2:1 på kalk' },
+  { navn: 'Skifer lys', token: '--skifer', hex: '#56605B', rolle: 'Sekundær tekst og hjælpetekst.', kontrast: '5,9:1 på kalk' },
   { navn: 'Feltkant', token: '--felt-kant', hex: '#7E8A84', rolle: 'Kant om inputfelter.', kontrast: '3,6:1 på hvid' },
   { navn: 'Streg', token: '--streg', hex: '#DFE3DE', rolle: 'Skillelinjer og kortkanter.', kontrast: 'Kun dekoration' },
 ];
@@ -35,7 +35,7 @@ const marked = [
   { hvem: 'Estate', farve: '#445E8D', note: 'Blå' },
   { hvem: 'RealMæglerne', farve: '#003761', note: 'Navy med orange' },
   { hvem: 'LokalBolig', farve: '#678D72', note: 'Salviegrøn' },
-  { hvem: 'Nem Vurdering', farve: '#1F3D33', note: 'Skovgrøn med guld' },
+  { hvem: 'Nem Vurdering', farve: '#1F3D33', note: 'Skovgrøn med rav' },
 ];
 ---
 <Base titel="Brandguide | Nem Vurdering" beskrivelse="Nem Vurderings farver, typografi, logo og billedstil." noindex>
@@ -45,7 +45,7 @@ const marked = [
     <div class="wrap stak-l">
       <div class="prosa">
         <h2>Om farverne</h2>
-        <p>Farverne kommer fra logoet: en dyb skovgrøn, en lys kalkfarve og et gyldent flueben. Siden bruger skovgrøn til alt, man kan trykke på, og holder guld til små detaljer.</p>
+        <p>Farverne kommer fra logoet: en dyb skovgrøn, en lys kalkfarve og et ravfarvet flueben. Rav bruges til de knapper, man skal trykke på. Skovgrøn bruges til links, valg, statuslinje og sidefod.</p>
         <p>Vi har kigget på de farver, de største mæglerkæder bruger. De ligger i to grupper: rød (home) eller blå, navy og grøn (danbolig, nybolig, EDC, Estate, RealMæglerne og LokalBolig).</p>
         <p><strong>Risikoen</strong> er, at skovgrøn ligger tæt på danbolig, nybolig og LokalBolig. Nem Vurdering samarbejder med mæglere fra flere kæder, så siden må ikke ligne én af dem. Det gyldne flueben og den lyse kalkfarve er det, der skiller os ud. Brug dem konsekvent, også i annoncer.</p>
       </div>
@@ -89,8 +89,8 @@ const marked = [
     <div class="wrap stak-l">
       <h2>Regler for farverne</h2>
       <ul class="regler prosa">
-        <li>Skovgrøn bruges til det, man kan trykke på, og til estimatet. Den må gerne fylde i sidefoden, men ikke i store flader midt på siden.</li>
-        <li>Der er én primær knap pr. skærm. Den er altid fyldt med skovgrøn.</li>
+        <li>Skovgrøn bruges til links, valg og estimatet. Den må gerne fylde i sidefoden, men ikke i store flader midt på siden.</li>
+        <li>Der er én primær knap pr. skærm. Den er rav med mørk tekst.</li>
         <li>Rød bruges kun til fejl. Aldrig til knapper, tilbud eller fremhævning.</li>
         <li>Al tekst har mindst 4,5:1 i kontrast. Feltkanter mindst 3:1.</li>
         <li>Siden har også et mørkt tema. Farverne skifter automatisk efter telefonens indstilling.</li>
@@ -105,7 +105,7 @@ const marked = [
         <p class="skrift-stor">Hvad er din bolig værd i dag?</p>
         <p class="skrift-mellem">Få et gratis estimat på 30 sekunder.</p>
         <p class="skrift-tal tal">3.450.000 til 4.200.000 kr.</p>
-        <p>Schibsted Grotesk, én variabel fil med vægt 400 til 900. Skriften er tegnet til nordiske nyhedsmedier. Den er solid og let at læse på små skærme, og tallene står lige under hinanden. Den hostes på vores egen server, så vi ikke sender besøgendes IP-adresse til Google.</p>
+        <p>Plus Jakarta Sans, én variabel fil med vægt 200 til 800 og font-display: swap. Den er venlig og let at læse på små skærme. Den hostes på vores egen server, så vi ikke sender besøgendes IP-adresse til Google.</p>
         <ul class="regler">
           <li>Overskrifter: vægt 700 til 750, let negativ spærring.</li>
           <li>Brødtekst: vægt 400, 17 px på mobil, linjehøjde 1,55.</li>
@@ -156,7 +156,7 @@ const marked = [
       <ul class="regler">
         <li>Talt dansk. Korte sætninger. Du-form.</li>
         <li>Ingen tankestreger. Brug punktum eller komma.</li>
-        <li>Ingen superlativer, ingen "uvildig" og ingen løfter om at spare salær.</li>
+        <li>Ingen superlativer, ingen ord der lover uafhængighed, og ingen løfter om lavere salær.</li>
         <li>Sig åbent, at mæglerne betaler.</li>
         <li>Tal har altid en kilde ved siden af.</li>
       </ul>

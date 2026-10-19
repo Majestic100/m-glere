@@ -1,45 +1,24 @@
 ---
-// Forretningsmodellen, forklaret åbent.
+// Sådan tjener vi penge. Kort og åbent.
 ---
-<div class="penge">
-  <div class="stak">
-    <h2>Mæglerne betaler. Du gør ikke.</h2>
-    <p class="lead">Nem Vurdering er gratis for dig, fordi ejendomsmæglerne betaler os, når de får en henvendelse.</p>
+<div class="penge" id="saadan-tjener-vi-penge">
+  <h2>Sådan tjener vi penge</h2>
+  <div class="prosa">
+    <p class="lead">Nem Vurdering er gratis for dig. Mægleren betaler os for henvisningen, når du har bekræftet, at du vil kontaktes.</p>
+    <p>Vi sender kun dine oplysninger til én mægler, og vi anbefaler kun mæglere, der samarbejder med os. <a href="/ofte-stillede-spoergsmaal#hvordan-finder-i-min-maegler">Sådan finder vi din mægler</a>.</p>
   </div>
-  <dl class="penge-liste">
-    <div><dt>Hvem betaler?</dt><dd>Den mægler, du vælger, betaler Nem Vurdering et beløb for henvendelsen. Du betaler intet.</dd></div>
-    <div><dt>Hvem får dine oplysninger?</dt><dd>Kun den ene mægler, du selv har valgt. Aldrig flere.</dd></div>
-    <div><dt>Hvad betyder det for dig?</dt><dd>Vi viser kun mæglere, vi har en aftale med. Vi hjælper dig med at vælge den rigtige mægler, ikke den billigste. Spørg altid mægleren om salær, før du skriver under.</dd></div>
-  </dl>
 </div>
 <style>
   .penge {
     display: grid;
-    gap: 2rem;
-  }
-  .penge-liste {
-    margin: 0;
-    display: grid;
-    gap: 0;
-    border-top: 1px solid var(--streg);
-  }
-  .penge-liste div {
-    display: grid;
-    gap: 0.25rem;
-    padding-block: 1rem;
-    border-bottom: 1px solid var(--streg);
-  }
-  .penge-liste dt {
-    font-weight: 700;
-  }
-  .penge-liste dd {
-    margin: 0;
-    color: var(--skifer);
+    gap: 1.25rem;
+    scroll-margin-top: 1rem;
   }
   @media (min-width: 60rem) {
     .penge {
-      grid-template-columns: 1fr 1.2fr;
+      grid-template-columns: 1fr 1.4fr;
       align-items: start;
+      gap: 3rem;
     }
   }
 </style>

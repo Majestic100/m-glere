@@ -1,0 +1,68 @@
+---
+// Boligmarkedet lige nu. Tallene kommer fra data/marked.json, aldrig fra koden.
+// I produktion vises sektionen først, når alle fire tal og datoen er udfyldt. Demoen viser pladsholdere.
+import marked from '../../data/marked.json';
+import { harTal } from '../lib/faelles.js';
+import Ph from './Ph.astro';
+
+const DEMO = import.meta.env.PUBLIC_DEMO === '1';
+const fmt = (n: number) => new Intl.NumberFormat('da-DK').format(n);
+const tal = [
+  { navn: 'Pris pr. m² for huse', v: marked.m2pris, vis: (n: number) => `${fmt(n)} kr.` },
+  { navn: 'Gennemsnitlig liggetid', v: marked.liggetid_dage, vis: (n: number) => `${fmt(n)} dage` },
+  { navn: 'Handler de seneste 12 måneder', v: marked.handler_12m, vis: (n: number) => fmt(n) },
+  { navn: 'Gennemsnitligt nedslag fra udbudspris', v: marked.nedslag_pct, vis: (n: number) => `${String(n).replace('.', ',')} %` },
+];
+const komplet = tal.every((t) => harTal(t.v)) && !String(marked.dato).startsWith('TODO');
+const vis = komplet || DEMO;
+---
+{vis && (
+  <section class="sektion sektion--tone" aria-labelledby="marked-titel">
+    <div class="wrap stak-l">
+      <h2 id="marked-titel">Boligmarkedet lige nu</h2>
+      <dl class="marked">
+        {tal.map((t) => (
+          <div>
+            <dt>{t.navn}</dt>
+            <dd>{harTal(t.v) ? t.vis(t.v as unknown as number) : <mark class="ph">TODO_DATA</mark>}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="hjaelp">Kilde: {marked.kilde}, <Ph v={marked.dato} tom="TODO_DATA" />. Hele landet.</p>
+    </div>
+  </section>
+)}
+<style>
+  .marked {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 1rem;
+  }
+  .marked div {
+    display: grid;
+    gap: 0.25rem;
+    border-top: 2px solid var(--gron);
+    padding-top: 0.75rem;
+    min-width: 0;
+  }
+  .marked dt {
+    font-size: var(--t-s);
+    color: var(--skifer);
+  }
+  .marked dd {
+    margin: 0;
+    font-size: var(--t-xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .marked dd mark {
+    font-size: var(--t-s);
+  }
+  @media (min-width: 60rem) {
+    .marked {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>
