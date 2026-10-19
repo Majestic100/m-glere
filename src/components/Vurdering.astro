@@ -30,7 +30,9 @@ const data = {
 };
 const json = JSON.stringify(data).replace(/</g, '\\u003c');
 ---
-<section class="vf kort" id="vurdering" aria-labelledby="vf-titel">
+<div class="vf-hus">
+<svg class="vf-gavl" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false"><polygon points="0,10 50,0.4 100,10"></polygon></svg>
+<section class="vf" id="vurdering" aria-labelledby="vf-titel">
   <script type="application/json" id="vf-data" set:html={json} />
 
   <div class="vf-top" id="vf-top" hidden>
@@ -110,7 +112,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
     <!-- 2. Estimat -->
     <div class="vf-skaerm" data-skaerm="estimat" hidden>
       <div id="vf-estimat-ok" class="stak">
-        <p class="eyebrow" id="vf-estimat-adresse"></p>
+        <p class="vf-adresse-linje" id="vf-estimat-adresse"></p>
         <h2 class="vf-h" tabindex="-1">Din bolig er cirka værd</h2>
         <p class="vf-interval tal" id="vf-interval"></p>
         <p class="vf-testdata" id="vf-testdata" hidden>Testtal. Ikke rigtige priser endnu.</p>
@@ -243,21 +245,42 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
     </div>
   </form>
 </section>
+</div>
 
 <script>
   import '../scripts/vurdering.js';
 </script>
 
 <style is:global>
+  /* Formularen er tegnet som et hus: en gavl oven på kortet, ligesom taget i logoet.
+     Skyggen ligger på hele huset, så gavl og kort står som én form. */
+  .vf-hus {
+    filter: drop-shadow(0 1px 1px rgb(26 34 31 / 0.07)) drop-shadow(0 12px 28px rgb(26 34 31 / 0.09));
+  }
+  .vf-gavl {
+    display: block;
+    width: 100%;
+    height: clamp(26px, 9vw, 44px);
+    margin-bottom: -1px;
+  }
+  .vf-gavl polygon {
+    fill: var(--flade);
+  }
   .vf {
-    padding: 1.25rem;
-    box-shadow: var(--skygge);
+    background: var(--flade);
+    border-radius: 0 0 var(--r-m) var(--r-m);
+    padding: 0.75rem 1.25rem 1.5rem;
     display: grid;
     gap: 1rem;
     scroll-margin-top: 1rem;
   }
   @media (min-width: 30rem) {
-    .vf { padding: 1.75rem; }
+    .vf { padding: 0.75rem 1.75rem 1.75rem; }
+  }
+  .vf-adresse-linje {
+    font-size: var(--t-s);
+    font-weight: 600;
+    color: var(--skifer);
   }
   .vf-skaerm {
     display: grid;

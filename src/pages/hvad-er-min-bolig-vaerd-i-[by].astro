@@ -23,7 +23,6 @@ const kr = (n: number) => `${new Intl.NumberFormat('da-DK').format(n)} kr.`;
 
   <section class="sektion sektion--tone" aria-labelledby="pris-titel">
     <div class="wrap prosa">
-      <p class="eyebrow">Boligpriser i {b.by}</p>
       <h2 id="pris-titel">Sådan har priserne udviklet sig i {b.by}</h2>
       {b.intro && <p>{b.intro}</p>}
       <p><Ph v={b.prisudvikling.tekst} /></p>

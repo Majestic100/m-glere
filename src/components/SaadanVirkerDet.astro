@@ -29,6 +29,17 @@ const trin = [
     grid-template-columns: 2.75rem 1fr;
     gap: 1rem;
     align-items: start;
+    position: relative;
+  }
+  /* Trinene hænger sammen: en linje fra tal til tal på mobil */
+  .svd li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: calc(1.375rem - 1px);
+    top: 3.25rem;
+    bottom: -1.25rem;
+    width: 2px;
+    background: var(--gron-kant);
   }
   .svd-nr {
     width: 2.75rem;
@@ -55,6 +66,9 @@ const trin = [
     }
     .svd li {
       grid-template-columns: 1fr;
+    }
+    .svd li:not(:last-child)::after {
+      display: none;
     }
   }
 </style>

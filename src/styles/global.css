@@ -9,6 +9,8 @@
   --gron-tone: #e8efea;
   --gron-kant: #c3d3ca;
   --guld: #e3a54a;
+  /* Logoets ikonfarve. Samme i lyst og mørkt tema, så det gyldne flueben altid står tydeligt. */
+  --ikon-bund: #1f3d33;
   --kalk: #f6f4ef;
   --flade: #ffffff;
   --blaek: #1a221f;
@@ -28,7 +30,7 @@
   --t-m: 1.0625rem;
   --t-l: 1.3125rem;
   --t-xl: clamp(1.625rem, 1.2rem + 1.6vw, 2.125rem);
-  --t-xxl: clamp(2rem, 1.4rem + 2.8vw, 3rem);
+  --t-xxl: clamp(2.375rem, 1.5rem + 3.6vw, 3.75rem);
 
   --r-s: 8px;
   --r-m: 14px;
@@ -115,7 +117,9 @@ h3 {
 }
 h1 {
   font-size: var(--t-xxl);
-  font-weight: 750;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
 }
 h2 {
   font-size: var(--t-xl);
@@ -182,13 +186,6 @@ td.tal {
 .stak-l {
   display: grid;
   gap: 2rem;
-}
-.eyebrow {
-  font-size: var(--t-xs);
-  font-weight: 650;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--skifer);
 }
 .lead {
   font-size: var(--t-l);
@@ -306,10 +303,16 @@ td.tal {
   align-items: flex-start;
   font-weight: 550;
 }
+/* Flueben i logoets guld på skovgrøn, som i ikonet */
 .tillid svg {
   flex: none;
-  margin-top: 0.2em;
-  color: var(--ok);
+  margin-top: 0.15em;
+}
+.tillid .tillid-bund {
+  fill: var(--ikon-bund);
+}
+.tillid .tillid-flueben {
+  stroke: var(--guld);
 }
 
 /* Kort */
