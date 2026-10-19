@@ -1,6 +1,6 @@
 # Nem Vurdering
 
-Mobile-first hjemmeside for Nem Vurdering, en gratis tjeneste der hjælper boligejere med at se, hvad deres bolig er værd, og vælge den rette lokale mægler. Drives af Hero Media ApS.
+Mobile-first hjemmeside for Nem Vurdering, en gratis tjeneste der hjælper boligejere med at se, hvad deres bolig er værd, og vælge den rette lokale mægler. Drives af Hero Media ApS. Hero Media nævnes kun der, hvor loven kræver det: privatlivspolitik, vilkår og samtykketekst.
 
 ## Teknik kort
 
@@ -64,7 +64,7 @@ Hver gemning bliver et commit, og Netlify bygger siden igen på cirka et minut.
 | Mæglere og deres postnumre | `src/data/maeglere.json` |
 | Kvadratmeterpriser pr. postnummer | `src/data/kvmpriser.json` |
 | Bysider | `src/content/byer/*.json` |
-| CVR, adresse, åbningstider, team | `src/data/site.json` |
+| CVR, adresse, åbningstider | `src/data/site.json` |
 | Spørgsmål og svar | `src/data/faq.js` |
 
 ## Bysider
@@ -80,7 +80,6 @@ Alt i gult på siden er pladsholdere. Kør `grep -rn "PLADSHOLDER\|\[Mægler" sr
 - [ ] CVR, adresse, telefon og e-mail i `site.json`.
 - [ ] Rigtige åbningstider. De styrer, om tak-siden lover et opkald inden for 15 minutter.
 - [ ] Standardtal for salær i provenu-beregneren.
-- [ ] Portrætter af holdet bag.
 - [ ] Egne fotos i stedet for de AI-genererede boligbilleder i `src/assets/boliger`.
 - [ ] Privatlivspolitik og vilkår gennemgået af jurist.
 - [ ] Svar på "Hvordan bliver mæglerne udvalgt?".

@@ -1,9 +1,7 @@
 ---
 import '@fontsource-variable/schibsted-grotesk/wght.css';
 import '../styles/global.css';
-import Ph from '../components/Ph.astro';
 import CookieBanner from '../components/CookieBanner.astro';
-import site from '../data/site.json';
 
 interface Props {
   titel: string;
@@ -15,8 +13,6 @@ const { titel, beskrivelse, noindex = false, billede } = Astro.props;
 const kanonisk = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/'), Astro.site);
 const nav = [
   { href: '/saadan-virker-det', tekst: 'Sådan virker det' },
-  { href: '/maeglere', tekst: 'Mæglerne' },
-  { href: '/hvem-staar-bag', tekst: 'Hvem står bag' },
   { href: '/ofte-stillede-spoergsmaal', tekst: 'Spørgsmål' },
 ];
 const sti = Astro.url.pathname.replace(/\.html$/, '');
@@ -79,9 +75,6 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
       <div class="wrap bund-indre">
         <div class="stak">
           <a href="/" class="bund-logo"><img src="/brand/logo-hvid.svg" alt="Nem Vurdering" /></a>
-          <p class="bund-om">
-            Nem Vurdering drives af {site.selskab}, CVR <Ph v={site.cvr} />, <Ph v={site.adresse} />, <Ph v={site.postnrBy} />.
-          </p>
           <p class="bund-om">Gratis for boligejere. Ejendomsmæglerne betaler Nem Vurdering, når de får en henvendelse.</p>
         </div>
         <nav aria-label="Sidefod">

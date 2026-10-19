@@ -6,13 +6,18 @@
   "postnrBy": "[PLADSHOLDER: Postnr. og by]",
   "telefon": "[PLADSHOLDER: Telefon]",
   "email": "[PLADSHOLDER: kontakt@nemvurdering.dk]",
-  "heroMediaUrl": "https://heromedia.dk",
   "trustpilotUrl": "",
   "samtykkeVersion": "2026-10-19",
   "aabningstider": {
     "pladsholder": true,
     "note": "Bruges til at love et opkald inden for 15 minutter, kun når nogen faktisk sidder klar. Ret til de rigtige tider.",
-    "dage": [1, 2, 3, 4, 5],
+    "dage": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
     "fra": "09:00",
     "til": "20:00"
   },
@@ -24,19 +29,5 @@
   "estimat": {
     "spaend": 0.1,
     "afrund": 25000
-  },
-  "team": [
-    {
-      "navn": "[PLADSHOLDER: Navn]",
-      "rolle": "[PLADSHOLDER: Rolle, fx stifter]",
-      "billede": "",
-      "tekst": "[PLADSHOLDER: To linjer om personen, skrevet i første person.]"
-    },
-    {
-      "navn": "[PLADSHOLDER: Navn]",
-      "rolle": "[PLADSHOLDER: Rolle, fx den der ringer dig op]",
-      "billede": "",
-      "tekst": "[PLADSHOLDER: To linjer om personen, skrevet i første person.]"
-    }
-  ]
+  }
 }

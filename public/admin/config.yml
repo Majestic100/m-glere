@@ -111,7 +111,6 @@ collections:
           - { name: postnrBy, label: 'Postnr. og by', widget: string }
           - { name: telefon, label: Telefon, widget: string }
           - { name: email, label: E-mail, widget: string }
-          - { name: heroMediaUrl, label: 'Link til Hero Media', widget: string }
           - { name: trustpilotUrl, label: 'Link til Trustpilot (tom = pladsholder)', widget: string, required: false }
           - { name: samtykkeVersion, label: 'Samtykkeversion (ret ved ændring af samtykketekst)', widget: string }
           - name: aabningstider
@@ -136,11 +135,3 @@ collections:
             fields:
               - { name: spaend, label: 'Spænd (0.1 = plus/minus 10 %)', widget: number, value_type: float }
               - { name: afrund, label: 'Afrund til nærmeste (kr.)', widget: number, value_type: int }
-          - name: team
-            label: Holdet bag
-            widget: list
-            fields:
-              - { name: navn, label: Navn, widget: string }
-              - { name: rolle, label: Rolle, widget: string }
-              - { name: billede, label: Portræt, widget: image, required: false }
-              - { name: tekst, label: Tekst, widget: text }

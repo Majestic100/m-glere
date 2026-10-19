@@ -36,7 +36,7 @@ export const faq = [
   {
     q: 'Hvordan bliver mæglerne udvalgt?',
     a: [
-      '[PLADSHOLDER: Beskriv de konkrete krav, Hero Media stiller til partnermæglere, fx autorisation, antal handler i området og hvordan anmeldelser følges. Skriv kun krav, der faktisk bliver tjekket.]',
+      '[PLADSHOLDER: Beskriv de konkrete krav, vi stiller til partnermæglere, fx autorisation, antal handler i området og hvordan anmeldelser følges. Skriv kun krav, der faktisk bliver tjekket.]',
     ],
   },
   {
