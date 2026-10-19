@@ -31,12 +31,23 @@
 
   --font: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 
+  /* Tekstskala. Én rolle pr. størrelse, mobil til desktop:
+     xs 13     småtekst, kilder, mærkater
+     s  14-15  tekst i kort og lister
+     m  16-17  brødtekst
+     l  17-19  korttitler (h3)
+     lead 17-20 introtekst under en overskrift
+     trin 20-24 overskrift på et trin i flowet
+     xl 24-34  sektionsoverskrift (h2)
+     xxl 30-52 sidens overskrift (h1) */
   --t-xs: 0.8125rem;
-  --t-s: 0.9375rem;
-  --t-m: 1.0625rem;
-  --t-l: 1.3125rem;
-  --t-xl: clamp(1.625rem, 1.2rem + 1.6vw, 2.125rem);
-  --t-xxl: clamp(2rem, 1.3rem + 3.4vw, 3.5rem);
+  --t-s: clamp(0.875rem, 0.84rem + 0.15vw, 0.9375rem);
+  --t-m: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
+  --t-l: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --t-lead: clamp(1.0625rem, 0.95rem + 0.45vw, 1.25rem);
+  --t-trin: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --t-xl: clamp(1.5rem, 1.15rem + 1.4vw, 2.125rem);
+  --t-xxl: clamp(1.875rem, 1.35rem + 2.3vw, 3.25rem);
 
   --r-s: 8px;
   --r-m: 14px;
@@ -183,7 +194,7 @@ td.tal {
   max-width: calc(var(--spalte) + 2 * var(--gutter));
 }
 .sektion {
-  padding-block: clamp(3rem, 2rem + 4vw, 5rem);
+  padding-block: clamp(2.75rem, 1.8rem + 4vw, 5rem);
 }
 .sektion--tone {
   background: var(--flade);
@@ -195,11 +206,17 @@ td.tal {
 }
 .stak-l {
   display: grid;
-  gap: 2rem;
+  gap: clamp(1.5rem, 1.1rem + 1.4vw, 2.5rem);
+}
+/* Samme opbygning i alle sektioner: overskrift, kort introtekst, indhold */
+.sektion-hoved {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 40rem;
 }
 .lead {
-  font-size: var(--t-l);
-  line-height: 1.45;
+  font-size: var(--t-lead);
+  line-height: 1.5;
   color: var(--skifer);
   max-width: 36rem;
 }

@@ -1,10 +1,12 @@
 ---
-// Afslutning på forsiden. Knappen fører op til adressefeltet, så der kun er ét flow på siden.
+// Afslutning med missionen. Knappen fører op til adressefeltet, så der kun er ét flow på siden.
 ---
 <section class="sektion slut-cta" aria-labelledby="slut-cta-titel">
   <div class="wrap slut-cta-indhold">
-    <h2 id="slut-cta-titel">Hvad er din bolig værd?</h2>
-    <p class="lead">Se et gratis estimat på 30 sekunder, og find ud af, hvilken lokal mægler der passer til din bolig.</p>
+    <div class="sektion-hoved">
+      <h2 id="slut-cta-titel">Valget af mægler skal bygge på mere end et tilfældigt opkald</h2>
+      <p class="lead">Boligsalg er en af de største handler, du laver. Nem Vurdering er skabt for at ændre måden, boligejere og mæglere finder hinanden på. Start med at se, hvad din bolig er værd.</p>
+    </div>
     <a class="knap" href="/#vurdering" data-til-formular>Se min boligværdi</a>
   </div>
 </section>
@@ -18,8 +20,9 @@
     gap: 1rem;
     justify-items: center;
   }
-  .slut-cta .lead {
-    max-width: 32rem;
+  .slut-cta .sektion-hoved {
+    justify-items: center;
+    max-width: 34rem;
   }
   .slut-cta .knap {
     margin-top: 0.5rem;

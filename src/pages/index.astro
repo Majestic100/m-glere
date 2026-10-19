@@ -6,7 +6,6 @@ import SaadanMatcher from '../components/SaadanMatcher.astro';
 import SaadanVirkerDet from '../components/SaadanVirkerDet.astro';
 import KunEn from '../components/KunEn.astro';
 import Marked from '../components/Marked.astro';
-import Mission from '../components/Mission.astro';
 import Anmeldelser from '../components/Anmeldelser.astro';
 import Faq from '../components/Faq.astro';
 import SlutCta from '../components/SlutCta.astro';
@@ -30,14 +29,15 @@ import SlutCta from '../components/SlutCta.astro';
 
   <section class="sektion" aria-labelledby="svd-titel">
     <div class="wrap stak-l">
-      <h2 id="svd-titel">Sådan foregår det</h2>
+      <div class="sektion-hoved">
+        <h2 id="svd-titel">Sådan foregår det</h2>
+        <p class="lead">Fra adresse til gratis salgsvurdering i fire trin. Du kan stoppe når som helst.</p>
+      </div>
       <SaadanVirkerDet />
     </div>
   </section>
 
   <KunEn />
-
-  <Mission />
 
   <Marked />
 
@@ -45,7 +45,10 @@ import SlutCta from '../components/SlutCta.astro';
 
   <section class="sektion sektion--tone" aria-labelledby="faq-titel">
     <div class="wrap stak-l">
-      <h2 id="faq-titel">Ofte stillede spørgsmål</h2>
+      <div class="sektion-hoved">
+        <h2 id="faq-titel">Ofte stillede spørgsmål</h2>
+        <p class="lead">Svar på det, boligejere oftest spørger om.</p>
+      </div>
       <Faq antal={6} />
       <p><a href="/ofte-stillede-spoergsmaal">Se alle spørgsmål</a></p>
     </div>

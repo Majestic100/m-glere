@@ -25,14 +25,14 @@ const punkter = [
 ---
 <section class="sektion forskel" aria-labelledby="forskel-titel">
   <div class="wrap stak-l">
-    <div class="stak forskel-intro">
+    <div class="sektion-hoved">
       <h2 id="forskel-titel">Der er forskel på mæglere</h2>
       <p class="lead">Det er nemt at vælge den første mægler, man taler med. Men mæglere arbejder forskelligt, og det kan mærkes på både salgsprisen og på, hvor længe boligen er til salg.</p>
     </div>
     <ul class="forskel-gitter">
       {punkter.map((p) => (
         <li class="forskel-kort">
-          <span class="forskel-ikon" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 32 32" set:html={p.ikon}></svg></span>
+          <span class="forskel-ikon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 32 32" set:html={p.ikon}></svg></span>
           <h3>{p.t}</h3>
           <p>{p.b}</p>
         </li>
@@ -45,9 +45,6 @@ const punkter = [
     background: var(--flade);
     border-block: 1px solid var(--streg);
   }
-  .forskel-intro {
-    max-width: 40rem;
-  }
   .forskel-gitter {
     list-style: none;
     margin: 0;
@@ -58,7 +55,7 @@ const punkter = [
   /* Ikon til venstre, tekst til højre. Holder kortene lave på mobil. */
   .forskel-kort {
     display: grid;
-    grid-template-columns: 3.25rem 1fr;
+    grid-template-columns: 2.75rem 1fr;
     column-gap: 1rem;
     row-gap: 0.3rem;
     align-content: start;
@@ -69,9 +66,9 @@ const punkter = [
   }
   .forskel-ikon {
     grid-row: span 2;
-    width: 3.25rem;
-    height: 3.25rem;
-    border-radius: 14px;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 12px;
     display: grid;
     place-items: center;
     background: var(--ikon-bund);
@@ -83,6 +80,7 @@ const punkter = [
   }
   .forskel-kort p {
     margin: 0;
+    font-size: var(--t-s);
     color: var(--skifer);
   }
   @media (min-width: 48rem) {

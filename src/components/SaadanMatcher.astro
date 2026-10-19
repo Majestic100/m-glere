@@ -13,7 +13,7 @@ const raekker = [false, true, false, false];
 <section class="sektion matcher" aria-labelledby="matcher-titel">
   <div class="wrap matcher-gitter">
     <div class="stak-l">
-      <div class="stak">
+      <div class="sektion-hoved">
         <h2 id="matcher-titel">Vi sammenligner, så du ikke skal</h2>
         <p class="lead">Vi samarbejder med udvalgte lokale mæglere. Når du har skrevet din adresse, ser vi på, hvem af dem der passer bedst til netop din bolig.</p>
       </div>
@@ -97,6 +97,7 @@ const raekker = [false, true, false, false];
 
   /* Illustration: flere mæglere, én markeret */
   .matcher-illu {
+    display: none;
     align-self: center;
     justify-self: center;
     width: 100%;
@@ -174,6 +175,9 @@ const raekker = [false, true, false, false];
     color: #1a1f1c;
   }
   @media (min-width: 60rem) {
+    .matcher-illu {
+      display: block;
+    }
     .matcher-gitter {
       grid-template-columns: 1.2fr 1fr;
       gap: 5rem;
