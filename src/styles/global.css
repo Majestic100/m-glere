@@ -303,36 +303,6 @@ td.tal {
 }
 
 /* Tillidspunkter */
-.tillid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.5rem;
-}
-.tillid--raekke {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
-}
-.tillid li {
-  display: flex;
-  gap: 0.6rem;
-  align-items: flex-start;
-  font-weight: 550;
-}
-/* Flueben i logoets guld på skovgrøn, som i ikonet */
-.tillid svg {
-  flex: none;
-  margin-top: 0.15em;
-}
-.tillid .tillid-bund {
-  fill: var(--ikon-bund);
-}
-.tillid .tillid-flueben {
-  stroke: var(--guld);
-}
-
 /* Kort */
 .kort {
   background: var(--flade);

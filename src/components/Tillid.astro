@@ -1,11 +1,86 @@
 ---
-const punkter = ['Gratis', 'Ingen binding', 'Kun én mægler kontakter dig'];
+// Løfterne under adressefeltet. Egne ikoner i stedet for flueben, så de ikke ligner afkrydsningsfelter i formularen.
+const punkter = [
+  {
+    t: 'Gratis',
+    b: 'Estimat og salgsvurdering',
+    ikon: '<path d="M4 13.2V5.5A1.5 1.5 0 0 1 5.5 4h7.7a1.5 1.5 0 0 1 1.06.44l9.3 9.3a1.5 1.5 0 0 1 0 2.12l-7.7 7.7a1.5 1.5 0 0 1-2.12 0l-9.3-9.3A1.5 1.5 0 0 1 4 13.2Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle cx="9" cy="9" r="1.8" fill="currentColor"/>',
+  },
+  {
+    t: 'Ingen binding',
+    b: 'Du bestemmer selv',
+    ikon: '<rect x="5" y="12" width="17" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M9 12V8.5a4.5 4.5 0 0 1 8.7-1.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="13.5" cy="18" r="1.6" fill="currentColor"/>',
+  },
+  {
+    t: 'Kun én mægler',
+    b: 'Ingen andre ringer',
+    ikon: '<circle cx="14" cy="9.5" r="4.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M5.5 24c.8-4.6 4.2-7.5 8.5-7.5s7.7 2.9 8.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+  },
+];
 ---
-<ul class="tillid tillid--raekke">
+<ul class="usp" aria-label="Det lover vi">
   {punkter.map((p) => (
     <li>
-      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect class="tillid-bund" width="22" height="22" rx="6"></rect><path class="tillid-flueben" d="m6.5 11.4 3 3 6-6.6" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-      <span>{p}</span>
+      <span class="usp-ikon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 28 28" set:html={p.ikon}></svg></span>
+      <strong>{p.t}</strong>
+      <span class="usp-tekst">{p.b}</span>
     </li>
   ))}
 </ul>
+<style>
+  /* Én samlet bjælke med tre lige store felter og skillelinjer imellem */
+  .usp {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: var(--flade);
+    border: 1px solid var(--streg);
+    border-radius: 16px;
+  }
+  .usp li {
+    display: grid;
+    justify-items: center;
+    align-content: start;
+    text-align: center;
+    gap: 0.2rem;
+    padding: 0.75rem 0.25rem;
+    min-width: 0;
+  }
+  .usp li + li {
+    border-left: 1px solid var(--streg);
+  }
+  .usp-ikon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    background: var(--ikon-bund);
+    color: var(--guld);
+    margin-bottom: 0.3rem;
+  }
+  /* Titlen skal kunne stå på én linje i tre spalter, også på en smal telefon */
+  .usp strong {
+    font-size: clamp(0.8125rem, 0.62rem + 0.85vw, 0.9375rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .usp-tekst {
+    font-size: var(--t-xs);
+    line-height: 1.35;
+    color: var(--skifer);
+  }
+  @media (min-width: 30rem) {
+    .usp li {
+      padding: 1.1rem 0.75rem;
+    }
+    .usp-ikon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 12px;
+    }
+  }
+</style>
