@@ -442,12 +442,14 @@ function start(rod) {
       data.estimatConfig,
     );
     tegnEstimat();
+    tegnDetaljer();
     if (s.estimat && !s.event_ids.estimate_viewed) {
       s.event_ids.estimate_viewed = spor('estimate_viewed', { postnr: a.postnr, boligtype: s.bolig.type, praecision: s.estimat.praecision });
     }
     $('vf-res-maegler').innerHTML = '<p class="vf-note">Finder den mægler, der passer bedst til din bolig.</p>';
     await hentMatch();
     tegnMaegler();
+    tegnFoelg();
     gem();
   }
 
@@ -500,6 +502,112 @@ function start(rod) {
       $('vf-testdata').hidden = true;
       $('vf-praecision').innerHTML = '';
     }
+  }
+
+  // ---------- Resultatdetaljer: nøgletal, sammenlignelige handler og provenu ----------
+  function tegnDetaljer() {
+    const e = s.estimat;
+    const boks = $('vf-res-detaljer');
+    if (!e) {
+      boks.innerHTML = '';
+      return;
+    }
+    const n = e.noegletal;
+    const pn = s.adresse.postnr;
+    const fliser = [
+      harTal(n.m2_postnr) && ['Pris pr. m² i ' + pn, kr(n.m2_postnr)],
+      harTal(n.m2_kommune) && ['Pris pr. m² i kommunen', kr(n.m2_kommune)],
+      harTal(n.liggetid_dage) && ['Gennemsnitlig liggetid', `${n.liggetid_dage} dage`],
+      harTal(n.udvikling_1aar_pct) && ['Prisudvikling 1 år', `${n.udvikling_1aar_pct > 0 ? '+' : ''}${String(n.udvikling_1aar_pct).replace('.', ',')} %`],
+    ].filter(Boolean);
+    const kilde = e.testdata ? 'Testtal' : `Kilde: ${esc(e.kilde)}${e.dato && !erTodo(e.dato) ? `, ${esc(e.dato)}` : ''}`;
+
+    // Sammenlignelige handler vises kun, når der er mindst 3. Ellers skjules sektionen helt.
+    const handler = (data.handler || []).filter((h) => h.postnr === pn && h.boligtype === s.bolig.type).slice(0, 5);
+
+    const salaer = data.estimatConfig?.salaer || {};
+    const medSalaer = harTal(salaer.min) && harTal(salaer.max);
+
+    boks.innerHTML = `
+      ${fliser.length ? `<div class="stak"><h3>Nøgletal for området</h3><dl class="noegletal">${fliser.map(([dt, dd]) => `<div><dt>${esc(dt)}</dt><dd>${esc(dd)}</dd></div>`).join('')}</dl><p class="kildelinje">${kilde}</p></div>` : ''}
+      ${
+        handler.length >= 3
+          ? `<div class="stak"><h3>Handler i nærheden</h3><div style="overflow-x:auto"><table class="handler"><thead><tr><th scope="col">Vej</th><th scope="col">m²</th><th scope="col">Pris</th><th scope="col">Solgt</th></tr></thead><tbody>${handler
+              .map((h) => `<tr><td>${esc(h.vej)}</td><td class="tal-h">${esc(h.m2)}</td><td class="tal-h">${kr(h.pris)}</td><td>${esc(h.dato)}</td></tr>`)
+              .join('')}</tbody></table></div><p class="kildelinje">Kilde: ${esc(data.handlerKilde)}</p></div>`
+          : ''
+      }
+      <div class="stak">
+        <h3>Hvad har du til dig selv efter salg?</h3>
+        <div class="felt">
+          <label for="vf-restgaeld">Restgæld på dine lån</label>
+          <div class="enhed-input"><input id="vf-restgaeld" type="text" inputmode="numeric" placeholder="0" aria-describedby="vf-provenu-forbehold" /><span>kr.</span></div>
+        </div>
+        <div class="provenu-resultat" aria-live="polite"><span id="vf-provenu-label"></span><strong id="vf-provenu"></strong></div>
+        <p class="hjaelp" id="vf-provenu-forbehold">Et groft skøn ud fra midten af intervallet. ${
+          medSalaer ? `Mæglersalær og salgsomkostninger er sat til ${kr(salaer.min)} til ${kr(salaer.max)}.` : 'Salær og salgsomkostninger er ikke trukket fra, fordi de varierer fra mægler til mægler.'
+        } Det tager ikke højde for kurstab ved indfrielse af lån, skat eller flytning.</p>
+      </div>`;
+
+    const felt = $('vf-restgaeld');
+    if (harTal(s.restgaeld)) felt.value = tal(s.restgaeld);
+    const opdater = () => {
+      s.restgaeld = parseBeloeb(felt.value);
+      const p = beregnProvenu({ middel: e.middel, restgaeld: s.restgaeld, salaer });
+      s.provenu = p ? { ...p, restgaeld: s.restgaeld } : null;
+      $('vf-provenu-label').textContent = p.medSalaer ? 'Du har cirka mellem' : 'Før salær og salgsomkostninger har du cirka';
+      $('vf-provenu').textContent = p.medSalaer ? `${kr(p.fra).replace(' kr.', '')} og ${kr(p.til)}` : kr(p.fra);
+      gem();
+    };
+    felt.addEventListener('input', opdater);
+    felt.addEventListener('blur', () => {
+      if (harTal(s.restgaeld)) felt.value = tal(s.restgaeld);
+    });
+    opdater();
+  }
+
+  // ---------- Få estimatet tilsendt og Følg din boligværdi ----------
+  function tegnFoelg() {
+    const boks = $('vf-res-foelg');
+    const nysgerrig = s.horisont === 'nysgerrig';
+    if (s.daekning === false) {
+      boks.innerHTML = '';
+      return;
+    }
+    boks.innerHTML = `
+      <div class="boks" id="vf-foelg-boks">
+        <h3>${nysgerrig ? 'Følg din boligværdi' : 'Få estimatet på mail'}</h3>
+        <p>${nysgerrig ? 'Vi sender dig estimatet nu og et opdateret estimat hver 3. måned, hvis du vil. Det er gratis, og ingen mægler kontakter dig.' : 'Vi sender estimatet til dig, så du kan finde det igen.'}</p>
+        <div class="felt"><label for="vf-fg-email">E-mail</label><input id="vf-fg-email" type="email" inputmode="email" autocomplete="email" aria-describedby="vf-fg-fejl" /></div>
+        <div class="samtykke-raekke">
+          <label class="samtykke samtykke--frivillig"><input type="checkbox" id="vf-fg-samtykke" /><span>${esc(FOELG_TEKST)}</span></label>
+          <a class="samtykke-link" href="/privatlivspolitik" target="_blank" rel="noopener">Persondatapolitik</a>
+        </div>
+        <p class="fejltekst" id="vf-fg-fejl" role="alert" hidden></p>
+        <button type="button" class="knap ${nysgerrig ? '' : 'knap--sekundaer'} knap--fuld" id="vf-fg-send">Send mig estimatet</button>
+      </div>`;
+    if (nysgerrig) $('vf-res-maegler').before(boks);
+    else $('vf-res-maegler').after(boks);
+    $('vf-fg-send').addEventListener('click', sendFoelg);
+  }
+
+  async function sendFoelg() {
+    const email = $('vf-fg-email').value.trim();
+    if (!marker('vf-fg-email', gyldigEmail(email))) return fejl('vf-fg-fejl', 'Skriv en gyldig e-mailadresse, fx navn@mail.dk.');
+    fejl('vf-fg-fejl', '');
+    const foelg = $('vf-fg-samtykke').checked;
+    const knap = $('vf-fg-send');
+    knap.disabled = true;
+    const ok = await send(
+      byggePayload('nurture', {
+        kontakt: { email },
+        send_estimat: true,
+        samtykker: [{ formaal: 'foelg_boligvaerdi', givet: foelg, tekst: FOELG_TEKST }],
+      }),
+    );
+    knap.disabled = false;
+    if (!ok) return fejl('vf-fg-fejl', 'Vi kunne ikke sende estimatet. Prøv igen om lidt.');
+    $('vf-foelg-boks').innerHTML = `<h3>Estimatet er på vej</h3><p>Vi sender det til ${esc(email)}.${foelg ? ' Du får også et opdateret estimat hver 3. måned. Du kan afmelde dig i hver e-mail.' : ''}</p>${data.demo ? '<p class="vf-preview">Demo. Intet er sendt.</p>' : ''}`;
   }
 
   function tegnMaegler() {
@@ -714,8 +822,6 @@ function start(rod) {
     return String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   }
 
-  // Eksporteres til fase 2 (resultatdetaljer).
-  rod._nv = { s, $, esc, ph, gem, byggePayload, send, visTak, beregnProvenu, parseBeloeb, kr, tal, harTal, data, indeks };
 
   // ---------- Opstart ----------
   skrivFelter();

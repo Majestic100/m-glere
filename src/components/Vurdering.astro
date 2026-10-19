@@ -7,6 +7,7 @@ import estimatConfig from '../../config/estimat.json';
 import matchConfig from '../../config/matching.json';
 import maeglerData from '../../data/maeglere.json';
 import site from '../../data/site.json';
+import handlerData from '../../data/sammenlignelige-handler.json';
 import { BOLIGTYPER, STAND, TILVALG, HORISONTER } from '../lib/faelles.js';
 
 const DEMO = import.meta.env.PUBLIC_DEMO === '1';
@@ -20,6 +21,8 @@ const data = {
   maeglere: DEMO ? maeglerData.maeglere : null,
   matchConfig: DEMO ? matchConfig : null,
   samtykkeVersion: site.samtykkeVersion,
+  handler: handlerData.handler,
+  handlerKilde: handlerData.kilde,
   adressevaelgerToken: import.meta.env.PUBLIC_ADRESSEVAELGER_TOKEN || 'adressevaelger123',
 };
 const json = JSON.stringify(data).replace(/</g, '\\u003c');
@@ -164,6 +167,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
       <div id="vf-res-detaljer" class="stak-l"></div>
       <p class="vf-aerlig">Et onlineestimat kender registrene, men ikke dit nye køkken. En lokal mægler kan give dig en præcis salgspris, gratis og uforpligtende. Du behøver ikke engang rydde op.</p>
       <div id="vf-res-maegler"></div>
+      <div id="vf-res-foelg"></div>
     </div>
 
     <!-- Trin 7: Kontakt og samtykke -->
@@ -611,6 +615,58 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
   .mk-firma {
     font-size: var(--t-s);
     color: var(--skifer);
+  }
+  .noegletal {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin: 0;
+  }
+  .noegletal div {
+    padding: 0.75rem;
+    border: 1px solid var(--streg);
+    border-radius: var(--r-s);
+    min-width: 0;
+  }
+  .noegletal dt {
+    font-size: var(--t-xs);
+    color: var(--skifer);
+  }
+  .noegletal dd {
+    margin: 0;
+    font-weight: 750;
+    font-size: var(--t-l);
+    font-variant-numeric: tabular-nums;
+  }
+  .kildelinje {
+    font-size: var(--t-xs);
+    color: var(--skifer);
+  }
+  .handler {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--t-s);
+  }
+  .handler th,
+  .handler td {
+    text-align: left;
+    padding: 0.5rem 0.4rem 0.5rem 0;
+    border-bottom: 1px solid var(--streg);
+  }
+  .handler td.tal-h {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .provenu-resultat {
+    display: grid;
+    gap: 0.25rem;
+    padding: 1rem;
+    background: var(--gron-tone);
+    border-radius: var(--r-s);
+  }
+  .provenu-resultat strong {
+    font-size: var(--t-l);
+    color: var(--gron);
   }
   .boks {
     display: grid;

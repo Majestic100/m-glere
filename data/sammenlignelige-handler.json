@@ -1,0 +1,5 @@
+{
+  "_note": "Sammenlignelige handler pr. postnummer. Udfyldes kun fra en datakilde, vi har ret til at bruge (ingen scraping af portaler). Sektionen vises kun, når der er mindst 3 handler for postnummeret og boligtypen. Format pr. handel: { postnr, boligtype, vej (uden husnummer), m2, pris, dato (YYYY-MM) }.",
+  "kilde": "TODO_DATA",
+  "handler": []
+}
