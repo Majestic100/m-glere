@@ -1,0 +1,13 @@
+{
+  "name": "Nem Vurdering",
+  "short_name": "Nem Vurdering",
+  "lang": "da",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f6f4ef",
+  "theme_color": "#1f3d33",
+  "icons": [
+    { "src": "/brand/ikon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/brand/ikon-1024.png", "sizes": "1024x1024", "type": "image/png" }
+  ]
+}

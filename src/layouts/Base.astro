@@ -9,7 +9,7 @@ interface Props {
   noindex?: boolean;
   billede?: string;
 }
-const { titel, beskrivelse, noindex = false, billede } = Astro.props;
+const { titel, beskrivelse, noindex = false, billede = '/brand/og-billede.jpg' } = Astro.props;
 const kanonisk = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/'), Astro.site);
 const nav = [
   { href: '/saadan-virker-det', tekst: 'Sådan virker det' },
@@ -24,18 +24,29 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{titel}</title>
     <meta name="claude:viewport-fit-sides" content="cover" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com; font-src 'self'; connect-src 'self' https://adressevaelger.dk https://www.facebook.com https://connect.facebook.net; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+    />
     <meta name="description" content={beskrivelse} />
     <link rel="canonical" href={kanonisk} />
     {noindex && <meta name="robots" content="noindex" />}
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nem Vurdering" />
+    <meta property="og:url" content={kanonisk} />
     <meta property="og:locale" content="da_DK" />
     <meta property="og:title" content={titel} />
     <meta property="og:description" content={beskrivelse} />
-    {billede && <meta property="og:image" content={new URL(billede, Astro.site)} />}
+    <meta property="og:image" content={new URL(billede, Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Rødt murstenshus med Nem Vurderings logo" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#1f3d33" />
     <link rel="icon" href="/brand/ikon-32px.svg" type="image/svg+xml" />
     <link rel="icon" href="/brand/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="/brand/ikon-512.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body>
     <a class="spring" href="#indhold">Gå til indhold</a>
@@ -44,7 +55,7 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
         <a href="/" class="top-logo">
           <picture>
             <source srcset="/brand/logo-hvid.svg" media="(prefers-color-scheme: dark)" />
-            <img src="/brand/logo.svg" alt="Nem Vurdering" />
+            <img src="/brand/logo.svg" alt="Nem Vurdering" width="348" height="64" />
           </picture>
         </a>
         <nav class="menu-bred" aria-label="Hovedmenu">
@@ -74,7 +85,7 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     <footer class="bund">
       <div class="wrap bund-indre">
         <div class="stak">
-          <a href="/" class="bund-logo"><img src="/brand/logo-hvid.svg" alt="Nem Vurdering" /></a>
+          <a href="/" class="bund-logo"><img src="/brand/logo-hvid.svg" alt="Nem Vurdering" width="348" height="64" loading="lazy" /></a>
           <p class="bund-om">Gratis for boligejere. Ejendomsmæglerne betaler Nem Vurdering, når de får en henvendelse.</p>
         </div>
         <nav aria-label="Sidefod">

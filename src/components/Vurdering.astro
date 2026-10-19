@@ -65,7 +65,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
           aria-autocomplete="list"
           aria-expanded="false"
           aria-controls="vf-forslag"
-          aria-describedby="vf-adresse-hjaelp"
+          aria-describedby="vf-adresse-hjaelp vf-adresse-fejl"
         />
         <ul id="vf-forslag" role="listbox" aria-label="Adresseforslag" hidden></ul>
         </div>
@@ -79,11 +79,11 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
         <p class="vf-note" id="vf-manuel-note">Skriv din adresse her i stedet.</p>
         <div class="felt">
           <label for="vf-vej">Vej, husnummer og evt. etage</label>
-          <input id="vf-vej" name="vej" type="text" autocomplete="address-line1" />
+          <input id="vf-vej" name="vej" type="text" autocomplete="address-line1" aria-describedby="vf-adresse-fejl" />
         </div>
         <div class="felt felt--kort">
           <label for="vf-postnr">Postnummer</label>
-          <input id="vf-postnr" name="postnr" type="text" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="postal-code" />
+          <input id="vf-postnr" name="postnr" type="text" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="postal-code" aria-describedby="vf-adresse-fejl" />
         </div>
       </div>
       <p class="fejltekst" id="vf-adresse-fejl" role="alert" hidden></p>
@@ -95,7 +95,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
     <div class="vf-skaerm" data-skaerm="bolig" hidden>
       <h2 class="vf-h" tabindex="-1">Passer det her?</h2>
       <p class="vf-note" id="vf-bbr-note">Vi henter oplysninger om din bolig.</p>
-      <fieldset class="valg">
+      <fieldset class="valg" aria-describedby="vf-bolig-fejl">
         <legend>Boligtype</legend>
         {BOLIGTYPER.map((b) => (
           <label class="valg-flise"><input type="radio" name="boligtype" value={b.id} /> <span>{b.navn}</span></label>
@@ -103,7 +103,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
       </fieldset>
       <div class="felt felt--kort">
         <label for="vf-areal">Boligareal</label>
-        <div class="enhed-input"><input id="vf-areal" name="areal" type="text" inputmode="numeric" maxlength="4" /><span>m²</span></div>
+        <div class="enhed-input"><input id="vf-areal" name="areal" type="text" inputmode="numeric" maxlength="4" aria-describedby="vf-bolig-fejl" /><span>m²</span></div>
       </div>
       <p class="fejltekst" id="vf-bolig-fejl" role="alert" hidden></p>
       <button type="button" class="knap knap--fuld" data-naeste>Se estimat</button>
@@ -198,15 +198,15 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
       <h2 class="vf-h" tabindex="-1" id="vf-kontakt-titel">Hvordan får vi fat i dig?</h2>
       <div class="felt">
         <label for="vf-navn">Navn</label>
-        <input id="vf-navn" name="navn" type="text" autocomplete="name" />
+        <input id="vf-navn" name="navn" type="text" autocomplete="name" aria-describedby="vf-kontakt-fejl" />
       </div>
       <div class="felt" id="vf-tlf-felt">
         <label for="vf-tlf">Telefon <span class="valgfri" id="vf-tlf-valgfri" hidden>(valgfri)</span></label>
-        <input id="vf-tlf" name="telefon" type="tel" inputmode="tel" autocomplete="tel" />
+        <input id="vf-tlf" name="telefon" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="vf-kontakt-fejl" />
       </div>
       <div class="felt">
         <label for="vf-email">E-mail</label>
-        <input id="vf-email" name="email" type="email" inputmode="email" autocomplete="email" />
+        <input id="vf-email" name="email" type="email" inputmode="email" autocomplete="email" aria-describedby="vf-kontakt-fejl" />
       </div>
       <fieldset class="valg valg--kompakt" id="vf-tidspunkt-felt">
         <legend>Hvornår passer det bedst, at vi ringer?</legend>
@@ -227,7 +227,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
       <h2 class="vf-h" tabindex="-1" id="vf-samtykke-titel">Sidste trin</h2>
       <div class="vf-valgt" id="vf-valgt"></div>
       <label class="samtykke" id="vf-samtykke-1-felt">
-        <input type="checkbox" id="vf-samtykke-1" name="samtykke_kontakt" />
+        <input type="checkbox" id="vf-samtykke-1" name="samtykke_kontakt" aria-describedby="vf-samtykke-fejl" />
         <span id="vf-samtykke-1-tekst"></span>
       </label>
       <label class="samtykke" id="vf-samtykke-2-felt">

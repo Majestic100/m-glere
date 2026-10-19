@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /admin/
-Disallow: /brandguide
+
+Sitemap: https://nemvurdering.dk/sitemap.xml

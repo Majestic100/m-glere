@@ -10,6 +10,13 @@ import Faq from '../components/Faq.astro';
   titel="Nem Vurdering: Hvad er din bolig værd?"
   beskrivelse="Få et gratis estimat på din bolig på 30 sekunder, og vælg selv den lokale ejendomsmægler, der kender dit område. Kun den mægler, du vælger, kontakter dig."
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Nem Vurdering',
+    url: new URL('/', Astro.site).toString(),
+    logo: new URL('/brand/ikon-512.png', Astro.site).toString(),
+  })} />
   <Hero />
 
   <section class="sektion sektion--tone" aria-labelledby="svd-titel">

@@ -28,6 +28,8 @@ for (const fil of sider) {
     .replace(/url\(\/_astro\//g, 'url(_astro/')
     .replace(/(srcset="[^"]*")/g, (m) => m.replace(/\/_astro\//g, '_astro/'))
     .replace(/(href|src|srcset)="\/brand\//g, '$1="brand/')
+    .replace(/<meta http-equiv="Content-Security-Policy"[^>]*>/, '')
+    .replace(/href="\/site\.webmanifest"/, 'href="site.webmanifest"')
     .replace(/href="\/(#[^"]*)?"/g, (_, hash = '') => `href="index.html${hash}"`)
     .replace(/href="\/([a-z0-9-]+)(#[^"]*)?"/g, (_, s, hash = '') => `href="${s}.html${hash}"`)
     .replace('<head>', `<head><script>window.VURDO_PREVIEW=true</script>${DEMO ? '<meta name="robots" content="noindex, nofollow">' : ''}`)
@@ -54,6 +56,7 @@ for (const f of brugte) {
   if (existsSync(kilde)) copyFileSync(kilde, join(UD, f.replace(/^_astro\//, 'assets/')));
   else console.warn('Mangler', f);
 }
+copyFileSync(join(DIST, 'site.webmanifest'), join(UD, 'site.webmanifest'));
 if (existsSync(join(DIST, 'brand'))) cpSync(join(DIST, 'brand'), join(UD, 'brand'), { recursive: true });
 if (DEMO) {
   writeFileSync(join(UD, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
