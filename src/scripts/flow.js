@@ -446,7 +446,7 @@ function start(rod) {
     if (s.estimat && !s.event_ids.estimate_viewed) {
       s.event_ids.estimate_viewed = spor('estimate_viewed', { postnr: a.postnr, boligtype: s.bolig.type, praecision: s.estimat.praecision });
     }
-    $('vf-res-maegler').innerHTML = '<p class="vf-note">Finder den mægler, der passer bedst til din bolig.</p>';
+    $('vf-res-maegler').innerHTML = '<p class="vf-note" role="status">Vi finder din mægler…</p>';
     await hentMatch();
     tegnMaegler();
     tegnFoelg();
@@ -606,7 +606,7 @@ function start(rod) {
       }),
     );
     knap.disabled = false;
-    if (!ok) return fejl('vf-fg-fejl', 'Vi kunne ikke sende estimatet. Prøv igen om lidt.');
+    if (!ok) return fejl('vf-fg-fejl', 'Vi kunne ikke sende estimatet. Tjek din forbindelse, og prøv igen.');
     $('vf-foelg-boks').innerHTML = `<h3>Estimatet er på vej</h3><p>Vi sender det til ${esc(email)}.${foelg ? ' Du får også et opdateret estimat hver 3. måned. Du kan afmelde dig i hver e-mail.' : ''}</p>${data.demo ? '<p class="vf-preview">Demo. Intet er sendt.</p>' : ''}`;
   }
 
@@ -630,7 +630,7 @@ function start(rod) {
       boks.innerHTML = `
         <div class="boks" id="vf-venteliste">
           <h3>Vi har endnu ikke en partnermægler i dit område</h3>
-          <p>Skriv dig op, så giver vi besked, når vi har.</p>
+          <p>Skriv dig op, og vi giver dig besked, når der er en i dit område. Dit estimat ovenfor gælder stadig.</p>
           <div class="felt"><label for="vf-vl-email">E-mail</label><input id="vf-vl-email" type="email" inputmode="email" autocomplete="email" aria-describedby="vf-vl-fejl" /></div>
           <div class="samtykke-raekke">
             <label class="samtykke"><input type="checkbox" id="vf-vl-samtykke" aria-describedby="vf-vl-fejl" /><span>${esc(VENTELISTE_TEKST)}</span></label>
@@ -641,7 +641,18 @@ function start(rod) {
         </div>`;
       boks.querySelector('#vf-vl-send').addEventListener('click', sendVenteliste);
     } else {
-      boks.innerHTML = '<p class="vf-note">Vi kunne ikke finde en mægler lige nu. Prøv igen om lidt.</p>';
+      boks.innerHTML = `
+        <div class="stak" role="alert">
+          <p class="vf-note">Vi kunne ikke hente din mægler. Tjek din forbindelse, og prøv igen.</p>
+          <button type="button" class="knap knap--sekundaer" id="vf-match-igen">Prøv igen</button>
+        </div>`;
+      boks.querySelector('#vf-match-igen').addEventListener('click', async () => {
+        boks.innerHTML = '<p class="vf-note" role="status">Vi finder din mægler…</p>';
+        await hentMatch();
+        tegnMaegler();
+        tegnFoelg();
+        gem();
+      });
     }
   }
 
@@ -655,6 +666,7 @@ function start(rod) {
     $('vf-samtykke-tekst').textContent = samtykkeTekst(m);
     $('vf-foelg-tekst').textContent = FOELG_TEKST;
     $('vf-send').textContent = `Send til ${fornavn(m.navn)}`;
+    $('vf-tlf-hjaelp').textContent = `Til at bekræfte og aftale vurderingen med ${fornavn(m.navn)}.`;
   }
 
   form.addEventListener('submit', async (e) => {
@@ -672,7 +684,7 @@ function start(rod) {
     const knap = $('vf-send');
     const knapTekst = knap.textContent;
     knap.disabled = true;
-    knap.textContent = 'Sender...';
+    knap.textContent = 'Sender…';
     const leadEvent = nytEventId('lead_submitted');
     const payload = byggePayload('maeglerlead', {
       kontakt: { fornavn: k.fornavn.trim(), efternavn: k.efternavn.trim(), telefon: k.telefon.trim(), email: k.email.trim() },
@@ -686,7 +698,7 @@ function start(rod) {
     if (!ok) {
       knap.disabled = false;
       knap.textContent = knapTekst;
-      return fejl('vf-kontakt-fejl', ok === null ? 'Matchet er udløbet. Gå tilbage og se resultatet igen.' : 'Vi kunne ikke sende dine oplysninger. Tjek din forbindelse, og prøv igen.');
+      return fejl('vf-kontakt-fejl', ok === null ? 'Der er gået for lang tid. Gå tilbage til resultatet, og vi finder din mægler igen.' : 'Vi kunne ikke sende dine oplysninger. Tjek din forbindelse, og prøv igen.');
     }
     spor('lead_submitted', { postnr: s.adresse.postnr, maegler_id: s.match.maegler.id }, leadEvent);
     s.sendt = true;
@@ -705,7 +717,7 @@ function start(rod) {
         samtykker: [{ formaal: 'venteliste', givet: true, tekst: VENTELISTE_TEKST }],
       }),
     );
-    if (!ok) return fejl('vf-vl-fejl', 'Vi kunne ikke sende din tilmelding. Prøv igen.');
+    if (!ok) return fejl('vf-vl-fejl', 'Vi kunne ikke sende din tilmelding. Tjek din forbindelse, og prøv igen.');
     visTak('venteliste');
   }
 
@@ -780,10 +792,10 @@ function start(rod) {
       const m = s.match.maegler;
       const navn = erTodo(m.navn) ? 'mægleren' : m.navn;
       html = `
-        <h2 class="vf-h" tabindex="-1">Tak, ${esc(s.kontakt.fornavn.trim())}.</h2>
+        <h2 class="vf-h" tabindex="-1">Det er modtaget, ${esc(s.kontakt.fornavn.trim())}</h2>
         <p class="lead">Tak. Vi ringer eller skriver til dig inden for kort tid for at bekræfte, og derefter kontakter ${esc(navn)} dig.</p>
         <div class="vf-valgt">${foto(m, 72)}<div><p class="mk-navn">${ph(m.navn, '[Mæglerens navn]')}</p><p class="mk-firma">${ph(m.firma, '[Firma]')}</p></div></div>
-        <p class="hjaelp">Mægleren får intet, før du har bekræftet. Passer mægleren dig ikke, så sig det, når vi ringer.</p>`;
+        <p class="hjaelp">Vi sender først dine oplysninger til mægleren, når du har bekræftet. Passer mægleren dig ikke, så sig det, når vi ringer.</p>`;
     } else if (type === 'venteliste') {
       html = `
         <h2 class="vf-h" tabindex="-1">Tak. Du er skrevet op.</h2>

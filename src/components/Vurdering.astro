@@ -115,7 +115,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
         </div>
       </div>
       <p class="fejltekst" id="vf-bolig-fejl" role="alert" hidden></p>
-      <button type="button" class="knap knap--fuld" data-naeste>Det passer</button>
+      <button type="button" class="knap knap--fuld" data-naeste>Ja, det passer</button>
     </div>
 
     <!-- Trin 3: Stand og tilvalg -->
@@ -155,7 +155,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
         ))}
       </fieldset>
       <p class="fejltekst" id="vf-horisont-fejl" role="alert" hidden></p>
-      <button type="button" class="knap knap--fuld" data-naeste>Se resultatet</button>
+      <button type="button" class="knap knap--fuld" data-naeste>Se min boligværdi</button>
     </div>
 
     <!-- Trin 5 og 6: Geo-tjek og resultat -->
@@ -189,7 +189,8 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
       </div>
       <div class="felt">
         <label for="vf-tlf">Telefon</label>
-        <input id="vf-tlf" name="telefon" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="8 cifre" aria-describedby="vf-kontakt-fejl" />
+        <input id="vf-tlf" name="telefon" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="8 cifre" aria-describedby="vf-tlf-hjaelp vf-kontakt-fejl" />
+        <p class="hjaelp" id="vf-tlf-hjaelp">Til at bekræfte og aftale vurderingen med mægleren.</p>
       </div>
       <div class="felt">
         <label for="vf-email">E-mail</label>
@@ -211,7 +212,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
         <input id="vf-firma" name="firma" type="text" tabindex="-1" autocomplete="off" />
       </div>
       <p class="fejltekst" id="vf-kontakt-fejl" role="alert" hidden></p>
-      <button type="submit" class="knap knap--fuld" id="vf-send">Send</button>
+      <button type="submit" class="knap knap--fuld" id="vf-send">Send til mægleren</button>
     </div>
 
     <!-- Trin 8: Tak -->
