@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Side from '../components/Side.astro';
 import SaadanVirkerDet from '../components/SaadanVirkerDet.astro';
-import Penge from '../components/Penge.astro';
+import Mission from '../components/Mission.astro';
 ---
 <Base titel="Sådan virker Nem Vurdering" beskrivelse="Skriv din adresse, se et estimat på få sekunder, og få en gratis salgsvurdering fra den lokale mægler, der passer bedst til din bolig. Kun den mægler kontakter dig.">
   <Side titel="Sådan virker det" lead="Det tager cirka 30 sekunder at se dit estimat. Du kan stoppe når som helst, og vi sender ikke noget videre, før du selv har sagt ja." />
@@ -27,7 +27,5 @@ import Penge from '../components/Penge.astro';
     </div>
   </section>
 
-  <section class="sektion">
-    <div class="wrap"><Penge /></div>
-  </section>
+  <Mission />
 </Base>

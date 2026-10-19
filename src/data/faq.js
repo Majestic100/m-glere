@@ -26,26 +26,18 @@ export const faq = [
     ],
   },
   {
-    id: 'hvordan-tjener-nem-vurdering-penge',
-    q: 'Hvordan tjener Nem Vurdering penge?',
-    a: [
-      'Mægleren betaler os for henvisningen. Det koster ikke dig noget, hverken estimatet eller salgsvurderingen.',
-      'Vi anbefaler kun mæglere, der samarbejder med os. Det fortæller vi åbent, så du ved, hvordan det hænger sammen.',
-    ],
-  },
-  {
     id: 'hvordan-finder-i-min-maegler',
     q: 'Hvordan finder I min mægler?',
     a: [
-      'Vi kigger kun på vores partnermæglere, altså mæglere der samarbejder med os og betaler for henvisninger. Først finder vi dem, der dækker dit postnummer, handler med din boligtype, er aktive og har tid til flere opgaver.',
-      'Dem giver vi point for, hvor mange boliger som din de har solgt lokalt det seneste år, hvor hurtigt de typisk sælger, om de har erfaring med boliger i din prisklasse, hvad boligejere fortæller os bagefter, og hvor hurtigt de plejer at svare. Har to mæglere næsten samme point, skiftes de til at blive anbefalet, så det er fair.',
+      'Vi samarbejder med udvalgte lokale mæglere, og det er blandt dem, vi finder din. Først ser vi på, hvem der dækker dit postnummer, handler med din boligtype og har tid til en ny opgave.',
+      'Derefter ser vi på lokale salg af boliger som din, hvor hurtigt mægleren typisk sælger, erfaring med din prisklasse, hvad andre boligejere siger, og hvor hurtigt mægleren svarer. Den, der passer bedst til netop din bolig, bliver din anbefaling.',
       'Vi gemmer, hvorfor du fik netop den mægler, så vi altid kan forklare det.',
     ],
   },
   {
     id: 'hvis-jeg-ikke-synes-om-maegleren',
     q: 'Hvad hvis jeg ikke synes om mægleren?',
-    a: ['Sig det til os, når vi ringer for at bekræfte. Vi finder en anden. Mægleren får intet, før du har bekræftet.'],
+    a: ['Sig det til os, når vi ringer for at bekræfte. Vi finder en anden. Dine oplysninger går først videre, når du har bekræftet.'],
   },
   {
     id: 'er-jeg-forpligtet',

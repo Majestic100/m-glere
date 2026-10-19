@@ -621,7 +621,7 @@ function start(rod) {
           <article class="anbefalet">
             <div class="anbefalet-hoved">${foto(m, 72)}<div><p class="mk-navn">${ph(m.navn, '[Mæglerens navn]')}</p><p class="mk-firma">${ph(m.firma, '[Firma]')}${m.by ? `, ${esc(m.by)}` : ''}</p></div></div>
             <ul>${(s.match.begrundelser || []).map((b) => `<li>${flueben()}<span>${esc(b)}</span></li>`).join('')}</ul>
-            <p class="vf-note">Vi har fundet den mægler, der passer bedst til din bolig ud fra lokale salg, liggetid og erfaring med boliger som din. Mægleren samarbejder med Nem Vurdering og betaler os for henvisningen. Det koster ikke dig noget. <a href="${esc($('vf-link-faq').getAttribute('href'))}">Sådan finder vi din mægler</a></p>
+            <p class="vf-note">Vi har fundet den mægler, der passer bedst til din bolig ud fra lokale salg, liggetid og erfaring med boliger som din. Det er gratis for dig. <a href="${esc($('vf-link-faq').getAttribute('href'))}">Sådan finder vi din mægler</a></p>
             <button type="button" class="knap knap--fuld" id="vf-til-kontakt">Få en præcis vurdering fra ${esc(fn)}</button>
           </article>
         </div>`;
