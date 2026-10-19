@@ -1,7 +1,6 @@
 ---
 import '@fontsource-variable/schibsted-grotesk/wght.css';
 import '../styles/global.css';
-import Logo from '../components/Logo.astro';
 import Ph from '../components/Ph.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import site from '../data/site.json';
@@ -38,13 +37,15 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     <meta property="og:description" content={beskrivelse} />
     {billede && <meta property="og:image" content={new URL(billede, Astro.site)} />}
     <meta name="theme-color" content="#5b2c5e" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/brand/ikon-32px.svg" type="image/svg+xml" />
+    <link rel="icon" href="/brand/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/brand/ikon-512.png" />
   </head>
   <body>
     <a class="spring" href="#indhold">Gå til indhold</a>
     <header class="top">
       <div class="wrap top-indre">
-        <a href="/" class="top-logo" aria-label="Vurdo, til forsiden"><Logo /></a>
+        <a href="/" class="top-logo"><img src="/brand/logo.svg" alt="Nem Vurdering" /></a>
         <nav class="menu-bred" aria-label="Hovedmenu">
           <ul>
             {nav.map((n) => (
@@ -72,7 +73,7 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     <footer class="bund">
       <div class="wrap bund-indre">
         <div class="stak">
-          <Logo />
+          <a href="/" class="bund-logo"><img src="/brand/logo-hvid.svg" alt="Nem Vurdering" /></a>
           <p class="bund-om">
             Vurdo drives af {site.selskab}, CVR <Ph v={site.cvr} />, <Ph v={site.adresse} />, <Ph v={site.postnrBy} />.
           </p>
@@ -118,11 +119,25 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     min-height: 64px;
     gap: 1rem;
   }
-  .top-logo {
-    text-decoration: none;
+  .top-logo,
+  .bund-logo {
     display: inline-flex;
     min-height: 48px;
     align-items: center;
+    justify-self: start;
+  }
+  .top-logo img {
+    height: 30px;
+    width: auto;
+  }
+  .bund-logo img {
+    height: 30px;
+    width: auto;
+  }
+  @media (min-width: 60rem) {
+    .top-logo img {
+      height: 36px;
+    }
   }
   .menu {
     position: relative;
@@ -195,9 +210,13 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
       display: block;
     }
   }
+  /* Mørk sidefod, så det hvide logo kan stå på den */
   .bund {
-    background: var(--flade);
-    border-top: 1px solid var(--streg);
+    --bund-bg: #211a22;
+    --bund-fg: #f4ecf3;
+    --bund-svag: #c9bfcb;
+    background: var(--bund-bg);
+    color: var(--bund-fg);
     padding-block: 3rem calc(3rem + var(--cookie-h, 0px));
     font-size: var(--t-s);
   }
@@ -206,7 +225,7 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     gap: 2rem;
   }
   .bund-om {
-    color: var(--skifer);
+    color: var(--bund-svag);
     max-width: 34rem;
   }
   .bund-links {
@@ -218,7 +237,7 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    color: var(--blaek);
+    color: var(--bund-fg);
   }
   .bund-cookie {
     background: none;
@@ -228,6 +247,17 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     text-decoration: underline;
     text-underline-offset: 0.18em;
     cursor: pointer;
+  }
+  .bund :focus-visible {
+    outline-color: var(--bund-fg);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .bund {
+      --bund-bg: #0f0b10;
+    }
+  }
+  :root[data-theme='dark'] .bund {
+    --bund-bg: #0f0b10;
   }
   @media (min-width: 48rem) {
     .bund-indre {

@@ -2,7 +2,7 @@
 //   node scripts/preview-bundle.mjs         -> preview/ til deling som Claude-artifact
 //   node scripts/preview-bundle.mjs --demo  -> demo/ til GitHub Pages (hele sider, ikke indekseret)
 // Kør `npm run build` først.
-import { readFileSync, writeFileSync, mkdirSync, rmSync, copyFileSync, readdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, rmSync, copyFileSync, cpSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 const DIST = 'dist';
@@ -27,7 +27,7 @@ for (const fil of sider) {
     .replace(/(href|src)="\/_astro\//g, '$1="_astro/')
     .replace(/url\(\/_astro\//g, 'url(_astro/')
     .replace(/(srcset="[^"]*")/g, (m) => m.replace(/\/_astro\//g, '_astro/'))
-    .replace(/href="\/favicon\.svg"/g, 'href="favicon.svg"')
+    .replace(/(href|src)="\/brand\//g, '$1="brand/')
     .replace(/href="\/(#[^"]*)?"/g, (_, hash = '') => `href="index.html${hash}"`)
     .replace(/href="\/([a-z0-9-]+)(#[^"]*)?"/g, (_, s, hash = '') => `href="${s}.html${hash}"`)
     .replace('<head>', `<head><script>window.VURDO_PREVIEW=true</script>${DEMO ? '<meta name="robots" content="noindex, nofollow">' : ''}`)
@@ -54,7 +54,7 @@ for (const f of brugte) {
   if (existsSync(kilde)) copyFileSync(kilde, join(UD, f.replace(/^_astro\//, 'assets/')));
   else console.warn('Mangler', f);
 }
-copyFileSync(join(DIST, 'favicon.svg'), join(UD, 'favicon.svg'));
+if (existsSync(join(DIST, 'brand'))) cpSync(join(DIST, 'brand'), join(UD, 'brand'), { recursive: true });
 if (DEMO) {
   writeFileSync(join(UD, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
   writeFileSync(join(UD, '.nojekyll'), '');
