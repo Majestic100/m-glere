@@ -1,6 +1,6 @@
-# Vurdo
+# Nem Vurdering
 
-Mobile-first hjemmeside for Vurdo, en gratis tjeneste der hjælper boligejere med at se, hvad deres bolig er værd, og vælge den rette lokale mægler. Drives af Hero Media ApS.
+Mobile-first hjemmeside for Nem Vurdering, en gratis tjeneste der hjælper boligejere med at se, hvad deres bolig er værd, og vælge den rette lokale mægler. Drives af Hero Media ApS.
 
 ## Teknik kort
 

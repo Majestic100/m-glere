@@ -636,7 +636,7 @@ function start(rod) {
           formaal: tilstand.flow === 'maegler' ? 'kontakt_maegler_og_vurdo' : 'kvartalsvurdering',
           givet: $('vf-samtykke-1').checked,
           tekst: s1Tekst,
-          modtagere: m ? [`${m.navn}, ${m.butik}`, 'Vurdo (Hero Media ApS)'] : ['Vurdo (Hero Media ApS)'],
+          modtagere: m ? [`${m.navn}, ${m.butik}`, 'Nem Vurdering (Hero Media ApS)'] : ['Nem Vurdering (Hero Media ApS)'],
           kanaler: tilstand.flow === 'maegler' ? ['telefon', 'sms', 'email'] : ['email'],
           klient_tidspunkt: nu,
         },
@@ -646,7 +646,7 @@ function start(rod) {
                 formaal: 'kvartalsvurdering',
                 givet: $('vf-samtykke-2').checked,
                 tekst: KVARTAL_TEKST,
-                modtagere: ['Vurdo (Hero Media ApS)'],
+                modtagere: ['Nem Vurdering (Hero Media ApS)'],
                 kanaler: ['email'],
                 klient_tidspunkt: nu,
               },
@@ -700,7 +700,7 @@ function start(rod) {
     $('vf-tak').innerHTML = `
       <h2 class="vf-h" tabindex="-1">Det er helt i orden.</h2>
       <p class="lead">Vi har ikke gemt noget om dig. Du er velkommen tilbage, når du vil se tallet igen.</p>
-      <a class="knap knap--sekundaer" href="/saadan-virker-det">Læs hvordan Vurdo virker</a>`;
+      <a class="knap knap--sekundaer" href="/saadan-virker-det">Læs hvordan Nem Vurdering virker</a>`;
     vis('tak');
   }
 

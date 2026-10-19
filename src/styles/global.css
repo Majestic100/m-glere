@@ -1,20 +1,21 @@
 /*
-  Vurdo designsystem.
+  Nem Vurdering designsystem.
   Layout: én smal læsespalte på mobil (max 34rem), to spalter fra 60rem. Formularen er altid første ting på siden.
-  Farver: én hovedfarve (Lyng) og varme, let lilla-tonede neutraler. Se /brandguide.
+  Farver: logoets mørkegrønne som hovedfarve, guld kun som pynt (for lav kontrast til tekst), og lyse neutraler. Se /brandguide.
 */
 :root {
-  --lyng: #5b2c5e;
-  --lyng-moerk: #4a2250;
-  --lyng-tone: #f4ecf3;
-  --lyng-kant: #dcc7db;
-  --kalk: #faf8fa;
+  --gron: #1f3d33;
+  --gron-moerk: #172e26;
+  --gron-tone: #e8efea;
+  --gron-kant: #c3d3ca;
+  --guld: #e3a54a;
+  --kalk: #f6f4ef;
   --flade: #ffffff;
-  --blaek: #211a22;
-  --skifer: #5f5662;
-  --streg: #e5dee6;
-  --felt-kant: #8a7f8c;
-  --paa-lyng: #ffffff;
+  --blaek: #1a221f;
+  --skifer: #56605b;
+  --streg: #dfe3de;
+  --felt-kant: #7e8a84;
+  --paa-gron: #ffffff;
   --ok: #1e7a4c;
   --fejl: #b3261e;
   --ph-bg: #fff3c4;
@@ -34,22 +35,23 @@
   --gutter: 16px;
   --spalte: 34rem;
   --bred: 68rem;
-  --skygge: 0 1px 2px rgb(33 26 34 / 0.06), 0 8px 24px rgb(33 26 34 / 0.06);
+  --skygge: 0 1px 2px rgb(26 34 31 / 0.06), 0 8px 24px rgb(26 34 31 / 0.06);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --lyng: #d2a8d3;
-    --lyng-moerk: #e3c4e3;
-    --lyng-tone: #2c2030;
-    --lyng-kant: #5a3f5c;
-    --kalk: #18131a;
-    --flade: #231c25;
-    --blaek: #ede7ee;
-    --skifer: #b4aab6;
-    --streg: #3a313c;
-    --felt-kant: #8a7f8c;
-    --paa-lyng: #18131a;
+    --gron: #8fc5ac;
+    --gron-moerk: #b0d8c5;
+    --gron-tone: #1c2a24;
+    --gron-kant: #355246;
+    --guld: #e3a54a;
+    --kalk: #0f1513;
+    --flade: #17201c;
+    --blaek: #eef2ef;
+    --skifer: #aab5af;
+    --streg: #2a3631;
+    --felt-kant: #7a8680;
+    --paa-gron: #0f1513;
     --ok: #6fcf9c;
     --fejl: #ff8a80;
     --ph-bg: #3d3412;
@@ -58,17 +60,18 @@
   }
 }
 :root[data-theme='dark'] {
-  --lyng: #d2a8d3;
-  --lyng-moerk: #e3c4e3;
-  --lyng-tone: #2c2030;
-  --lyng-kant: #5a3f5c;
-  --kalk: #18131a;
-  --flade: #231c25;
-  --blaek: #ede7ee;
-  --skifer: #b4aab6;
-  --streg: #3a313c;
-  --felt-kant: #8a7f8c;
-  --paa-lyng: #18131a;
+  --gron: #8fc5ac;
+  --gron-moerk: #b0d8c5;
+  --gron-tone: #1c2a24;
+  --gron-kant: #355246;
+  --guld: #e3a54a;
+  --kalk: #0f1513;
+  --flade: #17201c;
+  --blaek: #eef2ef;
+  --skifer: #aab5af;
+  --streg: #2a3631;
+  --felt-kant: #7a8680;
+  --paa-gron: #0f1513;
   --ok: #6fcf9c;
   --fejl: #ff8a80;
   --ph-bg: #3d3412;
@@ -127,14 +130,14 @@ p {
   text-wrap: pretty;
 }
 a {
-  color: var(--lyng);
+  color: var(--gron);
   text-underline-offset: 0.18em;
 }
 a:hover {
-  color: var(--lyng-moerk);
+  color: var(--gron-moerk);
 }
 :focus-visible {
-  outline: 3px solid var(--lyng);
+  outline: 3px solid var(--gron);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -222,9 +225,9 @@ td.tal {
   min-height: 56px;
   padding: 0 1.5rem;
   border-radius: var(--r-s);
-  border: 2px solid var(--lyng);
-  background: var(--lyng);
-  color: var(--paa-lyng);
+  border: 2px solid var(--gron);
+  background: var(--gron);
+  color: var(--paa-gron);
   font: inherit;
   font-weight: 650;
   font-size: var(--t-m);
@@ -233,9 +236,9 @@ td.tal {
   transition: background-color 0.15s ease;
 }
 .knap:hover {
-  background: var(--lyng-moerk);
-  border-color: var(--lyng-moerk);
-  color: var(--paa-lyng);
+  background: var(--gron-moerk);
+  border-color: var(--gron-moerk);
+  color: var(--paa-gron);
 }
 .knap[disabled] {
   opacity: 0.45;
@@ -246,11 +249,11 @@ td.tal {
 }
 .knap--sekundaer {
   background: transparent;
-  color: var(--lyng);
+  color: var(--gron);
 }
 .knap--sekundaer:hover {
-  background: var(--lyng-tone);
-  color: var(--lyng-moerk);
+  background: var(--gron-tone);
+  color: var(--gron-moerk);
 }
 .knap--link {
   background: none;
@@ -344,7 +347,7 @@ td.tal {
   flex: none;
   font-size: 1.5rem;
   font-weight: 400;
-  color: var(--lyng);
+  color: var(--gron);
   line-height: 1;
 }
 .faq details[open] summary::after {
@@ -379,8 +382,8 @@ td.tal {
   min-width: 0;
 }
 .mk--valgt {
-  border-color: var(--lyng);
-  box-shadow: 0 0 0 3px var(--lyng-kant);
+  border-color: var(--gron);
+  box-shadow: 0 0 0 3px var(--gron-kant);
 }
 .mk-hoved {
   display: flex;
@@ -393,8 +396,8 @@ td.tal {
   height: 72px;
   border-radius: 12px;
   object-fit: cover;
-  background: var(--lyng-tone);
-  color: var(--lyng);
+  background: var(--gron-tone);
+  color: var(--gron);
   display: grid;
   place-items: center;
   font-weight: 750;
@@ -456,8 +459,8 @@ td.tal {
   border-radius: var(--r-s);
   border: 0;
   overflow: hidden;
-  background: var(--lyng-tone) center / cover no-repeat;
-  color: var(--lyng);
+  background: var(--gron-tone) center / cover no-repeat;
+  color: var(--gron);
   font: inherit;
   font-weight: 650;
   cursor: pointer;

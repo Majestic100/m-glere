@@ -16,7 +16,7 @@ const { b } = Astro.props;
 const kr = (n: number) => `${new Intl.NumberFormat('da-DK').format(n)} kr.`;
 ---
 <Base
-  titel={`Hvad er min bolig værd i ${b.by}? | Vurdo`}
+  titel={`Hvad er min bolig værd i ${b.by}? | Nem Vurdering`}
   beskrivelse={`Få et gratis estimat på din bolig i ${b.by} på 30 sekunder, og vælg selv den lokale mægler, der kender dit område.`}
 >
   <Hero by={b.by} billede={b.billede} />

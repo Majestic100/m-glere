@@ -3,7 +3,7 @@ export const faq = [
   {
     q: 'Er det virkelig gratis?',
     a: [
-      'Ja. Du betaler ikke noget for at bruge Vurdo, hverken for estimatet, for at vælge en mægler eller for den salgsvurdering, mægleren giver dig bagefter.',
+      'Ja. Du betaler ikke noget for at bruge Nem Vurdering, hverken for estimatet, for at vælge en mægler eller for den salgsvurdering, mægleren giver dig bagefter.',
     ],
   },
   {
@@ -14,9 +14,9 @@ export const faq = [
     ],
   },
   {
-    q: 'Hvordan tjener Vurdo penge?',
+    q: 'Hvordan tjener Nem Vurdering penge?',
     a: [
-      'Mæglerne betaler os, når de får en henvendelse gennem Vurdo. Det er derfor, tjenesten er gratis for dig.',
+      'Mæglerne betaler os, når de får en henvendelse gennem Nem Vurdering. Det er derfor, tjenesten er gratis for dig.',
       'Det betyder også, at vi ikke er en uafhængig forbrugertjeneste. Vi viser kun mæglere, der har en aftale med os. Til gengæld vælger du selv, og vi lover ikke, at en bestemt mægler er den billigste.',
     ],
   },

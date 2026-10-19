@@ -1,14 +1,14 @@
 {
-  "navn": "Vurdo",
+  "navn": "Nem Vurdering",
   "selskab": "Hero Media ApS",
   "cvr": "[PLADSHOLDER: CVR-nummer]",
   "adresse": "[PLADSHOLDER: Gade og nr.]",
   "postnrBy": "[PLADSHOLDER: Postnr. og by]",
   "telefon": "[PLADSHOLDER: Telefon]",
-  "email": "[PLADSHOLDER: kontakt@vurdo.dk]",
+  "email": "[PLADSHOLDER: kontakt@nemvurdering.dk]",
   "heroMediaUrl": "https://heromedia.dk",
   "trustpilotUrl": "",
-  "samtykkeVersion": "2026-10-18",
+  "samtykkeVersion": "2026-10-19",
   "aabningstider": {
     "pladsholder": true,
     "note": "Bruges til at love et opkald inden for 15 minutter, kun når nogen faktisk sidder klar. Ret til de rigtige tider.",

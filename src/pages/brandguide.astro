@@ -3,24 +3,24 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Side from '../components/Side.astro';
-import Logo from '../components/Logo.astro';
 import parcelhus from '../assets/boliger/parcelhus.jpg';
 import raekkehuse from '../assets/boliger/raekkehuse.jpg';
 import etageejendom from '../assets/boliger/etageejendom.jpg';
 
 const hoved = [
-  { navn: 'Lyng', token: '--lyng', hex: '#5B2C5E', rolle: 'Hovedfarve. Knapper, links, statuslinje, estimatet.', kontrast: '10,7:1 på hvid' },
-  { navn: 'Lyng mørk', token: '--lyng-moerk', hex: '#4A2250', rolle: 'Hover og aktive knapper.', kontrast: '12,8:1 på hvid' },
-  { navn: 'Lyng tone', token: '--lyng-tone', hex: '#F4ECF3', rolle: 'Valgte felter, resultatbokse, statuslinjens bund.', kontrast: 'Lyng på tone 9,2:1' },
-  { navn: 'Lyng kant', token: '--lyng-kant', hex: '#DCC7DB', rolle: 'Fokusring og kant om valgt mægler.', kontrast: 'Kun dekoration' },
+  { navn: 'Skovgrøn', token: '--gron', hex: '#1F3D33', rolle: 'Hovedfarve fra logoet. Knapper, links, statuslinje, estimatet og sidefoden.', kontrast: '11,8:1 på hvid' },
+  { navn: 'Skovgrøn mørk', token: '--gron-moerk', hex: '#172E26', rolle: 'Hover og aktive knapper.', kontrast: '14,4:1 på hvid' },
+  { navn: 'Grøn tone', token: '--gron-tone', hex: '#E8EFEA', rolle: 'Valgte felter, resultatbokse, statuslinjens bund.', kontrast: 'Skovgrøn på tone 10,1:1' },
+  { navn: 'Grøn kant', token: '--gron-kant', hex: '#C3D3CA', rolle: 'Fokusring og kant om valgt mægler.', kontrast: 'Kun dekoration' },
+  { navn: 'Guld', token: '--guld', hex: '#E3A54A', rolle: 'Fluebenet i logoet. Kun som pynt eller på mørkegrøn baggrund. Aldrig til tekst på lys baggrund.', kontrast: '2,2:1 på hvid, 5,5:1 på skovgrøn' },
 ];
 const neutrale = [
-  { navn: 'Kalk', token: '--kalk', hex: '#FAF8FA', rolle: 'Sidens baggrund.', kontrast: '' },
+  { navn: 'Kalk', token: '--kalk', hex: '#F6F4EF', rolle: 'Sidens baggrund. Samme lyse farve som i logoet.', kontrast: '' },
   { navn: 'Hvid', token: '--flade', hex: '#FFFFFF', rolle: 'Kort, formular og felter.', kontrast: '' },
-  { navn: 'Blæk', token: '--blaek', hex: '#211A22', rolle: 'Brødtekst og overskrifter.', kontrast: '16,1:1 på kalk' },
-  { navn: 'Skifer', token: '--skifer', hex: '#5F5662', rolle: 'Sekundær tekst og hjælpetekst.', kontrast: '6,6:1 på kalk' },
-  { navn: 'Feltkant', token: '--felt-kant', hex: '#8A7F8C', rolle: 'Kant om inputfelter.', kontrast: '3,8:1 på hvid' },
-  { navn: 'Streg', token: '--streg', hex: '#E5DEE6', rolle: 'Skillelinjer og kortkanter.', kontrast: 'Kun dekoration' },
+  { navn: 'Blæk', token: '--blaek', hex: '#1A221F', rolle: 'Brødtekst og overskrifter.', kontrast: '14,8:1 på kalk' },
+  { navn: 'Skifer', token: '--skifer', hex: '#56605B', rolle: 'Sekundær tekst og hjælpetekst.', kontrast: '5,9:1 på kalk' },
+  { navn: 'Feltkant', token: '--felt-kant', hex: '#7E8A84', rolle: 'Kant om inputfelter.', kontrast: '3,6:1 på hvid' },
+  { navn: 'Streg', token: '--streg', hex: '#DFE3DE', rolle: 'Skillelinjer og kortkanter.', kontrast: 'Kun dekoration' },
 ];
 const funktion = [
   { navn: 'Grøn', token: '--ok', hex: '#1E7A4C', rolle: 'Flueben i tillidspunkter. Kun som tegn på "i orden".', kontrast: '5,3:1 på hvid' },
@@ -35,20 +35,19 @@ const marked = [
   { hvem: 'Estate', farve: '#445E8D', note: 'Blå' },
   { hvem: 'RealMæglerne', farve: '#003761', note: 'Navy med orange' },
   { hvem: 'LokalBolig', farve: '#678D72', note: 'Salviegrøn' },
-  { hvem: 'Vurdo', farve: '#5B2C5E', note: 'Lyng' },
+  { hvem: 'Nem Vurdering', farve: '#1F3D33', note: 'Skovgrøn med guld' },
 ];
 ---
-<Base titel="Brandguide | Vurdo" beskrivelse="Vurdos farver, typografi, logo og billedstil." noindex>
-  <Side eyebrow="Brandguide, version 1" titel="Vurdo i farver, skrift og billeder" lead="Én hovedfarve, varme neutraler og almindelige danske boliger. Alt her er bygget ind i siden som variabler, så en ændring her slår igennem overalt." />
+<Base titel="Brandguide | Nem Vurdering" beskrivelse="Nem Vurderings farver, typografi, logo og billedstil." noindex>
+  <Side eyebrow="Brandguide, version 1" titel="Nem Vurdering i farver, skrift og billeder" lead="Logoets skovgrønne som hovedfarve, lyse neutraler og almindelige danske boliger. Alt her er bygget ind i siden som variabler, så en ændring her slår igennem overalt." />
 
   <section class="sektion" style="padding-top:1rem">
     <div class="wrap stak-l">
       <div class="prosa">
-        <h2>Hvorfor lyng?</h2>
-        <p>Vi har kigget på de farver, de største mæglerkæder bruger på deres hjemmesider. Næsten alle ligger i to grupper: rød (home) eller blå, navy og grøn (danbolig, nybolig, EDC, Estate, RealMæglerne og LokalBolig).</p>
-        <p>Vurdo samarbejder med mæglere fra flere kæder. Hvis siden ligner én kæde, tror boligejeren, at vi er den kæde, og mæglere fra de andre kæder ser forkerte ud på vores side. Derfor har vi valgt en farve, ingen af dem bruger.</p>
-        <p>Lyng er en dyb, dæmpet lilla, opkaldt efter lyngen på den jyske hede. Den er rolig og mørk nok til, at hvid tekst på den er let at læse. Den virker ikke som udsalg (rød) eller bank (navy). Og den passer til de røde og gule mursten, der er på de fleste danske boliger på billederne.</p>
-        <p><strong>Risikoen</strong> er, at lilla for nogle kan minde om skønhed eller wellness. Derfor er farven trukket mod brun og holdt mørk. Hvis den alligevel føles forkert i test, er alternativet en dyb blågrøn, men den ligger tæt på danbolig.</p>
+        <h2>Om farverne</h2>
+        <p>Farverne kommer fra logoet: en dyb skovgrøn, en lys kalkfarve og et gyldent flueben. Siden bruger skovgrøn til alt, man kan trykke på, og holder guld til små detaljer.</p>
+        <p>Vi har kigget på de farver, de største mæglerkæder bruger. De ligger i to grupper: rød (home) eller blå, navy og grøn (danbolig, nybolig, EDC, Estate, RealMæglerne og LokalBolig).</p>
+        <p><strong>Risikoen</strong> er, at skovgrøn ligger tæt på danbolig, nybolig og LokalBolig. Nem Vurdering samarbejder med mæglere fra flere kæder, så siden må ikke ligne én af dem. Det gyldne flueben og den lyse kalkfarve er det, der skiller os ud. Brug dem konsekvent, også i annoncer.</p>
       </div>
 
       <div class="marked" role="list" aria-label="Farver hos mæglerkæderne">
@@ -90,8 +89,8 @@ const marked = [
     <div class="wrap stak-l">
       <h2>Regler for farverne</h2>
       <ul class="regler prosa">
-        <li>Lyng bruges til det, man kan trykke på, og til estimatet. Ikke til store flader.</li>
-        <li>Der er én primær knap pr. skærm. Den er altid fyldt med lyng.</li>
+        <li>Skovgrøn bruges til det, man kan trykke på, og til estimatet. Den må gerne fylde i sidefoden, men ikke i store flader midt på siden.</li>
+        <li>Der er én primær knap pr. skærm. Den er altid fyldt med skovgrøn.</li>
         <li>Rød bruges kun til fejl. Aldrig til knapper, tilbud eller fremhævning.</li>
         <li>Al tekst har mindst 4,5:1 i kontrast. Feltkanter mindst 3:1.</li>
         <li>Siden har også et mørkt tema. Farverne skifter automatisk efter telefonens indstilling.</li>
@@ -120,10 +119,15 @@ const marked = [
     <div class="wrap stak-l">
       <h2>Logo</h2>
       <div class="logoer">
-        <div class="logo-proeve logo-lys"><Logo /></div>
-        <div class="logo-proeve logo-lyng"><span class="logo-hvid"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" fill="#ffffff"></rect><path d="M7.5 16 15 9l7.5 7" fill="none" stroke="#5b2c5e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11 21.5h8" fill="none" stroke="#5b2c5e" stroke-width="2.6" stroke-linecap="round"></path></svg><span>vurdo</span></span></div>
+        <div class="logo-proeve logo-lys"><img src="/brand/logo.svg" alt="Nem Vurdering" /></div>
+        <div class="logo-proeve logo-moerk"><img src="/brand/logo-hvid.svg" alt="Nem Vurdering, hvid udgave" /></div>
+        <div class="logo-proeve logo-lys"><img class="logo-ikon" src="/brand/ikon.svg" alt="Ikon" /></div>
       </div>
-      <p class="prosa">Et tag og en streg: boligen og et niveau. Ordet skrives altid med lille v i logoet og med stort V i løbende tekst. <mark class="ph">[Forslag. Bør gennemgås af en grafiker før lancering.]</mark></p>
+      <ul class="regler prosa">
+        <li><code>logo.svg</code> på lys baggrund. <code>logo-hvid.svg</code> på skovgrøn eller mørk baggrund.</li>
+        <li><code>ikon.svg</code> alene, fx som profilbillede. Favicon og app-ikon ligger i <code>/brand/</code>.</li>
+        <li>Navnet skrives "Nem Vurdering" i løbende tekst.</li>
+      </ul>
     </div>
   </section>
 
@@ -138,7 +142,7 @@ const marked = [
       <div class="prosa">
         <ul class="regler">
           <li>Almindelige danske boliger: parcelhuse i røde mursten, rækkehuse, etageejendomme. Dagslys, gerne overskyet.</li>
-          <li>Rigtige mennesker: mæglerne og holdet bag Vurdo, fotograferet hvor de arbejder. Aldrig håndtryk, nøgleoverrækkelser eller smilende par med papkasser.</li>
+          <li>Rigtige mennesker: mæglerne og holdet bag Nem Vurdering, fotograferet hvor de arbejder. Aldrig håndtryk, nøgleoverrækkelser eller smilende par med papkasser.</li>
           <li>Ingen filtre og ingen kraftig efterbehandling.</li>
         </ul>
         <p><strong>Om de nuværende billeder:</strong> De tre boligbilleder er genereret med AI (Higgsfield) som midlertidige billeder. De viser ingen rigtige adresser. De bør skiftes til egne fotos før lancering, og der er bevidst ingen AI-genererede mennesker på siden.</p>
@@ -235,7 +239,7 @@ const marked = [
   .skrift-tal {
     font-size: var(--t-xl);
     font-weight: 750;
-    color: var(--lyng);
+    color: var(--gron);
   }
   .logoer {
     display: grid;
@@ -250,22 +254,17 @@ const marked = [
     border: 1px solid var(--streg);
   }
   .logo-lys {
-    background: #faf8fa;
-    --blaek: #211a22;
-    --lyng: #5b2c5e;
-    --paa-lyng: #ffffff;
+    background: #f6f4ef;
   }
-  .logo-lyng {
-    background: #5b2c5e;
+  .logo-moerk {
+    background: #1f3d33;
   }
-  .logo-hvid {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #ffffff;
-    font-weight: 750;
-    font-size: 1.45rem;
-    letter-spacing: -0.035em;
+  .logo-proeve img {
+    height: 40px;
+    width: auto;
+  }
+  .logo-proeve .logo-ikon {
+    height: 56px;
   }
   .billeder {
     display: grid;

@@ -36,7 +36,7 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     <meta property="og:title" content={titel} />
     <meta property="og:description" content={beskrivelse} />
     {billede && <meta property="og:image" content={new URL(billede, Astro.site)} />}
-    <meta name="theme-color" content="#5b2c5e" />
+    <meta name="theme-color" content="#1f3d33" />
     <link rel="icon" href="/brand/ikon-32px.svg" type="image/svg+xml" />
     <link rel="icon" href="/brand/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="/brand/ikon-512.png" />
@@ -45,7 +45,12 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
     <a class="spring" href="#indhold">Gå til indhold</a>
     <header class="top">
       <div class="wrap top-indre">
-        <a href="/" class="top-logo"><img src="/brand/logo.svg" alt="Nem Vurdering" /></a>
+        <a href="/" class="top-logo">
+          <picture>
+            <source srcset="/brand/logo-hvid.svg" media="(prefers-color-scheme: dark)" />
+            <img src="/brand/logo.svg" alt="Nem Vurdering" />
+          </picture>
+        </a>
         <nav class="menu-bred" aria-label="Hovedmenu">
           <ul>
             {nav.map((n) => (
@@ -75,9 +80,9 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
         <div class="stak">
           <a href="/" class="bund-logo"><img src="/brand/logo-hvid.svg" alt="Nem Vurdering" /></a>
           <p class="bund-om">
-            Vurdo drives af {site.selskab}, CVR <Ph v={site.cvr} />, <Ph v={site.adresse} />, <Ph v={site.postnrBy} />.
+            Nem Vurdering drives af {site.selskab}, CVR <Ph v={site.cvr} />, <Ph v={site.adresse} />, <Ph v={site.postnrBy} />.
           </p>
-          <p class="bund-om">Gratis for boligejere. Ejendomsmæglerne betaler Vurdo, når de får en henvendelse.</p>
+          <p class="bund-om">Gratis for boligejere. Ejendomsmæglerne betaler Nem Vurdering, når de får en henvendelse.</p>
         </div>
         <nav aria-label="Sidefod">
           <ul class="bund-links">
@@ -192,8 +197,8 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
   .menu a[aria-current='page'],
   .menu-bred a:hover,
   .menu-bred a[aria-current='page'] {
-    background: var(--lyng-tone);
-    color: var(--lyng);
+    background: var(--gron-tone);
+    color: var(--gron);
   }
   .menu-bred {
     display: none;
@@ -212,9 +217,9 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
   }
   /* Mørk sidefod, så det hvide logo kan stå på den */
   .bund {
-    --bund-bg: #211a22;
-    --bund-fg: #f4ecf3;
-    --bund-svag: #c9bfcb;
+    --bund-bg: #1f3d33;
+    --bund-fg: #f6f4ef;
+    --bund-svag: #c8d3cd;
     background: var(--bund-bg);
     color: var(--bund-fg);
     padding-block: 3rem calc(3rem + var(--cookie-h, 0px));
@@ -253,11 +258,11 @@ const sti = Astro.url.pathname.replace(/\.html$/, '');
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme='light']) .bund {
-      --bund-bg: #0f0b10;
+      --bund-bg: #0b1210;
     }
   }
   :root[data-theme='dark'] .bund {
-    --bund-bg: #0f0b10;
+    --bund-bg: #0b1210;
   }
   @media (min-width: 48rem) {
     .bund-indre {

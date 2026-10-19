@@ -17,8 +17,8 @@ const grupper = byer
   .filter((g) => g.liste.length);
 const oevrige = aktive.filter((m) => !brugt.has(m.id));
 ---
-<Base titel="Partnermæglere | Vurdo" beskrivelse="Se de ejendomsmæglere, du kan vælge imellem gennem Vurdo, sorteret efter område.">
-  <Side eyebrow="Mæglerne" titel="Partnermæglere i dit område" lead="Det er de mæglere, du kan vælge imellem. De betaler Vurdo, når de får en henvendelse. Du vælger selv, og kun den, du vælger, kontakter dig." />
+<Base titel="Partnermæglere | Nem Vurdering" beskrivelse="Se de ejendomsmæglere, du kan vælge imellem gennem Nem Vurdering, sorteret efter område.">
+  <Side eyebrow="Mæglerne" titel="Partnermæglere i dit område" lead="Det er de mæglere, du kan vælge imellem. De betaler Nem Vurdering, når de får en henvendelse. Du vælger selv, og kun den, du vælger, kontakter dig." />
   {grupper.map((g) => (
     <section class="sektion maegler-sektion">
       <div class="wrap stak-l">

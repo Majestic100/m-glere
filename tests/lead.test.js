@@ -14,9 +14,9 @@ const gyldig = () => ({
   bolig: { type: 'villa', areal: 120 }, tidshorisont: '0-3', prioriteter: ['tryg-proces'],
   maegler: { id: m.id }, kontakt: { navn: 'Test Person', telefon: '12 34 56 78', email: 'test@example.dk', bedste_tidspunkt: 'aften' },
   samtykker: [{ givet: true, tekst: samtykkeTekst(m) }, { givet: true }],
-  attribution: { utm_source: 'facebook', utm_campaign: 'test' }, side: { url: 'https://vurdo.dk/' },
+  attribution: { utm_source: 'facebook', utm_campaign: 'test' }, side: { url: 'https://nemvurdering.dk/' },
 });
-const kald = (body) => lead(new Request('https://vurdo.dk/api/lead', { method: 'POST', body: JSON.stringify(body) }), {});
+const kald = (body) => lead(new Request('https://nemvurdering.dk/api/lead', { method: 'POST', body: JSON.stringify(body) }), {});
 
 test('gyldig henvendelse sendes til GoHighLevel med samtykke og UTM', async () => {
   let sendt;

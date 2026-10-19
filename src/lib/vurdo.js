@@ -1,7 +1,7 @@
 // Fælles logik for formularen, serverfunktionerne og testene.
 // Ren JavaScript uden afhængigheder, så den kan bruges både i browseren og i Netlify Functions.
 
-export const FORM_VERSION = '2026-10-18';
+export const FORM_VERSION = '2026-10-19';
 
 export const BOLIGTYPER = [
   { id: 'villa', navn: 'Villa eller parcelhus' },
@@ -33,7 +33,7 @@ export const TIDSPUNKTER = [
   { id: 'aften', navn: 'Aften (17 til 20)' },
 ];
 
-// BBR-anvendelseskoder (enh020 / byg021) oversat til Vurdos boligtyper.
+// BBR-anvendelseskoder (enh020 / byg021) oversat til Nem Vurderings boligtyper.
 const BBR_KODER = {
   110: 'landejendom',
   120: 'villa',
@@ -138,8 +138,8 @@ export function postnrFraTitel(titel) {
 export function samtykkeTekst(maegler) {
   const hvem = maegler ? `${maegler.navn}, ${maegler.butik}` : '[valgt mægler, butik]';
   return (
-    `Ja tak, jeg vil gerne kontaktes af ${hvem} og af Vurdo på telefon, SMS og e-mail ` +
-    'om en gratis og uforpligtende salgsvurdering af min bolig. Vurdo, der drives af Hero Media ApS, ' +
+    `Ja tak, jeg vil gerne kontaktes af ${hvem} og af Nem Vurdering på telefon, SMS og e-mail ` +
+    'om en gratis og uforpligtende salgsvurdering af min bolig. Nem Vurdering, der drives af Hero Media ApS, ' +
     'sender mine oplysninger videre til den mægler, jeg har valgt. Jeg kan altid trække mit samtykke tilbage.'
   );
 }
@@ -147,7 +147,7 @@ export function samtykkeTekst(maegler) {
 export const KVARTAL_TEKST = 'Send mig gerne en opdateret vurdering af min bolig hver 3. måned.';
 
 export const KVARTAL_TEKST_NYSGERRIG =
-  'Ja tak, Vurdo, der drives af Hero Media ApS, må sende mig en opdateret vurdering af min bolig hver 3. måned på e-mail. ' +
+  'Ja tak, Nem Vurdering, der drives af Hero Media ApS, må sende mig en opdateret vurdering af min bolig hver 3. måned på e-mail. ' +
   'Jeg kan altid afmelde igen.';
 
 /** Normaliserer et dansk telefonnummer til +45XXXXXXXX. Returnerer null, hvis det ikke ligner et gyldigt nummer. */

@@ -27,7 +27,7 @@ for (const fil of sider) {
     .replace(/(href|src)="\/_astro\//g, '$1="_astro/')
     .replace(/url\(\/_astro\//g, 'url(_astro/')
     .replace(/(srcset="[^"]*")/g, (m) => m.replace(/\/_astro\//g, '_astro/'))
-    .replace(/(href|src)="\/brand\//g, '$1="brand/')
+    .replace(/(href|src|srcset)="\/brand\//g, '$1="brand/')
     .replace(/href="\/(#[^"]*)?"/g, (_, hash = '') => `href="index.html${hash}"`)
     .replace(/href="\/([a-z0-9-]+)(#[^"]*)?"/g, (_, s, hash = '') => `href="${s}.html${hash}"`)
     .replace('<head>', `<head><script>window.VURDO_PREVIEW=true</script>${DEMO ? '<meta name="robots" content="noindex, nofollow">' : ''}`)

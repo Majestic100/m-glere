@@ -62,8 +62,8 @@ export default async (req, context) => {
       tekst_matcher: tekst(s1.tekst, 2000) === forventet1,
       modtagere:
         flow === 'maegler'
-          ? [{ type: 'maegler', id: maegler.id, navn: maegler.navn, butik: maegler.butik }, { type: 'vurdo', navn: 'Vurdo (Hero Media ApS)' }]
-          : [{ type: 'vurdo', navn: 'Vurdo (Hero Media ApS)' }],
+          ? [{ type: 'maegler', id: maegler.id, navn: maegler.navn, butik: maegler.butik }, { type: 'vurdo', navn: 'Nem Vurdering (Hero Media ApS)' }]
+          : [{ type: 'vurdo', navn: 'Nem Vurdering (Hero Media ApS)' }],
       kanaler: flow === 'maegler' ? ['telefon', 'sms', 'email'] : ['email'],
       tidspunkt_server: modtaget,
       tidspunkt_klient: tekst(s1.klient_tidspunkt, 40),
@@ -74,7 +74,7 @@ export default async (req, context) => {
       formaal: 'kvartalsvurdering',
       givet: Boolean(s2.givet),
       tekst: KVARTAL_TEKST,
-      modtagere: [{ type: 'vurdo', navn: 'Vurdo (Hero Media ApS)' }],
+      modtagere: [{ type: 'vurdo', navn: 'Nem Vurdering (Hero Media ApS)' }],
       kanaler: ['email'],
       tidspunkt_server: modtaget,
     });

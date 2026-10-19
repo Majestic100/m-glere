@@ -68,7 +68,7 @@ test('BBR-koder', () => {
 
 test('samtykketekst indeholder mægler og butik og ingen tankestreger', () => {
   const t = samtykkeTekst({ navn: 'A B', butik: 'C' });
-  assert.match(t, /kontaktes af A B, C og af Vurdo/);
+  assert.match(t, /kontaktes af A B, C og af Nem Vurdering/);
   assert.doesNotMatch(t, /[–—]/);
   assert.equal(kr(1250000).replace(/\s/g, ' '), '1.250.000 kr.');
 });
