@@ -1,9 +1,9 @@
 {
-  "_note": "Boligmarkedet lige nu. Fire nøgletal fra Finans Danmark, Boligmarkedsstatistikken. Sektionen vises først, når alle fire tal og datoen er udfyldt.",
+  "_note": "Boligmarkedet lige nu for hele landet. Opdateres med npm run hent-boligdata.",
   "kilde": "Finans Danmark, Boligmarkedsstatistikken",
-  "dato": "TODO_DATA",
-  "m2pris": "TODO_DATA",
-  "liggetid_dage": "TODO_DATA",
-  "handler_12m": "TODO_DATA",
-  "nedslag_pct": "TODO_DATA"
+  "dato": "2. kvartal 2026",
+  "m2pris": 19100,
+  "liggetid_dage": 138,
+  "handler_12m": 71400,
+  "udvikling_1aar_pct": 7.2
 }

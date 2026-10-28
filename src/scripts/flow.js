@@ -17,7 +17,7 @@ import {
   tal,
   parseBeloeb,
 } from '../lib/faelles.js';
-import { indeksM2, beregnEstimat, beregnProvenu } from '../lib/estimat.js';
+import { indeksM2, beregnEstimat, beregnProvenu, statistikPostnr } from '../lib/estimat.js';
 import { matchMaegler } from '../lib/matching.js';
 import { spor, nytEventId, metaCookies } from './tracking.js';
 import { hentAttribution } from './attribution.js';
@@ -31,7 +31,18 @@ if (rod) start(rod);
 
 function start(rod) {
   const data = JSON.parse(document.getElementById('vf-data').textContent);
-  const indeks = indeksM2(data.m2);
+  // Kvadratmeterpriserne hentes først, når de skal bruges, og kun én gang.
+  let indeksLoefte = null;
+  function hentIndeks() {
+    indeksLoefte ||= fetch($('vf-link-m2').getAttribute('href'))
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then(indeksM2)
+      .catch((err) => {
+        indeksLoefte = null;
+        throw err;
+      });
+    return indeksLoefte;
+  }
   const form = rod.querySelector('#vf-form');
   const $ = (id) => rod.querySelector(`#${id}`);
   const skaerme = [...rod.querySelectorAll('.vf-skaerm')];
@@ -86,7 +97,10 @@ function start(rod) {
     gem();
     document.body.classList.toggle('flow-aktiv', navn !== 'adresse');
     opdaterStatus(navn);
-    if (navn === 'bolig') forberedBolig();
+    if (navn === 'bolig') {
+      forberedBolig();
+      hentIndeks().catch(() => {});
+    }
     if (navn === 'resultat') visResultat();
     if (navn === 'kontakt') forberedKontakt();
     if (navn !== 'adresse') {
@@ -429,6 +443,8 @@ function start(rod) {
   async function visResultat() {
     laesFelter();
     const a = s.adresse;
+    const indeks = await hentIndeks().catch(() => null);
+    s.indeksFejl = !indeks;
     s.estimat = beregnEstimat(
       {
         adresseId: a.adresseId,
@@ -498,7 +514,9 @@ function start(rod) {
       $('vf-res-middel').textContent =
         s.bolig.type === 'andel'
           ? 'Prisen på en andelsbolig fastsættes efter foreningens regler. En mægler eller din bestyrelse kan hjælpe dig.'
-          : 'Vi mangler tal for boliger som din i området. En lokal mægler kan give dig en præcis vurdering, gratis.';
+          : s.indeksFejl
+            ? 'Vi kunne ikke hente priserne. Tjek din forbindelse, gå et trin tilbage, og prøv igen.'
+            : 'Vi mangler tal for boliger som din i området. En lokal mægler kan give dig en præcis vurdering, gratis.';
       $('vf-testdata').hidden = true;
       $('vf-praecision').innerHTML = '';
     }
@@ -515,9 +533,10 @@ function start(rod) {
     const n = e.noegletal;
     const pn = s.adresse.postnr;
     const fliser = [
-      harTal(n.m2_postnr) && ['Pris pr. m² i ' + pn, kr(n.m2_postnr)],
+      // Finans Danmark samler nogle postnumre i intervaller. Her viser vi ikke et postnummer, tallet ikke gælder for alene.
+      harTal(n.m2_postnr) && [statistikPostnr(pn) === pn ? `Pris pr. m² i ${pn}` : 'Pris pr. m² i området', kr(n.m2_postnr)],
       harTal(n.m2_kommune) && ['Pris pr. m² i kommunen', kr(n.m2_kommune)],
-      harTal(n.liggetid_dage) && ['Gennemsnitlig liggetid', `${n.liggetid_dage} dage`],
+      harTal(n.liggetid_dage) && ['Gennemsnitlig salgstid', `${n.liggetid_dage} dage`],
       harTal(n.udvikling_1aar_pct) && ['Prisudvikling 1 år', `${n.udvikling_1aar_pct > 0 ? '+' : ''}${String(n.udvikling_1aar_pct).replace('.', ',')} %`],
     ].filter(Boolean);
     const kilde = e.testdata ? 'Testtal' : `Kilde: ${esc(e.kilde)}${e.dato && !erTodo(e.dato) ? `, ${esc(e.dato)}` : ''}`;

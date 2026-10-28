@@ -1,14 +1,7586 @@
 {
-  "_note": "Kvadratmeterpriser og nøgletal pr. postnummer og kommune pr. boligtype. Kilde: Finans Danmark, Boligmarkedsstatistikken. Udfyldes af Hero Media. TODO_DATA betyder, at tallet mangler, og så vises intet estimat for den kombination.",
+  "_note": "Kvadratmeterpriser og nøgletal pr. postnummer og kommune pr. boligtype. Kvadratmeterprisen er gennemsnittet af de seneste to kvartaler vægtet med antal handler, eller fire kvartaler ved færre end 20 handler. Antal handler, salgstid og udvikling gælder de seneste fire kvartaler. Finans Danmark slår parcel- og rækkehuse sammen, så rækkehuse bruger tallene for hus. Postnumre i København K, V og Frederiksberg C er samlet i intervaller (1000, 1500, 1800). Opdateres med npm run hent-boligdata.",
   "kilde": "Finans Danmark, Boligmarkedsstatistikken",
-  "dato": "TODO_DATA",
+  "dato": "2. kvartal 2026",
   "testdata": false,
   "postnumre": [
-    { "postnr": "8000", "boligtype": "hus", "m2pris": "TODO_DATA", "antal_handler_12m": "TODO_DATA", "liggetid_dage": "TODO_DATA", "udvikling_1aar_pct": "TODO_DATA" },
-    { "postnr": "8000", "boligtype": "lejlighed", "m2pris": "TODO_DATA", "antal_handler_12m": "TODO_DATA", "liggetid_dage": "TODO_DATA", "udvikling_1aar_pct": "TODO_DATA" }
+    {
+      "postnr": "1000",
+      "boligtype": "hus",
+      "m2pris": 77000,
+      "antal_handler_12m": 17,
+      "liggetid_dage": 72,
+      "udvikling_1aar_pct": 24.9
+    },
+    {
+      "postnr": "1000",
+      "boligtype": "lejlighed",
+      "m2pris": 85100,
+      "antal_handler_12m": 528,
+      "liggetid_dage": 84,
+      "udvikling_1aar_pct": 17.9
+    },
+    {
+      "postnr": "1500",
+      "boligtype": "lejlighed",
+      "m2pris": 84600,
+      "antal_handler_12m": 310,
+      "liggetid_dage": 61,
+      "udvikling_1aar_pct": 21
+    },
+    {
+      "postnr": "1800",
+      "boligtype": "lejlighed",
+      "m2pris": 89100,
+      "antal_handler_12m": 321,
+      "liggetid_dage": 51,
+      "udvikling_1aar_pct": 16.4
+    },
+    {
+      "postnr": "2000",
+      "boligtype": "hus",
+      "m2pris": 83700,
+      "antal_handler_12m": 41,
+      "liggetid_dage": 81,
+      "udvikling_1aar_pct": 3.7
+    },
+    {
+      "postnr": "2000",
+      "boligtype": "lejlighed",
+      "m2pris": 78500,
+      "antal_handler_12m": 616,
+      "liggetid_dage": 40,
+      "udvikling_1aar_pct": 22.7
+    },
+    {
+      "postnr": "2100",
+      "boligtype": "lejlighed",
+      "m2pris": 82300,
+      "antal_handler_12m": 731,
+      "liggetid_dage": 55,
+      "udvikling_1aar_pct": 19.4
+    },
+    {
+      "postnr": "2150",
+      "boligtype": "lejlighed",
+      "m2pris": 86600,
+      "antal_handler_12m": 54,
+      "liggetid_dage": 56,
+      "udvikling_1aar_pct": 13.1
+    },
+    {
+      "postnr": "2200",
+      "boligtype": "lejlighed",
+      "m2pris": 81300,
+      "antal_handler_12m": 398,
+      "liggetid_dage": 50,
+      "udvikling_1aar_pct": 25.4
+    },
+    {
+      "postnr": "2300",
+      "boligtype": "hus",
+      "m2pris": 63400,
+      "antal_handler_12m": 188,
+      "liggetid_dage": 85,
+      "udvikling_1aar_pct": 12
+    },
+    {
+      "postnr": "2300",
+      "boligtype": "lejlighed",
+      "m2pris": 68300,
+      "antal_handler_12m": 1162,
+      "liggetid_dage": 48,
+      "udvikling_1aar_pct": 23.9
+    },
+    {
+      "postnr": "2400",
+      "boligtype": "lejlighed",
+      "m2pris": 67000,
+      "antal_handler_12m": 252,
+      "liggetid_dage": 43,
+      "udvikling_1aar_pct": 28.1
+    },
+    {
+      "postnr": "2450",
+      "boligtype": "lejlighed",
+      "m2pris": 74100,
+      "antal_handler_12m": 293,
+      "liggetid_dage": 53,
+      "udvikling_1aar_pct": 18.3
+    },
+    {
+      "postnr": "2500",
+      "boligtype": "hus",
+      "m2pris": 65600,
+      "antal_handler_12m": 99,
+      "liggetid_dage": 87,
+      "udvikling_1aar_pct": 11.2
+    },
+    {
+      "postnr": "2500",
+      "boligtype": "lejlighed",
+      "m2pris": 63500,
+      "antal_handler_12m": 371,
+      "liggetid_dage": 52,
+      "udvikling_1aar_pct": 26.2
+    },
+    {
+      "postnr": "2600",
+      "boligtype": "hus",
+      "m2pris": 37600,
+      "antal_handler_12m": 145,
+      "liggetid_dage": 62,
+      "udvikling_1aar_pct": 16
+    },
+    {
+      "postnr": "2600",
+      "boligtype": "lejlighed",
+      "m2pris": 35100,
+      "antal_handler_12m": 92,
+      "liggetid_dage": 92,
+      "udvikling_1aar_pct": 12.5
+    },
+    {
+      "postnr": "2605",
+      "boligtype": "hus",
+      "m2pris": 36800,
+      "antal_handler_12m": 96,
+      "liggetid_dage": 68,
+      "udvikling_1aar_pct": 15.7
+    },
+    {
+      "postnr": "2605",
+      "boligtype": "lejlighed",
+      "m2pris": 28300,
+      "antal_handler_12m": 17,
+      "liggetid_dage": 47,
+      "udvikling_1aar_pct": -0.6
+    },
+    {
+      "postnr": "2610",
+      "boligtype": "hus",
+      "m2pris": 46000,
+      "antal_handler_12m": 183,
+      "liggetid_dage": 59,
+      "udvikling_1aar_pct": 17.8
+    },
+    {
+      "postnr": "2610",
+      "boligtype": "lejlighed",
+      "m2pris": 46300,
+      "antal_handler_12m": 217,
+      "liggetid_dage": 52,
+      "udvikling_1aar_pct": 18.5
+    },
+    {
+      "postnr": "2620",
+      "boligtype": "hus",
+      "m2pris": 29700,
+      "antal_handler_12m": 121,
+      "liggetid_dage": 68,
+      "udvikling_1aar_pct": 10.8
+    },
+    {
+      "postnr": "2620",
+      "boligtype": "lejlighed",
+      "m2pris": 28900,
+      "antal_handler_12m": 37,
+      "liggetid_dage": 75,
+      "udvikling_1aar_pct": 13.8
+    },
+    {
+      "postnr": "2625",
+      "boligtype": "hus",
+      "m2pris": 33500,
+      "antal_handler_12m": 57,
+      "liggetid_dage": 56,
+      "udvikling_1aar_pct": 13.4
+    },
+    {
+      "postnr": "2630",
+      "boligtype": "hus",
+      "m2pris": 31000,
+      "antal_handler_12m": 240,
+      "liggetid_dage": 63,
+      "udvikling_1aar_pct": 11.9
+    },
+    {
+      "postnr": "2630",
+      "boligtype": "lejlighed",
+      "m2pris": 29900,
+      "antal_handler_12m": 265,
+      "liggetid_dage": 76,
+      "udvikling_1aar_pct": 11.2
+    },
+    {
+      "postnr": "2635",
+      "boligtype": "hus",
+      "m2pris": 30900,
+      "antal_handler_12m": 139,
+      "liggetid_dage": 71,
+      "udvikling_1aar_pct": 13.1
+    },
+    {
+      "postnr": "2635",
+      "boligtype": "lejlighed",
+      "m2pris": 30900,
+      "antal_handler_12m": 73,
+      "liggetid_dage": 62,
+      "udvikling_1aar_pct": 12.3
+    },
+    {
+      "postnr": "2640",
+      "boligtype": "hus",
+      "m2pris": 29100,
+      "antal_handler_12m": 143,
+      "liggetid_dage": 84,
+      "udvikling_1aar_pct": 13.6
+    },
+    {
+      "postnr": "2640",
+      "boligtype": "lejlighed",
+      "m2pris": 28700,
+      "antal_handler_12m": 34,
+      "liggetid_dage": 38,
+      "udvikling_1aar_pct": 13.3
+    },
+    {
+      "postnr": "2650",
+      "boligtype": "hus",
+      "m2pris": 44300,
+      "antal_handler_12m": 319,
+      "liggetid_dage": 83,
+      "udvikling_1aar_pct": 15.4
+    },
+    {
+      "postnr": "2650",
+      "boligtype": "lejlighed",
+      "m2pris": 40700,
+      "antal_handler_12m": 156,
+      "liggetid_dage": 60,
+      "udvikling_1aar_pct": 9.8
+    },
+    {
+      "postnr": "2650",
+      "boligtype": "fritidshus",
+      "m2pris": 38400,
+      "antal_handler_12m": 8,
+      "liggetid_dage": 28,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "2660",
+      "boligtype": "hus",
+      "m2pris": 34800,
+      "antal_handler_12m": 71,
+      "liggetid_dage": 74,
+      "udvikling_1aar_pct": 12.3
+    },
+    {
+      "postnr": "2665",
+      "boligtype": "hus",
+      "m2pris": 38800,
+      "antal_handler_12m": 85,
+      "liggetid_dage": 77,
+      "udvikling_1aar_pct": 18.4
+    },
+    {
+      "postnr": "2665",
+      "boligtype": "lejlighed",
+      "m2pris": 33800,
+      "antal_handler_12m": 63,
+      "liggetid_dage": 46,
+      "udvikling_1aar_pct": 16.6
+    },
+    {
+      "postnr": "2670",
+      "boligtype": "hus",
+      "m2pris": 32800,
+      "antal_handler_12m": 375,
+      "liggetid_dage": 98,
+      "udvikling_1aar_pct": 14.3
+    },
+    {
+      "postnr": "2670",
+      "boligtype": "lejlighed",
+      "m2pris": 36600,
+      "antal_handler_12m": 45,
+      "liggetid_dage": 65,
+      "udvikling_1aar_pct": 7.7
+    },
+    {
+      "postnr": "2680",
+      "boligtype": "hus",
+      "m2pris": 38400,
+      "antal_handler_12m": 242,
+      "liggetid_dage": 107,
+      "udvikling_1aar_pct": 11.7
+    },
+    {
+      "postnr": "2680",
+      "boligtype": "lejlighed",
+      "m2pris": 38700,
+      "antal_handler_12m": 63,
+      "liggetid_dage": 66,
+      "udvikling_1aar_pct": 14
+    },
+    {
+      "postnr": "2690",
+      "boligtype": "hus",
+      "m2pris": 32600,
+      "antal_handler_12m": 148,
+      "liggetid_dage": 106,
+      "udvikling_1aar_pct": 6.1
+    },
+    {
+      "postnr": "2700",
+      "boligtype": "hus",
+      "m2pris": 53300,
+      "antal_handler_12m": 125,
+      "liggetid_dage": 77,
+      "udvikling_1aar_pct": 9.2
+    },
+    {
+      "postnr": "2700",
+      "boligtype": "lejlighed",
+      "m2pris": 52900,
+      "antal_handler_12m": 141,
+      "liggetid_dage": 58,
+      "udvikling_1aar_pct": 23.4
+    },
+    {
+      "postnr": "2720",
+      "boligtype": "hus",
+      "m2pris": 66300,
+      "antal_handler_12m": 90,
+      "liggetid_dage": 67,
+      "udvikling_1aar_pct": 23.4
+    },
+    {
+      "postnr": "2720",
+      "boligtype": "lejlighed",
+      "m2pris": 62300,
+      "antal_handler_12m": 244,
+      "liggetid_dage": 33,
+      "udvikling_1aar_pct": 27.6
+    },
+    {
+      "postnr": "2730",
+      "boligtype": "hus",
+      "m2pris": 40200,
+      "antal_handler_12m": 143,
+      "liggetid_dage": 85,
+      "udvikling_1aar_pct": 14.1
+    },
+    {
+      "postnr": "2730",
+      "boligtype": "lejlighed",
+      "m2pris": 37400,
+      "antal_handler_12m": 36,
+      "liggetid_dage": 85,
+      "udvikling_1aar_pct": 8
+    },
+    {
+      "postnr": "2740",
+      "boligtype": "hus",
+      "m2pris": 39200,
+      "antal_handler_12m": 80,
+      "liggetid_dage": 63,
+      "udvikling_1aar_pct": 12.5
+    },
+    {
+      "postnr": "2750",
+      "boligtype": "hus",
+      "m2pris": 38300,
+      "antal_handler_12m": 172,
+      "liggetid_dage": 76,
+      "udvikling_1aar_pct": 17.9
+    },
+    {
+      "postnr": "2750",
+      "boligtype": "lejlighed",
+      "m2pris": 37300,
+      "antal_handler_12m": 47,
+      "liggetid_dage": 68,
+      "udvikling_1aar_pct": 14.8
+    },
+    {
+      "postnr": "2760",
+      "boligtype": "hus",
+      "m2pris": 39200,
+      "antal_handler_12m": 33,
+      "liggetid_dage": 63,
+      "udvikling_1aar_pct": 14.6
+    },
+    {
+      "postnr": "2760",
+      "boligtype": "lejlighed",
+      "m2pris": 43800,
+      "antal_handler_12m": 14,
+      "liggetid_dage": 21,
+      "udvikling_1aar_pct": 29.6
+    },
+    {
+      "postnr": "2765",
+      "boligtype": "hus",
+      "m2pris": 36300,
+      "antal_handler_12m": 148,
+      "liggetid_dage": 59,
+      "udvikling_1aar_pct": 14.7
+    },
+    {
+      "postnr": "2765",
+      "boligtype": "lejlighed",
+      "m2pris": 34100,
+      "antal_handler_12m": 39,
+      "liggetid_dage": 55,
+      "udvikling_1aar_pct": 13.2
+    },
+    {
+      "postnr": "2770",
+      "boligtype": "hus",
+      "m2pris": 43300,
+      "antal_handler_12m": 329,
+      "liggetid_dage": 84,
+      "udvikling_1aar_pct": 12.8
+    },
+    {
+      "postnr": "2770",
+      "boligtype": "lejlighed",
+      "m2pris": 48300,
+      "antal_handler_12m": 125,
+      "liggetid_dage": 67,
+      "udvikling_1aar_pct": 13.8
+    },
+    {
+      "postnr": "2791",
+      "boligtype": "hus",
+      "m2pris": 39300,
+      "antal_handler_12m": 267,
+      "liggetid_dage": 106,
+      "udvikling_1aar_pct": 6.7
+    },
+    {
+      "postnr": "2791",
+      "boligtype": "lejlighed",
+      "m2pris": 46400,
+      "antal_handler_12m": 24,
+      "liggetid_dage": 47,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "2800",
+      "boligtype": "hus",
+      "m2pris": 57800,
+      "antal_handler_12m": 220,
+      "liggetid_dage": 86,
+      "udvikling_1aar_pct": 9.9
+    },
+    {
+      "postnr": "2800",
+      "boligtype": "lejlighed",
+      "m2pris": 52500,
+      "antal_handler_12m": 261,
+      "liggetid_dage": 68,
+      "udvikling_1aar_pct": 16.5
+    },
+    {
+      "postnr": "2820",
+      "boligtype": "hus",
+      "m2pris": 62600,
+      "antal_handler_12m": 154,
+      "liggetid_dage": 96,
+      "udvikling_1aar_pct": 13
+    },
+    {
+      "postnr": "2820",
+      "boligtype": "lejlighed",
+      "m2pris": 52200,
+      "antal_handler_12m": 131,
+      "liggetid_dage": 63,
+      "udvikling_1aar_pct": 18.5
+    },
+    {
+      "postnr": "2830",
+      "boligtype": "hus",
+      "m2pris": 60500,
+      "antal_handler_12m": 187,
+      "liggetid_dage": 67,
+      "udvikling_1aar_pct": 13
+    },
+    {
+      "postnr": "2830",
+      "boligtype": "lejlighed",
+      "m2pris": 46400,
+      "antal_handler_12m": 98,
+      "liggetid_dage": 57,
+      "udvikling_1aar_pct": 16.3
+    },
+    {
+      "postnr": "2840",
+      "boligtype": "hus",
+      "m2pris": 54500,
+      "antal_handler_12m": 201,
+      "liggetid_dage": 110,
+      "udvikling_1aar_pct": 5.5
+    },
+    {
+      "postnr": "2840",
+      "boligtype": "lejlighed",
+      "m2pris": 44700,
+      "antal_handler_12m": 102,
+      "liggetid_dage": 68,
+      "udvikling_1aar_pct": 9.5
+    },
+    {
+      "postnr": "2850",
+      "boligtype": "hus",
+      "m2pris": 50400,
+      "antal_handler_12m": 38,
+      "liggetid_dage": 106,
+      "udvikling_1aar_pct": 24.2
+    },
+    {
+      "postnr": "2850",
+      "boligtype": "lejlighed",
+      "m2pris": 38700,
+      "antal_handler_12m": 53,
+      "liggetid_dage": 61,
+      "udvikling_1aar_pct": 17.2
+    },
+    {
+      "postnr": "2860",
+      "boligtype": "hus",
+      "m2pris": 47600,
+      "antal_handler_12m": 193,
+      "liggetid_dage": 75,
+      "udvikling_1aar_pct": 14.6
+    },
+    {
+      "postnr": "2860",
+      "boligtype": "lejlighed",
+      "m2pris": 45100,
+      "antal_handler_12m": 177,
+      "liggetid_dage": 55,
+      "udvikling_1aar_pct": 19.6
+    },
+    {
+      "postnr": "2870",
+      "boligtype": "hus",
+      "m2pris": 63200,
+      "antal_handler_12m": 38,
+      "liggetid_dage": 98,
+      "udvikling_1aar_pct": 14.1
+    },
+    {
+      "postnr": "2870",
+      "boligtype": "lejlighed",
+      "m2pris": 53600,
+      "antal_handler_12m": 62,
+      "liggetid_dage": 33,
+      "udvikling_1aar_pct": 23.6
+    },
+    {
+      "postnr": "2880",
+      "boligtype": "hus",
+      "m2pris": 45700,
+      "antal_handler_12m": 113,
+      "liggetid_dage": 90,
+      "udvikling_1aar_pct": 8.1
+    },
+    {
+      "postnr": "2880",
+      "boligtype": "lejlighed",
+      "m2pris": 43000,
+      "antal_handler_12m": 85,
+      "liggetid_dage": 46,
+      "udvikling_1aar_pct": 21.1
+    },
+    {
+      "postnr": "2900",
+      "boligtype": "hus",
+      "m2pris": 65800,
+      "antal_handler_12m": 160,
+      "liggetid_dage": 118,
+      "udvikling_1aar_pct": 6.3
+    },
+    {
+      "postnr": "2900",
+      "boligtype": "lejlighed",
+      "m2pris": 76900,
+      "antal_handler_12m": 201,
+      "liggetid_dage": 75,
+      "udvikling_1aar_pct": 16.1
+    },
+    {
+      "postnr": "2920",
+      "boligtype": "hus",
+      "m2pris": 71600,
+      "antal_handler_12m": 136,
+      "liggetid_dage": 121,
+      "udvikling_1aar_pct": 2.5
+    },
+    {
+      "postnr": "2920",
+      "boligtype": "lejlighed",
+      "m2pris": 65200,
+      "antal_handler_12m": 242,
+      "liggetid_dage": 72,
+      "udvikling_1aar_pct": 15
+    },
+    {
+      "postnr": "2930",
+      "boligtype": "hus",
+      "m2pris": 80400,
+      "antal_handler_12m": 47,
+      "liggetid_dage": 169,
+      "udvikling_1aar_pct": 3
+    },
+    {
+      "postnr": "2930",
+      "boligtype": "lejlighed",
+      "m2pris": 74000,
+      "antal_handler_12m": 22,
+      "liggetid_dage": 49,
+      "udvikling_1aar_pct": -2.7
+    },
+    {
+      "postnr": "2942",
+      "boligtype": "hus",
+      "m2pris": 57400,
+      "antal_handler_12m": 14,
+      "liggetid_dage": 17,
+      "udvikling_1aar_pct": -5.4
+    },
+    {
+      "postnr": "2942",
+      "boligtype": "lejlighed",
+      "m2pris": 59000,
+      "antal_handler_12m": 40,
+      "liggetid_dage": 118,
+      "udvikling_1aar_pct": 4.8
+    },
+    {
+      "postnr": "2950",
+      "boligtype": "hus",
+      "m2pris": 56800,
+      "antal_handler_12m": 114,
+      "liggetid_dage": 106,
+      "udvikling_1aar_pct": 12.7
+    },
+    {
+      "postnr": "2960",
+      "boligtype": "hus",
+      "m2pris": 50700,
+      "antal_handler_12m": 97,
+      "liggetid_dage": 130,
+      "udvikling_1aar_pct": 6.7
+    },
+    {
+      "postnr": "2970",
+      "boligtype": "hus",
+      "m2pris": 41800,
+      "antal_handler_12m": 229,
+      "liggetid_dage": 109,
+      "udvikling_1aar_pct": 5.9
+    },
+    {
+      "postnr": "2970",
+      "boligtype": "lejlighed",
+      "m2pris": 39300,
+      "antal_handler_12m": 118,
+      "liggetid_dage": 95,
+      "udvikling_1aar_pct": 10.9
+    },
+    {
+      "postnr": "2980",
+      "boligtype": "hus",
+      "m2pris": 32700,
+      "antal_handler_12m": 97,
+      "liggetid_dage": 76,
+      "udvikling_1aar_pct": 4.9
+    },
+    {
+      "postnr": "2980",
+      "boligtype": "lejlighed",
+      "m2pris": 21400,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 21,
+      "udvikling_1aar_pct": -5.2
+    },
+    {
+      "postnr": "2990",
+      "boligtype": "hus",
+      "m2pris": 33100,
+      "antal_handler_12m": 57,
+      "liggetid_dage": 48,
+      "udvikling_1aar_pct": 7
+    },
+    {
+      "postnr": "3000",
+      "boligtype": "hus",
+      "m2pris": 31200,
+      "antal_handler_12m": 157,
+      "liggetid_dage": 105,
+      "udvikling_1aar_pct": 11.1
+    },
+    {
+      "postnr": "3000",
+      "boligtype": "lejlighed",
+      "m2pris": 30200,
+      "antal_handler_12m": 206,
+      "liggetid_dage": 113,
+      "udvikling_1aar_pct": 9.8
+    },
+    {
+      "postnr": "3050",
+      "boligtype": "hus",
+      "m2pris": 47000,
+      "antal_handler_12m": 79,
+      "liggetid_dage": 114,
+      "udvikling_1aar_pct": 11.1
+    },
+    {
+      "postnr": "3050",
+      "boligtype": "lejlighed",
+      "m2pris": 22500,
+      "antal_handler_12m": 43,
+      "liggetid_dage": 44,
+      "udvikling_1aar_pct": 1.6
+    },
+    {
+      "postnr": "3060",
+      "boligtype": "hus",
+      "m2pris": 41300,
+      "antal_handler_12m": 125,
+      "liggetid_dage": 88,
+      "udvikling_1aar_pct": 5.5
+    },
+    {
+      "postnr": "3060",
+      "boligtype": "lejlighed",
+      "m2pris": 28000,
+      "antal_handler_12m": 47,
+      "liggetid_dage": 101,
+      "udvikling_1aar_pct": -0.4
+    },
+    {
+      "postnr": "3070",
+      "boligtype": "hus",
+      "m2pris": 36100,
+      "antal_handler_12m": 44,
+      "liggetid_dage": 134,
+      "udvikling_1aar_pct": -2.2
+    },
+    {
+      "postnr": "3070",
+      "boligtype": "lejlighed",
+      "m2pris": 39900,
+      "antal_handler_12m": 15,
+      "liggetid_dage": 71,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "3100",
+      "boligtype": "hus",
+      "m2pris": 33200,
+      "antal_handler_12m": 59,
+      "liggetid_dage": 146,
+      "udvikling_1aar_pct": -0.5
+    },
+    {
+      "postnr": "3100",
+      "boligtype": "fritidshus",
+      "m2pris": 54600,
+      "antal_handler_12m": 106,
+      "liggetid_dage": 180,
+      "udvikling_1aar_pct": 13.4
+    },
+    {
+      "postnr": "3120",
+      "boligtype": "fritidshus",
+      "m2pris": 39100,
+      "antal_handler_12m": 69,
+      "liggetid_dage": 119,
+      "udvikling_1aar_pct": 12.1
+    },
+    {
+      "postnr": "3140",
+      "boligtype": "hus",
+      "m2pris": 31900,
+      "antal_handler_12m": 68,
+      "liggetid_dage": 126,
+      "udvikling_1aar_pct": 2.2
+    },
+    {
+      "postnr": "3200",
+      "boligtype": "hus",
+      "m2pris": 22000,
+      "antal_handler_12m": 210,
+      "liggetid_dage": 117,
+      "udvikling_1aar_pct": 5.3
+    },
+    {
+      "postnr": "3200",
+      "boligtype": "fritidshus",
+      "m2pris": 21900,
+      "antal_handler_12m": 13,
+      "liggetid_dage": 43,
+      "udvikling_1aar_pct": -5.4
+    },
+    {
+      "postnr": "3210",
+      "boligtype": "hus",
+      "m2pris": 20200,
+      "antal_handler_12m": 34,
+      "liggetid_dage": 116,
+      "udvikling_1aar_pct": 32.2
+    },
+    {
+      "postnr": "3210",
+      "boligtype": "fritidshus",
+      "m2pris": 39800,
+      "antal_handler_12m": 203,
+      "liggetid_dage": 117,
+      "udvikling_1aar_pct": 5.2
+    },
+    {
+      "postnr": "3220",
+      "boligtype": "fritidshus",
+      "m2pris": 69700,
+      "antal_handler_12m": 45,
+      "liggetid_dage": 128,
+      "udvikling_1aar_pct": 16.1
+    },
+    {
+      "postnr": "3230",
+      "boligtype": "hus",
+      "m2pris": 18500,
+      "antal_handler_12m": 142,
+      "liggetid_dage": 123,
+      "udvikling_1aar_pct": 11.3
+    },
+    {
+      "postnr": "3230",
+      "boligtype": "fritidshus",
+      "m2pris": 30000,
+      "antal_handler_12m": 99,
+      "liggetid_dage": 137,
+      "udvikling_1aar_pct": 6.9
+    },
+    {
+      "postnr": "3250",
+      "boligtype": "hus",
+      "m2pris": 28400,
+      "antal_handler_12m": 115,
+      "liggetid_dage": 121,
+      "udvikling_1aar_pct": 13.8
+    },
+    {
+      "postnr": "3250",
+      "boligtype": "lejlighed",
+      "m2pris": 26400,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 16,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "3250",
+      "boligtype": "fritidshus",
+      "m2pris": 36800,
+      "antal_handler_12m": 194,
+      "liggetid_dage": 128,
+      "udvikling_1aar_pct": 11.6
+    },
+    {
+      "postnr": "3300",
+      "boligtype": "hus",
+      "m2pris": 17700,
+      "antal_handler_12m": 172,
+      "liggetid_dage": 121,
+      "udvikling_1aar_pct": 7.5
+    },
+    {
+      "postnr": "3300",
+      "boligtype": "fritidshus",
+      "m2pris": 32500,
+      "antal_handler_12m": 137,
+      "liggetid_dage": 133,
+      "udvikling_1aar_pct": 11
+    },
+    {
+      "postnr": "3310",
+      "boligtype": "hus",
+      "m2pris": 19400,
+      "antal_handler_12m": 25,
+      "liggetid_dage": 46,
+      "udvikling_1aar_pct": 25.9
+    },
+    {
+      "postnr": "3310",
+      "boligtype": "fritidshus",
+      "m2pris": 23300,
+      "antal_handler_12m": 69,
+      "liggetid_dage": 131,
+      "udvikling_1aar_pct": 17.3
+    },
+    {
+      "postnr": "3320",
+      "boligtype": "hus",
+      "m2pris": 21800,
+      "antal_handler_12m": 74,
+      "liggetid_dage": 83,
+      "udvikling_1aar_pct": 5.8
+    },
+    {
+      "postnr": "3330",
+      "boligtype": "hus",
+      "m2pris": 22100,
+      "antal_handler_12m": 19,
+      "liggetid_dage": 15,
+      "udvikling_1aar_pct": -9.7
+    },
+    {
+      "postnr": "3360",
+      "boligtype": "fritidshus",
+      "m2pris": 47300,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 33,
+      "udvikling_1aar_pct": 18.6
+    },
+    {
+      "postnr": "3370",
+      "boligtype": "fritidshus",
+      "m2pris": 26900,
+      "antal_handler_12m": 71,
+      "liggetid_dage": 88,
+      "udvikling_1aar_pct": 18.9
+    },
+    {
+      "postnr": "3390",
+      "boligtype": "hus",
+      "m2pris": 18300,
+      "antal_handler_12m": 122,
+      "liggetid_dage": 91,
+      "udvikling_1aar_pct": 12.5
+    },
+    {
+      "postnr": "3390",
+      "boligtype": "fritidshus",
+      "m2pris": 37400,
+      "antal_handler_12m": 49,
+      "liggetid_dage": 115,
+      "udvikling_1aar_pct": -0.7
+    },
+    {
+      "postnr": "3400",
+      "boligtype": "hus",
+      "m2pris": 32800,
+      "antal_handler_12m": 293,
+      "liggetid_dage": 77,
+      "udvikling_1aar_pct": 12.9
+    },
+    {
+      "postnr": "3400",
+      "boligtype": "lejlighed",
+      "m2pris": 35000,
+      "antal_handler_12m": 154,
+      "liggetid_dage": 78,
+      "udvikling_1aar_pct": 9.8
+    },
+    {
+      "postnr": "3400",
+      "boligtype": "fritidshus",
+      "m2pris": 22600,
+      "antal_handler_12m": 8,
+      "liggetid_dage": 78,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "3450",
+      "boligtype": "hus",
+      "m2pris": 38700,
+      "antal_handler_12m": 225,
+      "liggetid_dage": 68,
+      "udvikling_1aar_pct": 13.5
+    },
+    {
+      "postnr": "3450",
+      "boligtype": "lejlighed",
+      "m2pris": 34000,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 58,
+      "udvikling_1aar_pct": 11.2
+    },
+    {
+      "postnr": "3460",
+      "boligtype": "hus",
+      "m2pris": 45300,
+      "antal_handler_12m": 195,
+      "liggetid_dage": 109,
+      "udvikling_1aar_pct": 11.4
+    },
+    {
+      "postnr": "3460",
+      "boligtype": "lejlighed",
+      "m2pris": 39800,
+      "antal_handler_12m": 96,
+      "liggetid_dage": 81,
+      "udvikling_1aar_pct": 18.3
+    },
+    {
+      "postnr": "3480",
+      "boligtype": "hus",
+      "m2pris": 36400,
+      "antal_handler_12m": 145,
+      "liggetid_dage": 91,
+      "udvikling_1aar_pct": 14.6
+    },
+    {
+      "postnr": "3480",
+      "boligtype": "lejlighed",
+      "m2pris": 29100,
+      "antal_handler_12m": 39,
+      "liggetid_dage": 111,
+      "udvikling_1aar_pct": 3.2
+    },
+    {
+      "postnr": "3500",
+      "boligtype": "hus",
+      "m2pris": 47200,
+      "antal_handler_12m": 194,
+      "liggetid_dage": 77,
+      "udvikling_1aar_pct": 10.9
+    },
+    {
+      "postnr": "3500",
+      "boligtype": "lejlighed",
+      "m2pris": 34300,
+      "antal_handler_12m": 46,
+      "liggetid_dage": 60,
+      "udvikling_1aar_pct": 10.9
+    },
+    {
+      "postnr": "3520",
+      "boligtype": "hus",
+      "m2pris": 38200,
+      "antal_handler_12m": 130,
+      "liggetid_dage": 74,
+      "udvikling_1aar_pct": 10.4
+    },
+    {
+      "postnr": "3520",
+      "boligtype": "lejlighed",
+      "m2pris": 37100,
+      "antal_handler_12m": 53,
+      "liggetid_dage": 70,
+      "udvikling_1aar_pct": 9.6
+    },
+    {
+      "postnr": "3540",
+      "boligtype": "hus",
+      "m2pris": 30700,
+      "antal_handler_12m": 64,
+      "liggetid_dage": 80,
+      "udvikling_1aar_pct": 11.6
+    },
+    {
+      "postnr": "3550",
+      "boligtype": "hus",
+      "m2pris": 23500,
+      "antal_handler_12m": 137,
+      "liggetid_dage": 86,
+      "udvikling_1aar_pct": 10.3
+    },
+    {
+      "postnr": "3600",
+      "boligtype": "hus",
+      "m2pris": 25400,
+      "antal_handler_12m": 200,
+      "liggetid_dage": 103,
+      "udvikling_1aar_pct": 8.2
+    },
+    {
+      "postnr": "3600",
+      "boligtype": "lejlighed",
+      "m2pris": 27800,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 115,
+      "udvikling_1aar_pct": 2.6
+    },
+    {
+      "postnr": "3630",
+      "boligtype": "hus",
+      "m2pris": 19500,
+      "antal_handler_12m": 93,
+      "liggetid_dage": 103,
+      "udvikling_1aar_pct": 1.4
+    },
+    {
+      "postnr": "3630",
+      "boligtype": "fritidshus",
+      "m2pris": 20000,
+      "antal_handler_12m": 243,
+      "liggetid_dage": 128,
+      "udvikling_1aar_pct": 1.9
+    },
+    {
+      "postnr": "3650",
+      "boligtype": "hus",
+      "m2pris": 28500,
+      "antal_handler_12m": 224,
+      "liggetid_dage": 45,
+      "udvikling_1aar_pct": 13.1
+    },
+    {
+      "postnr": "3650",
+      "boligtype": "lejlighed",
+      "m2pris": 31600,
+      "antal_handler_12m": 16,
+      "liggetid_dage": 20,
+      "udvikling_1aar_pct": 6
+    },
+    {
+      "postnr": "3660",
+      "boligtype": "hus",
+      "m2pris": 30100,
+      "antal_handler_12m": 115,
+      "liggetid_dage": 74,
+      "udvikling_1aar_pct": 9.4
+    },
+    {
+      "postnr": "3660",
+      "boligtype": "lejlighed",
+      "m2pris": 31200,
+      "antal_handler_12m": 9,
+      "liggetid_dage": 38,
+      "udvikling_1aar_pct": 6.1
+    },
+    {
+      "postnr": "3670",
+      "boligtype": "hus",
+      "m2pris": 29700,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 88,
+      "udvikling_1aar_pct": 1.6
+    },
+    {
+      "postnr": "3700",
+      "boligtype": "hus",
+      "m2pris": 11800,
+      "antal_handler_12m": 243,
+      "liggetid_dage": 103,
+      "udvikling_1aar_pct": 5.4
+    },
+    {
+      "postnr": "3700",
+      "boligtype": "lejlighed",
+      "m2pris": 16300,
+      "antal_handler_12m": 9,
+      "liggetid_dage": 9,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "3720",
+      "boligtype": "hus",
+      "m2pris": 7700,
+      "antal_handler_12m": 50,
+      "liggetid_dage": 153,
+      "udvikling_1aar_pct": 11
+    },
+    {
+      "postnr": "3720",
+      "boligtype": "fritidshus",
+      "m2pris": 25300,
+      "antal_handler_12m": 21,
+      "liggetid_dage": 44,
+      "udvikling_1aar_pct": 5.9
+    },
+    {
+      "postnr": "3730",
+      "boligtype": "hus",
+      "m2pris": 11100,
+      "antal_handler_12m": 76,
+      "liggetid_dage": 109,
+      "udvikling_1aar_pct": 16.5
+    },
+    {
+      "postnr": "3730",
+      "boligtype": "lejlighed",
+      "m2pris": 14600,
+      "antal_handler_12m": 13,
+      "liggetid_dage": 75,
+      "udvikling_1aar_pct": -2.7
+    },
+    {
+      "postnr": "3730",
+      "boligtype": "fritidshus",
+      "m2pris": 30900,
+      "antal_handler_12m": 36,
+      "liggetid_dage": 78,
+      "udvikling_1aar_pct": 12.3
+    },
+    {
+      "postnr": "3740",
+      "boligtype": "hus",
+      "m2pris": 16500,
+      "antal_handler_12m": 24,
+      "liggetid_dage": 94,
+      "udvikling_1aar_pct": -7.2
+    },
+    {
+      "postnr": "3760",
+      "boligtype": "hus",
+      "m2pris": 8600,
+      "antal_handler_12m": 24,
+      "liggetid_dage": 19,
+      "udvikling_1aar_pct": 0.4
+    },
+    {
+      "postnr": "3770",
+      "boligtype": "hus",
+      "m2pris": 12100,
+      "antal_handler_12m": 41,
+      "liggetid_dage": 153,
+      "udvikling_1aar_pct": -14.6
+    },
+    {
+      "postnr": "3790",
+      "boligtype": "hus",
+      "m2pris": 9100,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 79,
+      "udvikling_1aar_pct": -5.2
+    },
+    {
+      "postnr": "4000",
+      "boligtype": "hus",
+      "m2pris": 35400,
+      "antal_handler_12m": 474,
+      "liggetid_dage": 71,
+      "udvikling_1aar_pct": 12.8
+    },
+    {
+      "postnr": "4000",
+      "boligtype": "lejlighed",
+      "m2pris": 37400,
+      "antal_handler_12m": 318,
+      "liggetid_dage": 65,
+      "udvikling_1aar_pct": 15.5
+    },
+    {
+      "postnr": "4030",
+      "boligtype": "hus",
+      "m2pris": 30900,
+      "antal_handler_12m": 78,
+      "liggetid_dage": 78,
+      "udvikling_1aar_pct": 16.7
+    },
+    {
+      "postnr": "4040",
+      "boligtype": "hus",
+      "m2pris": 27300,
+      "antal_handler_12m": 173,
+      "liggetid_dage": 96,
+      "udvikling_1aar_pct": 6.7
+    },
+    {
+      "postnr": "4050",
+      "boligtype": "hus",
+      "m2pris": 17100,
+      "antal_handler_12m": 72,
+      "liggetid_dage": 105,
+      "udvikling_1aar_pct": 14
+    },
+    {
+      "postnr": "4050",
+      "boligtype": "fritidshus",
+      "m2pris": 18700,
+      "antal_handler_12m": 80,
+      "liggetid_dage": 120,
+      "udvikling_1aar_pct": 4.9
+    },
+    {
+      "postnr": "4060",
+      "boligtype": "hus",
+      "m2pris": 17400,
+      "antal_handler_12m": 57,
+      "liggetid_dage": 72,
+      "udvikling_1aar_pct": 14.3
+    },
+    {
+      "postnr": "4060",
+      "boligtype": "fritidshus",
+      "m2pris": 19700,
+      "antal_handler_12m": 12,
+      "liggetid_dage": 71,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "4070",
+      "boligtype": "hus",
+      "m2pris": 19000,
+      "antal_handler_12m": 84,
+      "liggetid_dage": 102,
+      "udvikling_1aar_pct": 7.7
+    },
+    {
+      "postnr": "4070",
+      "boligtype": "fritidshus",
+      "m2pris": 20400,
+      "antal_handler_12m": 76,
+      "liggetid_dage": 106,
+      "udvikling_1aar_pct": 7
+    },
+    {
+      "postnr": "4100",
+      "boligtype": "hus",
+      "m2pris": 17200,
+      "antal_handler_12m": 309,
+      "liggetid_dage": 105,
+      "udvikling_1aar_pct": 1.6
+    },
+    {
+      "postnr": "4100",
+      "boligtype": "lejlighed",
+      "m2pris": 19700,
+      "antal_handler_12m": 65,
+      "liggetid_dage": 54,
+      "udvikling_1aar_pct": 8.8
+    },
+    {
+      "postnr": "4130",
+      "boligtype": "hus",
+      "m2pris": 23400,
+      "antal_handler_12m": 74,
+      "liggetid_dage": 72,
+      "udvikling_1aar_pct": 17.5
+    },
+    {
+      "postnr": "4140",
+      "boligtype": "hus",
+      "m2pris": 20500,
+      "antal_handler_12m": 54,
+      "liggetid_dage": 109,
+      "udvikling_1aar_pct": 12.2
+    },
+    {
+      "postnr": "4160",
+      "boligtype": "hus",
+      "m2pris": 12000,
+      "antal_handler_12m": 57,
+      "liggetid_dage": 96,
+      "udvikling_1aar_pct": 12.5
+    },
+    {
+      "postnr": "4171",
+      "boligtype": "hus",
+      "m2pris": 12800,
+      "antal_handler_12m": 42,
+      "liggetid_dage": 77,
+      "udvikling_1aar_pct": 19.7
+    },
+    {
+      "postnr": "4180",
+      "boligtype": "hus",
+      "m2pris": 18100,
+      "antal_handler_12m": 121,
+      "liggetid_dage": 123,
+      "udvikling_1aar_pct": -0.2
+    },
+    {
+      "postnr": "4180",
+      "boligtype": "lejlighed",
+      "m2pris": 17600,
+      "antal_handler_12m": 22,
+      "liggetid_dage": 25,
+      "udvikling_1aar_pct": -8.6
+    },
+    {
+      "postnr": "4200",
+      "boligtype": "hus",
+      "m2pris": 14200,
+      "antal_handler_12m": 405,
+      "liggetid_dage": 117,
+      "udvikling_1aar_pct": 2.2
+    },
+    {
+      "postnr": "4200",
+      "boligtype": "lejlighed",
+      "m2pris": 15900,
+      "antal_handler_12m": 84,
+      "liggetid_dage": 161,
+      "udvikling_1aar_pct": 7.9
+    },
+    {
+      "postnr": "4200",
+      "boligtype": "fritidshus",
+      "m2pris": 20900,
+      "antal_handler_12m": 133,
+      "liggetid_dage": 130,
+      "udvikling_1aar_pct": -0.1
+    },
+    {
+      "postnr": "4220",
+      "boligtype": "hus",
+      "m2pris": 9200,
+      "antal_handler_12m": 170,
+      "liggetid_dage": 117,
+      "udvikling_1aar_pct": -5.1
+    },
+    {
+      "postnr": "4220",
+      "boligtype": "lejlighed",
+      "m2pris": 9400,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 119,
+      "udvikling_1aar_pct": 9
+    },
+    {
+      "postnr": "4230",
+      "boligtype": "hus",
+      "m2pris": 10400,
+      "antal_handler_12m": 85,
+      "liggetid_dage": 140,
+      "udvikling_1aar_pct": 6.6
+    },
+    {
+      "postnr": "4241",
+      "boligtype": "hus",
+      "m2pris": 11600,
+      "antal_handler_12m": 50,
+      "liggetid_dage": 99,
+      "udvikling_1aar_pct": 8.3
+    },
+    {
+      "postnr": "4243",
+      "boligtype": "hus",
+      "m2pris": 7200,
+      "antal_handler_12m": 17,
+      "liggetid_dage": 25,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "4250",
+      "boligtype": "hus",
+      "m2pris": 9600,
+      "antal_handler_12m": 47,
+      "liggetid_dage": 76,
+      "udvikling_1aar_pct": 10.3
+    },
+    {
+      "postnr": "4261",
+      "boligtype": "hus",
+      "m2pris": 7300,
+      "antal_handler_12m": 16,
+      "liggetid_dage": 107,
+      "udvikling_1aar_pct": -2.7
+    },
+    {
+      "postnr": "4262",
+      "boligtype": "hus",
+      "m2pris": 8600,
+      "antal_handler_12m": 32,
+      "liggetid_dage": 14,
+      "udvikling_1aar_pct": 49.5
+    },
+    {
+      "postnr": "4270",
+      "boligtype": "hus",
+      "m2pris": 11500,
+      "antal_handler_12m": 64,
+      "liggetid_dage": 106,
+      "udvikling_1aar_pct": -2.2
+    },
+    {
+      "postnr": "4281",
+      "boligtype": "hus",
+      "m2pris": 10400,
+      "antal_handler_12m": 48,
+      "liggetid_dage": 132,
+      "udvikling_1aar_pct": 21.5
+    },
+    {
+      "postnr": "4281",
+      "boligtype": "fritidshus",
+      "m2pris": 20400,
+      "antal_handler_12m": 84,
+      "liggetid_dage": 165,
+      "udvikling_1aar_pct": 10.8
+    },
+    {
+      "postnr": "4291",
+      "boligtype": "hus",
+      "m2pris": 7300,
+      "antal_handler_12m": 37,
+      "liggetid_dage": 164,
+      "udvikling_1aar_pct": -14.8
+    },
+    {
+      "postnr": "4293",
+      "boligtype": "hus",
+      "m2pris": 10600,
+      "antal_handler_12m": 78,
+      "liggetid_dage": 134,
+      "udvikling_1aar_pct": 14.6
+    },
+    {
+      "postnr": "4295",
+      "boligtype": "hus",
+      "m2pris": 9600,
+      "antal_handler_12m": 68,
+      "liggetid_dage": 172,
+      "udvikling_1aar_pct": -3.5
+    },
+    {
+      "postnr": "4300",
+      "boligtype": "hus",
+      "m2pris": 22300,
+      "antal_handler_12m": 249,
+      "liggetid_dage": 113,
+      "udvikling_1aar_pct": 8.1
+    },
+    {
+      "postnr": "4300",
+      "boligtype": "lejlighed",
+      "m2pris": 29400,
+      "antal_handler_12m": 46,
+      "liggetid_dage": 81,
+      "udvikling_1aar_pct": 10.7
+    },
+    {
+      "postnr": "4300",
+      "boligtype": "fritidshus",
+      "m2pris": 18500,
+      "antal_handler_12m": 86,
+      "liggetid_dage": 156,
+      "udvikling_1aar_pct": 0.9
+    },
+    {
+      "postnr": "4305",
+      "boligtype": "fritidshus",
+      "m2pris": 20800,
+      "antal_handler_12m": 43,
+      "liggetid_dage": 107,
+      "udvikling_1aar_pct": -1.1
+    },
+    {
+      "postnr": "4320",
+      "boligtype": "hus",
+      "m2pris": 21200,
+      "antal_handler_12m": 48,
+      "liggetid_dage": 83,
+      "udvikling_1aar_pct": -8.4
+    },
+    {
+      "postnr": "4330",
+      "boligtype": "hus",
+      "m2pris": 20600,
+      "antal_handler_12m": 58,
+      "liggetid_dage": 91,
+      "udvikling_1aar_pct": 12.5
+    },
+    {
+      "postnr": "4340",
+      "boligtype": "hus",
+      "m2pris": 16800,
+      "antal_handler_12m": 66,
+      "liggetid_dage": 103,
+      "udvikling_1aar_pct": 6.2
+    },
+    {
+      "postnr": "4350",
+      "boligtype": "hus",
+      "m2pris": 9100,
+      "antal_handler_12m": 29,
+      "liggetid_dage": 94,
+      "udvikling_1aar_pct": -9.6
+    },
+    {
+      "postnr": "4360",
+      "boligtype": "hus",
+      "m2pris": 12300,
+      "antal_handler_12m": 19,
+      "liggetid_dage": 22,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "4370",
+      "boligtype": "hus",
+      "m2pris": 9600,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 108,
+      "udvikling_1aar_pct": -8.9
+    },
+    {
+      "postnr": "4390",
+      "boligtype": "hus",
+      "m2pris": 18200,
+      "antal_handler_12m": 39,
+      "liggetid_dage": 37,
+      "udvikling_1aar_pct": 9.1
+    },
+    {
+      "postnr": "4400",
+      "boligtype": "hus",
+      "m2pris": 12400,
+      "antal_handler_12m": 260,
+      "liggetid_dage": 106,
+      "udvikling_1aar_pct": 3.2
+    },
+    {
+      "postnr": "4400",
+      "boligtype": "lejlighed",
+      "m2pris": 15200,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 14,
+      "udvikling_1aar_pct": -11.3
+    },
+    {
+      "postnr": "4400",
+      "boligtype": "fritidshus",
+      "m2pris": 29600,
+      "antal_handler_12m": 92,
+      "liggetid_dage": 110,
+      "udvikling_1aar_pct": 11.7
+    },
+    {
+      "postnr": "4420",
+      "boligtype": "hus",
+      "m2pris": 13000,
+      "antal_handler_12m": 39,
+      "liggetid_dage": 99,
+      "udvikling_1aar_pct": 2.7
+    },
+    {
+      "postnr": "4440",
+      "boligtype": "hus",
+      "m2pris": 10800,
+      "antal_handler_12m": 54,
+      "liggetid_dage": 152,
+      "udvikling_1aar_pct": 8.6
+    },
+    {
+      "postnr": "4450",
+      "boligtype": "hus",
+      "m2pris": 12700,
+      "antal_handler_12m": 62,
+      "liggetid_dage": 112,
+      "udvikling_1aar_pct": 18.3
+    },
+    {
+      "postnr": "4470",
+      "boligtype": "hus",
+      "m2pris": 9300,
+      "antal_handler_12m": 33,
+      "liggetid_dage": 150,
+      "udvikling_1aar_pct": -1.1
+    },
+    {
+      "postnr": "4480",
+      "boligtype": "fritidshus",
+      "m2pris": 22700,
+      "antal_handler_12m": 42,
+      "liggetid_dage": 102,
+      "udvikling_1aar_pct": 27.2
+    },
+    {
+      "postnr": "4490",
+      "boligtype": "hus",
+      "m2pris": 9800,
+      "antal_handler_12m": 29,
+      "liggetid_dage": 174,
+      "udvikling_1aar_pct": 11.2
+    },
+    {
+      "postnr": "4500",
+      "boligtype": "hus",
+      "m2pris": 11700,
+      "antal_handler_12m": 105,
+      "liggetid_dage": 141,
+      "udvikling_1aar_pct": 6
+    },
+    {
+      "postnr": "4500",
+      "boligtype": "fritidshus",
+      "m2pris": 31000,
+      "antal_handler_12m": 271,
+      "liggetid_dage": 114,
+      "udvikling_1aar_pct": 8.3
+    },
+    {
+      "postnr": "4520",
+      "boligtype": "hus",
+      "m2pris": 11400,
+      "antal_handler_12m": 50,
+      "liggetid_dage": 112,
+      "udvikling_1aar_pct": 9.4
+    },
+    {
+      "postnr": "4532",
+      "boligtype": "hus",
+      "m2pris": 12100,
+      "antal_handler_12m": 32,
+      "liggetid_dage": 43,
+      "udvikling_1aar_pct": -20.2
+    },
+    {
+      "postnr": "4540",
+      "boligtype": "hus",
+      "m2pris": 11600,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 50,
+      "udvikling_1aar_pct": 22.4
+    },
+    {
+      "postnr": "4540",
+      "boligtype": "fritidshus",
+      "m2pris": 43200,
+      "antal_handler_12m": 91,
+      "liggetid_dage": 113,
+      "udvikling_1aar_pct": 17.8
+    },
+    {
+      "postnr": "4550",
+      "boligtype": "hus",
+      "m2pris": 12000,
+      "antal_handler_12m": 55,
+      "liggetid_dage": 106,
+      "udvikling_1aar_pct": 1.6
+    },
+    {
+      "postnr": "4550",
+      "boligtype": "fritidshus",
+      "m2pris": 26100,
+      "antal_handler_12m": 53,
+      "liggetid_dage": 98,
+      "udvikling_1aar_pct": 24.6
+    },
+    {
+      "postnr": "4560",
+      "boligtype": "hus",
+      "m2pris": 11400,
+      "antal_handler_12m": 34,
+      "liggetid_dage": 36,
+      "udvikling_1aar_pct": 16.8
+    },
+    {
+      "postnr": "4560",
+      "boligtype": "fritidshus",
+      "m2pris": 25900,
+      "antal_handler_12m": 105,
+      "liggetid_dage": 128,
+      "udvikling_1aar_pct": 9.8
+    },
+    {
+      "postnr": "4571",
+      "boligtype": "fritidshus",
+      "m2pris": 15000,
+      "antal_handler_12m": 75,
+      "liggetid_dage": 133,
+      "udvikling_1aar_pct": 24.3
+    },
+    {
+      "postnr": "4573",
+      "boligtype": "hus",
+      "m2pris": 9300,
+      "antal_handler_12m": 26,
+      "liggetid_dage": 46,
+      "udvikling_1aar_pct": -10
+    },
+    {
+      "postnr": "4573",
+      "boligtype": "fritidshus",
+      "m2pris": 29600,
+      "antal_handler_12m": 140,
+      "liggetid_dage": 96,
+      "udvikling_1aar_pct": 20.4
+    },
+    {
+      "postnr": "4581",
+      "boligtype": "fritidshus",
+      "m2pris": 45800,
+      "antal_handler_12m": 65,
+      "liggetid_dage": 157,
+      "udvikling_1aar_pct": 2.5
+    },
+    {
+      "postnr": "4583",
+      "boligtype": "hus",
+      "m2pris": 24600,
+      "antal_handler_12m": 17,
+      "liggetid_dage": 52,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "4583",
+      "boligtype": "fritidshus",
+      "m2pris": 29000,
+      "antal_handler_12m": 117,
+      "liggetid_dage": 113,
+      "udvikling_1aar_pct": 15.3
+    },
+    {
+      "postnr": "4591",
+      "boligtype": "fritidshus",
+      "m2pris": 20500,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 70,
+      "udvikling_1aar_pct": -16.6
+    },
+    {
+      "postnr": "4593",
+      "boligtype": "hus",
+      "m2pris": 9000,
+      "antal_handler_12m": 10,
+      "liggetid_dage": 19,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "4593",
+      "boligtype": "fritidshus",
+      "m2pris": 13600,
+      "antal_handler_12m": 67,
+      "liggetid_dage": 87,
+      "udvikling_1aar_pct": 3.8
+    },
+    {
+      "postnr": "4600",
+      "boligtype": "hus",
+      "m2pris": 28800,
+      "antal_handler_12m": 408,
+      "liggetid_dage": 119,
+      "udvikling_1aar_pct": 5.5
+    },
+    {
+      "postnr": "4600",
+      "boligtype": "lejlighed",
+      "m2pris": 35100,
+      "antal_handler_12m": 129,
+      "liggetid_dage": 111,
+      "udvikling_1aar_pct": 7.1
+    },
+    {
+      "postnr": "4621",
+      "boligtype": "hus",
+      "m2pris": 22800,
+      "antal_handler_12m": 45,
+      "liggetid_dage": 83,
+      "udvikling_1aar_pct": 18.8
+    },
+    {
+      "postnr": "4622",
+      "boligtype": "hus",
+      "m2pris": 28400,
+      "antal_handler_12m": 87,
+      "liggetid_dage": 79,
+      "udvikling_1aar_pct": 14.3
+    },
+    {
+      "postnr": "4623",
+      "boligtype": "hus",
+      "m2pris": 23000,
+      "antal_handler_12m": 72,
+      "liggetid_dage": 104,
+      "udvikling_1aar_pct": 11.3
+    },
+    {
+      "postnr": "4632",
+      "boligtype": "hus",
+      "m2pris": 21700,
+      "antal_handler_12m": 82,
+      "liggetid_dage": 94,
+      "udvikling_1aar_pct": 11.4
+    },
+    {
+      "postnr": "4640",
+      "boligtype": "hus",
+      "m2pris": 11300,
+      "antal_handler_12m": 82,
+      "liggetid_dage": 124,
+      "udvikling_1aar_pct": 4.4
+    },
+    {
+      "postnr": "4652",
+      "boligtype": "hus",
+      "m2pris": 12700,
+      "antal_handler_12m": 73,
+      "liggetid_dage": 102,
+      "udvikling_1aar_pct": 8.2
+    },
+    {
+      "postnr": "4653",
+      "boligtype": "hus",
+      "m2pris": 12700,
+      "antal_handler_12m": 50,
+      "liggetid_dage": 131,
+      "udvikling_1aar_pct": 3.2
+    },
+    {
+      "postnr": "4654",
+      "boligtype": "hus",
+      "m2pris": 13300,
+      "antal_handler_12m": 38,
+      "liggetid_dage": 125,
+      "udvikling_1aar_pct": 3.3
+    },
+    {
+      "postnr": "4660",
+      "boligtype": "hus",
+      "m2pris": 10800,
+      "antal_handler_12m": 99,
+      "liggetid_dage": 147,
+      "udvikling_1aar_pct": 1.8
+    },
+    {
+      "postnr": "4671",
+      "boligtype": "fritidshus",
+      "m2pris": 26700,
+      "antal_handler_12m": 43,
+      "liggetid_dage": 113,
+      "udvikling_1aar_pct": 9
+    },
+    {
+      "postnr": "4672",
+      "boligtype": "hus",
+      "m2pris": 10300,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 47,
+      "udvikling_1aar_pct": 20.9
+    },
+    {
+      "postnr": "4673",
+      "boligtype": "hus",
+      "m2pris": 12100,
+      "antal_handler_12m": 41,
+      "liggetid_dage": 150,
+      "udvikling_1aar_pct": -3.9
+    },
+    {
+      "postnr": "4681",
+      "boligtype": "hus",
+      "m2pris": 23700,
+      "antal_handler_12m": 65,
+      "liggetid_dage": 112,
+      "udvikling_1aar_pct": 7.4
+    },
+    {
+      "postnr": "4682",
+      "boligtype": "hus",
+      "m2pris": 17100,
+      "antal_handler_12m": 38,
+      "liggetid_dage": 40,
+      "udvikling_1aar_pct": 30.9
+    },
+    {
+      "postnr": "4683",
+      "boligtype": "hus",
+      "m2pris": 14100,
+      "antal_handler_12m": 56,
+      "liggetid_dage": 127,
+      "udvikling_1aar_pct": 21.1
+    },
+    {
+      "postnr": "4684",
+      "boligtype": "hus",
+      "m2pris": 16100,
+      "antal_handler_12m": 86,
+      "liggetid_dage": 68,
+      "udvikling_1aar_pct": 15.2
+    },
+    {
+      "postnr": "4690",
+      "boligtype": "hus",
+      "m2pris": 16600,
+      "antal_handler_12m": 248,
+      "liggetid_dage": 134,
+      "udvikling_1aar_pct": 13.8
+    },
+    {
+      "postnr": "4700",
+      "boligtype": "hus",
+      "m2pris": 15600,
+      "antal_handler_12m": 542,
+      "liggetid_dage": 100,
+      "udvikling_1aar_pct": 9.9
+    },
+    {
+      "postnr": "4700",
+      "boligtype": "lejlighed",
+      "m2pris": 16800,
+      "antal_handler_12m": 138,
+      "liggetid_dage": 80,
+      "udvikling_1aar_pct": 8.4
+    },
+    {
+      "postnr": "4720",
+      "boligtype": "hus",
+      "m2pris": 12100,
+      "antal_handler_12m": 86,
+      "liggetid_dage": 176,
+      "udvikling_1aar_pct": 2.9
+    },
+    {
+      "postnr": "4720",
+      "boligtype": "lejlighed",
+      "m2pris": 10400,
+      "antal_handler_12m": 16,
+      "liggetid_dage": 27,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "4720",
+      "boligtype": "fritidshus",
+      "m2pris": 19100,
+      "antal_handler_12m": 36,
+      "liggetid_dage": 126,
+      "udvikling_1aar_pct": 9.3
+    },
+    {
+      "postnr": "4733",
+      "boligtype": "hus",
+      "m2pris": 9900,
+      "antal_handler_12m": 42,
+      "liggetid_dage": 142,
+      "udvikling_1aar_pct": 11.1
+    },
+    {
+      "postnr": "4735",
+      "boligtype": "hus",
+      "m2pris": 8100,
+      "antal_handler_12m": 36,
+      "liggetid_dage": 192,
+      "udvikling_1aar_pct": 20.7
+    },
+    {
+      "postnr": "4736",
+      "boligtype": "hus",
+      "m2pris": 15800,
+      "antal_handler_12m": 33,
+      "liggetid_dage": 64,
+      "udvikling_1aar_pct": 6.6
+    },
+    {
+      "postnr": "4736",
+      "boligtype": "fritidshus",
+      "m2pris": 32600,
+      "antal_handler_12m": 62,
+      "liggetid_dage": 95,
+      "udvikling_1aar_pct": 20.2
+    },
+    {
+      "postnr": "4750",
+      "boligtype": "hus",
+      "m2pris": 8200,
+      "antal_handler_12m": 44,
+      "liggetid_dage": 204,
+      "udvikling_1aar_pct": -9.2
+    },
+    {
+      "postnr": "4760",
+      "boligtype": "hus",
+      "m2pris": 10000,
+      "antal_handler_12m": 185,
+      "liggetid_dage": 158,
+      "udvikling_1aar_pct": 3.6
+    },
+    {
+      "postnr": "4760",
+      "boligtype": "lejlighed",
+      "m2pris": 15400,
+      "antal_handler_12m": 18,
+      "liggetid_dage": 46,
+      "udvikling_1aar_pct": 17.6
+    },
+    {
+      "postnr": "4760",
+      "boligtype": "fritidshus",
+      "m2pris": 16300,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 105,
+      "udvikling_1aar_pct": 7.6
+    },
+    {
+      "postnr": "4771",
+      "boligtype": "hus",
+      "m2pris": 8900,
+      "antal_handler_12m": 29,
+      "liggetid_dage": 119,
+      "udvikling_1aar_pct": 25.3
+    },
+    {
+      "postnr": "4773",
+      "boligtype": "hus",
+      "m2pris": 10100,
+      "antal_handler_12m": 35,
+      "liggetid_dage": 134,
+      "udvikling_1aar_pct": 14
+    },
+    {
+      "postnr": "4780",
+      "boligtype": "hus",
+      "m2pris": 8900,
+      "antal_handler_12m": 94,
+      "liggetid_dage": 163,
+      "udvikling_1aar_pct": -3
+    },
+    {
+      "postnr": "4780",
+      "boligtype": "fritidshus",
+      "m2pris": 22000,
+      "antal_handler_12m": 71,
+      "liggetid_dage": 162,
+      "udvikling_1aar_pct": 5.3
+    },
+    {
+      "postnr": "4791",
+      "boligtype": "hus",
+      "m2pris": 7200,
+      "antal_handler_12m": 25,
+      "liggetid_dage": 61,
+      "udvikling_1aar_pct": -17.8
+    },
+    {
+      "postnr": "4793",
+      "boligtype": "fritidshus",
+      "m2pris": 15700,
+      "antal_handler_12m": 33,
+      "liggetid_dage": 46,
+      "udvikling_1aar_pct": 3.9
+    },
+    {
+      "postnr": "4800",
+      "boligtype": "hus",
+      "m2pris": 11500,
+      "antal_handler_12m": 287,
+      "liggetid_dage": 126,
+      "udvikling_1aar_pct": 7.5
+    },
+    {
+      "postnr": "4800",
+      "boligtype": "lejlighed",
+      "m2pris": 13400,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 19,
+      "udvikling_1aar_pct": -6.4
+    },
+    {
+      "postnr": "4840",
+      "boligtype": "hus",
+      "m2pris": 7000,
+      "antal_handler_12m": 92,
+      "liggetid_dage": 153,
+      "udvikling_1aar_pct": 10.5
+    },
+    {
+      "postnr": "4850",
+      "boligtype": "hus",
+      "m2pris": 6100,
+      "antal_handler_12m": 32,
+      "liggetid_dage": 35,
+      "udvikling_1aar_pct": -0.3
+    },
+    {
+      "postnr": "4862",
+      "boligtype": "hus",
+      "m2pris": 8800,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 60,
+      "udvikling_1aar_pct": 27.4
+    },
+    {
+      "postnr": "4863",
+      "boligtype": "hus",
+      "m2pris": 7000,
+      "antal_handler_12m": 22,
+      "liggetid_dage": 96,
+      "udvikling_1aar_pct": 25.6
+    },
+    {
+      "postnr": "4871",
+      "boligtype": "hus",
+      "m2pris": 5400,
+      "antal_handler_12m": 21,
+      "liggetid_dage": 34,
+      "udvikling_1aar_pct": -0.9
+    },
+    {
+      "postnr": "4872",
+      "boligtype": "hus",
+      "m2pris": 7000,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 124,
+      "udvikling_1aar_pct": 4.8
+    },
+    {
+      "postnr": "4872",
+      "boligtype": "fritidshus",
+      "m2pris": 19500,
+      "antal_handler_12m": 40,
+      "liggetid_dage": 116,
+      "udvikling_1aar_pct": -2.1
+    },
+    {
+      "postnr": "4873",
+      "boligtype": "hus",
+      "m2pris": 9300,
+      "antal_handler_12m": 32,
+      "liggetid_dage": 153,
+      "udvikling_1aar_pct": -10.7
+    },
+    {
+      "postnr": "4873",
+      "boligtype": "lejlighed",
+      "m2pris": 16000,
+      "antal_handler_12m": 18,
+      "liggetid_dage": 39,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "4873",
+      "boligtype": "fritidshus",
+      "m2pris": 22400,
+      "antal_handler_12m": 249,
+      "liggetid_dage": 134,
+      "udvikling_1aar_pct": 4.9
+    },
+    {
+      "postnr": "4874",
+      "boligtype": "hus",
+      "m2pris": 5300,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 62,
+      "udvikling_1aar_pct": 38.9
+    },
+    {
+      "postnr": "4874",
+      "boligtype": "fritidshus",
+      "m2pris": 16000,
+      "antal_handler_12m": 43,
+      "liggetid_dage": 163,
+      "udvikling_1aar_pct": 6.6
+    },
+    {
+      "postnr": "4880",
+      "boligtype": "hus",
+      "m2pris": 7400,
+      "antal_handler_12m": 27,
+      "liggetid_dage": 93,
+      "udvikling_1aar_pct": -9.3
+    },
+    {
+      "postnr": "4891",
+      "boligtype": "hus",
+      "m2pris": 5800,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 96,
+      "udvikling_1aar_pct": -5.8
+    },
+    {
+      "postnr": "4894",
+      "boligtype": "hus",
+      "m2pris": 3900,
+      "antal_handler_12m": 16,
+      "liggetid_dage": 80,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "4900",
+      "boligtype": "hus",
+      "m2pris": 5100,
+      "antal_handler_12m": 150,
+      "liggetid_dage": 210,
+      "udvikling_1aar_pct": -6.1
+    },
+    {
+      "postnr": "4900",
+      "boligtype": "fritidshus",
+      "m2pris": 12800,
+      "antal_handler_12m": 25,
+      "liggetid_dage": 155,
+      "udvikling_1aar_pct": 19.8
+    },
+    {
+      "postnr": "4913",
+      "boligtype": "hus",
+      "m2pris": 3800,
+      "antal_handler_12m": 37,
+      "liggetid_dage": 200,
+      "udvikling_1aar_pct": 10.7
+    },
+    {
+      "postnr": "4920",
+      "boligtype": "hus",
+      "m2pris": 5900,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 22,
+      "udvikling_1aar_pct": 22.6
+    },
+    {
+      "postnr": "4930",
+      "boligtype": "hus",
+      "m2pris": 8600,
+      "antal_handler_12m": 90,
+      "liggetid_dage": 123,
+      "udvikling_1aar_pct": 2.8
+    },
+    {
+      "postnr": "4941",
+      "boligtype": "hus",
+      "m2pris": 7100,
+      "antal_handler_12m": 19,
+      "liggetid_dage": 70,
+      "udvikling_1aar_pct": 58
+    },
+    {
+      "postnr": "4970",
+      "boligtype": "hus",
+      "m2pris": 4700,
+      "antal_handler_12m": 71,
+      "liggetid_dage": 127,
+      "udvikling_1aar_pct": 2.3
+    },
+    {
+      "postnr": "4970",
+      "boligtype": "fritidshus",
+      "m2pris": 20600,
+      "antal_handler_12m": 123,
+      "liggetid_dage": 117,
+      "udvikling_1aar_pct": 17.3
+    },
+    {
+      "postnr": "4983",
+      "boligtype": "hus",
+      "m2pris": 3700,
+      "antal_handler_12m": 22,
+      "liggetid_dage": 55,
+      "udvikling_1aar_pct": 21.7
+    },
+    {
+      "postnr": "4983",
+      "boligtype": "fritidshus",
+      "m2pris": 13700,
+      "antal_handler_12m": 38,
+      "liggetid_dage": 165,
+      "udvikling_1aar_pct": 12.2
+    },
+    {
+      "postnr": "4990",
+      "boligtype": "hus",
+      "m2pris": 5200,
+      "antal_handler_12m": 84,
+      "liggetid_dage": 195,
+      "udvikling_1aar_pct": -14.6
+    },
+    {
+      "postnr": "5000",
+      "boligtype": "hus",
+      "m2pris": 27000,
+      "antal_handler_12m": 196,
+      "liggetid_dage": 99,
+      "udvikling_1aar_pct": 16.2
+    },
+    {
+      "postnr": "5000",
+      "boligtype": "lejlighed",
+      "m2pris": 26200,
+      "antal_handler_12m": 391,
+      "liggetid_dage": 110,
+      "udvikling_1aar_pct": 5
+    },
+    {
+      "postnr": "5200",
+      "boligtype": "hus",
+      "m2pris": 17400,
+      "antal_handler_12m": 67,
+      "liggetid_dage": 114,
+      "udvikling_1aar_pct": 11.8
+    },
+    {
+      "postnr": "5200",
+      "boligtype": "lejlighed",
+      "m2pris": 19400,
+      "antal_handler_12m": 12,
+      "liggetid_dage": 26,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "5210",
+      "boligtype": "hus",
+      "m2pris": 17000,
+      "antal_handler_12m": 229,
+      "liggetid_dage": 82,
+      "udvikling_1aar_pct": 3.7
+    },
+    {
+      "postnr": "5220",
+      "boligtype": "hus",
+      "m2pris": 19300,
+      "antal_handler_12m": 109,
+      "liggetid_dage": 99,
+      "udvikling_1aar_pct": 7.6
+    },
+    {
+      "postnr": "5230",
+      "boligtype": "hus",
+      "m2pris": 29900,
+      "antal_handler_12m": 170,
+      "liggetid_dage": 107,
+      "udvikling_1aar_pct": 11.4
+    },
+    {
+      "postnr": "5230",
+      "boligtype": "lejlighed",
+      "m2pris": 24600,
+      "antal_handler_12m": 32,
+      "liggetid_dage": 145,
+      "udvikling_1aar_pct": -0.2
+    },
+    {
+      "postnr": "5240",
+      "boligtype": "hus",
+      "m2pris": 15400,
+      "antal_handler_12m": 71,
+      "liggetid_dage": 92,
+      "udvikling_1aar_pct": 2.7
+    },
+    {
+      "postnr": "5250",
+      "boligtype": "hus",
+      "m2pris": 21300,
+      "antal_handler_12m": 270,
+      "liggetid_dage": 87,
+      "udvikling_1aar_pct": 6.1
+    },
+    {
+      "postnr": "5250",
+      "boligtype": "lejlighed",
+      "m2pris": 17300,
+      "antal_handler_12m": 32,
+      "liggetid_dage": 119,
+      "udvikling_1aar_pct": 3.3
+    },
+    {
+      "postnr": "5260",
+      "boligtype": "hus",
+      "m2pris": 19200,
+      "antal_handler_12m": 180,
+      "liggetid_dage": 87,
+      "udvikling_1aar_pct": 9.9
+    },
+    {
+      "postnr": "5260",
+      "boligtype": "lejlighed",
+      "m2pris": 14000,
+      "antal_handler_12m": 11,
+      "liggetid_dage": 56,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "5270",
+      "boligtype": "hus",
+      "m2pris": 17100,
+      "antal_handler_12m": 185,
+      "liggetid_dage": 84,
+      "udvikling_1aar_pct": 3.2
+    },
+    {
+      "postnr": "5270",
+      "boligtype": "lejlighed",
+      "m2pris": 12500,
+      "antal_handler_12m": 22,
+      "liggetid_dage": 27,
+      "udvikling_1aar_pct": 11
+    },
+    {
+      "postnr": "5290",
+      "boligtype": "hus",
+      "m2pris": 10900,
+      "antal_handler_12m": 16,
+      "liggetid_dage": 26,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "5300",
+      "boligtype": "hus",
+      "m2pris": 18200,
+      "antal_handler_12m": 76,
+      "liggetid_dage": 169,
+      "udvikling_1aar_pct": 7.3
+    },
+    {
+      "postnr": "5320",
+      "boligtype": "hus",
+      "m2pris": 14400,
+      "antal_handler_12m": 54,
+      "liggetid_dage": 107,
+      "udvikling_1aar_pct": 12.4
+    },
+    {
+      "postnr": "5330",
+      "boligtype": "hus",
+      "m2pris": 11000,
+      "antal_handler_12m": 90,
+      "liggetid_dage": 170,
+      "udvikling_1aar_pct": -5.7
+    },
+    {
+      "postnr": "5390",
+      "boligtype": "fritidshus",
+      "m2pris": 32800,
+      "antal_handler_12m": 16,
+      "liggetid_dage": 113,
+      "udvikling_1aar_pct": 2.5
+    },
+    {
+      "postnr": "5400",
+      "boligtype": "hus",
+      "m2pris": 9200,
+      "antal_handler_12m": 58,
+      "liggetid_dage": 207,
+      "udvikling_1aar_pct": 7.5
+    },
+    {
+      "postnr": "5400",
+      "boligtype": "fritidshus",
+      "m2pris": 20500,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 135,
+      "udvikling_1aar_pct": 0.6
+    },
+    {
+      "postnr": "5450",
+      "boligtype": "hus",
+      "m2pris": 8100,
+      "antal_handler_12m": 113,
+      "liggetid_dage": 181,
+      "udvikling_1aar_pct": -2.2
+    },
+    {
+      "postnr": "5450",
+      "boligtype": "fritidshus",
+      "m2pris": 23000,
+      "antal_handler_12m": 78,
+      "liggetid_dage": 158,
+      "udvikling_1aar_pct": 6.4
+    },
+    {
+      "postnr": "5464",
+      "boligtype": "hus",
+      "m2pris": 9600,
+      "antal_handler_12m": 16,
+      "liggetid_dage": 116,
+      "udvikling_1aar_pct": 20.3
+    },
+    {
+      "postnr": "5471",
+      "boligtype": "hus",
+      "m2pris": 7900,
+      "antal_handler_12m": 80,
+      "liggetid_dage": 134,
+      "udvikling_1aar_pct": 2.6
+    },
+    {
+      "postnr": "5492",
+      "boligtype": "hus",
+      "m2pris": 9600,
+      "antal_handler_12m": 72,
+      "liggetid_dage": 188,
+      "udvikling_1aar_pct": 6.9
+    },
+    {
+      "postnr": "5500",
+      "boligtype": "hus",
+      "m2pris": 16300,
+      "antal_handler_12m": 276,
+      "liggetid_dage": 127,
+      "udvikling_1aar_pct": -1
+    },
+    {
+      "postnr": "5500",
+      "boligtype": "lejlighed",
+      "m2pris": 25900,
+      "antal_handler_12m": 37,
+      "liggetid_dage": 173,
+      "udvikling_1aar_pct": -13.9
+    },
+    {
+      "postnr": "5500",
+      "boligtype": "fritidshus",
+      "m2pris": 32300,
+      "antal_handler_12m": 26,
+      "liggetid_dage": 68,
+      "udvikling_1aar_pct": 24.4
+    },
+    {
+      "postnr": "5540",
+      "boligtype": "hus",
+      "m2pris": 8200,
+      "antal_handler_12m": 57,
+      "liggetid_dage": 140,
+      "udvikling_1aar_pct": -1.2
+    },
+    {
+      "postnr": "5550",
+      "boligtype": "hus",
+      "m2pris": 13500,
+      "antal_handler_12m": 49,
+      "liggetid_dage": 98,
+      "udvikling_1aar_pct": 6.4
+    },
+    {
+      "postnr": "5560",
+      "boligtype": "hus",
+      "m2pris": 10400,
+      "antal_handler_12m": 71,
+      "liggetid_dage": 193,
+      "udvikling_1aar_pct": 5.7
+    },
+    {
+      "postnr": "5580",
+      "boligtype": "hus",
+      "m2pris": 9800,
+      "antal_handler_12m": 46,
+      "liggetid_dage": 176,
+      "udvikling_1aar_pct": -2.7
+    },
+    {
+      "postnr": "5591",
+      "boligtype": "hus",
+      "m2pris": 6400,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 164,
+      "udvikling_1aar_pct": -1.9
+    },
+    {
+      "postnr": "5592",
+      "boligtype": "hus",
+      "m2pris": 7000,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 234,
+      "udvikling_1aar_pct": -7
+    },
+    {
+      "postnr": "5600",
+      "boligtype": "hus",
+      "m2pris": 8400,
+      "antal_handler_12m": 185,
+      "liggetid_dage": 204,
+      "udvikling_1aar_pct": -8.1
+    },
+    {
+      "postnr": "5600",
+      "boligtype": "lejlighed",
+      "m2pris": 15000,
+      "antal_handler_12m": 17,
+      "liggetid_dage": 44,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "5600",
+      "boligtype": "fritidshus",
+      "m2pris": 34100,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 51,
+      "udvikling_1aar_pct": 12.4
+    },
+    {
+      "postnr": "5610",
+      "boligtype": "hus",
+      "m2pris": 9800,
+      "antal_handler_12m": 110,
+      "liggetid_dage": 227,
+      "udvikling_1aar_pct": 17.4
+    },
+    {
+      "postnr": "5620",
+      "boligtype": "hus",
+      "m2pris": 6400,
+      "antal_handler_12m": 65,
+      "liggetid_dage": 264,
+      "udvikling_1aar_pct": -10.7
+    },
+    {
+      "postnr": "5642",
+      "boligtype": "hus",
+      "m2pris": 9800,
+      "antal_handler_12m": 17,
+      "liggetid_dage": 162,
+      "udvikling_1aar_pct": 10.6
+    },
+    {
+      "postnr": "5672",
+      "boligtype": "hus",
+      "m2pris": 7900,
+      "antal_handler_12m": 59,
+      "liggetid_dage": 234,
+      "udvikling_1aar_pct": -8
+    },
+    {
+      "postnr": "5683",
+      "boligtype": "hus",
+      "m2pris": 7700,
+      "antal_handler_12m": 50,
+      "liggetid_dage": 179,
+      "udvikling_1aar_pct": 4.1
+    },
+    {
+      "postnr": "5690",
+      "boligtype": "hus",
+      "m2pris": 10600,
+      "antal_handler_12m": 88,
+      "liggetid_dage": 160,
+      "udvikling_1aar_pct": -4.3
+    },
+    {
+      "postnr": "5700",
+      "boligtype": "hus",
+      "m2pris": 16200,
+      "antal_handler_12m": 372,
+      "liggetid_dage": 124,
+      "udvikling_1aar_pct": -1.2
+    },
+    {
+      "postnr": "5700",
+      "boligtype": "lejlighed",
+      "m2pris": 17800,
+      "antal_handler_12m": 49,
+      "liggetid_dage": 154,
+      "udvikling_1aar_pct": 8.9
+    },
+    {
+      "postnr": "5700",
+      "boligtype": "fritidshus",
+      "m2pris": 21300,
+      "antal_handler_12m": 16,
+      "liggetid_dage": 62,
+      "udvikling_1aar_pct": -26.3
+    },
+    {
+      "postnr": "5750",
+      "boligtype": "hus",
+      "m2pris": 9500,
+      "antal_handler_12m": 100,
+      "liggetid_dage": 136,
+      "udvikling_1aar_pct": -3.3
+    },
+    {
+      "postnr": "5762",
+      "boligtype": "hus",
+      "m2pris": 9800,
+      "antal_handler_12m": 48,
+      "liggetid_dage": 221,
+      "udvikling_1aar_pct": 6.7
+    },
+    {
+      "postnr": "5771",
+      "boligtype": "hus",
+      "m2pris": 8200,
+      "antal_handler_12m": 35,
+      "liggetid_dage": 185,
+      "udvikling_1aar_pct": 3.8
+    },
+    {
+      "postnr": "5772",
+      "boligtype": "hus",
+      "m2pris": 6800,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 65,
+      "udvikling_1aar_pct": 6.7
+    },
+    {
+      "postnr": "5792",
+      "boligtype": "hus",
+      "m2pris": 13500,
+      "antal_handler_12m": 87,
+      "liggetid_dage": 71,
+      "udvikling_1aar_pct": 12.3
+    },
+    {
+      "postnr": "5800",
+      "boligtype": "hus",
+      "m2pris": 13800,
+      "antal_handler_12m": 181,
+      "liggetid_dage": 100,
+      "udvikling_1aar_pct": 0.5
+    },
+    {
+      "postnr": "5853",
+      "boligtype": "hus",
+      "m2pris": 7300,
+      "antal_handler_12m": 50,
+      "liggetid_dage": 220,
+      "udvikling_1aar_pct": 15.7
+    },
+    {
+      "postnr": "5856",
+      "boligtype": "hus",
+      "m2pris": 9400,
+      "antal_handler_12m": 29,
+      "liggetid_dage": 103,
+      "udvikling_1aar_pct": 25.1
+    },
+    {
+      "postnr": "5871",
+      "boligtype": "hus",
+      "m2pris": 5700,
+      "antal_handler_12m": 18,
+      "liggetid_dage": 114,
+      "udvikling_1aar_pct": -2.1
+    },
+    {
+      "postnr": "5874",
+      "boligtype": "hus",
+      "m2pris": 9200,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 70,
+      "udvikling_1aar_pct": 24.3
+    },
+    {
+      "postnr": "5881",
+      "boligtype": "hus",
+      "m2pris": 14300,
+      "antal_handler_12m": 29,
+      "liggetid_dage": 195,
+      "udvikling_1aar_pct": 5.2
+    },
+    {
+      "postnr": "5900",
+      "boligtype": "hus",
+      "m2pris": 7600,
+      "antal_handler_12m": 74,
+      "liggetid_dage": 194,
+      "udvikling_1aar_pct": 8.5
+    },
+    {
+      "postnr": "5900",
+      "boligtype": "fritidshus",
+      "m2pris": 22200,
+      "antal_handler_12m": 13,
+      "liggetid_dage": 60,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "5932",
+      "boligtype": "hus",
+      "m2pris": 4500,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 186,
+      "udvikling_1aar_pct": -13.6
+    },
+    {
+      "postnr": "5932",
+      "boligtype": "fritidshus",
+      "m2pris": 19100,
+      "antal_handler_12m": 38,
+      "liggetid_dage": 173,
+      "udvikling_1aar_pct": 21.1
+    },
+    {
+      "postnr": "5935",
+      "boligtype": "hus",
+      "m2pris": 3900,
+      "antal_handler_12m": 14,
+      "liggetid_dage": 123,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "5953",
+      "boligtype": "hus",
+      "m2pris": 6200,
+      "antal_handler_12m": 63,
+      "liggetid_dage": 210,
+      "udvikling_1aar_pct": 4.3
+    },
+    {
+      "postnr": "5953",
+      "boligtype": "fritidshus",
+      "m2pris": 16600,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 37,
+      "udvikling_1aar_pct": -3.3
+    },
+    {
+      "postnr": "5960",
+      "boligtype": "hus",
+      "m2pris": 9800,
+      "antal_handler_12m": 40,
+      "liggetid_dage": 153,
+      "udvikling_1aar_pct": 8.8
+    },
+    {
+      "postnr": "5970",
+      "boligtype": "hus",
+      "m2pris": 8000,
+      "antal_handler_12m": 46,
+      "liggetid_dage": 281,
+      "udvikling_1aar_pct": 10.6
+    },
+    {
+      "postnr": "5985",
+      "boligtype": "hus",
+      "m2pris": 5400,
+      "antal_handler_12m": 15,
+      "liggetid_dage": 103,
+      "udvikling_1aar_pct": -17.7
+    },
+    {
+      "postnr": "6000",
+      "boligtype": "hus",
+      "m2pris": 15300,
+      "antal_handler_12m": 597,
+      "liggetid_dage": 132,
+      "udvikling_1aar_pct": 4.7
+    },
+    {
+      "postnr": "6000",
+      "boligtype": "lejlighed",
+      "m2pris": 15400,
+      "antal_handler_12m": 47,
+      "liggetid_dage": 163,
+      "udvikling_1aar_pct": 9.1
+    },
+    {
+      "postnr": "6040",
+      "boligtype": "hus",
+      "m2pris": 9500,
+      "antal_handler_12m": 73,
+      "liggetid_dage": 196,
+      "udvikling_1aar_pct": -5.5
+    },
+    {
+      "postnr": "6070",
+      "boligtype": "hus",
+      "m2pris": 8900,
+      "antal_handler_12m": 56,
+      "liggetid_dage": 223,
+      "udvikling_1aar_pct": 0.4
+    },
+    {
+      "postnr": "6091",
+      "boligtype": "hus",
+      "m2pris": 12800,
+      "antal_handler_12m": 25,
+      "liggetid_dage": 108,
+      "udvikling_1aar_pct": 14.8
+    },
+    {
+      "postnr": "6094",
+      "boligtype": "fritidshus",
+      "m2pris": 24700,
+      "antal_handler_12m": 41,
+      "liggetid_dage": 54,
+      "udvikling_1aar_pct": 10.2
+    },
+    {
+      "postnr": "6100",
+      "boligtype": "hus",
+      "m2pris": 10700,
+      "antal_handler_12m": 325,
+      "liggetid_dage": 164,
+      "udvikling_1aar_pct": 9.7
+    },
+    {
+      "postnr": "6100",
+      "boligtype": "lejlighed",
+      "m2pris": 13800,
+      "antal_handler_12m": 41,
+      "liggetid_dage": 217,
+      "udvikling_1aar_pct": -3.3
+    },
+    {
+      "postnr": "6100",
+      "boligtype": "fritidshus",
+      "m2pris": 20000,
+      "antal_handler_12m": 49,
+      "liggetid_dage": 180,
+      "udvikling_1aar_pct": 9.8
+    },
+    {
+      "postnr": "6200",
+      "boligtype": "hus",
+      "m2pris": 10600,
+      "antal_handler_12m": 225,
+      "liggetid_dage": 152,
+      "udvikling_1aar_pct": 7.6
+    },
+    {
+      "postnr": "6200",
+      "boligtype": "lejlighed",
+      "m2pris": 15700,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 61,
+      "udvikling_1aar_pct": 21.3
+    },
+    {
+      "postnr": "6200",
+      "boligtype": "fritidshus",
+      "m2pris": 16600,
+      "antal_handler_12m": 17,
+      "liggetid_dage": 79,
+      "udvikling_1aar_pct": -38.7
+    },
+    {
+      "postnr": "6230",
+      "boligtype": "hus",
+      "m2pris": 9100,
+      "antal_handler_12m": 74,
+      "liggetid_dage": 135,
+      "udvikling_1aar_pct": 13.2
+    },
+    {
+      "postnr": "6240",
+      "boligtype": "hus",
+      "m2pris": 5400,
+      "antal_handler_12m": 60,
+      "liggetid_dage": 128,
+      "udvikling_1aar_pct": -24.1
+    },
+    {
+      "postnr": "6261",
+      "boligtype": "hus",
+      "m2pris": 5800,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 212,
+      "udvikling_1aar_pct": 25.2
+    },
+    {
+      "postnr": "6270",
+      "boligtype": "hus",
+      "m2pris": 7600,
+      "antal_handler_12m": 115,
+      "liggetid_dage": 162,
+      "udvikling_1aar_pct": 1.4
+    },
+    {
+      "postnr": "6280",
+      "boligtype": "hus",
+      "m2pris": 5400,
+      "antal_handler_12m": 33,
+      "liggetid_dage": 103,
+      "udvikling_1aar_pct": 52.3
+    },
+    {
+      "postnr": "6300",
+      "boligtype": "hus",
+      "m2pris": 9000,
+      "antal_handler_12m": 77,
+      "liggetid_dage": 117,
+      "udvikling_1aar_pct": 0.7
+    },
+    {
+      "postnr": "6300",
+      "boligtype": "lejlighed",
+      "m2pris": 14300,
+      "antal_handler_12m": 30,
+      "liggetid_dage": 153,
+      "udvikling_1aar_pct": 55.8
+    },
+    {
+      "postnr": "6310",
+      "boligtype": "hus",
+      "m2pris": 9000,
+      "antal_handler_12m": 42,
+      "liggetid_dage": 115,
+      "udvikling_1aar_pct": 13.1
+    },
+    {
+      "postnr": "6310",
+      "boligtype": "fritidshus",
+      "m2pris": 19500,
+      "antal_handler_12m": 14,
+      "liggetid_dage": 42,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "6330",
+      "boligtype": "hus",
+      "m2pris": 7300,
+      "antal_handler_12m": 51,
+      "liggetid_dage": 141,
+      "udvikling_1aar_pct": 1.6
+    },
+    {
+      "postnr": "6340",
+      "boligtype": "hus",
+      "m2pris": 8700,
+      "antal_handler_12m": 60,
+      "liggetid_dage": 124,
+      "udvikling_1aar_pct": -18.3
+    },
+    {
+      "postnr": "6360",
+      "boligtype": "hus",
+      "m2pris": 5600,
+      "antal_handler_12m": 37,
+      "liggetid_dage": 164,
+      "udvikling_1aar_pct": -14.8
+    },
+    {
+      "postnr": "6372",
+      "boligtype": "hus",
+      "m2pris": 4800,
+      "antal_handler_12m": 26,
+      "liggetid_dage": 117,
+      "udvikling_1aar_pct": 11.2
+    },
+    {
+      "postnr": "6400",
+      "boligtype": "hus",
+      "m2pris": 14800,
+      "antal_handler_12m": 185,
+      "liggetid_dage": 102,
+      "udvikling_1aar_pct": 10.7
+    },
+    {
+      "postnr": "6400",
+      "boligtype": "lejlighed",
+      "m2pris": 21600,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 73,
+      "udvikling_1aar_pct": 12.6
+    },
+    {
+      "postnr": "6430",
+      "boligtype": "hus",
+      "m2pris": 5300,
+      "antal_handler_12m": 95,
+      "liggetid_dage": 206,
+      "udvikling_1aar_pct": -5.4
+    },
+    {
+      "postnr": "6440",
+      "boligtype": "hus",
+      "m2pris": 8700,
+      "antal_handler_12m": 58,
+      "liggetid_dage": 131,
+      "udvikling_1aar_pct": -1.1
+    },
+    {
+      "postnr": "6470",
+      "boligtype": "hus",
+      "m2pris": 7400,
+      "antal_handler_12m": 79,
+      "liggetid_dage": 215,
+      "udvikling_1aar_pct": -11.3
+    },
+    {
+      "postnr": "6470",
+      "boligtype": "fritidshus",
+      "m2pris": 18200,
+      "antal_handler_12m": 55,
+      "liggetid_dage": 94,
+      "udvikling_1aar_pct": 17.6
+    },
+    {
+      "postnr": "6500",
+      "boligtype": "hus",
+      "m2pris": 5700,
+      "antal_handler_12m": 149,
+      "liggetid_dage": 163,
+      "udvikling_1aar_pct": 3.8
+    },
+    {
+      "postnr": "6510",
+      "boligtype": "hus",
+      "m2pris": 5300,
+      "antal_handler_12m": 30,
+      "liggetid_dage": 152,
+      "udvikling_1aar_pct": 18.1
+    },
+    {
+      "postnr": "6520",
+      "boligtype": "hus",
+      "m2pris": 7000,
+      "antal_handler_12m": 55,
+      "liggetid_dage": 125,
+      "udvikling_1aar_pct": 10.7
+    },
+    {
+      "postnr": "6520",
+      "boligtype": "fritidshus",
+      "m2pris": 15200,
+      "antal_handler_12m": 54,
+      "liggetid_dage": 42,
+      "udvikling_1aar_pct": 22.3
+    },
+    {
+      "postnr": "6534",
+      "boligtype": "hus",
+      "m2pris": 4600,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 111,
+      "udvikling_1aar_pct": -5.5
+    },
+    {
+      "postnr": "6541",
+      "boligtype": "hus",
+      "m2pris": 3500,
+      "antal_handler_12m": 17,
+      "liggetid_dage": 48,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "6580",
+      "boligtype": "hus",
+      "m2pris": 7700,
+      "antal_handler_12m": 81,
+      "liggetid_dage": 162,
+      "udvikling_1aar_pct": -10.9
+    },
+    {
+      "postnr": "6600",
+      "boligtype": "hus",
+      "m2pris": 11100,
+      "antal_handler_12m": 156,
+      "liggetid_dage": 105,
+      "udvikling_1aar_pct": 2.5
+    },
+    {
+      "postnr": "6621",
+      "boligtype": "hus",
+      "m2pris": 6700,
+      "antal_handler_12m": 21,
+      "liggetid_dage": 55,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "6630",
+      "boligtype": "hus",
+      "m2pris": 6700,
+      "antal_handler_12m": 109,
+      "liggetid_dage": 175,
+      "udvikling_1aar_pct": 18.8
+    },
+    {
+      "postnr": "6640",
+      "boligtype": "hus",
+      "m2pris": 9900,
+      "antal_handler_12m": 44,
+      "liggetid_dage": 153,
+      "udvikling_1aar_pct": 7.2
+    },
+    {
+      "postnr": "6650",
+      "boligtype": "hus",
+      "m2pris": 7800,
+      "antal_handler_12m": 67,
+      "liggetid_dage": 152,
+      "udvikling_1aar_pct": -8.5
+    },
+    {
+      "postnr": "6670",
+      "boligtype": "hus",
+      "m2pris": 6800,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 148,
+      "udvikling_1aar_pct": 20.7
+    },
+    {
+      "postnr": "6683",
+      "boligtype": "hus",
+      "m2pris": 4500,
+      "antal_handler_12m": 12,
+      "liggetid_dage": 210,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "6690",
+      "boligtype": "hus",
+      "m2pris": 7700,
+      "antal_handler_12m": 26,
+      "liggetid_dage": 178,
+      "udvikling_1aar_pct": -1.8
+    },
+    {
+      "postnr": "6700",
+      "boligtype": "hus",
+      "m2pris": 17300,
+      "antal_handler_12m": 155,
+      "liggetid_dage": 154,
+      "udvikling_1aar_pct": 1.8
+    },
+    {
+      "postnr": "6700",
+      "boligtype": "lejlighed",
+      "m2pris": 19300,
+      "antal_handler_12m": 158,
+      "liggetid_dage": 148,
+      "udvikling_1aar_pct": 0.7
+    },
+    {
+      "postnr": "6705",
+      "boligtype": "hus",
+      "m2pris": 11500,
+      "antal_handler_12m": 107,
+      "liggetid_dage": 125,
+      "udvikling_1aar_pct": -1
+    },
+    {
+      "postnr": "6710",
+      "boligtype": "hus",
+      "m2pris": 16700,
+      "antal_handler_12m": 260,
+      "liggetid_dage": 115,
+      "udvikling_1aar_pct": 5.2
+    },
+    {
+      "postnr": "6710",
+      "boligtype": "fritidshus",
+      "m2pris": 21100,
+      "antal_handler_12m": 14,
+      "liggetid_dage": 28,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "6715",
+      "boligtype": "hus",
+      "m2pris": 14200,
+      "antal_handler_12m": 111,
+      "liggetid_dage": 136,
+      "udvikling_1aar_pct": 2.2
+    },
+    {
+      "postnr": "6720",
+      "boligtype": "hus",
+      "m2pris": 13200,
+      "antal_handler_12m": 49,
+      "liggetid_dage": 224,
+      "udvikling_1aar_pct": 7.5
+    },
+    {
+      "postnr": "6720",
+      "boligtype": "lejlighed",
+      "m2pris": 24000,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 49,
+      "udvikling_1aar_pct": 38.2
+    },
+    {
+      "postnr": "6720",
+      "boligtype": "fritidshus",
+      "m2pris": 29100,
+      "antal_handler_12m": 94,
+      "liggetid_dage": 212,
+      "udvikling_1aar_pct": 4.9
+    },
+    {
+      "postnr": "6731",
+      "boligtype": "hus",
+      "m2pris": 11700,
+      "antal_handler_12m": 36,
+      "liggetid_dage": 143,
+      "udvikling_1aar_pct": -4.1
+    },
+    {
+      "postnr": "6740",
+      "boligtype": "hus",
+      "m2pris": 9900,
+      "antal_handler_12m": 152,
+      "liggetid_dage": 200,
+      "udvikling_1aar_pct": -7.2
+    },
+    {
+      "postnr": "6760",
+      "boligtype": "hus",
+      "m2pris": 8700,
+      "antal_handler_12m": 126,
+      "liggetid_dage": 195,
+      "udvikling_1aar_pct": -11.5
+    },
+    {
+      "postnr": "6771",
+      "boligtype": "hus",
+      "m2pris": 6800,
+      "antal_handler_12m": 34,
+      "liggetid_dage": 188,
+      "udvikling_1aar_pct": -3.4
+    },
+    {
+      "postnr": "6780",
+      "boligtype": "hus",
+      "m2pris": 5800,
+      "antal_handler_12m": 51,
+      "liggetid_dage": 170,
+      "udvikling_1aar_pct": 13
+    },
+    {
+      "postnr": "6792",
+      "boligtype": "lejlighed",
+      "m2pris": 12800,
+      "antal_handler_12m": 46,
+      "liggetid_dage": 240,
+      "udvikling_1aar_pct": -3.4
+    },
+    {
+      "postnr": "6792",
+      "boligtype": "fritidshus",
+      "m2pris": 25000,
+      "antal_handler_12m": 49,
+      "liggetid_dage": 151,
+      "udvikling_1aar_pct": 3.4
+    },
+    {
+      "postnr": "6800",
+      "boligtype": "hus",
+      "m2pris": 11200,
+      "antal_handler_12m": 202,
+      "liggetid_dage": 166,
+      "udvikling_1aar_pct": -0.6
+    },
+    {
+      "postnr": "6830",
+      "boligtype": "hus",
+      "m2pris": 7600,
+      "antal_handler_12m": 29,
+      "liggetid_dage": 197,
+      "udvikling_1aar_pct": 17.1
+    },
+    {
+      "postnr": "6830",
+      "boligtype": "lejlighed",
+      "m2pris": 14600,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 6,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "6830",
+      "boligtype": "fritidshus",
+      "m2pris": 19200,
+      "antal_handler_12m": 84,
+      "liggetid_dage": 85,
+      "udvikling_1aar_pct": 7.6
+    },
+    {
+      "postnr": "6840",
+      "boligtype": "hus",
+      "m2pris": 10400,
+      "antal_handler_12m": 26,
+      "liggetid_dage": 129,
+      "udvikling_1aar_pct": 26.5
+    },
+    {
+      "postnr": "6840",
+      "boligtype": "fritidshus",
+      "m2pris": 16100,
+      "antal_handler_12m": 86,
+      "liggetid_dage": 142,
+      "udvikling_1aar_pct": 10.7
+    },
+    {
+      "postnr": "6851",
+      "boligtype": "hus",
+      "m2pris": 7500,
+      "antal_handler_12m": 18,
+      "liggetid_dage": 36,
+      "udvikling_1aar_pct": 8.8
+    },
+    {
+      "postnr": "6853",
+      "boligtype": "fritidshus",
+      "m2pris": 27900,
+      "antal_handler_12m": 35,
+      "liggetid_dage": 136,
+      "udvikling_1aar_pct": 1.8
+    },
+    {
+      "postnr": "6854",
+      "boligtype": "fritidshus",
+      "m2pris": 34500,
+      "antal_handler_12m": 37,
+      "liggetid_dage": 139,
+      "udvikling_1aar_pct": 20.7
+    },
+    {
+      "postnr": "6857",
+      "boligtype": "lejlighed",
+      "m2pris": 22500,
+      "antal_handler_12m": 17,
+      "liggetid_dage": 52,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "6857",
+      "boligtype": "fritidshus",
+      "m2pris": 32300,
+      "antal_handler_12m": 137,
+      "liggetid_dage": 155,
+      "udvikling_1aar_pct": 10.8
+    },
+    {
+      "postnr": "6870",
+      "boligtype": "hus",
+      "m2pris": 7200,
+      "antal_handler_12m": 39,
+      "liggetid_dage": 250,
+      "udvikling_1aar_pct": 7.6
+    },
+    {
+      "postnr": "6880",
+      "boligtype": "hus",
+      "m2pris": 6600,
+      "antal_handler_12m": 55,
+      "liggetid_dage": 162,
+      "udvikling_1aar_pct": 10.7
+    },
+    {
+      "postnr": "6880",
+      "boligtype": "fritidshus",
+      "m2pris": 14100,
+      "antal_handler_12m": 24,
+      "liggetid_dage": 40,
+      "udvikling_1aar_pct": 7.4
+    },
+    {
+      "postnr": "6893",
+      "boligtype": "fritidshus",
+      "m2pris": 15500,
+      "antal_handler_12m": 128,
+      "liggetid_dage": 133,
+      "udvikling_1aar_pct": 12.2
+    },
+    {
+      "postnr": "6900",
+      "boligtype": "hus",
+      "m2pris": 7900,
+      "antal_handler_12m": 106,
+      "liggetid_dage": 145,
+      "udvikling_1aar_pct": -9.6
+    },
+    {
+      "postnr": "6900",
+      "boligtype": "fritidshus",
+      "m2pris": 13200,
+      "antal_handler_12m": 30,
+      "liggetid_dage": 18,
+      "udvikling_1aar_pct": 18.4
+    },
+    {
+      "postnr": "6920",
+      "boligtype": "hus",
+      "m2pris": 6500,
+      "antal_handler_12m": 82,
+      "liggetid_dage": 219,
+      "udvikling_1aar_pct": 13.6
+    },
+    {
+      "postnr": "6933",
+      "boligtype": "hus",
+      "m2pris": 8300,
+      "antal_handler_12m": 40,
+      "liggetid_dage": 163,
+      "udvikling_1aar_pct": 5.3
+    },
+    {
+      "postnr": "6940",
+      "boligtype": "hus",
+      "m2pris": 5000,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 276,
+      "udvikling_1aar_pct": 14.2
+    },
+    {
+      "postnr": "6950",
+      "boligtype": "hus",
+      "m2pris": 11800,
+      "antal_handler_12m": 148,
+      "liggetid_dage": 162,
+      "udvikling_1aar_pct": 18.3
+    },
+    {
+      "postnr": "6950",
+      "boligtype": "lejlighed",
+      "m2pris": 20300,
+      "antal_handler_12m": 30,
+      "liggetid_dage": 133,
+      "udvikling_1aar_pct": 14.7
+    },
+    {
+      "postnr": "6950",
+      "boligtype": "fritidshus",
+      "m2pris": 26800,
+      "antal_handler_12m": 231,
+      "liggetid_dage": 124,
+      "udvikling_1aar_pct": 6.2
+    },
+    {
+      "postnr": "6960",
+      "boligtype": "hus",
+      "m2pris": 11100,
+      "antal_handler_12m": 27,
+      "liggetid_dage": 45,
+      "udvikling_1aar_pct": 2.9
+    },
+    {
+      "postnr": "6960",
+      "boligtype": "lejlighed",
+      "m2pris": 26500,
+      "antal_handler_12m": 9,
+      "liggetid_dage": 82,
+      "udvikling_1aar_pct": 27.7
+    },
+    {
+      "postnr": "6960",
+      "boligtype": "fritidshus",
+      "m2pris": 26200,
+      "antal_handler_12m": 164,
+      "liggetid_dage": 110,
+      "udvikling_1aar_pct": 10.2
+    },
+    {
+      "postnr": "6971",
+      "boligtype": "hus",
+      "m2pris": 6000,
+      "antal_handler_12m": 27,
+      "liggetid_dage": 102,
+      "udvikling_1aar_pct": -4.3
+    },
+    {
+      "postnr": "6990",
+      "boligtype": "hus",
+      "m2pris": 6300,
+      "antal_handler_12m": 67,
+      "liggetid_dage": 145,
+      "udvikling_1aar_pct": 0.5
+    },
+    {
+      "postnr": "6990",
+      "boligtype": "fritidshus",
+      "m2pris": 16000,
+      "antal_handler_12m": 112,
+      "liggetid_dage": 186,
+      "udvikling_1aar_pct": -6.7
+    },
+    {
+      "postnr": "7000",
+      "boligtype": "hus",
+      "m2pris": 12900,
+      "antal_handler_12m": 528,
+      "liggetid_dage": 141,
+      "udvikling_1aar_pct": 1.1
+    },
+    {
+      "postnr": "7000",
+      "boligtype": "lejlighed",
+      "m2pris": 13700,
+      "antal_handler_12m": 56,
+      "liggetid_dage": 166,
+      "udvikling_1aar_pct": -2.7
+    },
+    {
+      "postnr": "7080",
+      "boligtype": "hus",
+      "m2pris": 14300,
+      "antal_handler_12m": 117,
+      "liggetid_dage": 107,
+      "udvikling_1aar_pct": 8.8
+    },
+    {
+      "postnr": "7080",
+      "boligtype": "fritidshus",
+      "m2pris": 31400,
+      "antal_handler_12m": 66,
+      "liggetid_dage": 205,
+      "udvikling_1aar_pct": 8.6
+    },
+    {
+      "postnr": "7100",
+      "boligtype": "hus",
+      "m2pris": 16600,
+      "antal_handler_12m": 466,
+      "liggetid_dage": 113,
+      "udvikling_1aar_pct": 4.9
+    },
+    {
+      "postnr": "7100",
+      "boligtype": "lejlighed",
+      "m2pris": 20400,
+      "antal_handler_12m": 138,
+      "liggetid_dage": 132,
+      "udvikling_1aar_pct": 1
+    },
+    {
+      "postnr": "7120",
+      "boligtype": "hus",
+      "m2pris": 25000,
+      "antal_handler_12m": 122,
+      "liggetid_dage": 89,
+      "udvikling_1aar_pct": 13.9
+    },
+    {
+      "postnr": "7130",
+      "boligtype": "hus",
+      "m2pris": 9900,
+      "antal_handler_12m": 84,
+      "liggetid_dage": 196,
+      "udvikling_1aar_pct": -5.4
+    },
+    {
+      "postnr": "7130",
+      "boligtype": "fritidshus",
+      "m2pris": 26000,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 133,
+      "udvikling_1aar_pct": 1.6
+    },
+    {
+      "postnr": "7140",
+      "boligtype": "hus",
+      "m2pris": 9600,
+      "antal_handler_12m": 25,
+      "liggetid_dage": 94,
+      "udvikling_1aar_pct": -2.2
+    },
+    {
+      "postnr": "7160",
+      "boligtype": "hus",
+      "m2pris": 9200,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 204,
+      "udvikling_1aar_pct": 9.1
+    },
+    {
+      "postnr": "7171",
+      "boligtype": "hus",
+      "m2pris": 7700,
+      "antal_handler_12m": 25,
+      "liggetid_dage": 213,
+      "udvikling_1aar_pct": 34
+    },
+    {
+      "postnr": "7173",
+      "boligtype": "hus",
+      "m2pris": 6800,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 99,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "7182",
+      "boligtype": "hus",
+      "m2pris": 12800,
+      "antal_handler_12m": 36,
+      "liggetid_dage": 67,
+      "udvikling_1aar_pct": 19.3
+    },
+    {
+      "postnr": "7190",
+      "boligtype": "hus",
+      "m2pris": 16600,
+      "antal_handler_12m": 87,
+      "liggetid_dage": 95,
+      "udvikling_1aar_pct": 0
+    },
+    {
+      "postnr": "7190",
+      "boligtype": "fritidshus",
+      "m2pris": 32300,
+      "antal_handler_12m": 82,
+      "liggetid_dage": 78,
+      "udvikling_1aar_pct": 7.9
+    },
+    {
+      "postnr": "7200",
+      "boligtype": "hus",
+      "m2pris": 9100,
+      "antal_handler_12m": 147,
+      "liggetid_dage": 162,
+      "udvikling_1aar_pct": -7.3
+    },
+    {
+      "postnr": "7250",
+      "boligtype": "hus",
+      "m2pris": 6700,
+      "antal_handler_12m": 30,
+      "liggetid_dage": 29,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "7260",
+      "boligtype": "hus",
+      "m2pris": 6200,
+      "antal_handler_12m": 25,
+      "liggetid_dage": 28,
+      "udvikling_1aar_pct": -3.5
+    },
+    {
+      "postnr": "7300",
+      "boligtype": "hus",
+      "m2pris": 11500,
+      "antal_handler_12m": 49,
+      "liggetid_dage": 234,
+      "udvikling_1aar_pct": 11.6
+    },
+    {
+      "postnr": "7323",
+      "boligtype": "hus",
+      "m2pris": 9700,
+      "antal_handler_12m": 107,
+      "liggetid_dage": 187,
+      "udvikling_1aar_pct": -1.8
+    },
+    {
+      "postnr": "7330",
+      "boligtype": "hus",
+      "m2pris": 9000,
+      "antal_handler_12m": 89,
+      "liggetid_dage": 199,
+      "udvikling_1aar_pct": 7.7
+    },
+    {
+      "postnr": "7361",
+      "boligtype": "hus",
+      "m2pris": 7000,
+      "antal_handler_12m": 16,
+      "liggetid_dage": 177,
+      "udvikling_1aar_pct": -0.7
+    },
+    {
+      "postnr": "7400",
+      "boligtype": "hus",
+      "m2pris": 13500,
+      "antal_handler_12m": 505,
+      "liggetid_dage": 135,
+      "udvikling_1aar_pct": 6.3
+    },
+    {
+      "postnr": "7400",
+      "boligtype": "lejlighed",
+      "m2pris": 16900,
+      "antal_handler_12m": 111,
+      "liggetid_dage": 143,
+      "udvikling_1aar_pct": 7
+    },
+    {
+      "postnr": "7430",
+      "boligtype": "hus",
+      "m2pris": 11600,
+      "antal_handler_12m": 144,
+      "liggetid_dage": 143,
+      "udvikling_1aar_pct": 3
+    },
+    {
+      "postnr": "7441",
+      "boligtype": "hus",
+      "m2pris": 8400,
+      "antal_handler_12m": 32,
+      "liggetid_dage": 187,
+      "udvikling_1aar_pct": 9.1
+    },
+    {
+      "postnr": "7442",
+      "boligtype": "hus",
+      "m2pris": 11400,
+      "antal_handler_12m": 24,
+      "liggetid_dage": 161,
+      "udvikling_1aar_pct": 20.6
+    },
+    {
+      "postnr": "7451",
+      "boligtype": "hus",
+      "m2pris": 9900,
+      "antal_handler_12m": 50,
+      "liggetid_dage": 126,
+      "udvikling_1aar_pct": 3.9
+    },
+    {
+      "postnr": "7470",
+      "boligtype": "hus",
+      "m2pris": 5700,
+      "antal_handler_12m": 57,
+      "liggetid_dage": 239,
+      "udvikling_1aar_pct": -4.9
+    },
+    {
+      "postnr": "7480",
+      "boligtype": "hus",
+      "m2pris": 8000,
+      "antal_handler_12m": 59,
+      "liggetid_dage": 134,
+      "udvikling_1aar_pct": -14.1
+    },
+    {
+      "postnr": "7490",
+      "boligtype": "hus",
+      "m2pris": 8000,
+      "antal_handler_12m": 39,
+      "liggetid_dage": 266,
+      "udvikling_1aar_pct": -1.8
+    },
+    {
+      "postnr": "7500",
+      "boligtype": "hus",
+      "m2pris": 12700,
+      "antal_handler_12m": 403,
+      "liggetid_dage": 162,
+      "udvikling_1aar_pct": 0.1
+    },
+    {
+      "postnr": "7500",
+      "boligtype": "lejlighed",
+      "m2pris": 11700,
+      "antal_handler_12m": 32,
+      "liggetid_dage": 246,
+      "udvikling_1aar_pct": -11.4
+    },
+    {
+      "postnr": "7550",
+      "boligtype": "hus",
+      "m2pris": 7600,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 117,
+      "udvikling_1aar_pct": 26.1
+    },
+    {
+      "postnr": "7570",
+      "boligtype": "hus",
+      "m2pris": 4300,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 190,
+      "udvikling_1aar_pct": -12.8
+    },
+    {
+      "postnr": "7600",
+      "boligtype": "hus",
+      "m2pris": 7500,
+      "antal_handler_12m": 132,
+      "liggetid_dage": 298,
+      "udvikling_1aar_pct": -3.2
+    },
+    {
+      "postnr": "7620",
+      "boligtype": "hus",
+      "m2pris": 6400,
+      "antal_handler_12m": 109,
+      "liggetid_dage": 218,
+      "udvikling_1aar_pct": -5.7
+    },
+    {
+      "postnr": "7620",
+      "boligtype": "lejlighed",
+      "m2pris": 14600,
+      "antal_handler_12m": 13,
+      "liggetid_dage": 41,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "7620",
+      "boligtype": "fritidshus",
+      "m2pris": 16800,
+      "antal_handler_12m": 43,
+      "liggetid_dage": 149,
+      "udvikling_1aar_pct": 17.7
+    },
+    {
+      "postnr": "7673",
+      "boligtype": "fritidshus",
+      "m2pris": 16300,
+      "antal_handler_12m": 84,
+      "liggetid_dage": 238,
+      "udvikling_1aar_pct": 2.5
+    },
+    {
+      "postnr": "7680",
+      "boligtype": "hus",
+      "m2pris": 5000,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 98,
+      "udvikling_1aar_pct": -18.3
+    },
+    {
+      "postnr": "7700",
+      "boligtype": "hus",
+      "m2pris": 10300,
+      "antal_handler_12m": 259,
+      "liggetid_dage": 197,
+      "udvikling_1aar_pct": 1.2
+    },
+    {
+      "postnr": "7700",
+      "boligtype": "fritidshus",
+      "m2pris": 19200,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 121,
+      "udvikling_1aar_pct": -2.8
+    },
+    {
+      "postnr": "7730",
+      "boligtype": "hus",
+      "m2pris": 6100,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 22,
+      "udvikling_1aar_pct": 19.2
+    },
+    {
+      "postnr": "7752",
+      "boligtype": "hus",
+      "m2pris": 4100,
+      "antal_handler_12m": 37,
+      "liggetid_dage": 241,
+      "udvikling_1aar_pct": -5.6
+    },
+    {
+      "postnr": "7755",
+      "boligtype": "hus",
+      "m2pris": 4700,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 49,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "7760",
+      "boligtype": "hus",
+      "m2pris": 5800,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 214,
+      "udvikling_1aar_pct": 10.5
+    },
+    {
+      "postnr": "7760",
+      "boligtype": "fritidshus",
+      "m2pris": 12200,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 74,
+      "udvikling_1aar_pct": -17.9
+    },
+    {
+      "postnr": "7770",
+      "boligtype": "hus",
+      "m2pris": 5600,
+      "antal_handler_12m": 22,
+      "liggetid_dage": 48,
+      "udvikling_1aar_pct": -28
+    },
+    {
+      "postnr": "7790",
+      "boligtype": "hus",
+      "m2pris": 3400,
+      "antal_handler_12m": 27,
+      "liggetid_dage": 164,
+      "udvikling_1aar_pct": -28.7
+    },
+    {
+      "postnr": "7790",
+      "boligtype": "fritidshus",
+      "m2pris": 14800,
+      "antal_handler_12m": 27,
+      "liggetid_dage": 66,
+      "udvikling_1aar_pct": 12.4
+    },
+    {
+      "postnr": "7800",
+      "boligtype": "hus",
+      "m2pris": 8300,
+      "antal_handler_12m": 189,
+      "liggetid_dage": 169,
+      "udvikling_1aar_pct": 6
+    },
+    {
+      "postnr": "7830",
+      "boligtype": "hus",
+      "m2pris": 6000,
+      "antal_handler_12m": 58,
+      "liggetid_dage": 207,
+      "udvikling_1aar_pct": -5.1
+    },
+    {
+      "postnr": "7830",
+      "boligtype": "fritidshus",
+      "m2pris": 14200,
+      "antal_handler_12m": 25,
+      "liggetid_dage": 195,
+      "udvikling_1aar_pct": 27.5
+    },
+    {
+      "postnr": "7840",
+      "boligtype": "hus",
+      "m2pris": 8300,
+      "antal_handler_12m": 40,
+      "liggetid_dage": 39,
+      "udvikling_1aar_pct": 27.4
+    },
+    {
+      "postnr": "7840",
+      "boligtype": "fritidshus",
+      "m2pris": 14600,
+      "antal_handler_12m": 42,
+      "liggetid_dage": 190,
+      "udvikling_1aar_pct": 12.5
+    },
+    {
+      "postnr": "7850",
+      "boligtype": "hus",
+      "m2pris": 6900,
+      "antal_handler_12m": 32,
+      "liggetid_dage": 220,
+      "udvikling_1aar_pct": 10
+    },
+    {
+      "postnr": "7860",
+      "boligtype": "hus",
+      "m2pris": 2900,
+      "antal_handler_12m": 36,
+      "liggetid_dage": 43,
+      "udvikling_1aar_pct": -37.9
+    },
+    {
+      "postnr": "7860",
+      "boligtype": "fritidshus",
+      "m2pris": 12600,
+      "antal_handler_12m": 41,
+      "liggetid_dage": 100,
+      "udvikling_1aar_pct": -18.9
+    },
+    {
+      "postnr": "7870",
+      "boligtype": "hus",
+      "m2pris": 4600,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 252,
+      "udvikling_1aar_pct": 22.3
+    },
+    {
+      "postnr": "7870",
+      "boligtype": "fritidshus",
+      "m2pris": 13000,
+      "antal_handler_12m": 38,
+      "liggetid_dage": 197,
+      "udvikling_1aar_pct": 7.4
+    },
+    {
+      "postnr": "7900",
+      "boligtype": "hus",
+      "m2pris": 6500,
+      "antal_handler_12m": 119,
+      "liggetid_dage": 246,
+      "udvikling_1aar_pct": -9
+    },
+    {
+      "postnr": "8000",
+      "boligtype": "hus",
+      "m2pris": 59800,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 124,
+      "udvikling_1aar_pct": 9.5
+    },
+    {
+      "postnr": "8000",
+      "boligtype": "lejlighed",
+      "m2pris": 51100,
+      "antal_handler_12m": 1012,
+      "liggetid_dage": 63,
+      "udvikling_1aar_pct": 13.2
+    },
+    {
+      "postnr": "8200",
+      "boligtype": "hus",
+      "m2pris": 38600,
+      "antal_handler_12m": 93,
+      "liggetid_dage": 103,
+      "udvikling_1aar_pct": 11.6
+    },
+    {
+      "postnr": "8200",
+      "boligtype": "lejlighed",
+      "m2pris": 44300,
+      "antal_handler_12m": 196,
+      "liggetid_dage": 57,
+      "udvikling_1aar_pct": 12.9
+    },
+    {
+      "postnr": "8210",
+      "boligtype": "hus",
+      "m2pris": 31600,
+      "antal_handler_12m": 126,
+      "liggetid_dage": 109,
+      "udvikling_1aar_pct": 4.7
+    },
+    {
+      "postnr": "8210",
+      "boligtype": "lejlighed",
+      "m2pris": 32900,
+      "antal_handler_12m": 34,
+      "liggetid_dage": 146,
+      "udvikling_1aar_pct": 11.7
+    },
+    {
+      "postnr": "8220",
+      "boligtype": "hus",
+      "m2pris": 30200,
+      "antal_handler_12m": 110,
+      "liggetid_dage": 117,
+      "udvikling_1aar_pct": 13.3
+    },
+    {
+      "postnr": "8220",
+      "boligtype": "lejlighed",
+      "m2pris": 23600,
+      "antal_handler_12m": 40,
+      "liggetid_dage": 143,
+      "udvikling_1aar_pct": 5.1
+    },
+    {
+      "postnr": "8230",
+      "boligtype": "hus",
+      "m2pris": 37000,
+      "antal_handler_12m": 70,
+      "liggetid_dage": 85,
+      "udvikling_1aar_pct": 8.6
+    },
+    {
+      "postnr": "8230",
+      "boligtype": "lejlighed",
+      "m2pris": 31200,
+      "antal_handler_12m": 76,
+      "liggetid_dage": 162,
+      "udvikling_1aar_pct": 6.9
+    },
+    {
+      "postnr": "8240",
+      "boligtype": "hus",
+      "m2pris": 45500,
+      "antal_handler_12m": 176,
+      "liggetid_dage": 100,
+      "udvikling_1aar_pct": 13.8
+    },
+    {
+      "postnr": "8240",
+      "boligtype": "lejlighed",
+      "m2pris": 30800,
+      "antal_handler_12m": 128,
+      "liggetid_dage": 90,
+      "udvikling_1aar_pct": 3.6
+    },
+    {
+      "postnr": "8250",
+      "boligtype": "hus",
+      "m2pris": 33700,
+      "antal_handler_12m": 150,
+      "liggetid_dage": 105,
+      "udvikling_1aar_pct": 3
+    },
+    {
+      "postnr": "8250",
+      "boligtype": "lejlighed",
+      "m2pris": 24500,
+      "antal_handler_12m": 48,
+      "liggetid_dage": 140,
+      "udvikling_1aar_pct": -14.9
+    },
+    {
+      "postnr": "8250",
+      "boligtype": "fritidshus",
+      "m2pris": 52400,
+      "antal_handler_12m": 63,
+      "liggetid_dage": 176,
+      "udvikling_1aar_pct": 9
+    },
+    {
+      "postnr": "8260",
+      "boligtype": "hus",
+      "m2pris": 30400,
+      "antal_handler_12m": 177,
+      "liggetid_dage": 91,
+      "udvikling_1aar_pct": 2.3
+    },
+    {
+      "postnr": "8260",
+      "boligtype": "lejlighed",
+      "m2pris": 24300,
+      "antal_handler_12m": 105,
+      "liggetid_dage": 123,
+      "udvikling_1aar_pct": 5.9
+    },
+    {
+      "postnr": "8270",
+      "boligtype": "hus",
+      "m2pris": 39300,
+      "antal_handler_12m": 206,
+      "liggetid_dage": 109,
+      "udvikling_1aar_pct": 9.6
+    },
+    {
+      "postnr": "8270",
+      "boligtype": "lejlighed",
+      "m2pris": 25900,
+      "antal_handler_12m": 61,
+      "liggetid_dage": 115,
+      "udvikling_1aar_pct": 11.4
+    },
+    {
+      "postnr": "8300",
+      "boligtype": "hus",
+      "m2pris": 16400,
+      "antal_handler_12m": 262,
+      "liggetid_dage": 153,
+      "udvikling_1aar_pct": 7.6
+    },
+    {
+      "postnr": "8300",
+      "boligtype": "lejlighed",
+      "m2pris": 17300,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 114,
+      "udvikling_1aar_pct": 17.9
+    },
+    {
+      "postnr": "8300",
+      "boligtype": "fritidshus",
+      "m2pris": 35400,
+      "antal_handler_12m": 73,
+      "liggetid_dage": 133,
+      "udvikling_1aar_pct": 3.6
+    },
+    {
+      "postnr": "8305",
+      "boligtype": "hus",
+      "m2pris": 9300,
+      "antal_handler_12m": 62,
+      "liggetid_dage": 263,
+      "udvikling_1aar_pct": 15.4
+    },
+    {
+      "postnr": "8305",
+      "boligtype": "fritidshus",
+      "m2pris": 25000,
+      "antal_handler_12m": 17,
+      "liggetid_dage": 130,
+      "udvikling_1aar_pct": -23.5
+    },
+    {
+      "postnr": "8310",
+      "boligtype": "hus",
+      "m2pris": 25800,
+      "antal_handler_12m": 138,
+      "liggetid_dage": 66,
+      "udvikling_1aar_pct": 8.7
+    },
+    {
+      "postnr": "8320",
+      "boligtype": "hus",
+      "m2pris": 28500,
+      "antal_handler_12m": 57,
+      "liggetid_dage": 51,
+      "udvikling_1aar_pct": 10.9
+    },
+    {
+      "postnr": "8330",
+      "boligtype": "hus",
+      "m2pris": 26800,
+      "antal_handler_12m": 35,
+      "liggetid_dage": 55,
+      "udvikling_1aar_pct": 7.1
+    },
+    {
+      "postnr": "8340",
+      "boligtype": "hus",
+      "m2pris": 26200,
+      "antal_handler_12m": 38,
+      "liggetid_dage": 119,
+      "udvikling_1aar_pct": 15.6
+    },
+    {
+      "postnr": "8340",
+      "boligtype": "fritidshus",
+      "m2pris": 32700,
+      "antal_handler_12m": 18,
+      "liggetid_dage": 101,
+      "udvikling_1aar_pct": -15.1
+    },
+    {
+      "postnr": "8355",
+      "boligtype": "hus",
+      "m2pris": 19400,
+      "antal_handler_12m": 62,
+      "liggetid_dage": 109,
+      "udvikling_1aar_pct": -3.2
+    },
+    {
+      "postnr": "8361",
+      "boligtype": "hus",
+      "m2pris": 22800,
+      "antal_handler_12m": 98,
+      "liggetid_dage": 103,
+      "udvikling_1aar_pct": 1.1
+    },
+    {
+      "postnr": "8362",
+      "boligtype": "hus",
+      "m2pris": 23200,
+      "antal_handler_12m": 117,
+      "liggetid_dage": 102,
+      "udvikling_1aar_pct": 6.1
+    },
+    {
+      "postnr": "8370",
+      "boligtype": "hus",
+      "m2pris": 13800,
+      "antal_handler_12m": 139,
+      "liggetid_dage": 134,
+      "udvikling_1aar_pct": -3.6
+    },
+    {
+      "postnr": "8380",
+      "boligtype": "hus",
+      "m2pris": 20200,
+      "antal_handler_12m": 51,
+      "liggetid_dage": 132,
+      "udvikling_1aar_pct": 13.5
+    },
+    {
+      "postnr": "8381",
+      "boligtype": "hus",
+      "m2pris": 21000,
+      "antal_handler_12m": 90,
+      "liggetid_dage": 130,
+      "udvikling_1aar_pct": 2.9
+    },
+    {
+      "postnr": "8381",
+      "boligtype": "lejlighed",
+      "m2pris": 26900,
+      "antal_handler_12m": 12,
+      "liggetid_dage": 33,
+      "udvikling_1aar_pct": 17.3
+    },
+    {
+      "postnr": "8382",
+      "boligtype": "hus",
+      "m2pris": 20900,
+      "antal_handler_12m": 147,
+      "liggetid_dage": 73,
+      "udvikling_1aar_pct": 6
+    },
+    {
+      "postnr": "8400",
+      "boligtype": "hus",
+      "m2pris": 16100,
+      "antal_handler_12m": 149,
+      "liggetid_dage": 159,
+      "udvikling_1aar_pct": 7.5
+    },
+    {
+      "postnr": "8400",
+      "boligtype": "lejlighed",
+      "m2pris": 24400,
+      "antal_handler_12m": 41,
+      "liggetid_dage": 180,
+      "udvikling_1aar_pct": 6.3
+    },
+    {
+      "postnr": "8400",
+      "boligtype": "fritidshus",
+      "m2pris": 22600,
+      "antal_handler_12m": 291,
+      "liggetid_dage": 149,
+      "udvikling_1aar_pct": 4.3
+    },
+    {
+      "postnr": "8410",
+      "boligtype": "hus",
+      "m2pris": 16400,
+      "antal_handler_12m": 126,
+      "liggetid_dage": 115,
+      "udvikling_1aar_pct": 1.4
+    },
+    {
+      "postnr": "8410",
+      "boligtype": "fritidshus",
+      "m2pris": 21100,
+      "antal_handler_12m": 42,
+      "liggetid_dage": 135,
+      "udvikling_1aar_pct": 3.7
+    },
+    {
+      "postnr": "8420",
+      "boligtype": "hus",
+      "m2pris": 9800,
+      "antal_handler_12m": 25,
+      "liggetid_dage": 111,
+      "udvikling_1aar_pct": -14.6
+    },
+    {
+      "postnr": "8420",
+      "boligtype": "fritidshus",
+      "m2pris": 27100,
+      "antal_handler_12m": 119,
+      "liggetid_dage": 137,
+      "udvikling_1aar_pct": 9.1
+    },
+    {
+      "postnr": "8450",
+      "boligtype": "hus",
+      "m2pris": 11600,
+      "antal_handler_12m": 129,
+      "liggetid_dage": 168,
+      "udvikling_1aar_pct": -5.8
+    },
+    {
+      "postnr": "8462",
+      "boligtype": "hus",
+      "m2pris": 20200,
+      "antal_handler_12m": 56,
+      "liggetid_dage": 98,
+      "udvikling_1aar_pct": 3.5
+    },
+    {
+      "postnr": "8464",
+      "boligtype": "hus",
+      "m2pris": 18400,
+      "antal_handler_12m": 138,
+      "liggetid_dage": 92,
+      "udvikling_1aar_pct": 2.8
+    },
+    {
+      "postnr": "8464",
+      "boligtype": "lejlighed",
+      "m2pris": 18600,
+      "antal_handler_12m": 12,
+      "liggetid_dage": 76,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "8471",
+      "boligtype": "hus",
+      "m2pris": 17700,
+      "antal_handler_12m": 55,
+      "liggetid_dage": 179,
+      "udvikling_1aar_pct": -3.3
+    },
+    {
+      "postnr": "8500",
+      "boligtype": "hus",
+      "m2pris": 8400,
+      "antal_handler_12m": 155,
+      "liggetid_dage": 164,
+      "udvikling_1aar_pct": 3.1
+    },
+    {
+      "postnr": "8500",
+      "boligtype": "fritidshus",
+      "m2pris": 18300,
+      "antal_handler_12m": 45,
+      "liggetid_dage": 168,
+      "udvikling_1aar_pct": 1
+    },
+    {
+      "postnr": "8520",
+      "boligtype": "hus",
+      "m2pris": 27800,
+      "antal_handler_12m": 115,
+      "liggetid_dage": 89,
+      "udvikling_1aar_pct": 7.1
+    },
+    {
+      "postnr": "8530",
+      "boligtype": "hus",
+      "m2pris": 20000,
+      "antal_handler_12m": 45,
+      "liggetid_dage": 170,
+      "udvikling_1aar_pct": -1.9
+    },
+    {
+      "postnr": "8541",
+      "boligtype": "hus",
+      "m2pris": 24800,
+      "antal_handler_12m": 102,
+      "liggetid_dage": 103,
+      "udvikling_1aar_pct": 5.8
+    },
+    {
+      "postnr": "8543",
+      "boligtype": "hus",
+      "m2pris": 18900,
+      "antal_handler_12m": 107,
+      "liggetid_dage": 131,
+      "udvikling_1aar_pct": 17.9
+    },
+    {
+      "postnr": "8544",
+      "boligtype": "hus",
+      "m2pris": 10700,
+      "antal_handler_12m": 38,
+      "liggetid_dage": 255,
+      "udvikling_1aar_pct": 1.1
+    },
+    {
+      "postnr": "8550",
+      "boligtype": "hus",
+      "m2pris": 10700,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 47,
+      "udvikling_1aar_pct": 7.2
+    },
+    {
+      "postnr": "8560",
+      "boligtype": "hus",
+      "m2pris": 8800,
+      "antal_handler_12m": 34,
+      "liggetid_dage": 152,
+      "udvikling_1aar_pct": 12.4
+    },
+    {
+      "postnr": "8570",
+      "boligtype": "hus",
+      "m2pris": 4100,
+      "antal_handler_12m": 22,
+      "liggetid_dage": 48,
+      "udvikling_1aar_pct": -29.8
+    },
+    {
+      "postnr": "8585",
+      "boligtype": "hus",
+      "m2pris": 6400,
+      "antal_handler_12m": 40,
+      "liggetid_dage": 243,
+      "udvikling_1aar_pct": -14
+    },
+    {
+      "postnr": "8585",
+      "boligtype": "fritidshus",
+      "m2pris": 18200,
+      "antal_handler_12m": 93,
+      "liggetid_dage": 126,
+      "udvikling_1aar_pct": 7.5
+    },
+    {
+      "postnr": "8600",
+      "boligtype": "hus",
+      "m2pris": 22300,
+      "antal_handler_12m": 647,
+      "liggetid_dage": 123,
+      "udvikling_1aar_pct": 9
+    },
+    {
+      "postnr": "8600",
+      "boligtype": "lejlighed",
+      "m2pris": 26300,
+      "antal_handler_12m": 71,
+      "liggetid_dage": 200,
+      "udvikling_1aar_pct": 3.1
+    },
+    {
+      "postnr": "8600",
+      "boligtype": "fritidshus",
+      "m2pris": 42500,
+      "antal_handler_12m": 26,
+      "liggetid_dage": 99,
+      "udvikling_1aar_pct": 7.5
+    },
+    {
+      "postnr": "8620",
+      "boligtype": "hus",
+      "m2pris": 8600,
+      "antal_handler_12m": 108,
+      "liggetid_dage": 215,
+      "udvikling_1aar_pct": 0.4
+    },
+    {
+      "postnr": "8641",
+      "boligtype": "hus",
+      "m2pris": 12900,
+      "antal_handler_12m": 17,
+      "liggetid_dage": 50,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "8643",
+      "boligtype": "hus",
+      "m2pris": 8900,
+      "antal_handler_12m": 35,
+      "liggetid_dage": 156,
+      "udvikling_1aar_pct": -17
+    },
+    {
+      "postnr": "8653",
+      "boligtype": "hus",
+      "m2pris": 13400,
+      "antal_handler_12m": 51,
+      "liggetid_dage": 142,
+      "udvikling_1aar_pct": 3.6
+    },
+    {
+      "postnr": "8660",
+      "boligtype": "hus",
+      "m2pris": 20300,
+      "antal_handler_12m": 313,
+      "liggetid_dage": 115,
+      "udvikling_1aar_pct": -1
+    },
+    {
+      "postnr": "8660",
+      "boligtype": "lejlighed",
+      "m2pris": 27900,
+      "antal_handler_12m": 58,
+      "liggetid_dage": 152,
+      "udvikling_1aar_pct": 11.6
+    },
+    {
+      "postnr": "8670",
+      "boligtype": "hus",
+      "m2pris": 14200,
+      "antal_handler_12m": 24,
+      "liggetid_dage": 98,
+      "udvikling_1aar_pct": 6.6
+    },
+    {
+      "postnr": "8680",
+      "boligtype": "hus",
+      "m2pris": 24800,
+      "antal_handler_12m": 105,
+      "liggetid_dage": 158,
+      "udvikling_1aar_pct": 4.6
+    },
+    {
+      "postnr": "8700",
+      "boligtype": "hus",
+      "m2pris": 15000,
+      "antal_handler_12m": 708,
+      "liggetid_dage": 134,
+      "udvikling_1aar_pct": 3
+    },
+    {
+      "postnr": "8700",
+      "boligtype": "lejlighed",
+      "m2pris": 15900,
+      "antal_handler_12m": 112,
+      "liggetid_dage": 182,
+      "udvikling_1aar_pct": 2
+    },
+    {
+      "postnr": "8721",
+      "boligtype": "hus",
+      "m2pris": 10600,
+      "antal_handler_12m": 27,
+      "liggetid_dage": 197,
+      "udvikling_1aar_pct": -20.5
+    },
+    {
+      "postnr": "8722",
+      "boligtype": "hus",
+      "m2pris": 14300,
+      "antal_handler_12m": 96,
+      "liggetid_dage": 102,
+      "udvikling_1aar_pct": 9.5
+    },
+    {
+      "postnr": "8723",
+      "boligtype": "hus",
+      "m2pris": 10800,
+      "antal_handler_12m": 102,
+      "liggetid_dage": 135,
+      "udvikling_1aar_pct": 3.5
+    },
+    {
+      "postnr": "8732",
+      "boligtype": "hus",
+      "m2pris": 12300,
+      "antal_handler_12m": 46,
+      "liggetid_dage": 158,
+      "udvikling_1aar_pct": 3
+    },
+    {
+      "postnr": "8740",
+      "boligtype": "hus",
+      "m2pris": 10100,
+      "antal_handler_12m": 78,
+      "liggetid_dage": 167,
+      "udvikling_1aar_pct": 0
+    },
+    {
+      "postnr": "8751",
+      "boligtype": "hus",
+      "m2pris": 12900,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 98,
+      "udvikling_1aar_pct": -7.5
+    },
+    {
+      "postnr": "8752",
+      "boligtype": "hus",
+      "m2pris": 13600,
+      "antal_handler_12m": 47,
+      "liggetid_dage": 146,
+      "udvikling_1aar_pct": 17
+    },
+    {
+      "postnr": "8763",
+      "boligtype": "hus",
+      "m2pris": 10800,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 92,
+      "udvikling_1aar_pct": 13.9
+    },
+    {
+      "postnr": "8781",
+      "boligtype": "hus",
+      "m2pris": 7300,
+      "antal_handler_12m": 11,
+      "liggetid_dage": 58,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "8783",
+      "boligtype": "hus",
+      "m2pris": 10000,
+      "antal_handler_12m": 35,
+      "liggetid_dage": 229,
+      "udvikling_1aar_pct": 5
+    },
+    {
+      "postnr": "8800",
+      "boligtype": "hus",
+      "m2pris": 13200,
+      "antal_handler_12m": 473,
+      "liggetid_dage": 168,
+      "udvikling_1aar_pct": -4
+    },
+    {
+      "postnr": "8800",
+      "boligtype": "lejlighed",
+      "m2pris": 14600,
+      "antal_handler_12m": 81,
+      "liggetid_dage": 176,
+      "udvikling_1aar_pct": 2.9
+    },
+    {
+      "postnr": "8830",
+      "boligtype": "hus",
+      "m2pris": 6300,
+      "antal_handler_12m": 74,
+      "liggetid_dage": 210,
+      "udvikling_1aar_pct": -1.2
+    },
+    {
+      "postnr": "8831",
+      "boligtype": "hus",
+      "m2pris": 10000,
+      "antal_handler_12m": 24,
+      "liggetid_dage": 131,
+      "udvikling_1aar_pct": -12
+    },
+    {
+      "postnr": "8832",
+      "boligtype": "hus",
+      "m2pris": 7500,
+      "antal_handler_12m": 27,
+      "liggetid_dage": 351,
+      "udvikling_1aar_pct": 1.5
+    },
+    {
+      "postnr": "8840",
+      "boligtype": "hus",
+      "m2pris": 7000,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 255,
+      "udvikling_1aar_pct": 5.4
+    },
+    {
+      "postnr": "8850",
+      "boligtype": "hus",
+      "m2pris": 8100,
+      "antal_handler_12m": 108,
+      "liggetid_dage": 200,
+      "udvikling_1aar_pct": -5.4
+    },
+    {
+      "postnr": "8860",
+      "boligtype": "hus",
+      "m2pris": 8200,
+      "antal_handler_12m": 48,
+      "liggetid_dage": 181,
+      "udvikling_1aar_pct": 14.3
+    },
+    {
+      "postnr": "8870",
+      "boligtype": "hus",
+      "m2pris": 10400,
+      "antal_handler_12m": 86,
+      "liggetid_dage": 188,
+      "udvikling_1aar_pct": 4.5
+    },
+    {
+      "postnr": "8881",
+      "boligtype": "hus",
+      "m2pris": 9900,
+      "antal_handler_12m": 34,
+      "liggetid_dage": 200,
+      "udvikling_1aar_pct": 23.8
+    },
+    {
+      "postnr": "8883",
+      "boligtype": "fritidshus",
+      "m2pris": 18000,
+      "antal_handler_12m": 8,
+      "liggetid_dage": 278,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "8900",
+      "boligtype": "hus",
+      "m2pris": 16300,
+      "antal_handler_12m": 25,
+      "liggetid_dage": 169,
+      "udvikling_1aar_pct": 19.8
+    },
+    {
+      "postnr": "8900",
+      "boligtype": "lejlighed",
+      "m2pris": 12500,
+      "antal_handler_12m": 87,
+      "liggetid_dage": 170,
+      "udvikling_1aar_pct": 6.9
+    },
+    {
+      "postnr": "8920",
+      "boligtype": "hus",
+      "m2pris": 13300,
+      "antal_handler_12m": 234,
+      "liggetid_dage": 131,
+      "udvikling_1aar_pct": 4.3
+    },
+    {
+      "postnr": "8920",
+      "boligtype": "lejlighed",
+      "m2pris": 7700,
+      "antal_handler_12m": 48,
+      "liggetid_dage": 129,
+      "udvikling_1aar_pct": 1
+    },
+    {
+      "postnr": "8930",
+      "boligtype": "hus",
+      "m2pris": 10700,
+      "antal_handler_12m": 149,
+      "liggetid_dage": 163,
+      "udvikling_1aar_pct": -5.1
+    },
+    {
+      "postnr": "8930",
+      "boligtype": "lejlighed",
+      "m2pris": 7100,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 157,
+      "udvikling_1aar_pct": 2.9
+    },
+    {
+      "postnr": "8940",
+      "boligtype": "hus",
+      "m2pris": 12000,
+      "antal_handler_12m": 112,
+      "liggetid_dage": 135,
+      "udvikling_1aar_pct": 5.1
+    },
+    {
+      "postnr": "8940",
+      "boligtype": "lejlighed",
+      "m2pris": 8000,
+      "antal_handler_12m": 27,
+      "liggetid_dage": 29,
+      "udvikling_1aar_pct": -5.7
+    },
+    {
+      "postnr": "8950",
+      "boligtype": "hus",
+      "m2pris": 5900,
+      "antal_handler_12m": 34,
+      "liggetid_dage": 52,
+      "udvikling_1aar_pct": 40.8
+    },
+    {
+      "postnr": "8950",
+      "boligtype": "fritidshus",
+      "m2pris": 10900,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 300,
+      "udvikling_1aar_pct": 4.7
+    },
+    {
+      "postnr": "8960",
+      "boligtype": "hus",
+      "m2pris": 13300,
+      "antal_handler_12m": 152,
+      "liggetid_dage": 143,
+      "udvikling_1aar_pct": 0.4
+    },
+    {
+      "postnr": "8960",
+      "boligtype": "lejlighed",
+      "m2pris": 10400,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 101,
+      "udvikling_1aar_pct": -10.5
+    },
+    {
+      "postnr": "8961",
+      "boligtype": "hus",
+      "m2pris": 6800,
+      "antal_handler_12m": 45,
+      "liggetid_dage": 175,
+      "udvikling_1aar_pct": 18.8
+    },
+    {
+      "postnr": "8961",
+      "boligtype": "fritidshus",
+      "m2pris": 16100,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 125,
+      "udvikling_1aar_pct": -11.6
+    },
+    {
+      "postnr": "8963",
+      "boligtype": "hus",
+      "m2pris": 9000,
+      "antal_handler_12m": 47,
+      "liggetid_dage": 255,
+      "udvikling_1aar_pct": 4.6
+    },
+    {
+      "postnr": "8970",
+      "boligtype": "hus",
+      "m2pris": 5300,
+      "antal_handler_12m": 34,
+      "liggetid_dage": 54,
+      "udvikling_1aar_pct": 19.4
+    },
+    {
+      "postnr": "8981",
+      "boligtype": "hus",
+      "m2pris": 8900,
+      "antal_handler_12m": 63,
+      "liggetid_dage": 111,
+      "udvikling_1aar_pct": 8.9
+    },
+    {
+      "postnr": "8983",
+      "boligtype": "hus",
+      "m2pris": 5200,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 267,
+      "udvikling_1aar_pct": -5.9
+    },
+    {
+      "postnr": "8990",
+      "boligtype": "hus",
+      "m2pris": 7000,
+      "antal_handler_12m": 32,
+      "liggetid_dage": 255,
+      "udvikling_1aar_pct": -2.4
+    },
+    {
+      "postnr": "9000",
+      "boligtype": "hus",
+      "m2pris": 24800,
+      "antal_handler_12m": 294,
+      "liggetid_dage": 119,
+      "udvikling_1aar_pct": 10.7
+    },
+    {
+      "postnr": "9000",
+      "boligtype": "lejlighed",
+      "m2pris": 21300,
+      "antal_handler_12m": 518,
+      "liggetid_dage": 128,
+      "udvikling_1aar_pct": -0.6
+    },
+    {
+      "postnr": "9200",
+      "boligtype": "hus",
+      "m2pris": 17000,
+      "antal_handler_12m": 141,
+      "liggetid_dage": 104,
+      "udvikling_1aar_pct": 0.1
+    },
+    {
+      "postnr": "9200",
+      "boligtype": "lejlighed",
+      "m2pris": 15000,
+      "antal_handler_12m": 15,
+      "liggetid_dage": 40,
+      "udvikling_1aar_pct": 0.6
+    },
+    {
+      "postnr": "9210",
+      "boligtype": "hus",
+      "m2pris": 19100,
+      "antal_handler_12m": 140,
+      "liggetid_dage": 90,
+      "udvikling_1aar_pct": 4.2
+    },
+    {
+      "postnr": "9210",
+      "boligtype": "lejlighed",
+      "m2pris": 13300,
+      "antal_handler_12m": 24,
+      "liggetid_dage": 90,
+      "udvikling_1aar_pct": -10.4
+    },
+    {
+      "postnr": "9220",
+      "boligtype": "hus",
+      "m2pris": 14100,
+      "antal_handler_12m": 84,
+      "liggetid_dage": 100,
+      "udvikling_1aar_pct": -4.4
+    },
+    {
+      "postnr": "9230",
+      "boligtype": "hus",
+      "m2pris": 15000,
+      "antal_handler_12m": 97,
+      "liggetid_dage": 120,
+      "udvikling_1aar_pct": -0.5
+    },
+    {
+      "postnr": "9240",
+      "boligtype": "hus",
+      "m2pris": 12700,
+      "antal_handler_12m": 135,
+      "liggetid_dage": 197,
+      "udvikling_1aar_pct": 2.6
+    },
+    {
+      "postnr": "9260",
+      "boligtype": "hus",
+      "m2pris": 16000,
+      "antal_handler_12m": 70,
+      "liggetid_dage": 141,
+      "udvikling_1aar_pct": -7.5
+    },
+    {
+      "postnr": "9270",
+      "boligtype": "hus",
+      "m2pris": 16300,
+      "antal_handler_12m": 48,
+      "liggetid_dage": 81,
+      "udvikling_1aar_pct": 5.2
+    },
+    {
+      "postnr": "9280",
+      "boligtype": "hus",
+      "m2pris": 10300,
+      "antal_handler_12m": 79,
+      "liggetid_dage": 145,
+      "udvikling_1aar_pct": -4.5
+    },
+    {
+      "postnr": "9280",
+      "boligtype": "fritidshus",
+      "m2pris": 9500,
+      "antal_handler_12m": 38,
+      "liggetid_dage": 238,
+      "udvikling_1aar_pct": 4.7
+    },
+    {
+      "postnr": "9293",
+      "boligtype": "hus",
+      "m2pris": 5000,
+      "antal_handler_12m": 15,
+      "liggetid_dage": 100,
+      "udvikling_1aar_pct": -32.7
+    },
+    {
+      "postnr": "9300",
+      "boligtype": "hus",
+      "m2pris": 9800,
+      "antal_handler_12m": 140,
+      "liggetid_dage": 178,
+      "udvikling_1aar_pct": 4.5
+    },
+    {
+      "postnr": "9300",
+      "boligtype": "lejlighed",
+      "m2pris": 23800,
+      "antal_handler_12m": 9,
+      "liggetid_dage": 36,
+      "udvikling_1aar_pct": -6.8
+    },
+    {
+      "postnr": "9300",
+      "boligtype": "fritidshus",
+      "m2pris": 14300,
+      "antal_handler_12m": 58,
+      "liggetid_dage": 167,
+      "udvikling_1aar_pct": 11.3
+    },
+    {
+      "postnr": "9310",
+      "boligtype": "hus",
+      "m2pris": 11800,
+      "antal_handler_12m": 92,
+      "liggetid_dage": 145,
+      "udvikling_1aar_pct": -4.9
+    },
+    {
+      "postnr": "9320",
+      "boligtype": "hus",
+      "m2pris": 9700,
+      "antal_handler_12m": 61,
+      "liggetid_dage": 148,
+      "udvikling_1aar_pct": 7.3
+    },
+    {
+      "postnr": "9330",
+      "boligtype": "hus",
+      "m2pris": 6100,
+      "antal_handler_12m": 65,
+      "liggetid_dage": 172,
+      "udvikling_1aar_pct": -14.6
+    },
+    {
+      "postnr": "9362",
+      "boligtype": "hus",
+      "m2pris": 7700,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 45,
+      "udvikling_1aar_pct": 16.9
+    },
+    {
+      "postnr": "9370",
+      "boligtype": "hus",
+      "m2pris": 8400,
+      "antal_handler_12m": 51,
+      "liggetid_dage": 235,
+      "udvikling_1aar_pct": -6
+    },
+    {
+      "postnr": "9370",
+      "boligtype": "fritidshus",
+      "m2pris": 12600,
+      "antal_handler_12m": 217,
+      "liggetid_dage": 185,
+      "udvikling_1aar_pct": 0.3
+    },
+    {
+      "postnr": "9380",
+      "boligtype": "hus",
+      "m2pris": 14900,
+      "antal_handler_12m": 27,
+      "liggetid_dage": 117,
+      "udvikling_1aar_pct": 3.8
+    },
+    {
+      "postnr": "9381",
+      "boligtype": "hus",
+      "m2pris": 6800,
+      "antal_handler_12m": 18,
+      "liggetid_dage": 76,
+      "udvikling_1aar_pct": -16.6
+    },
+    {
+      "postnr": "9382",
+      "boligtype": "hus",
+      "m2pris": 6200,
+      "antal_handler_12m": 19,
+      "liggetid_dage": 72,
+      "udvikling_1aar_pct": -3.7
+    },
+    {
+      "postnr": "9400",
+      "boligtype": "hus",
+      "m2pris": 17300,
+      "antal_handler_12m": 124,
+      "liggetid_dage": 112,
+      "udvikling_1aar_pct": 2.5
+    },
+    {
+      "postnr": "9400",
+      "boligtype": "lejlighed",
+      "m2pris": 18300,
+      "antal_handler_12m": 114,
+      "liggetid_dage": 165,
+      "udvikling_1aar_pct": 0.6
+    },
+    {
+      "postnr": "9430",
+      "boligtype": "hus",
+      "m2pris": 11600,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 70,
+      "udvikling_1aar_pct": -4.3
+    },
+    {
+      "postnr": "9440",
+      "boligtype": "hus",
+      "m2pris": 12200,
+      "antal_handler_12m": 111,
+      "liggetid_dage": 155,
+      "udvikling_1aar_pct": 7
+    },
+    {
+      "postnr": "9460",
+      "boligtype": "hus",
+      "m2pris": 4900,
+      "antal_handler_12m": 72,
+      "liggetid_dage": 313,
+      "udvikling_1aar_pct": 9.8
+    },
+    {
+      "postnr": "9460",
+      "boligtype": "fritidshus",
+      "m2pris": 16500,
+      "antal_handler_12m": 30,
+      "liggetid_dage": 148,
+      "udvikling_1aar_pct": 1
+    },
+    {
+      "postnr": "9480",
+      "boligtype": "hus",
+      "m2pris": 9500,
+      "antal_handler_12m": 77,
+      "liggetid_dage": 174,
+      "udvikling_1aar_pct": -7.2
+    },
+    {
+      "postnr": "9480",
+      "boligtype": "lejlighed",
+      "m2pris": 11800,
+      "antal_handler_12m": 33,
+      "liggetid_dage": 170,
+      "udvikling_1aar_pct": 5
+    },
+    {
+      "postnr": "9480",
+      "boligtype": "fritidshus",
+      "m2pris": 20500,
+      "antal_handler_12m": 151,
+      "liggetid_dage": 172,
+      "udvikling_1aar_pct": -3.6
+    },
+    {
+      "postnr": "9490",
+      "boligtype": "hus",
+      "m2pris": 7800,
+      "antal_handler_12m": 68,
+      "liggetid_dage": 192,
+      "udvikling_1aar_pct": 2.5
+    },
+    {
+      "postnr": "9490",
+      "boligtype": "lejlighed",
+      "m2pris": 14400,
+      "antal_handler_12m": 11,
+      "liggetid_dage": 110,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "9492",
+      "boligtype": "hus",
+      "m2pris": 17700,
+      "antal_handler_12m": 31,
+      "liggetid_dage": 133,
+      "udvikling_1aar_pct": 6.9
+    },
+    {
+      "postnr": "9492",
+      "boligtype": "fritidshus",
+      "m2pris": 29200,
+      "antal_handler_12m": 91,
+      "liggetid_dage": 129,
+      "udvikling_1aar_pct": 5.2
+    },
+    {
+      "postnr": "9493",
+      "boligtype": "fritidshus",
+      "m2pris": 25800,
+      "antal_handler_12m": 48,
+      "liggetid_dage": 130,
+      "udvikling_1aar_pct": -5
+    },
+    {
+      "postnr": "9500",
+      "boligtype": "hus",
+      "m2pris": 8400,
+      "antal_handler_12m": 218,
+      "liggetid_dage": 192,
+      "udvikling_1aar_pct": -9.2
+    },
+    {
+      "postnr": "9510",
+      "boligtype": "hus",
+      "m2pris": 7000,
+      "antal_handler_12m": 48,
+      "liggetid_dage": 148,
+      "udvikling_1aar_pct": -5.5
+    },
+    {
+      "postnr": "9520",
+      "boligtype": "hus",
+      "m2pris": 10400,
+      "antal_handler_12m": 66,
+      "liggetid_dage": 215,
+      "udvikling_1aar_pct": -10.6
+    },
+    {
+      "postnr": "9530",
+      "boligtype": "hus",
+      "m2pris": 15400,
+      "antal_handler_12m": 164,
+      "liggetid_dage": 124,
+      "udvikling_1aar_pct": 1.1
+    },
+    {
+      "postnr": "9550",
+      "boligtype": "hus",
+      "m2pris": 6900,
+      "antal_handler_12m": 55,
+      "liggetid_dage": 138,
+      "udvikling_1aar_pct": -10
+    },
+    {
+      "postnr": "9560",
+      "boligtype": "hus",
+      "m2pris": 7100,
+      "antal_handler_12m": 121,
+      "liggetid_dage": 265,
+      "udvikling_1aar_pct": -1.4
+    },
+    {
+      "postnr": "9560",
+      "boligtype": "lejlighed",
+      "m2pris": 12500,
+      "antal_handler_12m": 12,
+      "liggetid_dage": 82,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "9560",
+      "boligtype": "fritidshus",
+      "m2pris": 13500,
+      "antal_handler_12m": 162,
+      "liggetid_dage": 151,
+      "udvikling_1aar_pct": 3.6
+    },
+    {
+      "postnr": "9575",
+      "boligtype": "hus",
+      "m2pris": 7100,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 95,
+      "udvikling_1aar_pct": -5.3
+    },
+    {
+      "postnr": "9600",
+      "boligtype": "hus",
+      "m2pris": 9800,
+      "antal_handler_12m": 107,
+      "liggetid_dage": 131,
+      "udvikling_1aar_pct": 2.2
+    },
+    {
+      "postnr": "9610",
+      "boligtype": "hus",
+      "m2pris": 6100,
+      "antal_handler_12m": 29,
+      "liggetid_dage": 168,
+      "udvikling_1aar_pct": -5.7
+    },
+    {
+      "postnr": "9620",
+      "boligtype": "hus",
+      "m2pris": 6900,
+      "antal_handler_12m": 38,
+      "liggetid_dage": 214,
+      "udvikling_1aar_pct": 3.9
+    },
+    {
+      "postnr": "9632",
+      "boligtype": "hus",
+      "m2pris": 5700,
+      "antal_handler_12m": 21,
+      "liggetid_dage": 88,
+      "udvikling_1aar_pct": -8.8
+    },
+    {
+      "postnr": "9640",
+      "boligtype": "hus",
+      "m2pris": 7300,
+      "antal_handler_12m": 71,
+      "liggetid_dage": 251,
+      "udvikling_1aar_pct": 7.3
+    },
+    {
+      "postnr": "9640",
+      "boligtype": "fritidshus",
+      "m2pris": 14100,
+      "antal_handler_12m": 70,
+      "liggetid_dage": 220,
+      "udvikling_1aar_pct": 14.6
+    },
+    {
+      "postnr": "9670",
+      "boligtype": "hus",
+      "m2pris": 6600,
+      "antal_handler_12m": 82,
+      "liggetid_dage": 272,
+      "udvikling_1aar_pct": 10.8
+    },
+    {
+      "postnr": "9670",
+      "boligtype": "fritidshus",
+      "m2pris": 12700,
+      "antal_handler_12m": 36,
+      "liggetid_dage": 57,
+      "udvikling_1aar_pct": 7.6
+    },
+    {
+      "postnr": "9690",
+      "boligtype": "hus",
+      "m2pris": 5200,
+      "antal_handler_12m": 61,
+      "liggetid_dage": 282,
+      "udvikling_1aar_pct": -11.8
+    },
+    {
+      "postnr": "9690",
+      "boligtype": "fritidshus",
+      "m2pris": 15400,
+      "antal_handler_12m": 49,
+      "liggetid_dage": 155,
+      "udvikling_1aar_pct": -2.5
+    },
+    {
+      "postnr": "9700",
+      "boligtype": "hus",
+      "m2pris": 8600,
+      "antal_handler_12m": 186,
+      "liggetid_dage": 129,
+      "udvikling_1aar_pct": 1.9
+    },
+    {
+      "postnr": "9740",
+      "boligtype": "hus",
+      "m2pris": 5400,
+      "antal_handler_12m": 22,
+      "liggetid_dage": 74,
+      "udvikling_1aar_pct": 38.1
+    },
+    {
+      "postnr": "9760",
+      "boligtype": "hus",
+      "m2pris": 6600,
+      "antal_handler_12m": 58,
+      "liggetid_dage": 169,
+      "udvikling_1aar_pct": 6.1
+    },
+    {
+      "postnr": "9800",
+      "boligtype": "hus",
+      "m2pris": 10100,
+      "antal_handler_12m": 324,
+      "liggetid_dage": 158,
+      "udvikling_1aar_pct": 10.1
+    },
+    {
+      "postnr": "9800",
+      "boligtype": "lejlighed",
+      "m2pris": 11500,
+      "antal_handler_12m": 26,
+      "liggetid_dage": 76,
+      "udvikling_1aar_pct": -8.2
+    },
+    {
+      "postnr": "9800",
+      "boligtype": "fritidshus",
+      "m2pris": 25300,
+      "antal_handler_12m": 84,
+      "liggetid_dage": 125,
+      "udvikling_1aar_pct": 7.8
+    },
+    {
+      "postnr": "9830",
+      "boligtype": "hus",
+      "m2pris": 8100,
+      "antal_handler_12m": 24,
+      "liggetid_dage": 15,
+      "udvikling_1aar_pct": 40.3
+    },
+    {
+      "postnr": "9850",
+      "boligtype": "hus",
+      "m2pris": 6600,
+      "antal_handler_12m": 96,
+      "liggetid_dage": 239,
+      "udvikling_1aar_pct": 7.7
+    },
+    {
+      "postnr": "9850",
+      "boligtype": "fritidshus",
+      "m2pris": 22000,
+      "antal_handler_12m": 35,
+      "liggetid_dage": 213,
+      "udvikling_1aar_pct": 9.4
+    },
+    {
+      "postnr": "9870",
+      "boligtype": "hus",
+      "m2pris": 5600,
+      "antal_handler_12m": 62,
+      "liggetid_dage": 250,
+      "udvikling_1aar_pct": -27.7
+    },
+    {
+      "postnr": "9881",
+      "boligtype": "hus",
+      "m2pris": 6300,
+      "antal_handler_12m": 24,
+      "liggetid_dage": 344,
+      "udvikling_1aar_pct": 9.2
+    },
+    {
+      "postnr": "9881",
+      "boligtype": "fritidshus",
+      "m2pris": 18700,
+      "antal_handler_12m": 27,
+      "liggetid_dage": 186,
+      "udvikling_1aar_pct": -8.4
+    },
+    {
+      "postnr": "9900",
+      "boligtype": "hus",
+      "m2pris": 7800,
+      "antal_handler_12m": 249,
+      "liggetid_dage": 233,
+      "udvikling_1aar_pct": 3.7
+    },
+    {
+      "postnr": "9900",
+      "boligtype": "lejlighed",
+      "m2pris": 9700,
+      "antal_handler_12m": 14,
+      "liggetid_dage": 105,
+      "udvikling_1aar_pct": 37.1
+    },
+    {
+      "postnr": "9900",
+      "boligtype": "fritidshus",
+      "m2pris": 17600,
+      "antal_handler_12m": 6,
+      "liggetid_dage": 97,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "postnr": "9940",
+      "boligtype": "hus",
+      "m2pris": 7500,
+      "antal_handler_12m": 25,
+      "liggetid_dage": 89,
+      "udvikling_1aar_pct": 7.6
+    },
+    {
+      "postnr": "9940",
+      "boligtype": "fritidshus",
+      "m2pris": 17300,
+      "antal_handler_12m": 34,
+      "liggetid_dage": 29,
+      "udvikling_1aar_pct": 10.9
+    },
+    {
+      "postnr": "9970",
+      "boligtype": "hus",
+      "m2pris": 7100,
+      "antal_handler_12m": 33,
+      "liggetid_dage": 210,
+      "udvikling_1aar_pct": 13.2
+    },
+    {
+      "postnr": "9981",
+      "boligtype": "hus",
+      "m2pris": 4700,
+      "antal_handler_12m": 7,
+      "liggetid_dage": 111,
+      "udvikling_1aar_pct": 26.9
+    },
+    {
+      "postnr": "9982",
+      "boligtype": "hus",
+      "m2pris": 9800,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 41,
+      "udvikling_1aar_pct": 71.1
+    },
+    {
+      "postnr": "9982",
+      "boligtype": "fritidshus",
+      "m2pris": 18700,
+      "antal_handler_12m": 56,
+      "liggetid_dage": 197,
+      "udvikling_1aar_pct": 5.4
+    },
+    {
+      "postnr": "9990",
+      "boligtype": "hus",
+      "m2pris": 25000,
+      "antal_handler_12m": 110,
+      "liggetid_dage": 195,
+      "udvikling_1aar_pct": 14.4
+    },
+    {
+      "postnr": "9990",
+      "boligtype": "lejlighed",
+      "m2pris": 26600,
+      "antal_handler_12m": 19,
+      "liggetid_dage": 66,
+      "udvikling_1aar_pct": 29.2
+    },
+    {
+      "postnr": "9990",
+      "boligtype": "fritidshus",
+      "m2pris": 35900,
+      "antal_handler_12m": 16,
+      "liggetid_dage": 140,
+      "udvikling_1aar_pct": -3.5
+    }
   ],
   "kommuner": [
-    { "kommunekode": "0751", "boligtype": "hus", "m2pris": "TODO_DATA", "antal_handler_12m": "TODO_DATA", "liggetid_dage": "TODO_DATA", "udvikling_1aar_pct": "TODO_DATA" },
-    { "kommunekode": "0751", "boligtype": "lejlighed", "m2pris": "TODO_DATA", "antal_handler_12m": "TODO_DATA", "liggetid_dage": "TODO_DATA", "udvikling_1aar_pct": "TODO_DATA" }
+    {
+      "kommunekode": "0101",
+      "boligtype": "hus",
+      "m2pris": 62900,
+      "antal_handler_12m": 609,
+      "liggetid_dage": 86,
+      "udvikling_1aar_pct": 11.7
+    },
+    {
+      "kommunekode": "0101",
+      "boligtype": "lejlighed",
+      "m2pris": 74100,
+      "antal_handler_12m": 4514,
+      "liggetid_dage": 55,
+      "udvikling_1aar_pct": 23.6
+    },
+    {
+      "kommunekode": "0147",
+      "boligtype": "hus",
+      "m2pris": 85300,
+      "antal_handler_12m": 46,
+      "liggetid_dage": 83,
+      "udvikling_1aar_pct": 1.9
+    },
+    {
+      "kommunekode": "0147",
+      "boligtype": "lejlighed",
+      "m2pris": 82200,
+      "antal_handler_12m": 938,
+      "liggetid_dage": 44,
+      "udvikling_1aar_pct": 20.6
+    },
+    {
+      "kommunekode": "0155",
+      "boligtype": "hus",
+      "m2pris": 39800,
+      "antal_handler_12m": 219,
+      "liggetid_dage": 105,
+      "udvikling_1aar_pct": 5.1
+    },
+    {
+      "kommunekode": "0155",
+      "boligtype": "lejlighed",
+      "m2pris": 46400,
+      "antal_handler_12m": 24,
+      "liggetid_dage": 47,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "kommunekode": "0185",
+      "boligtype": "hus",
+      "m2pris": 41800,
+      "antal_handler_12m": 379,
+      "liggetid_dage": 87,
+      "udvikling_1aar_pct": 10.5
+    },
+    {
+      "kommunekode": "0185",
+      "boligtype": "lejlighed",
+      "m2pris": 48300,
+      "antal_handler_12m": 126,
+      "liggetid_dage": 68,
+      "udvikling_1aar_pct": 13.8
+    },
+    {
+      "kommunekode": "0165",
+      "boligtype": "hus",
+      "m2pris": 31400,
+      "antal_handler_12m": 156,
+      "liggetid_dage": 63,
+      "udvikling_1aar_pct": 12
+    },
+    {
+      "kommunekode": "0165",
+      "boligtype": "lejlighed",
+      "m2pris": 28900,
+      "antal_handler_12m": 37,
+      "liggetid_dage": 75,
+      "udvikling_1aar_pct": 13.8
+    },
+    {
+      "kommunekode": "0151",
+      "boligtype": "hus",
+      "m2pris": 38900,
+      "antal_handler_12m": 288,
+      "liggetid_dage": 70,
+      "udvikling_1aar_pct": 14.8
+    },
+    {
+      "kommunekode": "0151",
+      "boligtype": "lejlighed",
+      "m2pris": 39800,
+      "antal_handler_12m": 63,
+      "liggetid_dage": 63,
+      "udvikling_1aar_pct": 19.2
+    },
+    {
+      "kommunekode": "0153",
+      "boligtype": "hus",
+      "m2pris": 35800,
+      "antal_handler_12m": 167,
+      "liggetid_dage": 72,
+      "udvikling_1aar_pct": 14.2
+    },
+    {
+      "kommunekode": "0153",
+      "boligtype": "lejlighed",
+      "m2pris": 28800,
+      "antal_handler_12m": 26,
+      "liggetid_dage": 33,
+      "udvikling_1aar_pct": -2.8
+    },
+    {
+      "kommunekode": "0157",
+      "boligtype": "hus",
+      "m2pris": 67500,
+      "antal_handler_12m": 515,
+      "liggetid_dage": 113,
+      "udvikling_1aar_pct": 7.8
+    },
+    {
+      "kommunekode": "0157",
+      "boligtype": "lejlighed",
+      "m2pris": 64400,
+      "antal_handler_12m": 612,
+      "liggetid_dage": 70,
+      "udvikling_1aar_pct": 16.5
+    },
+    {
+      "kommunekode": "0159",
+      "boligtype": "hus",
+      "m2pris": 48500,
+      "antal_handler_12m": 368,
+      "liggetid_dage": 76,
+      "udvikling_1aar_pct": 11.5
+    },
+    {
+      "kommunekode": "0159",
+      "boligtype": "lejlighed",
+      "m2pris": 45500,
+      "antal_handler_12m": 281,
+      "liggetid_dage": 53,
+      "udvikling_1aar_pct": 19.2
+    },
+    {
+      "kommunekode": "0161",
+      "boligtype": "hus",
+      "m2pris": 38400,
+      "antal_handler_12m": 109,
+      "liggetid_dage": 69,
+      "udvikling_1aar_pct": 14.1
+    },
+    {
+      "kommunekode": "0161",
+      "boligtype": "lejlighed",
+      "m2pris": 35100,
+      "antal_handler_12m": 92,
+      "liggetid_dage": 92,
+      "udvikling_1aar_pct": 12.5
+    },
+    {
+      "kommunekode": "0163",
+      "boligtype": "hus",
+      "m2pris": 40200,
+      "antal_handler_12m": 143,
+      "liggetid_dage": 85,
+      "udvikling_1aar_pct": 14.1
+    },
+    {
+      "kommunekode": "0163",
+      "boligtype": "lejlighed",
+      "m2pris": 37400,
+      "antal_handler_12m": 36,
+      "liggetid_dage": 85,
+      "udvikling_1aar_pct": 8
+    },
+    {
+      "kommunekode": "0167",
+      "boligtype": "hus",
+      "m2pris": 44300,
+      "antal_handler_12m": 322,
+      "liggetid_dage": 82,
+      "udvikling_1aar_pct": 15.3
+    },
+    {
+      "kommunekode": "0167",
+      "boligtype": "lejlighed",
+      "m2pris": 41300,
+      "antal_handler_12m": 161,
+      "liggetid_dage": 59,
+      "udvikling_1aar_pct": 10.2
+    },
+    {
+      "kommunekode": "0167",
+      "boligtype": "fritidshus",
+      "m2pris": 38400,
+      "antal_handler_12m": 8,
+      "liggetid_dage": 28,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "kommunekode": "0169",
+      "boligtype": "hus",
+      "m2pris": 30200,
+      "antal_handler_12m": 382,
+      "liggetid_dage": 70,
+      "udvikling_1aar_pct": 11.6
+    },
+    {
+      "kommunekode": "0169",
+      "boligtype": "lejlighed",
+      "m2pris": 30300,
+      "antal_handler_12m": 299,
+      "liggetid_dage": 72,
+      "udvikling_1aar_pct": 12.2
+    },
+    {
+      "kommunekode": "0183",
+      "boligtype": "hus",
+      "m2pris": 30900,
+      "antal_handler_12m": 140,
+      "liggetid_dage": 71,
+      "udvikling_1aar_pct": 13.1
+    },
+    {
+      "kommunekode": "0183",
+      "boligtype": "lejlighed",
+      "m2pris": 30900,
+      "antal_handler_12m": 73,
+      "liggetid_dage": 62,
+      "udvikling_1aar_pct": 12.3
+    },
+    {
+      "kommunekode": "0173",
+      "boligtype": "hus",
+      "m2pris": 59300,
+      "antal_handler_12m": 353,
+      "liggetid_dage": 80,
+      "udvikling_1aar_pct": 11.4
+    },
+    {
+      "kommunekode": "0173",
+      "boligtype": "lejlighed",
+      "m2pris": 51500,
+      "antal_handler_12m": 344,
+      "liggetid_dage": 65,
+      "udvikling_1aar_pct": 17.2
+    },
+    {
+      "kommunekode": "0175",
+      "boligtype": "hus",
+      "m2pris": 46200,
+      "antal_handler_12m": 179,
+      "liggetid_dage": 60,
+      "udvikling_1aar_pct": 18.3
+    },
+    {
+      "kommunekode": "0175",
+      "boligtype": "lejlighed",
+      "m2pris": 46400,
+      "antal_handler_12m": 211,
+      "liggetid_dage": 53,
+      "udvikling_1aar_pct": 18.7
+    },
+    {
+      "kommunekode": "0187",
+      "boligtype": "hus",
+      "m2pris": 36000,
+      "antal_handler_12m": 142,
+      "liggetid_dage": 76,
+      "udvikling_1aar_pct": 15.2
+    },
+    {
+      "kommunekode": "0187",
+      "boligtype": "lejlighed",
+      "m2pris": 32900,
+      "antal_handler_12m": 76,
+      "liggetid_dage": 44,
+      "udvikling_1aar_pct": 15.7
+    },
+    {
+      "kommunekode": "0201",
+      "boligtype": "hus",
+      "m2pris": 37100,
+      "antal_handler_12m": 288,
+      "liggetid_dage": 72,
+      "udvikling_1aar_pct": 12.9
+    },
+    {
+      "kommunekode": "0201",
+      "boligtype": "lejlighed",
+      "m2pris": 33800,
+      "antal_handler_12m": 33,
+      "liggetid_dage": 57,
+      "udvikling_1aar_pct": 12.7
+    },
+    {
+      "kommunekode": "0240",
+      "boligtype": "hus",
+      "m2pris": 31000,
+      "antal_handler_12m": 515,
+      "liggetid_dage": 57,
+      "udvikling_1aar_pct": 12.3
+    },
+    {
+      "kommunekode": "0240",
+      "boligtype": "lejlighed",
+      "m2pris": 34500,
+      "antal_handler_12m": 65,
+      "liggetid_dage": 59,
+      "udvikling_1aar_pct": 14.7
+    },
+    {
+      "kommunekode": "0210",
+      "boligtype": "hus",
+      "m2pris": 36700,
+      "antal_handler_12m": 362,
+      "liggetid_dage": 84,
+      "udvikling_1aar_pct": 9.1
+    },
+    {
+      "kommunekode": "0210",
+      "boligtype": "lejlighed",
+      "m2pris": 25200,
+      "antal_handler_12m": 121,
+      "liggetid_dage": 74,
+      "udvikling_1aar_pct": 8.8
+    },
+    {
+      "kommunekode": "0250",
+      "boligtype": "hus",
+      "m2pris": 22600,
+      "antal_handler_12m": 482,
+      "liggetid_dage": 97,
+      "udvikling_1aar_pct": 8.2
+    },
+    {
+      "kommunekode": "0250",
+      "boligtype": "lejlighed",
+      "m2pris": 27100,
+      "antal_handler_12m": 61,
+      "liggetid_dage": 107,
+      "udvikling_1aar_pct": 9.7
+    },
+    {
+      "kommunekode": "0250",
+      "boligtype": "fritidshus",
+      "m2pris": 19800,
+      "antal_handler_12m": 325,
+      "liggetid_dage": 127,
+      "udvikling_1aar_pct": 1.5
+    },
+    {
+      "kommunekode": "0190",
+      "boligtype": "hus",
+      "m2pris": 43500,
+      "antal_handler_12m": 324,
+      "liggetid_dage": 77,
+      "udvikling_1aar_pct": 10.6
+    },
+    {
+      "kommunekode": "0190",
+      "boligtype": "lejlighed",
+      "m2pris": 34700,
+      "antal_handler_12m": 98,
+      "liggetid_dage": 63,
+      "udvikling_1aar_pct": 8.8
+    },
+    {
+      "kommunekode": "0270",
+      "boligtype": "hus",
+      "m2pris": 21500,
+      "antal_handler_12m": 529,
+      "liggetid_dage": 118,
+      "udvikling_1aar_pct": 6.7
+    },
+    {
+      "kommunekode": "0270",
+      "boligtype": "lejlighed",
+      "m2pris": 26900,
+      "antal_handler_12m": 56,
+      "liggetid_dage": 124,
+      "udvikling_1aar_pct": 15.4
+    },
+    {
+      "kommunekode": "0270",
+      "boligtype": "fritidshus",
+      "m2pris": 37400,
+      "antal_handler_12m": 683,
+      "liggetid_dage": 125,
+      "udvikling_1aar_pct": 9.2
+    },
+    {
+      "kommunekode": "0260",
+      "boligtype": "hus",
+      "m2pris": 18200,
+      "antal_handler_12m": 349,
+      "liggetid_dage": 112,
+      "udvikling_1aar_pct": 10.2
+    },
+    {
+      "kommunekode": "0260",
+      "boligtype": "lejlighed",
+      "m2pris": 21200,
+      "antal_handler_12m": 27,
+      "liggetid_dage": 153,
+      "udvikling_1aar_pct": -2.8
+    },
+    {
+      "kommunekode": "0260",
+      "boligtype": "fritidshus",
+      "m2pris": 30700,
+      "antal_handler_12m": 307,
+      "liggetid_dage": 113,
+      "udvikling_1aar_pct": 10.4
+    },
+    {
+      "kommunekode": "0217",
+      "boligtype": "hus",
+      "m2pris": 33900,
+      "antal_handler_12m": 486,
+      "liggetid_dage": 112,
+      "udvikling_1aar_pct": 7.5
+    },
+    {
+      "kommunekode": "0217",
+      "boligtype": "lejlighed",
+      "m2pris": 30500,
+      "antal_handler_12m": 285,
+      "liggetid_dage": 114,
+      "udvikling_1aar_pct": 7.8
+    },
+    {
+      "kommunekode": "0217",
+      "boligtype": "fritidshus",
+      "m2pris": 52800,
+      "antal_handler_12m": 117,
+      "liggetid_dage": 175,
+      "udvikling_1aar_pct": 11.6
+    },
+    {
+      "kommunekode": "0219",
+      "boligtype": "hus",
+      "m2pris": 30600,
+      "antal_handler_12m": 426,
+      "liggetid_dage": 74,
+      "udvikling_1aar_pct": 10.5
+    },
+    {
+      "kommunekode": "0219",
+      "boligtype": "lejlighed",
+      "m2pris": 34900,
+      "antal_handler_12m": 156,
+      "liggetid_dage": 77,
+      "udvikling_1aar_pct": 9.2
+    },
+    {
+      "kommunekode": "0219",
+      "boligtype": "fritidshus",
+      "m2pris": 24800,
+      "antal_handler_12m": 14,
+      "liggetid_dage": 55,
+      "udvikling_1aar_pct": -11.7
+    },
+    {
+      "kommunekode": "0223",
+      "boligtype": "hus",
+      "m2pris": 46600,
+      "antal_handler_12m": 315,
+      "liggetid_dage": 113,
+      "udvikling_1aar_pct": 9.8
+    },
+    {
+      "kommunekode": "0223",
+      "boligtype": "lejlighed",
+      "m2pris": 41300,
+      "antal_handler_12m": 138,
+      "liggetid_dage": 102,
+      "udvikling_1aar_pct": 10.3
+    },
+    {
+      "kommunekode": "0230",
+      "boligtype": "hus",
+      "m2pris": 51500,
+      "antal_handler_12m": 571,
+      "liggetid_dage": 111,
+      "udvikling_1aar_pct": 11.7
+    },
+    {
+      "kommunekode": "0230",
+      "boligtype": "lejlighed",
+      "m2pris": 44300,
+      "antal_handler_12m": 307,
+      "liggetid_dage": 78,
+      "udvikling_1aar_pct": 10.5
+    },
+    {
+      "kommunekode": "0400",
+      "boligtype": "hus",
+      "m2pris": 10800,
+      "antal_handler_12m": 525,
+      "liggetid_dage": 118,
+      "udvikling_1aar_pct": 9
+    },
+    {
+      "kommunekode": "0400",
+      "boligtype": "lejlighed",
+      "m2pris": 25300,
+      "antal_handler_12m": 61,
+      "liggetid_dage": 111,
+      "udvikling_1aar_pct": 13.6
+    },
+    {
+      "kommunekode": "0400",
+      "boligtype": "fritidshus",
+      "m2pris": 27000,
+      "antal_handler_12m": 92,
+      "liggetid_dage": 110,
+      "udvikling_1aar_pct": 12.1
+    },
+    {
+      "kommunekode": "0253",
+      "boligtype": "hus",
+      "m2pris": 32500,
+      "antal_handler_12m": 600,
+      "liggetid_dage": 97,
+      "udvikling_1aar_pct": 12.9
+    },
+    {
+      "kommunekode": "0253",
+      "boligtype": "lejlighed",
+      "m2pris": 36900,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 74,
+      "udvikling_1aar_pct": 7.8
+    },
+    {
+      "kommunekode": "0259",
+      "boligtype": "hus",
+      "m2pris": 25200,
+      "antal_handler_12m": 642,
+      "liggetid_dage": 116,
+      "udvikling_1aar_pct": 6.9
+    },
+    {
+      "kommunekode": "0259",
+      "boligtype": "lejlighed",
+      "m2pris": 32800,
+      "antal_handler_12m": 151,
+      "liggetid_dage": 117,
+      "udvikling_1aar_pct": 5.6
+    },
+    {
+      "kommunekode": "0350",
+      "boligtype": "hus",
+      "m2pris": 20700,
+      "antal_handler_12m": 295,
+      "liggetid_dage": 90,
+      "udvikling_1aar_pct": 4.9
+    },
+    {
+      "kommunekode": "0350",
+      "boligtype": "fritidshus",
+      "m2pris": 20500,
+      "antal_handler_12m": 99,
+      "liggetid_dage": 116,
+      "udvikling_1aar_pct": 6.6
+    },
+    {
+      "kommunekode": "0265",
+      "boligtype": "hus",
+      "m2pris": 31400,
+      "antal_handler_12m": 715,
+      "liggetid_dage": 77,
+      "udvikling_1aar_pct": 10.5
+    },
+    {
+      "kommunekode": "0265",
+      "boligtype": "lejlighed",
+      "m2pris": 37400,
+      "antal_handler_12m": 320,
+      "liggetid_dage": 67,
+      "udvikling_1aar_pct": 15.3
+    },
+    {
+      "kommunekode": "0269",
+      "boligtype": "hus",
+      "m2pris": 35300,
+      "antal_handler_12m": 328,
+      "liggetid_dage": 100,
+      "udvikling_1aar_pct": 11.7
+    },
+    {
+      "kommunekode": "0269",
+      "boligtype": "lejlighed",
+      "m2pris": 37900,
+      "antal_handler_12m": 65,
+      "liggetid_dage": 68,
+      "udvikling_1aar_pct": 14.2
+    },
+    {
+      "kommunekode": "0320",
+      "boligtype": "hus",
+      "m2pris": 14700,
+      "antal_handler_12m": 476,
+      "liggetid_dage": 132,
+      "udvikling_1aar_pct": 11.5
+    },
+    {
+      "kommunekode": "0320",
+      "boligtype": "fritidshus",
+      "m2pris": 17700,
+      "antal_handler_12m": 26,
+      "liggetid_dage": 68,
+      "udvikling_1aar_pct": 1.8
+    },
+    {
+      "kommunekode": "0376",
+      "boligtype": "hus",
+      "m2pris": 8500,
+      "antal_handler_12m": 712,
+      "liggetid_dage": 147,
+      "udvikling_1aar_pct": 7.6
+    },
+    {
+      "kommunekode": "0376",
+      "boligtype": "lejlighed",
+      "m2pris": 17000,
+      "antal_handler_12m": 53,
+      "liggetid_dage": 108,
+      "udvikling_1aar_pct": 8.9
+    },
+    {
+      "kommunekode": "0376",
+      "boligtype": "fritidshus",
+      "m2pris": 21500,
+      "antal_handler_12m": 356,
+      "liggetid_dage": 138,
+      "udvikling_1aar_pct": 6.6
+    },
+    {
+      "kommunekode": "0316",
+      "boligtype": "hus",
+      "m2pris": 16500,
+      "antal_handler_12m": 675,
+      "liggetid_dage": 116,
+      "udvikling_1aar_pct": 4.7
+    },
+    {
+      "kommunekode": "0316",
+      "boligtype": "lejlighed",
+      "m2pris": 30100,
+      "antal_handler_12m": 57,
+      "liggetid_dage": 77,
+      "udvikling_1aar_pct": 9.5
+    },
+    {
+      "kommunekode": "0316",
+      "boligtype": "fritidshus",
+      "m2pris": 19000,
+      "antal_handler_12m": 131,
+      "liggetid_dage": 143,
+      "udvikling_1aar_pct": 3.7
+    },
+    {
+      "kommunekode": "0326",
+      "boligtype": "hus",
+      "m2pris": 10900,
+      "antal_handler_12m": 517,
+      "liggetid_dage": 122,
+      "udvikling_1aar_pct": 1.5
+    },
+    {
+      "kommunekode": "0326",
+      "boligtype": "lejlighed",
+      "m2pris": 16100,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 115,
+      "udvikling_1aar_pct": -1.2
+    },
+    {
+      "kommunekode": "0326",
+      "boligtype": "fritidshus",
+      "m2pris": 22500,
+      "antal_handler_12m": 337,
+      "liggetid_dage": 118,
+      "udvikling_1aar_pct": 14.1
+    },
+    {
+      "kommunekode": "0360",
+      "boligtype": "hus",
+      "m2pris": 5200,
+      "antal_handler_12m": 511,
+      "liggetid_dage": 171,
+      "udvikling_1aar_pct": 4
+    },
+    {
+      "kommunekode": "0360",
+      "boligtype": "fritidshus",
+      "m2pris": 17400,
+      "antal_handler_12m": 201,
+      "liggetid_dage": 134,
+      "udvikling_1aar_pct": 14.6
+    },
+    {
+      "kommunekode": "0370",
+      "boligtype": "hus",
+      "m2pris": 14200,
+      "antal_handler_12m": 885,
+      "liggetid_dage": 100,
+      "udvikling_1aar_pct": 11.3
+    },
+    {
+      "kommunekode": "0370",
+      "boligtype": "lejlighed",
+      "m2pris": 17100,
+      "antal_handler_12m": 152,
+      "liggetid_dage": 80,
+      "udvikling_1aar_pct": 7.9
+    },
+    {
+      "kommunekode": "0370",
+      "boligtype": "fritidshus",
+      "m2pris": 32600,
+      "antal_handler_12m": 64,
+      "liggetid_dage": 96,
+      "udvikling_1aar_pct": 20.3
+    },
+    {
+      "kommunekode": "0306",
+      "boligtype": "hus",
+      "m2pris": 11200,
+      "antal_handler_12m": 353,
+      "liggetid_dage": 143,
+      "udvikling_1aar_pct": 8.6
+    },
+    {
+      "kommunekode": "0306",
+      "boligtype": "fritidshus",
+      "m2pris": 30000,
+      "antal_handler_12m": 918,
+      "liggetid_dage": 118,
+      "udvikling_1aar_pct": 14.1
+    },
+    {
+      "kommunekode": "0329",
+      "boligtype": "hus",
+      "m2pris": 17300,
+      "antal_handler_12m": 315,
+      "liggetid_dage": 101,
+      "udvikling_1aar_pct": 3.3
+    },
+    {
+      "kommunekode": "0329",
+      "boligtype": "lejlighed",
+      "m2pris": 19700,
+      "antal_handler_12m": 65,
+      "liggetid_dage": 54,
+      "udvikling_1aar_pct": 6.8
+    },
+    {
+      "kommunekode": "0330",
+      "boligtype": "hus",
+      "m2pris": 12300,
+      "antal_handler_12m": 749,
+      "liggetid_dage": 120,
+      "udvikling_1aar_pct": 2
+    },
+    {
+      "kommunekode": "0330",
+      "boligtype": "lejlighed",
+      "m2pris": 13200,
+      "antal_handler_12m": 152,
+      "liggetid_dage": 143,
+      "udvikling_1aar_pct": 9.6
+    },
+    {
+      "kommunekode": "0330",
+      "boligtype": "fritidshus",
+      "m2pris": 21400,
+      "antal_handler_12m": 160,
+      "liggetid_dage": 142,
+      "udvikling_1aar_pct": -0.7
+    },
+    {
+      "kommunekode": "0340",
+      "boligtype": "hus",
+      "m2pris": 12700,
+      "antal_handler_12m": 335,
+      "liggetid_dage": 136,
+      "udvikling_1aar_pct": -4.8
+    },
+    {
+      "kommunekode": "0340",
+      "boligtype": "lejlighed",
+      "m2pris": 17600,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 24,
+      "udvikling_1aar_pct": -2
+    },
+    {
+      "kommunekode": "0336",
+      "boligtype": "hus",
+      "m2pris": 14700,
+      "antal_handler_12m": 348,
+      "liggetid_dage": 133,
+      "udvikling_1aar_pct": 9.1
+    },
+    {
+      "kommunekode": "0336",
+      "boligtype": "fritidshus",
+      "m2pris": 30400,
+      "antal_handler_12m": 64,
+      "liggetid_dage": 121,
+      "udvikling_1aar_pct": -1
+    },
+    {
+      "kommunekode": "0390",
+      "boligtype": "hus",
+      "m2pris": 9500,
+      "antal_handler_12m": 568,
+      "liggetid_dage": 169,
+      "udvikling_1aar_pct": 4.1
+    },
+    {
+      "kommunekode": "0390",
+      "boligtype": "lejlighed",
+      "m2pris": 17800,
+      "antal_handler_12m": 45,
+      "liggetid_dage": 118,
+      "udvikling_1aar_pct": 4.8
+    },
+    {
+      "kommunekode": "0390",
+      "boligtype": "fritidshus",
+      "m2pris": 18800,
+      "antal_handler_12m": 214,
+      "liggetid_dage": 132,
+      "udvikling_1aar_pct": 9.1
+    },
+    {
+      "kommunekode": "0420",
+      "boligtype": "hus",
+      "m2pris": 9300,
+      "antal_handler_12m": 474,
+      "liggetid_dage": 202,
+      "udvikling_1aar_pct": 3.4
+    },
+    {
+      "kommunekode": "0430",
+      "boligtype": "hus",
+      "m2pris": 9300,
+      "antal_handler_12m": 531,
+      "liggetid_dage": 163,
+      "udvikling_1aar_pct": -2.1
+    },
+    {
+      "kommunekode": "0430",
+      "boligtype": "lejlighed",
+      "m2pris": 14700,
+      "antal_handler_12m": 27,
+      "liggetid_dage": 97,
+      "udvikling_1aar_pct": -1
+    },
+    {
+      "kommunekode": "0430",
+      "boligtype": "fritidshus",
+      "m2pris": 32900,
+      "antal_handler_12m": 26,
+      "liggetid_dage": 108,
+      "udvikling_1aar_pct": 11.7
+    },
+    {
+      "kommunekode": "0440",
+      "boligtype": "hus",
+      "m2pris": 12200,
+      "antal_handler_12m": 254,
+      "liggetid_dage": 165,
+      "udvikling_1aar_pct": 0.5
+    },
+    {
+      "kommunekode": "0440",
+      "boligtype": "fritidshus",
+      "m2pris": 32500,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 93,
+      "udvikling_1aar_pct": -1.4
+    },
+    {
+      "kommunekode": "0482",
+      "boligtype": "hus",
+      "m2pris": 6500,
+      "antal_handler_12m": 177,
+      "liggetid_dage": 205,
+      "udvikling_1aar_pct": 7.9
+    },
+    {
+      "kommunekode": "0482",
+      "boligtype": "lejlighed",
+      "m2pris": 18300,
+      "antal_handler_12m": 24,
+      "liggetid_dage": 13,
+      "udvikling_1aar_pct": 16
+    },
+    {
+      "kommunekode": "0482",
+      "boligtype": "fritidshus",
+      "m2pris": 17600,
+      "antal_handler_12m": 80,
+      "liggetid_dage": 134,
+      "udvikling_1aar_pct": 6.3
+    },
+    {
+      "kommunekode": "0410",
+      "boligtype": "hus",
+      "m2pris": 13800,
+      "antal_handler_12m": 435,
+      "liggetid_dage": 156,
+      "udvikling_1aar_pct": 0.6
+    },
+    {
+      "kommunekode": "0410",
+      "boligtype": "lejlighed",
+      "m2pris": 25300,
+      "antal_handler_12m": 41,
+      "liggetid_dage": 162,
+      "udvikling_1aar_pct": -11.7
+    },
+    {
+      "kommunekode": "0410",
+      "boligtype": "fritidshus",
+      "m2pris": 25300,
+      "antal_handler_12m": 49,
+      "liggetid_dage": 108,
+      "udvikling_1aar_pct": 9.2
+    },
+    {
+      "kommunekode": "0480",
+      "boligtype": "hus",
+      "m2pris": 8500,
+      "antal_handler_12m": 296,
+      "liggetid_dage": 167,
+      "udvikling_1aar_pct": -2.6
+    },
+    {
+      "kommunekode": "0480",
+      "boligtype": "lejlighed",
+      "m2pris": 20100,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 67,
+      "udvikling_1aar_pct": 17.4
+    },
+    {
+      "kommunekode": "0480",
+      "boligtype": "fritidshus",
+      "m2pris": 24200,
+      "antal_handler_12m": 101,
+      "liggetid_dage": 157,
+      "udvikling_1aar_pct": 11.5
+    },
+    {
+      "kommunekode": "0450",
+      "boligtype": "hus",
+      "m2pris": 11300,
+      "antal_handler_12m": 310,
+      "liggetid_dage": 138,
+      "udvikling_1aar_pct": 4.3
+    },
+    {
+      "kommunekode": "0450",
+      "boligtype": "fritidshus",
+      "m2pris": 42600,
+      "antal_handler_12m": 21,
+      "liggetid_dage": 77,
+      "udvikling_1aar_pct": 15.2
+    },
+    {
+      "kommunekode": "0461",
+      "boligtype": "hus",
+      "m2pris": 20500,
+      "antal_handler_12m": 1546,
+      "liggetid_dage": 94,
+      "udvikling_1aar_pct": 9.1
+    },
+    {
+      "kommunekode": "0461",
+      "boligtype": "lejlighed",
+      "m2pris": 25100,
+      "antal_handler_12m": 523,
+      "liggetid_dage": 110,
+      "udvikling_1aar_pct": 4.6
+    },
+    {
+      "kommunekode": "0479",
+      "boligtype": "hus",
+      "m2pris": 13800,
+      "antal_handler_12m": 547,
+      "liggetid_dage": 152,
+      "udvikling_1aar_pct": -2.3
+    },
+    {
+      "kommunekode": "0479",
+      "boligtype": "lejlighed",
+      "m2pris": 17500,
+      "antal_handler_12m": 50,
+      "liggetid_dage": 154,
+      "udvikling_1aar_pct": 8.2
+    },
+    {
+      "kommunekode": "0479",
+      "boligtype": "fritidshus",
+      "m2pris": 22700,
+      "antal_handler_12m": 30,
+      "liggetid_dage": 65,
+      "udvikling_1aar_pct": -15.3
+    },
+    {
+      "kommunekode": "0492",
+      "boligtype": "hus",
+      "m2pris": 7900,
+      "antal_handler_12m": 103,
+      "liggetid_dage": 220,
+      "udvikling_1aar_pct": 3.5
+    },
+    {
+      "kommunekode": "0530",
+      "boligtype": "hus",
+      "m2pris": 11100,
+      "antal_handler_12m": 288,
+      "liggetid_dage": 133,
+      "udvikling_1aar_pct": -1.4
+    },
+    {
+      "kommunekode": "0530",
+      "boligtype": "fritidshus",
+      "m2pris": 32300,
+      "antal_handler_12m": 71,
+      "liggetid_dage": 67,
+      "udvikling_1aar_pct": 9
+    },
+    {
+      "kommunekode": "0561",
+      "boligtype": "hus",
+      "m2pris": 13400,
+      "antal_handler_12m": 1007,
+      "liggetid_dage": 153,
+      "udvikling_1aar_pct": 0.2
+    },
+    {
+      "kommunekode": "0561",
+      "boligtype": "lejlighed",
+      "m2pris": 17600,
+      "antal_handler_12m": 193,
+      "liggetid_dage": 154,
+      "udvikling_1aar_pct": 0.8
+    },
+    {
+      "kommunekode": "0561",
+      "boligtype": "fritidshus",
+      "m2pris": 18900,
+      "antal_handler_12m": 15,
+      "liggetid_dage": 31,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "kommunekode": "0563",
+      "boligtype": "hus",
+      "m2pris": 13200,
+      "antal_handler_12m": 49,
+      "liggetid_dage": 224,
+      "udvikling_1aar_pct": 7.5
+    },
+    {
+      "kommunekode": "0563",
+      "boligtype": "lejlighed",
+      "m2pris": 24000,
+      "antal_handler_12m": 20,
+      "liggetid_dage": 49,
+      "udvikling_1aar_pct": 38.2
+    },
+    {
+      "kommunekode": "0563",
+      "boligtype": "fritidshus",
+      "m2pris": 29100,
+      "antal_handler_12m": 94,
+      "liggetid_dage": 212,
+      "udvikling_1aar_pct": 4.9
+    },
+    {
+      "kommunekode": "0607",
+      "boligtype": "hus",
+      "m2pris": 13300,
+      "antal_handler_12m": 507,
+      "liggetid_dage": 137,
+      "udvikling_1aar_pct": 1.3
+    },
+    {
+      "kommunekode": "0607",
+      "boligtype": "lejlighed",
+      "m2pris": 13700,
+      "antal_handler_12m": 56,
+      "liggetid_dage": 166,
+      "udvikling_1aar_pct": -2.7
+    },
+    {
+      "kommunekode": "0510",
+      "boligtype": "hus",
+      "m2pris": 8500,
+      "antal_handler_12m": 540,
+      "liggetid_dage": 167,
+      "udvikling_1aar_pct": 12.9
+    },
+    {
+      "kommunekode": "0510",
+      "boligtype": "lejlighed",
+      "m2pris": 13800,
+      "antal_handler_12m": 41,
+      "liggetid_dage": 217,
+      "udvikling_1aar_pct": -3.3
+    },
+    {
+      "kommunekode": "0510",
+      "boligtype": "fritidshus",
+      "m2pris": 20000,
+      "antal_handler_12m": 49,
+      "liggetid_dage": 180,
+      "udvikling_1aar_pct": 9.8
+    },
+    {
+      "kommunekode": "0621",
+      "boligtype": "hus",
+      "m2pris": 13300,
+      "antal_handler_12m": 896,
+      "liggetid_dage": 142,
+      "udvikling_1aar_pct": 5.5
+    },
+    {
+      "kommunekode": "0621",
+      "boligtype": "lejlighed",
+      "m2pris": 14200,
+      "antal_handler_12m": 51,
+      "liggetid_dage": 184,
+      "udvikling_1aar_pct": -0.8
+    },
+    {
+      "kommunekode": "0621",
+      "boligtype": "fritidshus",
+      "m2pris": 25200,
+      "antal_handler_12m": 64,
+      "liggetid_dage": 82,
+      "udvikling_1aar_pct": 13.5
+    },
+    {
+      "kommunekode": "0540",
+      "boligtype": "hus",
+      "m2pris": 9600,
+      "antal_handler_12m": 550,
+      "liggetid_dage": 143,
+      "udvikling_1aar_pct": -1.2
+    },
+    {
+      "kommunekode": "0540",
+      "boligtype": "lejlighed",
+      "m2pris": 17300,
+      "antal_handler_12m": 65,
+      "liggetid_dage": 121,
+      "udvikling_1aar_pct": -3
+    },
+    {
+      "kommunekode": "0540",
+      "boligtype": "fritidshus",
+      "m2pris": 19100,
+      "antal_handler_12m": 92,
+      "liggetid_dage": 140,
+      "udvikling_1aar_pct": 15
+    },
+    {
+      "kommunekode": "0550",
+      "boligtype": "hus",
+      "m2pris": 6500,
+      "antal_handler_12m": 388,
+      "liggetid_dage": 154,
+      "udvikling_1aar_pct": 3.5
+    },
+    {
+      "kommunekode": "0550",
+      "boligtype": "lejlighed",
+      "m2pris": 12800,
+      "antal_handler_12m": 48,
+      "liggetid_dage": 241,
+      "udvikling_1aar_pct": 0.3
+    },
+    {
+      "kommunekode": "0550",
+      "boligtype": "fritidshus",
+      "m2pris": 19100,
+      "antal_handler_12m": 103,
+      "liggetid_dage": 94,
+      "udvikling_1aar_pct": 6.2
+    },
+    {
+      "kommunekode": "0573",
+      "boligtype": "hus",
+      "m2pris": 9400,
+      "antal_handler_12m": 422,
+      "liggetid_dage": 196,
+      "udvikling_1aar_pct": 5.5
+    },
+    {
+      "kommunekode": "0573",
+      "boligtype": "lejlighed",
+      "m2pris": 21300,
+      "antal_handler_12m": 58,
+      "liggetid_dage": 85,
+      "udvikling_1aar_pct": 6.3
+    },
+    {
+      "kommunekode": "0573",
+      "boligtype": "fritidshus",
+      "m2pris": 26300,
+      "antal_handler_12m": 386,
+      "liggetid_dage": 132,
+      "udvikling_1aar_pct": 9.6
+    },
+    {
+      "kommunekode": "0575",
+      "boligtype": "hus",
+      "m2pris": 8500,
+      "antal_handler_12m": 439,
+      "liggetid_dage": 149,
+      "udvikling_1aar_pct": 3.1
+    },
+    {
+      "kommunekode": "0630",
+      "boligtype": "hus",
+      "m2pris": 14700,
+      "antal_handler_12m": 1014,
+      "liggetid_dage": 139,
+      "udvikling_1aar_pct": 6.2
+    },
+    {
+      "kommunekode": "0630",
+      "boligtype": "lejlighed",
+      "m2pris": 20200,
+      "antal_handler_12m": 150,
+      "liggetid_dage": 136,
+      "udvikling_1aar_pct": 1.7
+    },
+    {
+      "kommunekode": "0630",
+      "boligtype": "fritidshus",
+      "m2pris": 29400,
+      "antal_handler_12m": 82,
+      "liggetid_dage": 203,
+      "udvikling_1aar_pct": 10.1
+    },
+    {
+      "kommunekode": "0580",
+      "boligtype": "hus",
+      "m2pris": 8900,
+      "antal_handler_12m": 484,
+      "liggetid_dage": 142,
+      "udvikling_1aar_pct": 2.5
+    },
+    {
+      "kommunekode": "0580",
+      "boligtype": "lejlighed",
+      "m2pris": 14100,
+      "antal_handler_12m": 32,
+      "liggetid_dage": 47,
+      "udvikling_1aar_pct": 11.8
+    },
+    {
+      "kommunekode": "0580",
+      "boligtype": "fritidshus",
+      "m2pris": 16600,
+      "antal_handler_12m": 18,
+      "liggetid_dage": 74,
+      "udvikling_1aar_pct": -38.7
+    },
+    {
+      "kommunekode": "0710",
+      "boligtype": "hus",
+      "m2pris": 14200,
+      "antal_handler_12m": 546,
+      "liggetid_dage": 139,
+      "udvikling_1aar_pct": 0.1
+    },
+    {
+      "kommunekode": "0766",
+      "boligtype": "hus",
+      "m2pris": 10200,
+      "antal_handler_12m": 523,
+      "liggetid_dage": 174,
+      "udvikling_1aar_pct": 4.1
+    },
+    {
+      "kommunekode": "0766",
+      "boligtype": "fritidshus",
+      "m2pris": 26000,
+      "antal_handler_12m": 52,
+      "liggetid_dage": 133,
+      "udvikling_1aar_pct": 1.6
+    },
+    {
+      "kommunekode": "0615",
+      "boligtype": "hus",
+      "m2pris": 14400,
+      "antal_handler_12m": 902,
+      "liggetid_dage": 137,
+      "udvikling_1aar_pct": 4.2
+    },
+    {
+      "kommunekode": "0615",
+      "boligtype": "lejlighed",
+      "m2pris": 15800,
+      "antal_handler_12m": 115,
+      "liggetid_dage": 185,
+      "udvikling_1aar_pct": 2
+    },
+    {
+      "kommunekode": "0707",
+      "boligtype": "hus",
+      "m2pris": 7100,
+      "antal_handler_12m": 363,
+      "liggetid_dage": 193,
+      "udvikling_1aar_pct": -0.4
+    },
+    {
+      "kommunekode": "0707",
+      "boligtype": "lejlighed",
+      "m2pris": 7800,
+      "antal_handler_12m": 25,
+      "liggetid_dage": 41,
+      "udvikling_1aar_pct": -15.3
+    },
+    {
+      "kommunekode": "0707",
+      "boligtype": "fritidshus",
+      "m2pris": 17500,
+      "antal_handler_12m": 190,
+      "liggetid_dage": 182,
+      "udvikling_1aar_pct": 4.2
+    },
+    {
+      "kommunekode": "0727",
+      "boligtype": "hus",
+      "m2pris": 16100,
+      "antal_handler_12m": 280,
+      "liggetid_dage": 162,
+      "udvikling_1aar_pct": 6.6
+    },
+    {
+      "kommunekode": "0727",
+      "boligtype": "lejlighed",
+      "m2pris": 17300,
+      "antal_handler_12m": 28,
+      "liggetid_dage": 114,
+      "udvikling_1aar_pct": 17.9
+    },
+    {
+      "kommunekode": "0727",
+      "boligtype": "fritidshus",
+      "m2pris": 35400,
+      "antal_handler_12m": 76,
+      "liggetid_dage": 133,
+      "udvikling_1aar_pct": 2.9
+    },
+    {
+      "kommunekode": "0730",
+      "boligtype": "hus",
+      "m2pris": 11300,
+      "antal_handler_12m": 889,
+      "liggetid_dage": 153,
+      "udvikling_1aar_pct": 1.9
+    },
+    {
+      "kommunekode": "0730",
+      "boligtype": "lejlighed",
+      "m2pris": 9900,
+      "antal_handler_12m": 245,
+      "liggetid_dage": 147,
+      "udvikling_1aar_pct": 2.8
+    },
+    {
+      "kommunekode": "0741",
+      "boligtype": "hus",
+      "m2pris": 9300,
+      "antal_handler_12m": 62,
+      "liggetid_dage": 263,
+      "udvikling_1aar_pct": 15.4
+    },
+    {
+      "kommunekode": "0741",
+      "boligtype": "fritidshus",
+      "m2pris": 25000,
+      "antal_handler_12m": 17,
+      "liggetid_dage": 130,
+      "udvikling_1aar_pct": -23.5
+    },
+    {
+      "kommunekode": "0740",
+      "boligtype": "hus",
+      "m2pris": 18500,
+      "antal_handler_12m": 939,
+      "liggetid_dage": 146,
+      "udvikling_1aar_pct": 7.5
+    },
+    {
+      "kommunekode": "0740",
+      "boligtype": "lejlighed",
+      "m2pris": 23400,
+      "antal_handler_12m": 82,
+      "liggetid_dage": 186,
+      "udvikling_1aar_pct": 8.9
+    },
+    {
+      "kommunekode": "0740",
+      "boligtype": "fritidshus",
+      "m2pris": 21900,
+      "antal_handler_12m": 63,
+      "liggetid_dage": 141,
+      "udvikling_1aar_pct": 17.9
+    },
+    {
+      "kommunekode": "0746",
+      "boligtype": "hus",
+      "m2pris": 20700,
+      "antal_handler_12m": 696,
+      "liggetid_dage": 111,
+      "udvikling_1aar_pct": 3.1
+    },
+    {
+      "kommunekode": "0746",
+      "boligtype": "lejlighed",
+      "m2pris": 26000,
+      "antal_handler_12m": 82,
+      "liggetid_dage": 143,
+      "udvikling_1aar_pct": 9.4
+    },
+    {
+      "kommunekode": "0706",
+      "boligtype": "hus",
+      "m2pris": 15100,
+      "antal_handler_12m": 531,
+      "liggetid_dage": 150,
+      "udvikling_1aar_pct": 8.1
+    },
+    {
+      "kommunekode": "0706",
+      "boligtype": "lejlighed",
+      "m2pris": 22400,
+      "antal_handler_12m": 48,
+      "liggetid_dage": 177,
+      "udvikling_1aar_pct": 18.3
+    },
+    {
+      "kommunekode": "0706",
+      "boligtype": "fritidshus",
+      "m2pris": 23100,
+      "antal_handler_12m": 482,
+      "liggetid_dage": 150,
+      "udvikling_1aar_pct": 4.1
+    },
+    {
+      "kommunekode": "0751",
+      "boligtype": "hus",
+      "m2pris": 30200,
+      "antal_handler_12m": 2105,
+      "liggetid_dage": 104,
+      "udvikling_1aar_pct": 7.2
+    },
+    {
+      "kommunekode": "0751",
+      "boligtype": "lejlighed",
+      "m2pris": 41700,
+      "antal_handler_12m": 1776,
+      "liggetid_dage": 80,
+      "udvikling_1aar_pct": 8.6
+    },
+    {
+      "kommunekode": "0751",
+      "boligtype": "fritidshus",
+      "m2pris": 50700,
+      "antal_handler_12m": 85,
+      "liggetid_dage": 172,
+      "udvikling_1aar_pct": 6.4
+    },
+    {
+      "kommunekode": "0657",
+      "boligtype": "hus",
+      "m2pris": 11600,
+      "antal_handler_12m": 766,
+      "liggetid_dage": 151,
+      "udvikling_1aar_pct": 1.1
+    },
+    {
+      "kommunekode": "0657",
+      "boligtype": "lejlighed",
+      "m2pris": 16900,
+      "antal_handler_12m": 115,
+      "liggetid_dage": 145,
+      "udvikling_1aar_pct": 7.9
+    },
+    {
+      "kommunekode": "0661",
+      "boligtype": "hus",
+      "m2pris": 10900,
+      "antal_handler_12m": 538,
+      "liggetid_dage": 172,
+      "udvikling_1aar_pct": -2.2
+    },
+    {
+      "kommunekode": "0661",
+      "boligtype": "lejlighed",
+      "m2pris": 11500,
+      "antal_handler_12m": 37,
+      "liggetid_dage": 235,
+      "udvikling_1aar_pct": -9.1
+    },
+    {
+      "kommunekode": "0661",
+      "boligtype": "fritidshus",
+      "m2pris": 14500,
+      "antal_handler_12m": 114,
+      "liggetid_dage": 187,
+      "udvikling_1aar_pct": 2.1
+    },
+    {
+      "kommunekode": "0756",
+      "boligtype": "hus",
+      "m2pris": 9700,
+      "antal_handler_12m": 333,
+      "liggetid_dage": 198,
+      "udvikling_1aar_pct": 4.3
+    },
+    {
+      "kommunekode": "0756",
+      "boligtype": "lejlighed",
+      "m2pris": 13200,
+      "antal_handler_12m": 27,
+      "liggetid_dage": 104,
+      "udvikling_1aar_pct": 3.2
+    },
+    {
+      "kommunekode": "0665",
+      "boligtype": "hus",
+      "m2pris": 5700,
+      "antal_handler_12m": 172,
+      "liggetid_dage": 245,
+      "udvikling_1aar_pct": -3
+    },
+    {
+      "kommunekode": "0665",
+      "boligtype": "lejlighed",
+      "m2pris": 14600,
+      "antal_handler_12m": 13,
+      "liggetid_dage": 41,
+      "udvikling_1aar_pct": null
+    },
+    {
+      "kommunekode": "0665",
+      "boligtype": "fritidshus",
+      "m2pris": 16800,
+      "antal_handler_12m": 130,
+      "liggetid_dage": 210,
+      "udvikling_1aar_pct": 12.2
+    },
+    {
+      "kommunekode": "0760",
+      "boligtype": "hus",
+      "m2pris": 8100,
+      "antal_handler_12m": 511,
+      "liggetid_dage": 182,
+      "udvikling_1aar_pct": 5.6
+    },
+    {
+      "kommunekode": "0760",
+      "boligtype": "lejlighed",
+      "m2pris": 20000,
+      "antal_handler_12m": 42,
+      "liggetid_dage": 131,
+      "udvikling_1aar_pct": 13.7
+    },
+    {
+      "kommunekode": "0760",
+      "boligtype": "fritidshus",
+      "m2pris": 22600,
+      "antal_handler_12m": 600,
+      "liggetid_dage": 119,
+      "udvikling_1aar_pct": 6.8
+    },
+    {
+      "kommunekode": "0779",
+      "boligtype": "hus",
+      "m2pris": 7200,
+      "antal_handler_12m": 308,
+      "liggetid_dage": 200,
+      "udvikling_1aar_pct": 13.7
+    },
+    {
+      "kommunekode": "0779",
+      "boligtype": "fritidshus",
+      "m2pris": 12400,
+      "antal_handler_12m": 133,
+      "liggetid_dage": 190,
+      "udvikling_1aar_pct": -1.3
+    },
+    {
+      "kommunekode": "0671",
+      "boligtype": "hus",
+      "m2pris": 7300,
+      "antal_handler_12m": 174,
+      "liggetid_dage": 282,
+      "udvikling_1aar_pct": -2.5
+    },
+    {
+      "kommunekode": "0671",
+      "boligtype": "fritidshus",
+      "m2pris": 12300,
+      "antal_handler_12m": 46,
+      "liggetid_dage": 246,
+      "udvikling_1aar_pct": -5.7
+    },
+    {
+      "kommunekode": "0791",
+      "boligtype": "hus",
+      "m2pris": 10500,
+      "antal_handler_12m": 866,
+      "liggetid_dage": 192,
+      "udvikling_1aar_pct": -1.8
+    },
+    {
+      "kommunekode": "0791",
+      "boligtype": "lejlighed",
+      "m2pris": 14600,
+      "antal_handler_12m": 81,
+      "liggetid_dage": 176,
+      "udvikling_1aar_pct": 9.2
+    },
+    {
+      "kommunekode": "0791",
+      "boligtype": "fritidshus",
+      "m2pris": 15400,
+      "antal_handler_12m": 23,
+      "liggetid_dage": 42,
+      "udvikling_1aar_pct": 6.9
+    },
+    {
+      "kommunekode": "0810",
+      "boligtype": "hus",
+      "m2pris": 8100,
+      "antal_handler_12m": 336,
+      "liggetid_dage": 148,
+      "udvikling_1aar_pct": 0.7
+    },
+    {
+      "kommunekode": "0813",
+      "boligtype": "hus",
+      "m2pris": 10100,
+      "antal_handler_12m": 582,
+      "liggetid_dage": 206,
+      "udvikling_1aar_pct": 12.3
+    },
+    {
+      "kommunekode": "0813",
+      "boligtype": "lejlighed",
+      "m2pris": 17600,
+      "antal_handler_12m": 44,
+      "liggetid_dage": 160,
+      "udvikling_1aar_pct": 1.9
+    },
+    {
+      "kommunekode": "0813",
+      "boligtype": "fritidshus",
+      "m2pris": 17600,
+      "antal_handler_12m": 155,
+      "liggetid_dage": 181,
+      "udvikling_1aar_pct": 0
+    },
+    {
+      "kommunekode": "0860",
+      "boligtype": "hus",
+      "m2pris": 8400,
+      "antal_handler_12m": 655,
+      "liggetid_dage": 193,
+      "udvikling_1aar_pct": 5
+    },
+    {
+      "kommunekode": "0860",
+      "boligtype": "lejlighed",
+      "m2pris": 14800,
+      "antal_handler_12m": 58,
+      "liggetid_dage": 170,
+      "udvikling_1aar_pct": -0.6
+    },
+    {
+      "kommunekode": "0860",
+      "boligtype": "fritidshus",
+      "m2pris": 21600,
+      "antal_handler_12m": 222,
+      "liggetid_dage": 152,
+      "udvikling_1aar_pct": 4.4
+    },
+    {
+      "kommunekode": "0849",
+      "boligtype": "hus",
+      "m2pris": 9000,
+      "antal_handler_12m": 392,
+      "liggetid_dage": 206,
+      "udvikling_1aar_pct": -0.6
+    },
+    {
+      "kommunekode": "0849",
+      "boligtype": "lejlighed",
+      "m2pris": 19500,
+      "antal_handler_12m": 56,
+      "liggetid_dage": 259,
+      "udvikling_1aar_pct": 2.5
+    },
+    {
+      "kommunekode": "0849",
+      "boligtype": "fritidshus",
+      "m2pris": 23000,
+      "antal_handler_12m": 324,
+      "liggetid_dage": 159,
+      "udvikling_1aar_pct": -5
+    },
+    {
+      "kommunekode": "0825",
+      "boligtype": "hus",
+      "m2pris": 7500,
+      "antal_handler_12m": 25,
+      "liggetid_dage": 89,
+      "udvikling_1aar_pct": 7.6
+    },
+    {
+      "kommunekode": "0825",
+      "boligtype": "fritidshus",
+      "m2pris": 17300,
+      "antal_handler_12m": 34,
+      "liggetid_dage": 29,
+      "udvikling_1aar_pct": 10.9
+    },
+    {
+      "kommunekode": "0846",
+      "boligtype": "hus",
+      "m2pris": 7900,
+      "antal_handler_12m": 427,
+      "liggetid_dage": 196,
+      "udvikling_1aar_pct": -7.2
+    },
+    {
+      "kommunekode": "0846",
+      "boligtype": "lejlighed",
+      "m2pris": 14900,
+      "antal_handler_12m": 24,
+      "liggetid_dage": 74,
+      "udvikling_1aar_pct": 24
+    },
+    {
+      "kommunekode": "0846",
+      "boligtype": "fritidshus",
+      "m2pris": 13600,
+      "antal_handler_12m": 165,
+      "liggetid_dage": 150,
+      "udvikling_1aar_pct": 4
+    },
+    {
+      "kommunekode": "0773",
+      "boligtype": "hus",
+      "m2pris": 5800,
+      "antal_handler_12m": 174,
+      "liggetid_dage": 296,
+      "udvikling_1aar_pct": -10.4
+    },
+    {
+      "kommunekode": "0840",
+      "boligtype": "hus",
+      "m2pris": 11500,
+      "antal_handler_12m": 343,
+      "liggetid_dage": 191,
+      "udvikling_1aar_pct": 0.8
+    },
+    {
+      "kommunekode": "0787",
+      "boligtype": "hus",
+      "m2pris": 8100,
+      "antal_handler_12m": 444,
+      "liggetid_dage": 212,
+      "udvikling_1aar_pct": -0.9
+    },
+    {
+      "kommunekode": "0787",
+      "boligtype": "lejlighed",
+      "m2pris": 16200,
+      "antal_handler_12m": 29,
+      "liggetid_dage": 170,
+      "udvikling_1aar_pct": -8.5
+    },
+    {
+      "kommunekode": "0787",
+      "boligtype": "fritidshus",
+      "m2pris": 16400,
+      "antal_handler_12m": 123,
+      "liggetid_dage": 143,
+      "udvikling_1aar_pct": -5.2
+    },
+    {
+      "kommunekode": "0820",
+      "boligtype": "hus",
+      "m2pris": 7500,
+      "antal_handler_12m": 316,
+      "liggetid_dage": 212,
+      "udvikling_1aar_pct": 2.5
+    },
+    {
+      "kommunekode": "0820",
+      "boligtype": "fritidshus",
+      "m2pris": 12900,
+      "antal_handler_12m": 111,
+      "liggetid_dage": 193,
+      "udvikling_1aar_pct": 10
+    },
+    {
+      "kommunekode": "0851",
+      "boligtype": "hus",
+      "m2pris": 16200,
+      "antal_handler_12m": 1483,
+      "liggetid_dage": 128,
+      "udvikling_1aar_pct": 2.1
+    },
+    {
+      "kommunekode": "0851",
+      "boligtype": "lejlighed",
+      "m2pris": 20100,
+      "antal_handler_12m": 692,
+      "liggetid_dage": 132,
+      "udvikling_1aar_pct": 0.1
+    },
+    {
+      "kommunekode": "0851",
+      "boligtype": "fritidshus",
+      "m2pris": 12400,
+      "antal_handler_12m": 271,
+      "liggetid_dage": 189,
+      "udvikling_1aar_pct": 1.8
+    }
   ]
 }

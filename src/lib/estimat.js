@@ -23,6 +23,24 @@ export function indeksM2(data) {
   return { postnr, kommune, kilde: data?.kilde || '', dato: data?.dato || '', testdata: Boolean(data?.testdata) };
 }
 
+// Finans Danmark slår parcel- og rækkehuse sammen. Mangler der egne tal for rækkehuse, bruges tallene for hus.
+const ALIAS = { raekkehus: 'hus' };
+
+/** Finans Danmark samler postnumrene i København K, København V og Frederiksberg C i intervaller. */
+export function statistikPostnr(postnr) {
+  const n = Number(postnr);
+  if (n >= 1000 && n < 1500) return '1000';
+  if (n >= 1500 && n < 1800) return '1500';
+  if (n >= 1800 && n < 2000) return '1800';
+  return String(postnr ?? '');
+}
+
+function slaaOp(tabel, noegle, type) {
+  const r = tabel.get(`${noegle}:${type}`);
+  if (harTal(r?.m2pris) || !ALIAS[type]) return r;
+  return tabel.get(`${noegle}:${ALIAS[type]}`) || r;
+}
+
 function faktor(config, stand = {}, tilvalg = []) {
   const f = config?.faktorer || {};
   let x = 1;
@@ -40,8 +58,8 @@ export function beregnEstimat(input, indeks, config) {
   if (!indeks || !boligtype || boligtype === 'andel') return null;
   if (!Number.isFinite(areal) || areal < 10 || areal > 2000) return null;
 
-  const pn = indeks.postnr.get(`${postnr}:${boligtype}`);
-  const km = kommunekode ? indeks.kommune.get(`${kommunekode}:${boligtype}`) : null;
+  const pn = slaaOp(indeks.postnr, statistikPostnr(postnr), boligtype);
+  const km = kommunekode ? slaaOp(indeks.kommune, String(kommunekode).padStart(4, '0'), boligtype) : null;
   const kilde = harTal(pn?.m2pris) ? pn : harTal(km?.m2pris) ? km : null;
   if (!kilde) return null;
 

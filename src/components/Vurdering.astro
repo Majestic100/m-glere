@@ -1,8 +1,6 @@
 ---
 // Vurderings-flowet. Én ting pr. skærm, progress bar, tilbage-knap på alle trin.
 // Svarene gemmes løbende i sessionStorage, så intet går tabt ved et genindlæs.
-import m2Prod from '../../data/m2-priser.json';
-import m2Demo from '../../data/demo/m2-priser.json';
 import estimatConfig from '../../config/estimat.json';
 import matchConfig from '../../config/matching.json';
 import maeglerData from '../../data/maeglere.json';
@@ -16,7 +14,6 @@ const DEMO = import.meta.env.PUBLIC_DEMO === '1';
 // hvor der ingen server er, så kapacitet, feedback og responstid ikke ligger i sidens kildekode.
 const data = {
   demo: DEMO,
-  m2: medTal(DEMO ? m2Demo : m2Prod),
   estimatConfig,
   maeglere: DEMO ? medTal(maeglerData).maeglere : null,
   matchConfig: DEMO ? matchConfig : null,
@@ -34,6 +31,7 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
   <!-- Links, som flowet bruger i sine tekster. Ligger i HTML, så de kan omskrives i demo og preview. -->
   <a hidden id="vf-link-faq" href="/ofte-stillede-spoergsmaal#hvordan-finder-i-min-maegler">Sådan finder vi din mægler</a>
   <a hidden id="vf-link-pdp" href="/persondatapolitik">Persondatapolitik</a>
+  <a hidden id="vf-link-m2" href="/data/m2.json">Kvadratmeterpriser</a>
 
   <div class="vf-top" id="vf-top" hidden>
     <button type="button" class="vf-tilbage" id="vf-tilbage">

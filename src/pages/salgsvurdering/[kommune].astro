@@ -25,7 +25,7 @@ const { k, naboer } = Astro.props;
 const data = medTal(raa);
 const rigtig = harRigtigeTal(k);
 const fmt = (n: unknown) => (harTal(n) ? `${new Intl.NumberFormat('da-DK').format(n as number)} kr.` : null);
-const kilde = `${data.kilde}, ${k.dato}`;
+const kilde = `${data.kilde}, seneste tal ${k.dato}`;
 
 const titel = `Salgsvurdering i ${k.navn}: boligpriser og lokal mægler | Nem Vurdering`;
 const beskrivelse = rigtig
@@ -41,13 +41,13 @@ const lokalFaq = [
   },
   harTal(k.liggetid_dage) && {
     id: 'liggetid',
-    q: `Hvor lang tid tager det at sælge en bolig i ${k.navn}?`,
-    a: [`En bolig i ${k.navn} er i gennemsnit til salg i ${k.liggetid_dage} dage, før den bliver solgt (${kilde}). Det afhænger meget af pris, stand og beliggenhed.`],
+    q: `Hvor lang tid tager det at sælge et hus i ${k.navn}?`,
+    a: [`Et hus i ${k.navn} er i gennemsnit til salg i ${k.liggetid_dage} dage, før det bliver solgt (${kilde}). Det afhænger meget af pris, stand og beliggenhed.`],
   },
   harTal(k.udvikling_1aar_pct) && {
     id: 'prisudvikling',
-    q: `Hvordan har boligpriserne udviklet sig i ${k.navn}?`,
-    a: [`Priserne har ændret sig ${procent(k.udvikling_1aar_pct)} det seneste år${harTal(k.udvikling_5aar_pct) ? `, ${procent(k.udvikling_5aar_pct)} over 5 år` : ''}${harTal(k.udvikling_10aar_pct) ? ` og ${procent(k.udvikling_10aar_pct)} over 10 år` : ''} (${kilde}).`],
+    q: `Hvordan har huspriserne udviklet sig i ${k.navn}?`,
+    a: [`Kvadratmeterprisen for huse har ændret sig ${procent(k.udvikling_1aar_pct)} det seneste år${harTal(k.udvikling_5aar_pct) ? `, ${procent(k.udvikling_5aar_pct)} over 5 år` : ''}${harTal(k.udvikling_10aar_pct) ? ` og ${procent(k.udvikling_10aar_pct)} over 10 år` : ''} (${kilde}).`],
   },
   {
     id: 'pris-salgsvurdering',
@@ -59,10 +59,10 @@ const lokalFaq = [
 const noegletal = [
   ['Pris pr. m² for huse', fmt(k.m2pris_hus)],
   ['Pris pr. m² for lejligheder', fmt(k.m2pris_lejlighed)],
-  ['Gennemsnitlig liggetid', harTal(k.liggetid_dage) ? `${k.liggetid_dage} dage` : null],
-  ['Prisudvikling 1 år', procent(k.udvikling_1aar_pct)],
-  ['Prisudvikling 5 år', procent(k.udvikling_5aar_pct)],
-  ['Prisudvikling 10 år', procent(k.udvikling_10aar_pct)],
+  ['Salgstid for huse', harTal(k.liggetid_dage) ? `${k.liggetid_dage} dage` : null],
+  ['Huspriser, 1 år', procent(k.udvikling_1aar_pct)],
+  ['Huspriser, 5 år', procent(k.udvikling_5aar_pct)],
+  ['Huspriser, 10 år', procent(k.udvikling_10aar_pct)],
 ];
 ---
 <Base titel={titel} beskrivelse={beskrivelse} noindex={!rigtig}>

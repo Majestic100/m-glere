@@ -10,7 +10,8 @@
     "test": "node --test tests/*.test.js",
     "preview-bundle": "node scripts/preview-bundle.mjs",
     "demo-bundle": "node scripts/preview-bundle.mjs --demo",
-    "lint": "astro check"
+    "lint": "astro check",
+    "hent-boligdata": "node scripts/hent-boligdata.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.14",

@@ -15,7 +15,7 @@ mkdirSync(join(UD, 'assets'), { recursive: true });
 function htmlFiler(mappe) {
   return readdirSync(mappe).flatMap((f) => {
     const sti = join(mappe, f);
-    if (statSync(sti).isDirectory()) return f === '_astro' || f === 'brand' || f === 'admin' ? [] : htmlFiler(sti);
+    if (statSync(sti).isDirectory()) return f === '_astro' || f === 'brand' || f === 'admin' || f === 'data' ? [] : htmlFiler(sti);
     return f.endsWith('.html') && f !== '404.html' ? [relative(DIST, sti)] : [];
   });
 }
@@ -38,6 +38,7 @@ for (const fil of sider) {
     .replace(/(href|src|srcset)="\/brand\//g, `$1="${op}brand/`)
     .replace(/<meta http-equiv="Content-Security-Policy"[^>]*>/, '')
     .replace(/href="\/site\.webmanifest"/, `href="${op}site.webmanifest"`)
+    .replace(/href="\/data\/([^"]+)"/g, `href="${op}data/$1"`)
     .replace(/href="\/(#[^"]*)?"/g, (_, hash = '') => `href="${op}index.html${hash}"`)
     .replace(/href="\/([a-z0-9-]+(?:\/[a-z0-9-]+)*)(#[^"]*)?"/g, (_, s, hash = '') => `href="${op}${s}.html${hash}"`)
     .replace('<head>', `<head><script>window.VURDO_PREVIEW=true</script>${DEMO ? '<meta name="robots" content="noindex, nofollow">' : ''}`)
@@ -57,6 +58,7 @@ for (const fil of sider) {
 for (const f of readdirSync(join(DIST, '_astro'))) copyFileSync(join(DIST, '_astro', f), join(UD, 'assets', f));
 copyFileSync(join(DIST, 'site.webmanifest'), join(UD, 'site.webmanifest'));
 if (existsSync(join(DIST, 'brand'))) cpSync(join(DIST, 'brand'), join(UD, 'brand'), { recursive: true });
+if (existsSync(join(DIST, 'data'))) cpSync(join(DIST, 'data'), join(UD, 'data'), { recursive: true });
 if (DEMO) {
   writeFileSync(join(UD, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
   writeFileSync(join(UD, '.nojekyll'), '');

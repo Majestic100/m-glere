@@ -11,6 +11,7 @@ const data = {
     { postnr: '8000', boligtype: 'hus', m2pris: 40000, antal_handler_12m: 60, liggetid_dage: 60, udvikling_1aar_pct: 5 },
     { postnr: '8000', boligtype: 'raekkehus', m2pris: 'TODO_DATA' },
     { postnr: '8001', boligtype: 'hus', m2pris: 30000, antal_handler_12m: 3 },
+    { postnr: '1000', boligtype: 'lejlighed', m2pris: 80000, antal_handler_12m: 500 },
   ],
   kommuner: [{ kommunekode: '0751', boligtype: 'raekkehus', m2pris: 35000 }],
 };
@@ -30,10 +31,22 @@ test('estimat: stand og tilvalg ganges på, ukendte faktorer tæller som 1', () 
   assert.equal(e.middel, 4_200_000);
 });
 
-test('estimat: TODO_DATA i postnummer falder tilbage til kommunen med lav præcision', () => {
+test('estimat: rækkehus uden egne tal bruger tallene for hus i samme postnummer', () => {
   const e = beregnEstimat({ postnr: '8000', kommunekode: '0751', bbr: { boligtype: 'raekkehus', areal: 100 } }, idx, cfgEstimat);
+  assert.equal(e.grundlag, 'postnummer');
+  assert.equal(e.middel, 4_000_000);
+});
+
+test('estimat: uden tal for postnummeret falder det tilbage til kommunen med lav præcision', () => {
+  const e = beregnEstimat({ postnr: '8210', kommunekode: '751', bbr: { boligtype: 'raekkehus', areal: 100 } }, idx, cfgEstimat);
   assert.equal(e.grundlag, 'kommune');
   assert.equal(e.praecision, 'lav');
+  assert.equal(e.middel, 3_500_000);
+});
+
+test('estimat: postnumre i København K bruger Finans Danmarks interval 1000', () => {
+  const e = beregnEstimat({ postnr: '1365', bbr: { boligtype: 'lejlighed', areal: 50 } }, idx, cfgEstimat);
+  assert.equal(e.middel, 4_000_000);
 });
 
 test('estimat: få handler giver lav præcision, andel og manglende data giver null', () => {

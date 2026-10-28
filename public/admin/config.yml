@@ -1,4 +1,5 @@
-# Decap CMS. Redigér mæglere, priser, kommuner, markedstal, vægte og firmaoplysninger uden kode.
+# Decap CMS. Redigér mæglere, kommunetekster, vægte og firmaoplysninger uden kode.
+# Kvadratmeterpriser og markedstal hentes fra Finans Danmark med npm run hent-boligdata.
 # Hver gemning bliver et commit i GitHub, og siden bygges igen (ca. 1 minut).
 # Login: GitHub-konto med skriveadgang til repoet. Se README, afsnittet "CMS".
 # Felter, der mangler tal, skrives som TODO_DATA. Se TODO_DATA.md.
@@ -58,29 +59,7 @@ collections:
               - { name: responstid_timer, label: 'Gennemsnitlig responstid (timer, tom = neutral)', widget: number, value_type: float, required: false }
               - { name: trustpilot_score, label: 'Trustpilot-score', widget: string, required: false }
 
-  - name: priser
-    label: Kvadratmeterpriser
-    files:
-      - name: m2
-        label: Kvadratmeterpriser pr. postnummer og kommune
-        file: data/m2-priser.json
-        fields:
-          - { name: kilde, label: Kilde, widget: string }
-          - { name: dato, label: 'Dato for tallene', widget: string }
-          - { name: testdata, label: 'Testdata (vises som Testtal)', widget: boolean, default: false }
-          - name: postnumre
-            label: Postnumre
-            widget: list
-            summary: '{{fields.postnr}} {{fields.boligtype}}'
-            fields: &m2felter
-              - { name: postnr, label: Postnummer, widget: string, required: false }
-              - { name: kommunekode, label: Kommunekode, widget: string, required: false }
-              - { name: boligtype, label: Boligtype, widget: select, options: [hus, raekkehus, lejlighed, fritidshus] }
-              - { name: m2pris, label: 'Kr. pr. m²', widget: string }
-              - { name: antal_handler_12m, label: 'Handler de seneste 12 måneder', widget: string }
-              - { name: liggetid_dage, label: 'Liggetid (dage)', widget: string }
-              - { name: udvikling_1aar_pct, label: 'Prisudvikling 1 år (%)', widget: string }
-          - name: kommuner
+  - name: kommuner
             label: Kommuner
             widget: list
             summary: '{{fields.kommunekode}} {{fields.boligtype}}'
@@ -92,6 +71,7 @@ collections:
       - name: kommuner
         label: Kommuner
         file: data/kommuner.json
+        description: 'Tallene hentes fra Finans Danmark med npm run hent-boligdata hvert kvartal. Ret navne, naboer og lokal tekst her.'
         fields:
           - { name: kilde, label: Kilde, widget: string }
           - name: kommuner
@@ -138,7 +118,7 @@ collections:
           - { name: m2pris, label: 'Kr. pr. m² for huse', widget: string }
           - { name: liggetid_dage, label: 'Liggetid (dage)', widget: string }
           - { name: handler_12m, label: 'Handler de seneste 12 måneder', widget: string }
-          - { name: nedslag_pct, label: 'Gennemsnitligt nedslag (%)', widget: string }
+          - { name: udvikling_1aar_pct, label: 'Prisudvikling for huse, 1 år (%)', widget: string }
       - name: features
         label: Feature flags
         file: config/features.json

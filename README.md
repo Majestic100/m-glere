@@ -12,7 +12,8 @@ Alt, der mangler rigtige tal eller afklaring, står i [`TODO_DATA.md`](TODO_DATA
 | Flow | Ren JavaScript (`src/scripts/flow.js`). Tilstanden gemmes i `sessionStorage`, så et reload ikke nulstiller |
 | Adresser | Klimadatastyrelsens Adressevælger. DAWA er lukket (`410 Gone`) |
 | BBR | Datafordelerens GraphQL via `/api/bbr`. Uden API-nøgle udfylder boligejeren selv |
-| Estimat | `src/lib/estimat.js` med tal fra `data/m2-priser.json` og regler fra `config/estimat.json` |
+| Estimat | `src/lib/estimat.js` med tal fra `data/m2-priser.json` og regler fra `config/estimat.json`. Tallene hentes som en statisk fil (`/data/m2.json`), når boligejeren har valgt sin adresse |
+| Boligdata | Finans Danmarks Boligmarkedsstatistik. `npm run hent-boligdata` opdaterer priser, kommuner og markedstal hvert kvartal |
 | Matching | `src/lib/matching.js` via `/api/match`. Resultatet signeres, så `/api/lead` kun accepterer den matchede mægler |
 | Henvendelser | `/api/lead` sender til GoHighLevel-webhooken efter samtykket er logget i Netlify Blobs |
 | Redigering | Decap CMS på `/admin` |
@@ -35,7 +36,6 @@ Funktionerne under `/api` kører kun på Netlify eller med `netlify dev`.
 | Mappe | Indhold |
 | --- | --- |
 | `data/` | Indhold, der redigeres i CMS'et: mæglere, kvadratmeterpriser, kommuner, markedstal, firmaoplysninger |
-| `data/demo/` | Runde testtal, der kun bruges i demoen |
 | `config/` | Regler: estimatets præcision og faktorer, matchingvægte, feature flags |
 | `src/lib/` | Fælles logik til browser, server og tests |
 | `src/content/guides/` | Guides som MDX. `kladde: true` holder dem ude af produktion |
@@ -57,7 +57,7 @@ Build-flag:
 
 | Flag | Virkning |
 | --- | --- |
-| `PUBLIC_DEMO=1` | Testtal fra `data/demo/`, matching i browseren, intet sendes |
+| `PUBLIC_DEMO=1` | Matching i browseren, intet sendes |
 | `KOMMUNE_KLADDER=1` | Alle kommunesider og guides bygges, også uden tal, med `noindex` |
 
 ## Flowet
@@ -107,7 +107,9 @@ Tal skrives som tekst i CMS'et og laves om til tal ved build. Skriv `TODO_DATA` 
 
 ## Kommunesider og guides
 
-`/salgsvurdering/<kommune>` bygges fra `data/kommuner.json`, men kun for kommuner med alle tal udfyldt. Uden tal findes siden ikke i produktion. Det er bevidst, så Google ikke ser tynde sider.
+`/salgsvurdering/<kommune>` bygges fra `data/kommuner.json`, men kun for kommuner med alle tal udfyldt. Uden tal findes siden ikke i produktion. Det er bevidst, så Google ikke ser tynde sider. Alle 24 kommuner har tal fra Finans Danmark.
+
+Vil I have flere kommuner, så tilføj dem med kode, navn og slug i `data/kommuner.json` og kør `npm run hent-boligdata`.
 
 Guides i `src/content/guides/` er kladder med disposition. Sæt `kladde: false`, når en guide er skrevet færdig.
 
